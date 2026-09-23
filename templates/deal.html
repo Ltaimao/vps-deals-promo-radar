@@ -1,0 +1,24 @@
+<section class="crumbs">{{CRUMBS}}</section>
+<article class="deal">
+<div class="head">
+<h3>{{DEAL_TITLE}}</h3>
+<span class="price">{{PRICE_LABEL}}</span>
+</div>
+<p class="meta">From <a href="/providers/{{PROVIDER_SLUG}}/">{{PROVIDER_NAME}}</a> · Currency: {{CURRENCY}}</p>
+<p>{{DEAL_DESCRIPTION}}</p>
+<dl>
+<dt>Listed URL</dt>
+<dd><a href="{{OFFER_URL}}" rel="noopener" target="_blank">{{OFFER_URL_LABEL}}</a></dd>
+<dt>Source page</dt>
+<dd><a href="{{SOURCE_URL}}" rel="noopener" target="_blank">{{SOURCE_URL_LABEL}}</a></dd>
+{{VALID_UNTIL_ROW}}
+<dt>Fetched at</dt>
+<dd>{{FETCHED_AT_LABEL}}</dd>
+</dl>
+{{FAQ_BLOCK}}
+</article>
+
+<section>
+<h2>How this is verified</h2>
+<p>This entry was extracted from <a href="{{SOURCE_URL}}" rel="noopener" target="_blank">{{SOURCE_URL}}</a> on {{FETCHED_AT_LABEL}}. The scraper wrote it to <code>data/offers.json</code>; the build step re-rendered this page on <strong>{{BUILT_AT}}</strong>. No part of this page is fabricated.</p>
+</section>

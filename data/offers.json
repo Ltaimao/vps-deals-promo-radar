@@ -1,0 +1,309 @@
+{
+  "generated_at": "2026-09-23T21:41:34.791520+00:00",
+  "source": "scraper.py + .ilang/site.ilang",
+  "site": {
+    "brand": "vps-deals",
+    "niche": "VPS主机",
+    "domain": "vps-deals.pages.dev",
+    "locale": "en-US",
+    "currency": "USD",
+    "repo_name": "vps-deals-promo-radar"
+  },
+  "providers": [
+    {
+      "name": "Hetzner Cloud",
+      "slug": "hetzner-cloud",
+      "url": "https://www.hetzner.com/cloud",
+      "source_url": "https://www.hetzner.com/cloud",
+      "affiliate_url": null,
+      "fetch_status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-09-23T21:41:34.791520+00:00"
+    },
+    {
+      "name": "DigitalOcean",
+      "slug": "digitalocean",
+      "url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "affiliate_url": null,
+      "fetch_status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-09-23T21:41:34.791520+00:00"
+    },
+    {
+      "name": "OVH Promotions",
+      "slug": "ovh-promotions",
+      "url": "https://www.ovh.com/world/promotions/",
+      "source_url": "https://www.ovh.com/world/promotions/",
+      "affiliate_url": null,
+      "fetch_status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-09-23T21:41:34.791520+00:00"
+    },
+    {
+      "name": "RackNerd",
+      "slug": "racknerd",
+      "url": "https://www.racknerd.com/",
+      "source_url": "https://www.racknerd.com/",
+      "affiliate_url": null,
+      "fetch_status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-09-23T21:41:34.791520+00:00"
+    }
+  ],
+  "deals": [
+    {
+      "title": "Highly scalable View App Platform pricing Droplets Starting at",
+      "provider_name": "DigitalOcean",
+      "price": 4.0,
+      "currency": "USD",
+      "offer_url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:38.292777+00:00",
+      "provider_slug": "digitalocean"
+    },
+    {
+      "title": "Highly-efficient virtual machines Per-sec billing with 60 sec minimum or",
+      "provider_name": "DigitalOcean",
+      "price": 0.01,
+      "currency": "USD",
+      "offer_url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:38.292908+00:00",
+      "provider_slug": "digitalocean"
+    },
+    {
+      "title": "Droplet Kubernetes Starting",
+      "provider_name": "DigitalOcean",
+      "price": 12.0,
+      "currency": "USD",
+      "offer_url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:38.293176+00:00",
+      "provider_slug": "digitalocean"
+    },
+    {
+      "title": "Scale automatically View Functions pricing Cloudways Managed Hosting Starting at",
+      "provider_name": "DigitalOcean",
+      "price": 11.0,
+      "currency": "USD",
+      "offer_url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:38.293347+00:00",
+      "provider_slug": "digitalocean"
+    },
+    {
+      "title": "Droplet cost per month Usage-based starting at",
+      "provider_name": "DigitalOcean",
+      "price": 0.01,
+      "currency": "USD",
+      "offer_url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:38.293449+00:00",
+      "provider_slug": "digitalocean"
+    },
+    {
+      "title": "Backups Databases Starting",
+      "provider_name": "DigitalOcean",
+      "price": 15.0,
+      "currency": "USD",
+      "offer_url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:38.293555+00:00",
+      "provider_slug": "digitalocean"
+    },
+    {
+      "title": "Storage Spaces Starting",
+      "provider_name": "DigitalOcean",
+      "price": 5.0,
+      "currency": "USD",
+      "offer_url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:38.293719+00:00",
+      "provider_slug": "digitalocean"
+    },
+    {
+      "title": "Built in CDN View Spaces Object Storage pricing Network File Storage Starting at",
+      "provider_name": "DigitalOcean",
+      "price": 0.15,
+      "currency": "USD",
+      "offer_url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:38.293801+00:00",
+      "provider_slug": "digitalocean"
+    },
+    {
+      "title": "Standard GiB-month High",
+      "provider_name": "DigitalOcean",
+      "price": 0.3,
+      "currency": "USD",
+      "offer_url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:38.293925+00:00",
+      "provider_slug": "digitalocean"
+    },
+    {
+      "title": "Storage Volumes Starting",
+      "provider_name": "DigitalOcean",
+      "price": 10.0,
+      "currency": "USD",
+      "offer_url": "https://www.digitalocean.com/pricing/",
+      "source_url": "https://www.digitalocean.com/pricing/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:38.294034+00:00",
+      "provider_slug": "digitalocean"
+    },
+    {
+      "title": "Available in Singapore & Australia location From",
+      "provider_name": "OVH Promotions",
+      "price": 677.0,
+      "currency": "USD",
+      "offer_url": "https://www.ovh.com/world/promotions/",
+      "source_url": "https://www.ovh.com/world/promotions/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:39.442800+00:00",
+      "provider_slug": "ovh-promotions"
+    },
+    {
+      "title": "Search Multiple Transfer",
+      "provider_name": "OVH Promotions",
+      "price": 9.2,
+      "currency": "USD",
+      "offer_url": "https://www.ovh.com/world/promotions/",
+      "source_url": "https://www.ovh.com/world/promotions/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:39.442949+00:00",
+      "provider_slug": "ovh-promotions"
+    },
+    {
+      "title": "Search Multiple Transfer",
+      "provider_name": "OVH Promotions",
+      "price": 17.99,
+      "currency": "USD",
+      "offer_url": "https://www.ovh.com/world/promotions/",
+      "source_url": "https://www.ovh.com/world/promotions/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:39.443035+00:00",
+      "provider_slug": "ovh-promotions"
+    },
+    {
+      "title": "Search Multiple Transfer",
+      "provider_name": "OVH Promotions",
+      "price": 62.99,
+      "currency": "USD",
+      "offer_url": "https://www.ovh.com/world/promotions/",
+      "source_url": "https://www.ovh.com/world/promotions/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:39.443168+00:00",
+      "provider_slug": "ovh-promotions"
+    },
+    {
+      "title": "Search Multiple Transfer",
+      "provider_name": "OVH Promotions",
+      "price": 35.82,
+      "currency": "USD",
+      "offer_url": "https://www.ovh.com/world/promotions/",
+      "source_url": "https://www.ovh.com/world/promotions/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:39.443280+00:00",
+      "provider_slug": "ovh-promotions"
+    },
+    {
+      "title": "Search Multiple Transfer",
+      "provider_name": "OVH Promotions",
+      "price": 7.79,
+      "currency": "USD",
+      "offer_url": "https://www.ovh.com/world/promotions/",
+      "source_url": "https://www.ovh.com/world/promotions/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:39.443358+00:00",
+      "provider_slug": "ovh-promotions"
+    },
+    {
+      "title": "DEDICATED SERVERS Starting",
+      "provider_name": "RackNerd",
+      "price": 139.0,
+      "currency": "USD",
+      "offer_url": "https://www.racknerd.com/",
+      "source_url": "https://www.racknerd.com/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:40.341370+00:00",
+      "provider_slug": "racknerd"
+    },
+    {
+      "title": "Toronto starting at just",
+      "provider_name": "RackNerd",
+      "price": 2.24,
+      "currency": "USD",
+      "offer_url": "https://www.racknerd.com/",
+      "source_url": "https://www.racknerd.com/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:40.341556+00:00",
+      "provider_slug": "racknerd"
+    },
+    {
+      "title": "COLOCATION PLANS Starting",
+      "provider_name": "RackNerd",
+      "price": 179.0,
+      "currency": "USD",
+      "offer_url": "https://www.racknerd.com/",
+      "source_url": "https://www.racknerd.com/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:40.341665+00:00",
+      "provider_slug": "racknerd"
+    },
+    {
+      "title": "Storage Premium Low Latency Network Multiple Datacenter Locations Instantly Setup",
+      "provider_name": "RackNerd",
+      "price": 2.0,
+      "currency": "USD",
+      "offer_url": "https://www.racknerd.com/",
+      "source_url": "https://www.racknerd.com/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:40.341827+00:00",
+      "provider_slug": "racknerd"
+    },
+    {
+      "title": "Access Low Latency Network Multiple Datacenter Locations Scale/Upgrade Seamlessly",
+      "provider_name": "RackNerd",
+      "price": 39.0,
+      "currency": "USD",
+      "offer_url": "https://www.racknerd.com/",
+      "source_url": "https://www.racknerd.com/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:40.341938+00:00",
+      "provider_slug": "racknerd"
+    },
+    {
+      "title": "Processor Servers Low Latency Network DDoS Protected Network SSD & HDD Options",
+      "provider_name": "RackNerd",
+      "price": 139.0,
+      "currency": "USD",
+      "offer_url": "https://www.racknerd.com/",
+      "source_url": "https://www.racknerd.com/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:40.342090+00:00",
+      "provider_slug": "racknerd"
+    },
+    {
+      "title": "U Available 24x7 Smart Hands & Eyes Free Receiving Premium Bandwidth Included",
+      "provider_name": "RackNerd",
+      "price": 99.0,
+      "currency": "USD",
+      "offer_url": "https://www.racknerd.com/",
+      "source_url": "https://www.racknerd.com/",
+      "valid_until": null,
+      "fetched_at": "2026-09-23T21:41:40.342252+00:00",
+      "provider_slug": "racknerd"
+    }
+  ]
+}

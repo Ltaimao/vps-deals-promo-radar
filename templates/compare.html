@@ -1,0 +1,25 @@
+<section class="crumbs">{{CRUMBS}}</section>
+<section>
+<h2>Provider comparison</h2>
+<p>At-a-glance comparison of the <strong>{{PROVIDER_COUNT}}</strong> providers in this directory. All prices and currencies come directly from each provider's public pricing/promotions page. Where a provider returned a non-200 response, the row shows <em>unreachable</em>.</p>
+</section>
+
+<section>
+<table>
+<thead>
+<tr><th>Provider</th><th>Page status</th><th>Deals found</th><th>Source</th></tr>
+</thead>
+<tbody>
+{{ROWS}}
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>Notes</h2>
+<ul>
+<li>Currency is reported as the provider publishes it on the source page. No FX conversion is applied.</li>
+<li>Deals with a price field are rendered with <code>Offer</code> JSON-LD and may show a rich result in Google Search.</li>
+<li>Deals marked <em>unreachable</em> are kept in the index so you know we tried — they are not silently dropped.</li>
+</ul>
+</section>

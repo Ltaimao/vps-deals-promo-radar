@@ -1,0 +1,39 @@
+ILANG
+TYPE config
+PROJECT vps-deals-promo-radar
+LANG zh
+
+::STATE{@SITE, brand:vps-deals, niche:VPS主机, domain:vps-deals.pages.dev, locale:en-US, currency:USD, repo_name:vps-deals-promo-radar}
+
+::MODULE{PROVIDERS|title:抓哪几家 这里改了 scraper 重启时 抓的可信公开源就变}
+  Hetzner Cloud | https://www.hetzner.com/cloud | https://www.hetzner.com/cloud | https://www.hetzner.com/cloud
+  DigitalOcean | https://www.digitalocean.com/pricing/ | https://www.digitalocean.com/pricing/ | https://www.digitalocean.com/pricing/
+  OVH Promotions | https://www.ovh.com/world/promotions/ | https://www.ovh.com/world/promotions/ | https://www.ovh.com/world/promotions/
+  RackNerd | https://www.racknerd.com/ | https://www.racknerd.com/ | https://www.racknerd.com/
+
+::MODULE{FIELDS|title:每条优惠提取什么 字段名是契约 改这里 scraper 和 build 一起跟}
+  title price currency offer_url valid_until source_url fetched_at
+
+::MODULE{LOCALE|title:目标语言地区 改了 scraper 抓那个地区的优惠页 模板换语种 货币换当地货币}
+  lang:en-US
+  currency:USD
+  date_format:%b %d, %Y
+
+::MODULE{RENDER|title:页面渲染规则}
+  pages_per_index:50
+  canonical_per_page:true
+  hreflang_enabled:false
+  jsonld:["Offer","Product","Service","ItemList","BreadcrumbList","FAQPage"]
+  sitemap_lastmod:true
+  robots_allow_all:false
+
+::MODULE{SCHEDULE|title:更新频率}
+  cron:0 */6 * * *
+  timezone:UTC
+
+::RULE{抓不到 price ⇒ 这条不写 price 字段 也不进结构化数据 不许拿估的填}
+::RULE{valid_until 已过 ⇒ 标记 expired 不许留着冒充有效}
+::RULE{HTTP 非 200 或被反爬挡 ⇒ 标 unreachable 不许重试绕过 不许拿别处的数据冒充}
+::RULE{sitemap 或 feed 用作 source_url 不许拿市价页当优惠页 除非该厂商明示优惠}
+::BOUNDARY{never:编优惠 编价格 编佣金 编汇率 编折扣|scope:permanent}
+::BOUNDARY{never:绕过反爬 伪造 UA 抓登录后内容 违反目标站 robots.txt|scope:permanent}
