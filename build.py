@@ -367,7 +367,10 @@ def main():
     site_cfg = cfg["SITE"]
     brand = site_cfg.get("brand", "vps-deals")
     lang = site_cfg.get("locale", "en-US")
-    base_url = "https://" + brand + ".pages.dev"
+    # domain is the source of truth — it gets auto-suffixed by Cloudflare when
+    # the requested name is taken, so users must put the actual deployed URL
+    # here, not just "{brand}.pages.dev".
+    base_url = "https://" + site_cfg.get("domain", brand + ".pages.dev")
     repo_full = "vps-deals-promo-radar"
     last_fetched = data["generated_at"][:19].replace("T", " ") + " UTC"
 

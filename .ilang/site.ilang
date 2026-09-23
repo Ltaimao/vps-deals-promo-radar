@@ -3,7 +3,7 @@ TYPE config
 PROJECT vps-deals-promo-radar
 LANG zh
 
-::STATE{@SITE, brand:vps-deals, niche:VPS主机, domain:vps-deals.pages.dev, locale:en-US, currency:USD, repo_name:vps-deals-promo-radar}
+::STATE{@SITE, brand:vps-deals, niche:VPS主机, domain:vps-deals-6rp.pages.dev, locale:en-US, currency:USD, repo_name:vps-deals-promo-radar}
 
 ::MODULE{PROVIDERS|title:抓哪几家 这里改了 scraper 重启时 抓的可信公开源就变}
   Hetzner Cloud | https://www.hetzner.com/cloud | https://www.hetzner.com/cloud | https://www.hetzner.com/cloud
