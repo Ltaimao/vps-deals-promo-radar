@@ -4,6 +4,8 @@ This repo builds and keeps fresh a small VPS hosting deals site.
 It pulls from the public pricing/promotion pages listed in `.ilang/site.ilang`,
 and redeploys to Cloudflare Pages on a schedule.
 
+**Live site:** https://vps-deals-6rp.pages.dev/
+
 ## How it works
 
 1. `scraper.py` reads `.ilang/site.ilang`, fetches each provider's public page, extracts
