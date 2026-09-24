@@ -4,7 +4,7 @@ This repo builds and keeps fresh a small VPS hosting deals site.
 It pulls from the public pricing/promotion pages listed in `.ilang/site.ilang`,
 and redeploys to Cloudflare Pages on a schedule.
 
-**Live site:** https://vps-deals-6rp.pages.dev/
+**Live site:** https://vpsdealswire.com/
 
 ## How it works
 
