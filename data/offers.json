@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T10:45:45.025207+00:00",
+  "generated_at": "2026-09-25T16:05:43.888299+00:00",
   "source": "scraper.py + .ilang/site.ilang",
   "site": {
     "brand": "vps-deals",
@@ -18,7 +18,7 @@
       "affiliate_url": null,
       "fetch_status": "ok",
       "http_code": 200,
-      "fetched_at": "2026-09-25T10:45:45.025207+00:00"
+      "fetched_at": "2026-09-25T16:05:43.888299+00:00"
     },
     {
       "name": "DigitalOcean",
@@ -28,7 +28,7 @@
       "affiliate_url": null,
       "fetch_status": "ok",
       "http_code": 200,
-      "fetched_at": "2026-09-25T10:45:45.025207+00:00"
+      "fetched_at": "2026-09-25T16:05:43.888299+00:00"
     },
     {
       "name": "OVH Promotions",
@@ -38,7 +38,7 @@
       "affiliate_url": null,
       "fetch_status": "ok",
       "http_code": 200,
-      "fetched_at": "2026-09-25T10:45:45.025207+00:00"
+      "fetched_at": "2026-09-25T16:05:43.888299+00:00"
     },
     {
       "name": "RackNerd",
@@ -48,7 +48,7 @@
       "affiliate_url": null,
       "fetch_status": "ok",
       "http_code": 200,
-      "fetched_at": "2026-09-25T10:45:45.025207+00:00"
+      "fetched_at": "2026-09-25T16:05:43.888299+00:00"
     }
   ],
   "deals": [
@@ -60,7 +60,7 @@
       "offer_url": "https://www.digitalocean.com/pricing/",
       "source_url": "https://www.digitalocean.com/pricing/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:47.544412+00:00",
+      "fetched_at": "2026-09-25T16:05:46.375954+00:00",
       "provider_slug": "digitalocean"
     },
     {
@@ -71,7 +71,7 @@
       "offer_url": "https://www.digitalocean.com/pricing/",
       "source_url": "https://www.digitalocean.com/pricing/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:47.544453+00:00",
+      "fetched_at": "2026-09-25T16:05:46.376001+00:00",
       "provider_slug": "digitalocean"
     },
     {
@@ -82,7 +82,7 @@
       "offer_url": "https://www.digitalocean.com/pricing/",
       "source_url": "https://www.digitalocean.com/pricing/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:47.544562+00:00",
+      "fetched_at": "2026-09-25T16:05:46.376121+00:00",
       "provider_slug": "digitalocean"
     },
     {
@@ -93,7 +93,7 @@
       "offer_url": "https://www.digitalocean.com/pricing/",
       "source_url": "https://www.digitalocean.com/pricing/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:47.544612+00:00",
+      "fetched_at": "2026-09-25T16:05:46.376179+00:00",
       "provider_slug": "digitalocean"
     },
     {
@@ -104,7 +104,7 @@
       "offer_url": "https://www.digitalocean.com/pricing/",
       "source_url": "https://www.digitalocean.com/pricing/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:47.544648+00:00",
+      "fetched_at": "2026-09-25T16:05:46.376221+00:00",
       "provider_slug": "digitalocean"
     },
     {
@@ -115,7 +115,7 @@
       "offer_url": "https://www.digitalocean.com/pricing/",
       "source_url": "https://www.digitalocean.com/pricing/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:47.544687+00:00",
+      "fetched_at": "2026-09-25T16:05:46.376265+00:00",
       "provider_slug": "digitalocean"
     },
     {
@@ -126,7 +126,7 @@
       "offer_url": "https://www.digitalocean.com/pricing/",
       "source_url": "https://www.digitalocean.com/pricing/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:47.544720+00:00",
+      "fetched_at": "2026-09-25T16:05:46.376304+00:00",
       "provider_slug": "digitalocean"
     },
     {
@@ -137,7 +137,7 @@
       "offer_url": "https://www.digitalocean.com/pricing/",
       "source_url": "https://www.digitalocean.com/pricing/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:47.544747+00:00",
+      "fetched_at": "2026-09-25T16:05:46.376337+00:00",
       "provider_slug": "digitalocean"
     },
     {
@@ -148,7 +148,7 @@
       "offer_url": "https://www.digitalocean.com/pricing/",
       "source_url": "https://www.digitalocean.com/pricing/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:47.544797+00:00",
+      "fetched_at": "2026-09-25T16:05:46.376396+00:00",
       "provider_slug": "digitalocean"
     },
     {
@@ -159,7 +159,7 @@
       "offer_url": "https://www.digitalocean.com/pricing/",
       "source_url": "https://www.digitalocean.com/pricing/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:47.544838+00:00",
+      "fetched_at": "2026-09-25T16:05:46.376445+00:00",
       "provider_slug": "digitalocean"
     },
     {
@@ -170,7 +170,7 @@
       "offer_url": "https://www.ovh.com/world/promotions/",
       "source_url": "https://www.ovh.com/world/promotions/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:48.959611+00:00",
+      "fetched_at": "2026-09-25T16:05:47.740830+00:00",
       "provider_slug": "ovh-promotions"
     },
     {
@@ -181,7 +181,7 @@
       "offer_url": "https://www.ovh.com/world/promotions/",
       "source_url": "https://www.ovh.com/world/promotions/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:48.959664+00:00",
+      "fetched_at": "2026-09-25T16:05:47.740893+00:00",
       "provider_slug": "ovh-promotions"
     },
     {
@@ -192,7 +192,7 @@
       "offer_url": "https://www.ovh.com/world/promotions/",
       "source_url": "https://www.ovh.com/world/promotions/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:48.959692+00:00",
+      "fetched_at": "2026-09-25T16:05:47.740930+00:00",
       "provider_slug": "ovh-promotions"
     },
     {
@@ -203,7 +203,7 @@
       "offer_url": "https://www.ovh.com/world/promotions/",
       "source_url": "https://www.ovh.com/world/promotions/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:48.959716+00:00",
+      "fetched_at": "2026-09-25T16:05:47.740962+00:00",
       "provider_slug": "ovh-promotions"
     },
     {
@@ -214,7 +214,7 @@
       "offer_url": "https://www.ovh.com/world/promotions/",
       "source_url": "https://www.ovh.com/world/promotions/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:48.959739+00:00",
+      "fetched_at": "2026-09-25T16:05:47.740992+00:00",
       "provider_slug": "ovh-promotions"
     },
     {
@@ -225,7 +225,7 @@
       "offer_url": "https://www.ovh.com/world/promotions/",
       "source_url": "https://www.ovh.com/world/promotions/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:48.959761+00:00",
+      "fetched_at": "2026-09-25T16:05:47.741019+00:00",
       "provider_slug": "ovh-promotions"
     },
     {
@@ -236,7 +236,7 @@
       "offer_url": "https://www.racknerd.com/",
       "source_url": "https://www.racknerd.com/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:49.747147+00:00",
+      "fetched_at": "2026-09-25T16:05:48.407338+00:00",
       "provider_slug": "racknerd"
     },
     {
@@ -247,7 +247,7 @@
       "offer_url": "https://www.racknerd.com/",
       "source_url": "https://www.racknerd.com/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:49.747196+00:00",
+      "fetched_at": "2026-09-25T16:05:48.407398+00:00",
       "provider_slug": "racknerd"
     },
     {
@@ -258,7 +258,7 @@
       "offer_url": "https://www.racknerd.com/",
       "source_url": "https://www.racknerd.com/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:49.747237+00:00",
+      "fetched_at": "2026-09-25T16:05:48.407451+00:00",
       "provider_slug": "racknerd"
     },
     {
@@ -269,7 +269,7 @@
       "offer_url": "https://www.racknerd.com/",
       "source_url": "https://www.racknerd.com/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:49.747301+00:00",
+      "fetched_at": "2026-09-25T16:05:48.407534+00:00",
       "provider_slug": "racknerd"
     },
     {
@@ -280,7 +280,7 @@
       "offer_url": "https://www.racknerd.com/",
       "source_url": "https://www.racknerd.com/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:49.747346+00:00",
+      "fetched_at": "2026-09-25T16:05:48.407592+00:00",
       "provider_slug": "racknerd"
     },
     {
@@ -291,7 +291,7 @@
       "offer_url": "https://www.racknerd.com/",
       "source_url": "https://www.racknerd.com/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:49.747416+00:00",
+      "fetched_at": "2026-09-25T16:05:48.407700+00:00",
       "provider_slug": "racknerd"
     },
     {
@@ -302,7 +302,7 @@
       "offer_url": "https://www.racknerd.com/",
       "source_url": "https://www.racknerd.com/",
       "valid_until": null,
-      "fetched_at": "2026-09-25T10:45:49.747489+00:00",
+      "fetched_at": "2026-09-25T16:05:48.407793+00:00",
       "provider_slug": "racknerd"
     }
   ]
