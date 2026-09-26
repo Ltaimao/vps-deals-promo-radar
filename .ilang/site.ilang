@@ -6,10 +6,51 @@ LANG zh
 ::STATE{@SITE, brand:vps-deals, niche:VPS主机, domain:vpsdealswire.com, locale:en-US, currency:USD, repo_name:vps-deals-promo-radar}
 
 ::MODULE{PROVIDERS|title:抓哪几家 这里改了 scraper 重启时 抓的可信公开源就变}
-  Hetzner Cloud | https://www.hetzner.com/cloud | https://www.hetzner.com/cloud | https://www.hetzner.com/cloud
-  DigitalOcean | https://www.digitalocean.com/pricing/ | https://www.digitalocean.com/pricing/ | https://www.digitalocean.com/pricing/
-  OVH Promotions | https://www.ovh.com/world/promotions/ | https://www.ovh.com/world/promotions/ | https://www.ovh.com/world/promotions/
-  RackNerd | https://www.racknerd.com/ | https://www.racknerd.com/ | https://www.racknerd.com/
+# 格式: 名称 | 官网 | 优惠页或定价页或sitemap或feed | 联盟链接(可空)
+# 入选标准: 单家自营的主机商 + 有公开优惠/定价页 + 实测 HTTP 200
+# 2026-09-26 实测 40 家候选 31 家可开 9 家打不开(见下方 SKIPPED)
+  Hetzner Cloud | https://www.hetzner.com/ | https://www.hetzner.com/cloud |
+  DigitalOcean | https://www.digitalocean.com/ | https://www.digitalocean.com/pricing/ |
+  OVHcloud | https://www.ovh.com/ | https://www.ovh.com/world/promotions/ |
+  RackNerd | https://www.racknerd.com/ | https://www.racknerd.com/ |
+  Hostinger | https://www.hostinger.com/ | https://www.hostinger.com/vps-hosting |
+  IONOS | https://www.ionos.com/ | https://www.ionos.com/servers/vps |
+  Scaleway | https://www.scaleway.com/ | https://www.scaleway.com/en/pricing/ |
+  UpCloud | https://upcloud.com/ | https://upcloud.com/pricing/ |
+  Kamatera | https://www.kamatera.com/ | https://www.kamatera.com/pricing/ |
+  CloudCone | https://cloudcone.com/ | https://cloudcone.com/ |
+  BandwagonHost | https://bandwagonhost.com/ | https://bandwagonhost.com/ |
+  HostDare | https://hostdare.com/ | https://hostdare.com/ |
+  ScalaHosting | https://www.scalahosting.com/ | https://www.scalahosting.com/vps-hosting/ |
+  Hostens | https://www.hostens.com/ | https://www.hostens.com/vps/ |
+  RamNode | https://www.ramnode.com/ | https://www.ramnode.com/ |
+  Virmach | https://virmach.com/ | https://virmach.com/ |
+  InterServer | https://www.interserver.net/ | https://www.interserver.net/vps/ |
+  ServerMania | https://www.servermania.com/ | https://www.servermania.com/vps-hosting.htm |
+  Hostwinds | https://www.hostwinds.com/ | https://www.hostwinds.com/vps |
+  KnownHost | https://www.knownhost.com/ | https://www.knownhost.com/vps-hosting |
+  AccuWebHosting | https://www.accuwebhosting.com/ | https://www.accuwebhosting.com/vps-hosting/ |
+  Liquid Web | https://www.liquidweb.com/ | https://www.liquidweb.com/vps-hosting/ |
+  Cherry Servers | https://www.cherryservers.com/ | https://www.cherryservers.com/pricing |
+  Latitude.sh | https://www.latitude.sh/ | https://www.latitude.sh/pricing |
+  HostHatch | https://hosthatch.com/ | https://hosthatch.com/ |
+  AlphaVPS | https://alphavps.com/ | https://alphavps.com/ |
+  BuyVM | https://buyvm.net/ | https://buyvm.net/ |
+  SSDNodes | https://www.ssdnodes.com/ | https://www.ssdnodes.com/pricing/ |
+  DreamHost | https://www.dreamhost.com/ | https://www.dreamhost.com/servers/vps/ |
+  A2 Hosting | https://www.a2hosting.com/ | https://www.a2hosting.com/vps |
+  InMotion Hosting | https://www.inmotionhosting.com/ | https://www.inmotionhosting.com/vps-hosting |
+
+# SKIPPED 打不开的 不许拿相近的顶上 2026-09-26 实测
+# Vultr | https://www.vultr.com/pricing/ | HTTP 403
+# Linode | https://www.linode.com/pricing/ | HTTP 403
+# Contabo | https://contabo.com/en/vps/ | HTTP 403
+# Time4VPS | https://www.time4vps.com/linux-vps/ | HTTP 403
+# FastComet | https://www.fastcomet.com/vps-hosting | HTTP 404
+# PhoenixNAP | https://phoenixnap.com/cloud-vps | HTTP 404
+# Gcore | https://gcore.com/cloud/vps | HTTP 404
+# Namecheap | https://www.namecheap.com/hosting/vps/ | HTTP 403
+# GreenGeeks | https://www.greengeeks.com/vps | HTTP 404
 
 ::MODULE{FIELDS|title:每条优惠提取什么 字段名是契约 改这里 scraper 和 build 一起跟}
   title price currency offer_url valid_until source_url fetched_at

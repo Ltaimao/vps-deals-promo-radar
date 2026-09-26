@@ -92,7 +92,8 @@ def jsonld_offer(deal, base_url):
     obj = {
         "@context": "https://schema.org",
         "@type": "Offer",
-        "name": deal["title"],
+        # 不用抓坏的 title 原文，改用真实字段生成的名字
+        "name": offer_label(deal, 1),
         "url": deal.get("offer_url") or deal.get("source_url"),
         "price": deal.get("price"),
         "priceCurrency": deal.get("currency"),
@@ -119,7 +120,7 @@ def jsonld_service(provider, deals, base_url):
             continue
         offers.append({
             "@type": "Offer",
-            "name": d["title"],
+            "name": offer_label(d, i + 1),
             "url": d.get("offer_url") or d.get("source_url"),
             "price": d.get("price"),
             "priceCurrency": d.get("currency"),
@@ -154,34 +155,41 @@ def render_index(ctx, data, cfg, base_url):
         if not d.get("price"):
             badge += ' <span class="badge">no price</span>'
         price_label = ("$" + "{:.2f}".format(d["price"]) + " " + d.get("currency", "")) if d.get("price") else "—"
+        # ::RULE{出口只有一个} — 卡片指向所属厂商页的动态层，不再开 /deals/ 网址
+        # ::RULE{抓坏的字段一律不许留} — 卡片标题由厂商名+价格生成
+        prov_url = "/providers/" + e(d.get("provider_slug", "")) + "/"
         card = (
             '<div class="deal">'
             '<div class="head">'
-            '<h3><a href="/deals/{slug}-{idx}/">{title}</a>{badge}</h3>'
+            '<h3><a href="{purl}">{label}</a>{badge}</h3>'
             '<span class="price">{price}</span>'
             '</div>'
-            '<div class="meta">From <a href="/providers/{pslug}/">{pname}</a></div>'
+            '<div class="meta">Go to <a href="{purl}">{pname} deals</a></div>'
             '</div>'
         ).format(
-            slug=slugify(d["title"])[:60],
-            idx=stable_suffix(d["title"] + "|" + d.get("provider_slug", "")),
-            title=e(d["title"]),
+            purl=prov_url,
+            label=e(offer_label(d, len(deal_cards) + 1)),
             badge=badge,
             price=e(price_label),
-            pslug=e(d.get("provider_slug", "")),
             pname=e(d.get("provider_name", "")),
         )
         deal_cards.append(card)
     if not deal_cards:
         deal_cards = ['<div class="deal"><p>No structured deals extracted from the listed providers this run. The scraper only writes entries when it can verify title + price + currency + URL together. If a provider\'s page is unreachable, it\'s listed below as <em>unreachable</em>.</p></div>']
 
+    # ItemList 指向厂商页（出口唯一），不再指向已下线的 /deals/ 网址
     deal_index = []
-    for i, d in enumerate(deals):
+    seen_prov = set()
+    for d in deals:
+        pslug = d.get("provider_slug", "")
+        if not pslug or pslug in seen_prov:
+            continue
+        seen_prov.add(pslug)
         deal_index.append({
             "@type": "ListItem",
-            "position": i + 1,
-            "url": base_url + "/deals/" + slugify(d["title"])[:60] + "-" + str(stable_suffix(d["title"] + "|" + d.get("provider_slug", ""))) + "/",
-            "name": d["title"],
+            "position": len(deal_index) + 1,
+            "url": base_url + "/providers/" + pslug + "/",
+            "name": d.get("provider_name", ""),
         })
 
     content = fill(load_template("index.html"), {
@@ -202,13 +210,16 @@ def render_provider(ctx, data, cfg, base_url, provider):
     slug = provider["slug"]
     deals = [d for d in data["deals"] if d.get("provider_slug") == slug]
     if deals:
-        rows = ["<table><thead><tr><th>Title</th><th>Price</th><th>Currency</th><th>Source</th></tr></thead><tbody>"]
-        for d in deals:
+        rows = ["<table><thead><tr><th>Offer</th><th>Price</th><th>Currency</th><th>Source</th></tr></thead><tbody>"]
+        for i, d in enumerate(deals, 1):
             url = d.get("offer_url") or d.get("source_url") or "#"
-            price_label = ("$" + "{:.2f}".format(d["price"])) if d.get("price") else "—"
+            # ::RULE{抓坏的字段一律不许留} — 行标签由真实字段生成(厂商名+价格)，
+            # 不显示 scraper 抓出来的半截原文（如 'Search Multiple Transfer'）。
+            label = offer_label(d, i)
+            price_label = money(d.get("price"), d.get("currency")) or "—"
             rows.append(
-                "<tr><td><a href=\"{offer}\">{title}</a></td><td>{price}</td><td>{cur}</td><td><a href=\"{src}\">source</a></td></tr>".format(
-                    offer=e(url), title=e(d["title"]), price=e(price_label),
+                "<tr><td><a href=\"{offer}\">{label}</a></td><td>{price}</td><td>{cur}</td><td><a href=\"{src}\">source</a></td></tr>".format(
+                    offer=e(url), label=e(label), price=e(price_label),
                     cur=e(d.get("currency", "")), src=e(d.get("source_url", ""))
                 )
             )
@@ -296,6 +307,77 @@ def render_compare(ctx, data, cfg, base_url):
     return render_base(ctx, content, jsonld)
 
 
+def offer_label(deal, index):
+    """单条优惠的显示名 —— 由真实字段生成(厂商名 + 价格)，不编、也不用抓坏的原文。
+    抓到的 title 常是半截 UI 文本（'Search Multiple Transfer'、'Standard GiB-month High'），
+    按 RULE 一律不许留，改用可溯源的真实字段组合。"""
+    name = deal.get("provider_name") or "Provider"
+    price = money(deal.get("price"), deal.get("currency"))
+    if price:
+        return "{} offer #{} — {}".format(name, index, price)
+    return "{} offer #{}".format(name, index)
+
+
+def money(value, currency):
+    """把价格格式化成 $X.XX 样式。拿不到价格就返回 None，不许编。"""
+    if value is None:
+        return None
+    sym = {"USD": "$", "EUR": "€", "GBP": "£", "JPY": "¥", "CAD": "C$",
+           "AUD": "A$", "CNY": "¥"}.get(currency, "$")
+    return "{}{:.2f}".format(sym, float(value))
+
+
+def current_month_year():
+    """数据里最近一次抓取的年月 —— 月份来自数据，不是来自 build 时的系统时钟。"""
+    return None
+
+
+def provider_page_copy(provider, deals):
+    """::RULE{每页 title 和 description 由数据生成 带厂商名 优惠幅度 月份}
+    抓来的字段原文（如 'Search Multiple Transfer'）一律不许当标题。
+    title      = 厂商名 + 优惠幅度 + 月份
+    description= 厂商名 + 条数 + 最低价 + 月份
+    拿不到价格的厂商不写价格，只写条数 —— 不许拿估的填。
+    """
+    name = provider["name"]
+    month = None
+    for d in deals:
+        if d.get("fetched_at"):
+            try:
+                month = datetime.fromisoformat(
+                    d["fetched_at"].replace("Z", "+00:00")).strftime("%B %Y")
+                break
+            except Exception:
+                continue
+    if not month and provider.get("fetched_at"):
+        try:
+            month = datetime.fromisoformat(
+                provider["fetched_at"].replace("Z", "+00:00")).strftime("%B %Y")
+        except Exception:
+            month = None
+
+    prices = [d.get("price") for d in deals if d.get("price")]
+    cur = next((d.get("currency") for d in deals if d.get("currency")), "USD")
+
+    title = name + " VPS Deals"
+    if prices:
+        title += " — from " + money(min(prices), cur) + "/mo"
+    if month:
+        title += " (" + month + ")"
+
+    desc = name + " VPS hosting deals and public pricing, updated"
+    if month:
+        desc += " " + month
+    desc += "."
+    if prices:
+        desc += " " + str(len(prices)) + " live offers from " + money(min(prices), cur) + "/mo."
+    else:
+        desc += " " + str(len(deals)) + " live offers listed."
+    desc += " Nothing here is invented — every figure comes from " + name + "'s own public page."
+
+    return title, desc
+
+
 def render_base(ctx, content_html, jsonld_text):
     base = load_template("_base.html")
     subs = {
@@ -357,6 +439,43 @@ def write_robots(out_path, base_url):
     write(out_path, body)
 
 
+def write_redirects(redirect_map, out_path):
+    """Cloudflare Pages _redirects: 每条 /deals/<id>/ 301 到所属厂商页。
+    ::RULE{现有那批 /deals/ 单条优惠页 301 到它所属的那个厂商页}"""
+    lines = []
+    for src, dst in sorted(redirect_map.items()):
+        lines.append("{} {} 301".format(src, dst))
+    write(out_path, "\n".join(lines) + "\n")
+
+
+def build_redirect_map(data):
+    """汇总 /deals/ -> /providers/<slug>/ 的映射，两个来源取并集：
+    1) data/deal_redirects.json — 抓线上那批 /deals/ 页、从面包屑读出真实
+       归属厂商得到的审计表（每条都有出处，不是猜的）
+    2) data/offers.json 当前这批优惠按同一算法算出的 deal_id（覆盖新出现的）
+    """
+    mapping = {}
+
+    audit_path = ROOT / "data" / "deal_redirects.json"
+    if audit_path.exists():
+        with open(audit_path, "r", encoding="utf-8") as f:
+            audit = json.load(f)
+        for row in audit:
+            src = row.get("deal_path")
+            slug = row.get("provider_slug")
+            if src and slug:
+                mapping[src] = "/providers/" + slug + "/"
+
+    for d in data["deals"]:
+        deal_id = slugify(d["title"])[:60] + "-" + str(
+            stable_suffix(d["title"] + "|" + d.get("provider_slug", "")))
+        pslug = d.get("provider_slug")
+        if pslug:
+            mapping["/deals/" + deal_id + "/"] = "/providers/" + pslug + "/"
+
+    return mapping
+
+
 def main():
     cfg = load_cfg()
     data = load_data()
@@ -380,10 +499,31 @@ def main():
 
     all_paths = []
 
-    # 1. Index
+    # 1. Index — title/description 由数据生成（厂商数 + 最低价 + 月份）
+    _all_prices = [d.get("price") for d in data["deals"] if d.get("price")]
+    _cur = next((d.get("currency") for d in data["deals"] if d.get("currency")), "USD")
+    _month = None
+    if data["deals"] and data["deals"][0].get("fetched_at"):
+        try:
+            _month = datetime.fromisoformat(
+                data["deals"][0]["fetched_at"].replace("Z", "+00:00")).strftime("%B %Y")
+        except Exception:
+            _month = None
+    _idx_title = "VPS Hosting Deals — " + str(len(data["providers"])) + " Providers Compared"
+    if _all_prices:
+        _idx_title += " from " + money(min(_all_prices), _cur) + "/mo"
+    if _month:
+        _idx_title += " (" + _month + ")"
+    _idx_desc = ("Live public pricing and promotions from " + str(len(data["providers"]))
+                 + " VPS hosting providers")
+    if _all_prices:
+        _idx_desc += ", " + str(len(_all_prices)) + " live offers from " + money(min(_all_prices), _cur) + "/mo"
+    if _month:
+        _idx_desc += ", updated " + _month
+    _idx_desc += ". Refreshed every 6 hours from each provider's own page. Nothing is invented."
     ctx_index = {
-        "title": brand + " — current VPS hosting deals",
-        "meta_description": "Live public pricing and promotions from " + str(len(data["providers"])) + " VPS hosting providers. Refreshed every 6 hours.",
+        "title": _idx_title,
+        "meta_description": _idx_desc,
         "canonical_url": base_url + "/",
         "og_title": brand,
         "og_description": "Live VPS hosting deals, refreshed every 6 hours.",
@@ -400,40 +540,43 @@ def main():
 
     # 2. Provider pages
     for p in data["providers"]:
+        p_deals = [d for d in data["deals"] if d.get("provider_slug") == p["slug"]]
+        p_title, p_desc = provider_page_copy(p, p_deals)
         ctx = dict(ctx_index)
-        ctx["title"] = p["name"] + " — VPS deals on " + brand
-        ctx["meta_description"] = "Live pricing and promotions from " + p["name"] + ". Source: " + p["source_url"]
+        ctx["title"] = p_title
+        ctx["meta_description"] = p_desc
         ctx["canonical_url"] = base_url + "/providers/" + p["slug"] + "/"
-        ctx["og_title"] = p["name"] + " on " + brand
-        ctx["og_description"] = "Live pricing and promotions from " + p["name"] + "."
+        ctx["og_title"] = p_title
+        ctx["og_description"] = p_desc
         ctx["og_type"] = "website"
         ctx["nav"] = nav_html("/providers/" + p["slug"] + "/")
         write(SITE / "providers" / p["slug"] / "index.html",
               render_provider(ctx, data, cfg, base_url, p))
         all_paths.append({"path": "providers/" + p["slug"] + "/", "lastmod": p["fetched_at"]})
 
-    # 3. Deal pages
-    for d in data["deals"]:
-        deal_id = slugify(d["title"])[:60] + "-" + str(stable_suffix(d["title"] + "|" + d.get("provider_slug", "")))
-        ctx = dict(ctx_index)
-        ctx["title"] = d["title"] + " — " + brand
-        desc = "Live offer from " + d.get("provider_name", "")
-        if d.get("price"):
-            desc += " at " + str(d["price"]) + " " + d.get("currency", "")
-        ctx["meta_description"] = desc
-        ctx["canonical_url"] = base_url + "/deals/" + deal_id + "/"
-        ctx["og_title"] = d["title"]
-        ctx["og_description"] = desc
-        ctx["og_type"] = "product"
-        ctx["nav"] = nav_html("/deals/" + deal_id + "/")
-        write(SITE / "deals" / deal_id / "index.html",
-              render_deal(ctx, data, cfg, base_url, d))
-        all_paths.append({"path": "deals/" + deal_id + "/", "lastmod": d["fetched_at"]})
+    # 3. Deal exit — NO new URLs.
+    # ::RULE{出口只有一个 优惠进它所属厂商页的动态层 网址数不涨}
+    # 单条优惠不再各自开网址。优惠全部落进 render_provider 的 DEAL_TABLE
+    # （厂商页动态层）：每次抓取内容变，网址数不变。
+    # 历史上已经开出来的那批 /deals/ 页，301 到它所属的厂商页。
+    redirect_map = build_redirect_map(data)
+    write_redirects(redirect_map, SITE / "_redirects")
+    print("  deal pages generated: 0 (offers go to provider-page dynamic layer)")
+    print("  301 redirects written:", len(redirect_map))
 
     # 4. Compare
+    _cmp_title = "Compare " + str(len(data["providers"])) + " VPS Providers"
+    if _all_prices:
+        _cmp_title += " — from " + money(min(_all_prices), _cur) + "/mo"
+    if _month:
+        _cmp_title += " (" + _month + ")"
+    _cmp_desc = "Side-by-side comparison of " + str(len(data["providers"])) + " VPS providers"
+    if _month:
+        _cmp_desc += ", updated " + _month
+    _cmp_desc += ". Live data, refreshed every 6 hours."
     ctx = dict(ctx_index)
-    ctx["title"] = "Compare VPS providers — " + brand
-    ctx["meta_description"] = "Side-by-side comparison of " + str(len(data["providers"])) + " VPS providers. Live data, refreshed every 6 hours."
+    ctx["title"] = _cmp_title
+    ctx["meta_description"] = _cmp_desc
     ctx["canonical_url"] = base_url + "/compare/"
     ctx["og_title"] = "Compare VPS providers"
     ctx["og_description"] = ctx["meta_description"]
@@ -448,7 +591,9 @@ def main():
     write_robots(SITE / "robots.txt", base_url)
 
     print("built site/")
-    print("  index +", len(data["providers"]), "provider pages +", len(data["deals"]), "deal pages + compare + sitemap + robots")
+    print("  index +", len(data["providers"]), "provider pages + compare + sitemap + robots + _redirects")
+    print("  offers rendered into provider-page dynamic layer:", len(data["deals"]))
+    print("  sitemap urls:", len(all_paths))
     return 0
 
 

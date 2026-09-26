@@ -1,0 +1,116 @@
+[
+  {
+    "deal_path": "/deals/highly-scalable-view-app-platform-pricing-droplets-starting--34046/",
+    "http_code": 200,
+    "provider_slug": "digitalocean",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/highly-efficient-virtual-machines-per-sec-billing-with-60-se-58853/",
+    "http_code": 200,
+    "provider_slug": "digitalocean",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/droplet-kubernetes-starting-32903/",
+    "http_code": 200,
+    "provider_slug": "digitalocean",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/scale-automatically-view-functions-pricing-cloudways-managed-43015/",
+    "http_code": 200,
+    "provider_slug": "digitalocean",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/droplet-cost-per-month-usage-based-starting-at-38256/",
+    "http_code": 200,
+    "provider_slug": "digitalocean",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/backups-databases-starting-80959/",
+    "http_code": 200,
+    "provider_slug": "digitalocean",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/storage-spaces-starting-70497/",
+    "http_code": 200,
+    "provider_slug": "digitalocean",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/built-in-cdn-view-spaces-object-storage-pricing-network-file-41677/",
+    "http_code": 200,
+    "provider_slug": "digitalocean",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/standard-gib-month-high-64802/",
+    "http_code": 200,
+    "provider_slug": "digitalocean",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/storage-volumes-starting-31974/",
+    "http_code": 200,
+    "provider_slug": "digitalocean",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/available-in-singapore-australia-location-from-42793/",
+    "http_code": 200,
+    "provider_slug": "ovh-promotions",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/search-multiple-transfer-72849/",
+    "http_code": 200,
+    "provider_slug": "ovh-promotions",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/dedicated-servers-starting-30470/",
+    "http_code": 200,
+    "provider_slug": "racknerd",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/toronto-starting-at-just-3979/",
+    "http_code": 200,
+    "provider_slug": "racknerd",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/colocation-plans-starting-76567/",
+    "http_code": 200,
+    "provider_slug": "racknerd",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/storage-premium-low-latency-network-multiple-datacenter-loca-29544/",
+    "http_code": 200,
+    "provider_slug": "racknerd",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/access-low-latency-network-multiple-datacenter-locations-sca-31943/",
+    "http_code": 200,
+    "provider_slug": "racknerd",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/processor-servers-low-latency-network-ddos-protected-network-15276/",
+    "http_code": 200,
+    "provider_slug": "racknerd",
+    "ok": true
+  },
+  {
+    "deal_path": "/deals/u-available-24x7-smart-hands-eyes-free-receiving-premium-ban-25708/",
+    "http_code": 200,
+    "provider_slug": "racknerd",
+    "ok": true
+  }
+]
