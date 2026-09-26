@@ -172,6 +172,56 @@ HTTPS: 网页采用 HTTPS 协议
 
 ---
 
+## 七、I-Lang STEP:9 providers_and_offer_layer（2026-09-26 14:36）
+
+按 I-Lang `::OBJECTIVE{providers_and_offer_layer}` 执行。完整 SPEC：厂商 4→20+，优惠出口改厂商页动态层，单条优惠不再开网址；干跑 + 批准 + 推送 + Search Console 重交 sitemap。
+
+### 7.1 四个数（干跑，实测）
+
+| 数 | 值 | 出处 |
+|---|---|---|
+| 新生成网址数 | **0** | `site/deals/` 目录数 = 0；sitemap 里 `/deals/` 计数 = 0 |
+| 动态层更新条数 | **230** | 31 个厂商页 `<tr><td>` 总数 = 230（与 deals 总数 230 完全一致） |
+| sitemap 网址数 | **改前 186 → 改后 33** | 改前 = 1+31+153 优惠页+1（同一份新数据用旧代码算的）；改后 = 1+31+0+1 |
+| 301 重定向条数 | **155** | `site/_redirects` 行数 |
+
+**网址数 0 涨 ✓ 动态层 230 > 0 ✓**
+
+### 7.2 改动文件清单
+
+- `.ilang/site.ilang` — PROVIDERS 4 → **31 家**，附 9 家跳过清单（含 HTTP 码）
+- `build.py` — 删 deal 页生成，加 301 加 `offer_label()` / `provider_page_copy()`，首页卡与 ItemList 改指厂商页
+- `data/offers.json` — 重抓，4 家/23 条 → **31 家/230 条**
+- `data/deal_redirects.json` — 新增，19 条线上 `/deals/` → 厂商页的可溯源映射
+
+### 7.3 新加厂商（31 家，跳过的 9 家不打紧没顶替）
+
+跳过清单（HTTP 403/404）：Vultr、Linode、Contabo、Time4VPS、Namecheap、FastComet、PhoenixNAP、Gcore、GreenGeeks
+
+### 7.4 推送 + 部署
+
+- GitHub Actions run `36249678548`（sha `fbaa13c`），**success**
+- 线上 `https://vpsdealswire.com/sitemap.xml` = **33 个网址**（1+31+1），`/deals/` = **0**
+- 厂商页 = **31 个**
+- 旧 `/deals/search-multiple-transfer-72849/` → `/providers/ovh-promotions/`（**HTTP 301**）实测生效
+
+### 7.5 Search Console 重新提交 sitemap（14:53）
+
+逐字读数（从 GSC 页面 `document.body.innerText` 真实抄取）：
+```
+https://vpsdealswire.com/sitemap.xml  站点地图  2026年9月26日  2026年9月26日  成功  25  0
+```
+
+**注意**：「已发现的网页 = 25」是 Google 上次读取时的数；新 sitemap 含 33 条 URL，Google 还没重抓，正常延迟，等下一次抓取会更新到 33。
+
+### 7.6 截图——失败如实报
+
+STEP:7 SPEC 要"状态那一屏截图"。
+
+**实情**：本机 Windows Session 2 / 无显示会话，Chrome 的 `Page.captureScreenshot` 三组参数（`fromSurface=false` / `captureBeyondViewport` / `jpeg`）调用都返回，但回报存在 `gsc_sitemap_status.png`（1034×541 / 2605 字节）**是一张全白图**——这是这台机器的已知限制，DOM 真实读数是有的，视觉确认不行。**没有截图可以交**。
+
+---
+
 ## 六、边界遵守（NOFAKE 复核）
 
 - `::BOUNDARY{never:编优惠 编价格 编佣金 编汇率 编折扣}` —— offers.json 中所有条目均来自厂商公开页面抓取，无人工编造。
