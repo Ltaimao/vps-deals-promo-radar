@@ -62,9 +62,20 @@ def nav_html(active):
     items = [("/", "Home"), ("/compare/", "Compare")]
     parts = []
     for href, label in items:
-        body = ("<strong>" + e(label) + "</strong>") if active == href else e(label)
-        parts.append('<a href="' + href + '">' + body + "</a>")
+        cls = ' class="active"' if active == href else ""
+        parts.append('<a href="' + href + '"' + cls + ">" + e(label) + "</a>")
     return "\n".join(parts)
+
+
+def initials(name):
+    """厂商名首字母 —— 卡片圆形头像位里的文字（照参考站 site-avatar 的做法）。
+    纯展示用的排版元素，不是数据。"""
+    words = re.findall(r"[A-Za-z0-9]+", name or "")
+    if not words:
+        return "?"
+    if len(words) >= 2:
+        return (words[0][0] + words[1][0]).upper()
+    return words[0][:2].upper()
 
 
 def crumbs_html(parts):
@@ -139,10 +150,48 @@ def jsonld_service(provider, deals, base_url):
 def render_index(ctx, data, cfg, base_url):
     providers = data["providers"]
     deals = data["deals"]
-    provider_links = "\n".join(
-        '<li><a href="/providers/{slug}/">{name}</a></li>'.format(slug=p["slug"], name=e(p["name"]))
-        for p in providers
-    )
+
+    # Hero 的三个数字全部来自数据，不是写死的文案
+    _prices = [d.get("price") for d in deals if d.get("price")]
+    _cur = next((d.get("currency") for d in deals if d.get("currency")), "USD")
+    _month = None
+    for d in deals:
+        if d.get("fetched_at"):
+            try:
+                _month = datetime.fromisoformat(
+                    d["fetched_at"].replace("Z", "+00:00")).strftime("%b %Y")
+                break
+            except Exception:
+                continue
+    hero_title = "VPS Hosting Deals & Public Promotions"
+    hero_sub = ("Live pricing pulled straight from " + str(len(providers))
+                + " hosting providers' own public pages. "
+                  "Nothing here is invented or paid for.")
+
+    # 厂商卡：圆形头像位 + 名称 + 最低价（照参考站 site-mini-card + site-avatar）
+    prov_cards = []
+    for p in providers:
+        p_deals = [d for d in deals if d.get("provider_slug") == p["slug"]]
+        p_prices = [d.get("price") for d in p_deals if d.get("price")]
+        p_cur = next((d.get("currency") for d in p_deals if d.get("currency")), "USD")
+        if p_prices:
+            sub = "from " + money(min(p_prices), p_cur) + "/mo · " + str(len(p_deals)) + " offers"
+        elif p["fetch_status"] == "ok":
+            sub = str(len(p_deals)) + " offers listed"
+        else:
+            sub = "unreachable (HTTP " + str(p["http_code"]) + ")"
+        prov_cards.append(
+            '<li><a class="mini-card" href="/providers/{slug}/">'
+            '<span class="avatar">{ini}</span>'
+            '<span class="body">'
+            '<span class="name">{name}</span>'
+            '<span class="desc">{sub}</span>'
+            '</span></a></li>'.format(
+                slug=e(p["slug"]), ini=e(initials(p["name"])),
+                name=e(p["name"]), sub=e(sub))
+        )
+    provider_links = "\n".join(prov_cards)
+
     deal_cards = []
     for d in deals:
         badge = ""
@@ -153,29 +202,30 @@ def render_index(ctx, data, cfg, base_url):
             except Exception:
                 pass
         if not d.get("price"):
-            badge += ' <span class="badge">no price</span>'
-        price_label = ("$" + "{:.2f}".format(d["price"]) + " " + d.get("currency", "")) if d.get("price") else "—"
+            badge += ' <span class="badge noprice">no price</span>'
+        price_main = money(d.get("price"), d.get("currency")) or "—"
         # ::RULE{出口只有一个} — 卡片指向所属厂商页的动态层，不再开 /deals/ 网址
         # ::RULE{抓坏的字段一律不许留} — 卡片标题由厂商名+价格生成
         prov_url = "/providers/" + e(d.get("provider_slug", "")) + "/"
         card = (
-            '<div class="deal">'
-            '<div class="head">'
-            '<h3><a href="{purl}">{label}</a>{badge}</h3>'
-            '<span class="price">{price}</span>'
-            '</div>'
-            '<div class="meta">Go to <a href="{purl}">{pname} deals</a></div>'
-            '</div>'
+            '<a class="deal-card" href="{purl}">'
+            '<span class="left">'
+            '<span class="title">{label}{badge}</span>'
+            '<span class="meta">Go to {pname} deals ›</span>'
+            '</span>'
+            '<span class="price">{price}<span class="cur">{cur}</span></span>'
+            '</a>'
         ).format(
             purl=prov_url,
             label=e(offer_label(d, len(deal_cards) + 1)),
             badge=badge,
-            price=e(price_label),
+            price=e(price_main),
+            cur=e(d.get("currency", "")),
             pname=e(d.get("provider_name", "")),
         )
         deal_cards.append(card)
     if not deal_cards:
-        deal_cards = ['<div class="deal"><p>No structured deals extracted from the listed providers this run. The scraper only writes entries when it can verify title + price + currency + URL together. If a provider\'s page is unreachable, it\'s listed below as <em>unreachable</em>.</p></div>']
+        deal_cards = ['<div class="content-card"><p>No structured deals extracted from the listed providers this run. The scraper only writes entries when it can verify price + currency + URL together. If a provider\'s page is unreachable it is marked as such.</p></div>']
 
     # ItemList 指向厂商页（出口唯一），不再指向已下线的 /deals/ 网址
     deal_index = []
@@ -193,8 +243,12 @@ def render_index(ctx, data, cfg, base_url):
         })
 
     content = fill(load_template("index.html"), {
-        "{{CRUMBS}}": crumbs_html([("", cfg["SITE"].get("brand", "vps-deals"))]),
+        "{{HERO_TITLE}}": e(hero_title),
+        "{{HERO_SUB}}": e(hero_sub),
+        "{{UPDATED}}": e(_month or "—"),
+        "{{FROM_PRICE}}": e(money(min(_prices), _cur) if _prices else "—"),
         "{{BRAND_DISPLAY}}": e(cfg["SITE"].get("brand", "vps-deals")),
+        "{{REPO_FULL}}": e(ctx.get("repo_full", "vps-deals-promo-radar")),
         "{{PROVIDER_COUNT}}": str(len(providers)),
         "{{PROVIDER_LIST}}": provider_links,
         "{{DEAL_COUNT}}": str(len(deals)),
@@ -210,7 +264,9 @@ def render_provider(ctx, data, cfg, base_url, provider):
     slug = provider["slug"]
     deals = [d for d in data["deals"] if d.get("provider_slug") == slug]
     if deals:
-        rows = ["<table><thead><tr><th>Offer</th><th>Price</th><th>Currency</th><th>Source</th></tr></thead><tbody>"]
+        rows = ['<div class="table-wrap"><table><thead><tr>'
+                '<th>Offer</th><th>Price</th><th>Currency</th><th>Source</th>'
+                '</tr></thead><tbody>']
         for i, d in enumerate(deals, 1):
             url = d.get("offer_url") or d.get("source_url") or "#"
             # ::RULE{抓坏的字段一律不许留} — 行标签由真实字段生成(厂商名+价格)，
@@ -218,23 +274,31 @@ def render_provider(ctx, data, cfg, base_url, provider):
             label = offer_label(d, i)
             price_label = money(d.get("price"), d.get("currency")) or "—"
             rows.append(
-                "<tr><td><a href=\"{offer}\">{label}</a></td><td>{price}</td><td>{cur}</td><td><a href=\"{src}\">source</a></td></tr>".format(
+                '<tr><td><a href="{offer}" rel="noopener nofollow">{label}</a></td>'
+                '<td class="price-cell num">{price}</td>'
+                '<td>{cur}</td>'
+                '<td><a href="{src}" rel="noopener nofollow">source</a></td></tr>'.format(
                     offer=e(url), label=e(label), price=e(price_label),
                     cur=e(d.get("currency", "")), src=e(d.get("source_url", ""))
                 )
             )
-        rows.append("</tbody></table>")
+        rows.append("</tbody></table></div>")
         deal_table = "\n".join(rows)
     elif provider["fetch_status"] == "ok":
-        deal_table = '<p>Page reachable but no structured deal extracted this run. We only write a deal when title + price + currency + URL can all be verified.</p>'
+        deal_table = ('<div class="content-card"><p>Page reachable but no structured deal '
+                      'extracted this run. We only write a deal when price + currency + URL '
+                      'can all be verified.</p></div>')
     else:
-        deal_table = '<p><span class="badge unreachable">unreachable</span> HTTP {} — provider page did not return 200. Try again on the next run, or check the URL.</p>'.format(e(provider["http_code"]))
+        deal_table = ('<div class="content-card"><p><span class="badge unreachable">unreachable</span> '
+                      'HTTP {} — provider page did not return 200. Try again on the next run, '
+                      'or check the URL.</p></div>').format(e(provider["http_code"]))
 
     content = fill(load_template("provider.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", e(provider["name"]))]),
         "{{PROVIDER_NAME}}": e(provider["name"]),
         "{{PROVIDER_URL}}": e(provider["url"]),
         "{{SOURCE_URL}}": e(provider["source_url"]),
+        "{{DEAL_COUNT}}": str(len(deals)),
         "{{DEAL_TABLE}}": deal_table,
         "{{LAST_FETCHED_AT}}": e(provider["fetched_at"][:19].replace("T", " ") + " UTC"),
     })
@@ -282,9 +346,14 @@ def render_compare(ctx, data, cfg, base_url):
         deals_for_p = [d for d in data["deals"] if d.get("provider_slug") == p["slug"]]
         status = ('<span class="badge">reachable</span>' if p["fetch_status"] == "ok"
                   else '<span class="badge unreachable">unreachable</span>')
+        badge_cls = "" if p["fetch_status"] == "ok" else "unreachable"
         rows.append(
-            "<tr><td><a href=\"/providers/{slug}/\">{name}</a></td><td>{status}<br>HTTP {code}</td><td>{n}</td><td><a href=\"{src}\">source</a></td></tr>".format(
-                slug=e(p["slug"]), name=e(p["name"]), status=status,
+            '<tr><td><a href="/providers/{slug}/">{name}</a></td>'
+            '<td><span class="badge {bcls}">{status}</span> <span class="num">HTTP {code}</span></td>'
+            '<td class="num">{n}</td>'
+            '<td><a href="{src}" rel="noopener nofollow">source</a></td></tr>'.format(
+                slug=e(p["slug"]), name=e(p["name"]), bcls=badge_cls,
+                status="reachable" if p["fetch_status"] == "ok" else "unreachable",
                 code=e(p["http_code"]), n=str(len(deals_for_p)), src=e(p["source_url"])
             )
         )
@@ -586,7 +655,12 @@ def main():
           render_compare(ctx, data, cfg, base_url))
     all_paths.append({"path": "compare/", "lastmod": data["generated_at"]})
 
-    # 5. sitemap.xml + robots.txt
+    # 5. 样式表 —— 从 templates/ 拷到站点根，页面用 /site.css 引它
+    css_src = TEMPLATES / "site.css"
+    if css_src.exists():
+        write(SITE / "site.css", css_src.read_text(encoding="utf-8"))
+
+    # 6. sitemap.xml + robots.txt
     write_sitemap(all_paths, SITE / "sitemap.xml", base_url)
     write_robots(SITE / "robots.txt", base_url)
 

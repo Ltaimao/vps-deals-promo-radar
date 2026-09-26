@@ -1,0 +1,385 @@
+/* ============================================================
+   vps-deals — 设计系统
+   参照 https://www.kaquanjishi.com/ 的布局语言与配色：
+   蓝主色 #1677ff / 浅蓝底 #f5f8fc / 白卡片 / 10px 圆角 /
+   柔和蓝色调阴影 / 卡片网格 + 圆形头像位 / 橙红做价格强调
+   ============================================================ */
+
+:root {
+  --primary: #1677ff;
+  --primary-hover: #0f62d8;
+  --primary-light: #eef6ff;
+  --primary-soft: #e8f2ff;
+  --bg-page: #f5f8fc;
+  --bg-card: #ffffff;
+  --text-primary: #172033;
+  --text-secondary: #5d667a;
+  --text-muted: #99a3b7;
+  --border: #dfe6f1;
+  --border-light: #edf2f8;
+  --danger: #ff4d4f;
+  --success: #2fc963;
+  --warning: #ffae22;
+  --accent: #f5502e;              /* 价格强调 */
+  --font: -apple-system, BlinkMacSystemFont, "PingFang SC",
+          "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow-sm: 0 6px 18px rgba(24, 62, 120, .06);
+  --shadow-md: 0 14px 34px rgba(24, 62, 120, .1);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary-hover); }
+
+/* ---------- 布局容器 ---------- */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+/* ---------- 顶栏 ---------- */
+.site-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 62px;
+}
+.brand {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.brand:hover { color: var(--primary); }
+.brand .dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  margin-right: 7px;
+  vertical-align: middle;
+}
+.site-nav { display: flex; gap: 4px; margin-left: auto; }
+.site-nav a {
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-size: .93rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: background .15s, color .15s;
+}
+.site-nav a:hover { background: var(--primary-light); color: var(--primary); }
+.site-nav a.active { background: var(--primary-light); color: var(--primary); font-weight: 600; }
+
+/* ---------- 主区 ---------- */
+main { padding: 26px 0 40px; }
+
+/* ---------- Hero ---------- */
+.hero {
+  background: linear-gradient(135deg, #1677ff 0%, #3b8bff 55%, #5aa6ff 100%);
+  border-radius: var(--radius);
+  padding: 30px 32px;
+  color: #fff;
+  margin-bottom: 26px;
+  box-shadow: 0 10px 28px rgba(22, 119, 255, .22);
+}
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+.hero p { margin: 0; opacity: .92; font-size: .96rem; }
+.hero-stats {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.hero-stat .n {
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.1;
+  display: block;
+}
+.hero-stat .l {
+  font-size: .8rem;
+  opacity: .85;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+/* ---------- 区块标题 ---------- */
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0 14px;
+}
+.section-heading h2 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-heading h2::before {
+  content: "";
+  width: 4px;
+  height: 16px;
+  border-radius: 2px;
+  background: var(--primary);
+}
+.section-heading .more { font-size: .86rem; color: var(--text-muted); }
+.section-heading .more:hover { color: var(--primary); }
+
+/* ---------- 卡片网格 ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+/* 厂商卡：圆形头像位 + 名称 + 简介（对齐参考站的 site-mini-card + site-avatar） */
+.mini-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.mini-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-soft);
+}
+.mini-card .avatar {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -.02em;
+  overflow: hidden;
+}
+.mini-card .body { min-width: 0; }
+.mini-card .name {
+  font-weight: 600;
+  font-size: .95rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mini-card:hover .name { color: var(--primary); }
+.mini-card .desc {
+  font-size: .8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- 优惠卡 ---------- */
+.deal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.deal-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.deal-card .left { min-width: 0; }
+.deal-card .title {
+  font-size: .98rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+.deal-card:hover .title { color: var(--primary); }
+.deal-card .meta { font-size: .82rem; color: var(--text-muted); }
+.deal-card .price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+  letter-spacing: -.02em;
+}
+.deal-card .price .cur {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-left: 3px;
+}
+
+/* ---------- 徽标 ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: .72rem;
+  border-radius: 4px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 600;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+.badge.expired { background: #fdecec; color: var(--danger); }
+.badge.noprice { background: #f3f5f8; color: var(--text-muted); }
+.badge.unreachable { background: #fff4e6; color: #b25c12; }
+
+/* ---------- 通用内容卡 ---------- */
+.content-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 18px;
+}
+.content-card h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: var(--text-primary);
+}
+.content-card p { margin: 0 0 10px; color: var(--text-secondary); font-size: .92rem; }
+.content-card p:last-child { margin-bottom: 0; }
+
+/* ---------- 表格（厂商页动态层） ---------- */
+.table-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+thead th {
+  background: #fafbfe;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 11px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+}
+tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--primary-light); }
+tbody td a { color: var(--text-primary); font-weight: 500; }
+tbody tr:hover td a { color: var(--primary); }
+td.price-cell {
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+td.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- 面包屑 ---------- */
+.crumbs {
+  font-size: .83rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.crumbs a { color: var(--text-muted); }
+.crumbs a:hover { color: var(--primary); }
+
+/* ---------- 按钮 ---------- */
+.btn {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: .9rem;
+  font-weight: 600;
+  transition: all .15s;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-hover); color: #fff; }
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: #fff;
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+/* ---------- 提示条 ---------- */
+.notice {
+  background: var(--primary-light);
+  border: 1px solid var(--primary-soft);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: .88rem;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+
+/* ---------- 页脚 ---------- */
+.site-footer {
+  background: #18233b;
+  color: #9fb0c9;
+  margin-top: 20px;
+  padding: 30px 0;
+  font-size: .85rem;
+}
+.site-footer a { color: #cfe0f5; }
+.site-footer a:hover { color: #fff; }
+.site-footer p { margin: 0 0 7px; }
+.site-footer .flinks { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 720px) {
+  .site-header .wrap { height: auto; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; gap: 12px; }
+  .site-nav { margin-left: 0; width: 100%; overflow-x: auto; }
+  .hero { padding: 22px 20px; }
+  .hero h1 { font-size: 1.3rem; }
+  .hero-stats { gap: 20px; }
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .deal-card { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .table-wrap { overflow-x: auto; }
+}

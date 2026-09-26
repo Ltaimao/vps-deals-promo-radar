@@ -1,22 +1,33 @@
-<section class="crumbs">{{CRUMBS}}</section>
-<section>
-<h2>What this is</h2>
-<p>{{BRAND_DISPLAY}} tracks current public pricing and promotions from <strong>{{PROVIDER_COUNT}}</strong> VPS hosting providers. The data refreshes every 6 hours from each provider's own public page. Nothing here is a paid placement and nothing is invented.</p>
+<section class="hero">
+  <h1>{{HERO_TITLE}}</h1>
+  <p>{{HERO_SUB}}</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="n">{{PROVIDER_COUNT}}</span><span class="l">Providers</span></div>
+    <div class="hero-stat"><span class="n">{{DEAL_COUNT}}</span><span class="l">Live offers</span></div>
+    <div class="hero-stat"><span class="n">{{FROM_PRICE}}</span><span class="l">From / mo</span></div>
+    <div class="hero-stat"><span class="n">{{UPDATED}}</span><span class="l">Updated</span></div>
+  </div>
 </section>
 
-<section>
-<h2>Providers</h2>
-<ul class="providers">{{PROVIDER_LIST}}</ul>
-</section>
+<div class="section-heading">
+  <h2>Providers</h2>
+  <a class="more" href="/compare/">Compare all ›</a>
+</div>
+<ul class="card-grid" style="list-style:none;padding:0;margin:0;">
+{{PROVIDER_LIST}}
+</ul>
 
-<section>
-<h2>Latest deals ({{DEAL_COUNT}})</h2>
+<div class="section-heading">
+  <h2>Latest deals ({{DEAL_COUNT}})</h2>
+</div>
 <div class="deal-list">
 {{DEAL_CARDS}}
 </div>
-</section>
 
-<section>
-<h2>Compare</h2>
-<p>Side-by-side: <a href="/compare/">see all providers on one page</a>.</p>
-</section>
+<div class="section-heading">
+  <h2>About this data</h2>
+</div>
+<div class="content-card">
+  <p>{{BRAND_DISPLAY}} tracks current public pricing and promotions from <strong>{{PROVIDER_COUNT}}</strong> VPS hosting providers. The data refreshes every 6 hours from each provider's own public page.</p>
+  <p>Nothing here is a paid placement and nothing is invented. Grab the source: <a href="https://github.com/{{REPO_FULL}}">github.com/{{REPO_FULL}}</a>.</p>
+</div>
