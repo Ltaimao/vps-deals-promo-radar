@@ -8,9 +8,18 @@
 #       3) 都不命中 -> 用 site/404.html 当响应体，回 404
 #       用来在推线上之前先把状态码跑出来看
 # BOUNDARY never:拿 200 兜底不存在的路径|scope:permanent
+import mimetypes
 import os
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+
+# 必须走系统 MIME 表：之前只硬编码了 .css/.xml/.txt，.svg 被当成 text/html 发出去，
+# 浏览器拒绝把 text/html 当图片解码，于是所有 SVG logo 在本地预览里都是 0x0 的坏图 ——
+# 线上 Cloudflare 回的是 image/svg+xml，一切正常。这个假警报害我排查了半天。
+mimetypes.add_type("image/svg+xml", ".svg")
+mimetypes.add_type("image/webp", ".webp")
+mimetypes.add_type("image/avif", ".avif")
+mimetypes.add_type("application/manifest+json", ".webmanifest")
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = os.path.join(ROOT, "site")
@@ -71,12 +80,10 @@ class H(BaseHTTPRequestHandler):
             if os.path.isfile(c):
                 with open(c, "rb") as f:
                     body = f.read()
-                if c.endswith(".css"):
-                    ctype = "text/css"
-                elif c.endswith(".xml"):
-                    ctype = "application/xml"
-                elif c.endswith(".txt"):
-                    ctype = "text/plain"
+                ctype = mimetypes.guess_type(c)[0] or "application/octet-stream"
+                if ctype.startswith("text/") or ctype in (
+                        "application/xml", "image/svg+xml"):
+                    ctype += "; charset=utf-8"
                 break
         if body is not None:
             self.send_response(200)

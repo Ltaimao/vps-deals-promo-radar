@@ -35,7 +35,7 @@ LOGO_DIR = ROOT / "assets" / "logos"
 REFETCH_JSON = ROOT / "data" / "refetch.json"
 
 sys.path.insert(0, str(ROOT))
-from scraper import parse_ilang, slugify  # reuse the parser
+from scraper import parse_ilang, slugify, MAX_DEALS_PER_PROVIDER  # reuse the parser
 
 
 def e(s):
@@ -124,9 +124,25 @@ def logo_html(provider, logos, cls="avatar"):
         return '<span class="{cls}">{ini}</span>'.format(
             cls=cls, ini=e(initials(provider.get("name", ""))))
     cls = cls + " has-logo" + (" is-wide" if rec["wide"] else "")
+    # 不用 loading="lazy"：logo 全是几百字节到十几 KB 的小图，而懒加载会让
+    # 首屏以下的那批（compare 表里十几行）一直不渲染 —— 页面看着就是图没了。
     return ('<span class="{cls}">'
-            '<img src="/assets/logos/{f}" alt="{name} logo" loading="lazy" decoding="async">'
+            '<img src="/assets/logos/{f}" alt="{name} logo" decoding="async">'
             '</span>').format(cls=e(cls), f=e(rec["file"]), name=e(provider.get("name", "")))
+
+
+def count_label(n, capped):
+    """条数标签。抓取到上限就停，所以到顶的数字是「至少这么多」，
+    显示成 12+ —— 不许把被截断的数当精确值报出去。"""
+    return str(n) + "+" if capped else str(n)
+
+
+def is_capped(provider, count):
+    """providers 记录里 scraper 会写 deals_capped；老数据没有这个字段时，
+    条数正好等于上限就按「被截断」处理（到顶即停，这点是确定的）。"""
+    if "deals_capped" in provider:
+        return bool(provider["deals_capped"])
+    return count >= MAX_DEALS_PER_PROVIDER
 
 
 def initials(name):
@@ -237,10 +253,11 @@ def render_index(ctx, data, cfg, base_url):
         p_deals = [d for d in deals if d.get("provider_slug") == p["slug"]]
         p_prices = [d.get("price") for d in p_deals if d.get("price")]
         p_cur = next((d.get("currency") for d in p_deals if d.get("currency")), "USD")
+        p_n = count_label(len(p_deals), is_capped(p, len(p_deals)))
         if p_prices:
-            sub = "from " + money(min(p_prices), p_cur) + "/mo · " + str(len(p_deals)) + " offers"
+            sub = "from " + money(min(p_prices), p_cur) + "/mo · " + p_n + " offers"
         elif p["fetch_status"] == "ok":
-            sub = str(len(p_deals)) + " offers listed"
+            sub = p_n + " offers listed"
         else:
             sub = "unreachable (HTTP " + str(p["http_code"]) + ")"
         prov_cards.append(
@@ -363,7 +380,7 @@ def render_provider(ctx, data, cfg, base_url, provider):
         "{{PROVIDER_NAME}}": e(provider["name"]),
         "{{PROVIDER_URL}}": e(provider["url"]),
         "{{SOURCE_URL}}": e(provider["source_url"]),
-        "{{DEAL_COUNT}}": str(len(deals)),
+        "{{DEAL_COUNT}}": count_label(len(deals), is_capped(provider, len(deals))),
         "{{DEAL_TABLE}}": deal_table,
         "{{LAST_FETCHED_AT}}": e(provider["fetched_at"][:19].replace("T", " ") + " UTC"),
     })
@@ -422,7 +439,9 @@ def render_compare(ctx, data, cfg, base_url):
                 slug=e(p["slug"]), name=e(p["name"]), bcls=badge_cls,
                 logo=logo_html(p, logos, "avatar t-logo"),
                 status="reachable" if p["fetch_status"] == "ok" else "unreachable",
-                code=e(p["http_code"]), n=str(len(deals_for_p)), src=e(p["source_url"])
+                code=e(p["http_code"]),
+                n=count_label(len(deals_for_p), is_capped(p, len(deals_for_p))),
+                src=e(p["source_url"])
             )
         )
 
@@ -502,14 +521,15 @@ def provider_page_copy(provider, deals):
     if month:
         title += " (" + month + ")"
 
+    n_label = count_label(len(deals), is_capped(provider, len(deals)))
     desc = name + " VPS hosting deals and public pricing, updated"
     if month:
         desc += " " + month
     desc += "."
     if prices:
-        desc += " " + str(len(prices)) + " live offers from " + money(min(prices), cur) + "/mo."
+        desc += " " + n_label + " live offers from " + money(min(prices), cur) + "/mo."
     else:
-        desc += " " + str(len(deals)) + " live offers listed."
+        desc += " " + n_label + " live offers listed."
     desc += " Nothing here is invented — every figure comes from " + name + "'s own public page."
 
     return title, desc

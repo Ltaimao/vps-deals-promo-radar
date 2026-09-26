@@ -117,6 +117,10 @@ PERIOD_RE = re.compile(r"/\s?(?:mo(?:nth)?|yr|year|annual)|per\s+(?:month|year)|
 PCT_RE = re.compile(r"(\d{1,2})\s?%\s?(?:off|discount)", re.I)
 SYMBOL_TO_CCY = {"$": "USD", "€": "EUR", "£": "GBP", "¥": "JPY"}
 CHROME = re.compile(r"^(?:VIEW|LEARN|CLICK|SEE|BUY|GET|ORDER|FIND|EXPLORE|MORE|ALL|SHOW|READ|START|GET\s+STARTED)\b", re.I)
+# 每个厂商最多收这么多条。到顶就停 —— 所以条数等于这个值时，
+# 它是「至少这么多」，不是精确值。build 会把它显示成 "12+"，
+# 不许拿被截断的数当精确数报出去。
+MAX_DEALS_PER_PROVIDER = 12
 
 
 def strip_tags(html):
@@ -192,7 +196,7 @@ def extract_offers(html, source_url, provider_name):
             "valid_until": None,
             "fetched_at": datetime.now(timezone.utc).isoformat(),
         })
-        if len(deals) >= 12:
+        if len(deals) >= MAX_DEALS_PER_PROVIDER:
             break
     return deals
 
@@ -226,6 +230,7 @@ def main():
             "fetch_status": "ok" if (code == 200 and body) else "unreachable",
             "http_code": code,
             "fetched_at": now,
+            "deals_capped": False,
         }
         if code == 200 and body:
             try:
@@ -233,6 +238,8 @@ def main():
             except Exception as e:
                 print("    parse error:", e, file=sys.stderr)
                 extracted = []
+            # 到顶说明后面还有没抓的 —— 把这件事记下来，别让下游把它当精确条数
+            entry["deals_capped"] = len(extracted) >= MAX_DEALS_PER_PROVIDER
             for d in extracted:
                 d["provider_slug"] = slug
                 deals_out.append(d)
