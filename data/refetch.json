@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-09-26T19:04:11.445774+00:00",
+  "results": {
+    "hetzner-cloud": {
+      "name": "Hetzner Cloud",
+      "slug": "hetzner-cloud",
+      "url": "https://www.hetzner.com/cloud",
+      "status": "empty",
+      "http_status": 200,
+      "page_title": "Cloud-hosting provider for developers & teams",
+      "rendered_bytes": 1499104,
+      "deals": []
+    },
+    "servermania": {
+      "name": "ServerMania",
+      "slug": "servermania",
+      "url": "https://www.servermania.com/vps-hosting.htm",
+      "status": "empty",
+      "http_status": 200,
+      "page_title": "Dedicated Servers, Cloud Hosting & Colocation | ServerMania",
+      "rendered_bytes": 1423108,
+      "deals": []
+    },
+    "hosthatch": {
+      "name": "HostHatch",
+      "slug": "hosthatch",
+      "url": "https://hosthatch.com/",
+      "status": "ok",
+      "http_status": 200,
+      "page_title": "HostHatch — SSD VPS powered by NVMe storage",
+      "rendered_bytes": 1256620,
+      "deals": [
+        {
+          "title": "Our smallest plan costs",
+          "provider_name": "HostHatch",
+          "price": 4.0,
+          "currency": "USD",
+          "offer_url": "https://hosthatch.com/",
+          "source_url": "https://hosthatch.com/",
+          "valid_until": null,
+          "fetched_at": "2026-09-26T19:02:55.270165+00:00",
+          "provider_slug": "hosthatch",
+          "evidence": "u will never feel like talking to a robot who does not understand what you need. Convinced yet? Our smallest plan costs $4 per month (less than a cup of coffee). Deploy it and see for yourself that we back up our talk with real world perfor",
+          "via": "cdp_render"
+        }
+      ]
+    },
+    "a2-hosting": {
+      "name": "A2 Hosting",
+      "slug": "a2-hosting",
+      "url": "https://www.a2hosting.com/vps",
+      "status": "error",
+      "http_status": null,
+      "page_title": null,
+      "rendered_bytes": 0,
+      "deals": [],
+      "error": "socket is already closed."
+    }
+  }
+}

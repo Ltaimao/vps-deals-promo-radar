@@ -10,6 +10,7 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -27,6 +28,11 @@ TEMPLATES = ROOT / "templates"
 SITE = ROOT / "site"
 DATA = ROOT / "data" / "offers.json"
 ILANG_FILE = ROOT / ".ilang" / "site.ilang"
+# 厂商 logo：fetch_logos.py 从各家官网抓来存这里，build 只负责拷进站点并引用
+LOGO_JSON = ROOT / "data" / "logos.json"
+LOGO_DIR = ROOT / "assets" / "logos"
+# 0 offers 厂商用真浏览器重取的价：refetch_empty.py 写，build 只读
+REFETCH_JSON = ROOT / "data" / "refetch.json"
 
 sys.path.insert(0, str(ROOT))
 from scraper import parse_ilang, slugify  # reuse the parser
@@ -47,6 +53,33 @@ def load_cfg():
     return parse_ilang(ILANG_FILE)
 
 
+def load_refetch(data):
+    """读 refetch_empty.py 的产出，返回 (补进来的优惠, 该下线的厂商 slug, 说明)。
+
+    ::RULE{四家 0 offers 的厂商页 取到就写进去 取不到就下线}
+    有效性判据不是时间戳，而是「它检查过的厂商集合 == 现在真的 0 offers 的那批」——
+    只要集合对得上，结论就还是对的；对不上就宁可不下线，也不拿过期结论动线上。
+    """
+    have = {d.get("provider_slug") for d in data["deals"]}
+    empty_now = {p["slug"] for p in data["providers"] if p["slug"] not in have}
+    if not REFETCH_JSON.exists():
+        return [], set(), "no refetch.json (run refetch_empty.py) — 不下线"
+    with open(REFETCH_JSON, "r", encoding="utf-8") as f:
+        doc = json.load(f)
+    res = doc.get("results") or {}
+    examined = set(res)
+    if examined != empty_now:
+        return [], set(), ("refetch 检查过的厂商 %s 与现在 0 offers 的 %s 对不上 — 不下线"
+                           % (sorted(examined), sorted(empty_now)))
+    extra, offline = [], set()
+    for slug, rec in res.items():
+        if rec.get("status") == "ok" and rec.get("deals"):
+            extra.extend(rec["deals"])
+        else:
+            offline.add(slug)
+    return extra, offline, "ok"
+
+
 def load_template(name):
     return (TEMPLATES / name).read_text(encoding="utf-8")
 
@@ -65,6 +98,35 @@ def nav_html(active):
         cls = ' class="active"' if active == href else ""
         parts.append('<a href="' + href + '"' + cls + ">" + e(label) + "</a>")
     return "\n".join(parts)
+
+
+def load_logos():
+    """data/logos.json 是 fetch_logos.py 从各厂商官网抓来的结果。
+    只认真正存在的文件 —— 抓不到就是抓不到，build 侧回退成首字母，不许拿别的图顶。"""
+    if not LOGO_JSON.exists():
+        return {}
+    with open(LOGO_JSON, "r", encoding="utf-8") as f:
+        doc = json.load(f)
+    out = {}
+    for slug, rec in (doc.get("logos") or {}).items():
+        fname = rec.get("logo_file")
+        if not fname or not (LOGO_DIR / fname).exists():
+            continue
+        out[slug] = {"file": fname, "wide": rec.get("status") == "ok_wide"}
+    return out
+
+
+def logo_html(provider, logos, cls="avatar"):
+    """厂商头像位：有 logo 就出图，没有就退回首字母。
+    ok_wide（横版 logo）加 is-wide，用 contain 缩放不裁切。"""
+    rec = logos.get(provider.get("slug", ""))
+    if not rec:
+        return '<span class="{cls}">{ini}</span>'.format(
+            cls=cls, ini=e(initials(provider.get("name", ""))))
+    cls = cls + " has-logo" + (" is-wide" if rec["wide"] else "")
+    return ('<span class="{cls}">'
+            '<img src="/assets/logos/{f}" alt="{name} logo" loading="lazy" decoding="async">'
+            '</span>').format(cls=e(cls), f=e(rec["file"]), name=e(provider.get("name", "")))
 
 
 def initials(name):
@@ -150,6 +212,7 @@ def jsonld_service(provider, deals, base_url):
 def render_index(ctx, data, cfg, base_url):
     providers = data["providers"]
     deals = data["deals"]
+    logos = ctx.get("logos") or {}
 
     # Hero 的三个数字全部来自数据，不是写死的文案
     _prices = [d.get("price") for d in deals if d.get("price")]
@@ -182,12 +245,12 @@ def render_index(ctx, data, cfg, base_url):
             sub = "unreachable (HTTP " + str(p["http_code"]) + ")"
         prov_cards.append(
             '<li><a class="mini-card" href="/providers/{slug}/">'
-            '<span class="avatar">{ini}</span>'
+            '{logo}'
             '<span class="body">'
             '<span class="name">{name}</span>'
             '<span class="desc">{sub}</span>'
             '</span></a></li>'.format(
-                slug=e(p["slug"]), ini=e(initials(p["name"])),
+                slug=e(p["slug"]), logo=logo_html(p, logos, "avatar"),
                 name=e(p["name"]), sub=e(sub))
         )
     provider_links = "\n".join(prov_cards)
@@ -262,6 +325,7 @@ def render_index(ctx, data, cfg, base_url):
 
 def render_provider(ctx, data, cfg, base_url, provider):
     slug = provider["slug"]
+    logos = ctx.get("logos") or {}
     deals = [d for d in data["deals"] if d.get("provider_slug") == slug]
     if deals:
         rows = ['<div class="table-wrap"><table><thead><tr>'
@@ -295,6 +359,7 @@ def render_provider(ctx, data, cfg, base_url, provider):
 
     content = fill(load_template("provider.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", e(provider["name"]))]),
+        "{{PROVIDER_LOGO}}": logo_html(provider, logos, "avatar p-logo"),
         "{{PROVIDER_NAME}}": e(provider["name"]),
         "{{PROVIDER_URL}}": e(provider["url"]),
         "{{SOURCE_URL}}": e(provider["source_url"]),
@@ -341,6 +406,7 @@ def render_deal(ctx, data, cfg, base_url, deal):
 
 
 def render_compare(ctx, data, cfg, base_url):
+    logos = ctx.get("logos") or {}
     rows = []
     for p in data["providers"]:
         deals_for_p = [d for d in data["deals"] if d.get("provider_slug") == p["slug"]]
@@ -348,11 +414,13 @@ def render_compare(ctx, data, cfg, base_url):
                   else '<span class="badge unreachable">unreachable</span>')
         badge_cls = "" if p["fetch_status"] == "ok" else "unreachable"
         rows.append(
-            '<tr><td><a href="/providers/{slug}/">{name}</a></td>'
+            '<tr><td><a class="cell-provider" href="/providers/{slug}/">'
+            '{logo}<span>{name}</span></a></td>'
             '<td><span class="badge {bcls}">{status}</span> <span class="num">HTTP {code}</span></td>'
             '<td class="num">{n}</td>'
             '<td><a href="{src}" rel="noopener nofollow">source</a></td></tr>'.format(
                 slug=e(p["slug"]), name=e(p["name"]), bcls=badge_cls,
+                logo=logo_html(p, logos, "avatar t-logo"),
                 status="reachable" if p["fetch_status"] == "ok" else "unreachable",
                 code=e(p["http_code"]), n=str(len(deals_for_p)), src=e(p["source_url"])
             )
@@ -447,12 +515,25 @@ def provider_page_copy(provider, deals):
     return title, desc
 
 
+def render_404(ctx, data, cfg, base_url):
+    """真 404 页。Cloudflare Pages 对任何没匹配上的路径都会拿 /404.html 当响应体
+    并回 404 状态码 —— 前提是站点根上真有这个文件。这里不配任何 catch-all 规则，
+    所以不存在路径不会被兜底成 200 的首页。"""
+    content = fill(load_template("404.html"), {
+        "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", "404")]),
+        "{{PROVIDER_COUNT}}": str(len(data["providers"])),
+        "{{DEAL_COUNT}}": str(len(data["deals"])),
+    })
+    return render_base(ctx, content, "{}")
+
+
 def render_base(ctx, content_html, jsonld_text):
     base = load_template("_base.html")
     subs = {
         "{{TITLE}}": e(ctx["title"]),
         "{{META_DESCRIPTION}}": e(ctx["meta_description"]),
         "{{CANONICAL_URL}}": e(ctx["canonical_url"]),
+        "{{ROBOTS_META}}": ctx.get("robots_meta", ""),
         "{{HREFLANG_TAGS}}": ctx.get("hreflang_tags", ""),
         "{{OG_TITLE}}": e(ctx["og_title"]),
         "{{OG_DESC}}": e(ctx["og_description"]),
@@ -566,6 +647,30 @@ def main():
     # and stale orphan pages are pruned only via the workflow's git diff/commit.
     SITE.mkdir(exist_ok=True)
 
+    # 0a. 0 offers 的厂商：把真浏览器重取到的价并进数据；取不到的把该页下线。
+    extra_deals, offline_slugs, refetch_note = load_refetch(data)
+    if extra_deals:
+        data["deals"] = data["deals"] + extra_deals
+    offline_providers = [p for p in data["providers"] if p["slug"] in offline_slugs]
+    if offline_providers:
+        # 从渲染集合里摘掉 —— index 卡片 / compare 表 / sitemap 三处一起跟着消失
+        data["providers"] = [p for p in data["providers"] if p["slug"] not in offline_slugs]
+    print("  refetch:", refetch_note,
+          "| 补进优惠", len(extra_deals),
+          "| 下线厂商", len(offline_providers),
+          [p["slug"] for p in offline_providers])
+
+    # 0b. 厂商 logo —— fetch_logos.py 抓来的图拷进站点 /assets/logos/，
+    #    渲染时按 slug 查表；抓不到的厂商保持首字母色块，不拿别的图顶替。
+    logos = load_logos()
+    if logos:
+        logo_dir = SITE / "assets" / "logos"
+        logo_dir.mkdir(parents=True, exist_ok=True)
+        for _rec in logos.values():
+            shutil.copyfile(LOGO_DIR / _rec["file"], logo_dir / _rec["file"])
+    print("  provider logos:", len(logos), "/", len(data["providers"]),
+          "(抓不到的回退首字母)")
+
     all_paths = []
 
     # 1. Index — title/description 由数据生成（厂商数 + 最低价 + 月份）
@@ -603,6 +708,7 @@ def main():
         "last_fetched_at": last_fetched,
         "repo_full": repo_full,
         "hreflang_tags": "",
+        "logos": logos,
     }
     write(SITE / "index.html", render_index(ctx_index, data, cfg, base_url))
     all_paths.append({"path": "", "lastmod": data["generated_at"]})
@@ -623,15 +729,53 @@ def main():
               render_provider(ctx, data, cfg, base_url, p))
         all_paths.append({"path": "providers/" + p["slug"] + "/", "lastmod": p["fetched_at"]})
 
+    # 2b. 下线厂商的旧目录：本地 site/ 是增量覆盖的，被下线的页会留在盘上；
+    #     CI 每次全新 checkout 构建所以没这个问题。这里只报告，删除由人确认。
+    stale_dirs = []
+    if (SITE / "providers").exists():
+        for d in sorted((SITE / "providers").iterdir()):
+            if d.is_dir() and d.name not in {p["slug"] for p in data["providers"]}:
+                stale_dirs.append(str(d.relative_to(SITE)))
+    if stale_dirs:
+        print("  stale provider dirs on disk (需人工确认后删):", stale_dirs)
+
     # 3. Deal exit — NO new URLs.
     # ::RULE{出口只有一个 优惠进它所属厂商页的动态层 网址数不涨}
     # 单条优惠不再各自开网址。优惠全部落进 render_provider 的 DEAL_TABLE
     # （厂商页动态层）：每次抓取内容变，网址数不变。
     # 历史上已经开出来的那批 /deals/ 页，301 到它所属的厂商页。
+    # ::RULE{老的单条优惠地址按映射表逐条 301 一条都不许漏}
+    # ::RULE{映射表里没有目标的让它 404 —— 不许 301 到一个不存在的页}
+    live_slugs = {p["slug"] for p in data["providers"]}
     redirect_map = build_redirect_map(data)
+    dropped = {s: d for s, d in redirect_map.items()
+               if d.strip("/").split("/")[-1] not in live_slugs}
+    for s in dropped:
+        del redirect_map[s]
+    # 被下线的厂商页：老地址 301 回它的上位页（首页），不留死链
+    for p in offline_providers:
+        redirect_map["/providers/" + p["slug"] + "/"] = "/"
     write_redirects(redirect_map, SITE / "_redirects")
     print("  deal pages generated: 0 (offers go to provider-page dynamic layer)")
-    print("  301 redirects written:", len(redirect_map))
+    print("  301 redirects written:", len(redirect_map),
+          "(映射表里目标页不存在的", len(dropped), "条已剔出 -> 它们返回 404)")
+    if dropped:
+        for s, d in sorted(dropped.items()):
+            print("     404  ", s, "-> 目标页不存在:", d)
+    if offline_providers:
+        for p in offline_providers:
+            print("     301  /providers/{}/ -> / (该页已下线)".format(p["slug"]))
+
+    # 4b. 真 404 页 —— 站点根上必须有 404.html，Pages 才会拿它当未匹配路径的响应体
+    ctx404 = dict(ctx_index)
+    ctx404["title"] = "404 — page not found"
+    ctx404["meta_description"] = "This URL does not exist on vpsdealswire.com."
+    ctx404["canonical_url"] = base_url + "/404.html"
+    ctx404["og_title"] = ctx404["title"]
+    ctx404["og_description"] = ctx404["meta_description"]
+    ctx404["nav"] = nav_html("")
+    ctx404["robots_meta"] = '<meta name="robots" content="noindex">'
+    write(SITE / "404.html", render_404(ctx404, data, cfg, base_url))
 
     # 4. Compare
     _cmp_title = "Compare " + str(len(data["providers"])) + " VPS Providers"

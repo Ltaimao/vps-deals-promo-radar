@@ -1,0 +1,311 @@
+{
+  "generated_at": "2026-09-26T18:07:56Z",
+  "logos": {
+    "hetzner-cloud": {
+      "name": "Hetzner Cloud",
+      "slug": "hetzner-cloud",
+      "site": "https://www.hetzner.com/",
+      "logo_file": "hetzner-cloud.png",
+      "source": "https://www.hetzner.com/_resources/themes/hetzner/images/favicons/android-icon-192x192.png",
+      "status": "ok",
+      "bytes": 1144,
+      "kind": "icon"
+    },
+    "digitalocean": {
+      "name": "DigitalOcean",
+      "slug": "digitalocean",
+      "site": "https://www.digitalocean.com/",
+      "logo_file": "digitalocean.svg",
+      "source": "https://www.digitalocean.com/_do-www-marketing/b0379e6f/_next/static/media/favicon.91372345.svg",
+      "status": "ok",
+      "bytes": 877,
+      "kind": "icon"
+    },
+    "ovhcloud": {
+      "name": "OVHcloud",
+      "slug": "ovhcloud",
+      "site": "https://www.ovh.com/",
+      "logo_file": "ovhcloud.png",
+      "source": "https://www.ovh.com/apple-touch-icon.png",
+      "status": "ok",
+      "bytes": 1529,
+      "kind": "apple"
+    },
+    "racknerd": {
+      "name": "RackNerd",
+      "slug": "racknerd",
+      "site": "https://www.racknerd.com/",
+      "logo_file": "racknerd.png",
+      "source": "https://www.racknerd.com/favicon.png",
+      "status": "ok",
+      "bytes": 5649,
+      "kind": "icon"
+    },
+    "hostinger": {
+      "name": "Hostinger",
+      "slug": "hostinger",
+      "site": "https://www.hostinger.com/",
+      "logo_file": "hostinger.ico",
+      "source": "https://www.hostinger.com/favicon.ico",
+      "status": "ok",
+      "bytes": 15086,
+      "kind": "icon"
+    },
+    "ionos": {
+      "name": "IONOS",
+      "slug": "ionos",
+      "site": "https://www.ionos.com/",
+      "logo_file": "ionos.svg",
+      "source": "https://www.ionos.com/favicon.svg",
+      "status": "ok",
+      "bytes": 519,
+      "kind": "icon"
+    },
+    "scaleway": {
+      "name": "Scaleway",
+      "slug": "scaleway",
+      "site": "https://www.scaleway.com/",
+      "logo_file": "scaleway.svg",
+      "source": "https://www.scaleway.com/favicon/website/favicon.svg",
+      "status": "ok",
+      "bytes": 1034,
+      "kind": "icon"
+    },
+    "upcloud": {
+      "name": "UpCloud",
+      "slug": "upcloud",
+      "site": "https://upcloud.com/",
+      "logo_file": "upcloud.png",
+      "source": "https://upcloud.com/media/android-chrome-512x512-2-300x300.png",
+      "status": "ok",
+      "bytes": 1378,
+      "kind": "apple"
+    },
+    "kamatera": {
+      "name": "Kamatera",
+      "slug": "kamatera",
+      "site": "https://www.kamatera.com/",
+      "logo_file": "kamatera.png",
+      "source": "https://www.kamatera.com/wp-content/uploads/cropped-cropped-06169472-7db8-4ba3-91f6-3b4e34b5e168-1-192x192.png",
+      "status": "ok",
+      "bytes": 1264,
+      "kind": "icon"
+    },
+    "cloudcone": {
+      "name": "CloudCone",
+      "slug": "cloudcone",
+      "site": "https://cloudcone.com/",
+      "logo_file": "cloudcone.png",
+      "source": "https://cloudcone.com/wp-content/uploads/2017/05/cloudcone-logo-full.png",
+      "status": "ok",
+      "bytes": 30601,
+      "kind": "imglogo"
+    },
+    "bandwagonhost": {
+      "name": "BandwagonHost",
+      "slug": "bandwagonhost",
+      "site": "https://bandwagonhost.com/",
+      "logo_file": null,
+      "source": null,
+      "status": "no_image_found"
+    },
+    "hostdare": {
+      "name": "HostDare",
+      "slug": "hostdare",
+      "site": "https://hostdare.com/",
+      "logo_file": "hostdare.png",
+      "source": "https://hostdare.com/img/favicon-32x32.png",
+      "status": "ok",
+      "bytes": 1714,
+      "kind": "icon"
+    },
+    "scalahosting": {
+      "name": "ScalaHosting",
+      "slug": "scalahosting",
+      "site": "https://www.scalahosting.com/",
+      "logo_file": "scalahosting.png",
+      "source": "https://www.scalahosting.com/asset/images/favicons/android-icon-192x192.png",
+      "status": "ok",
+      "bytes": 10547,
+      "kind": "icon"
+    },
+    "hostens": {
+      "name": "Hostens",
+      "slug": "hostens",
+      "site": "https://www.hostens.com/",
+      "logo_file": "hostens.png",
+      "source": "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_180,h_180/https://www.hostens.com/wp-content/themes/hostens-theme/assets/img/favicon/apple-touch-icon-57x57.png",
+      "status": "ok",
+      "bytes": 2093,
+      "kind": "apple"
+    },
+    "ramnode": {
+      "name": "RamNode",
+      "slug": "ramnode",
+      "site": "https://www.ramnode.com/",
+      "logo_file": "ramnode.jpeg",
+      "source": "https://www.ramnode.com/lovable-uploads/ramnode-favicon.jpeg",
+      "status": "ok",
+      "bytes": 5899,
+      "kind": "icon"
+    },
+    "virmach": {
+      "name": "Virmach",
+      "slug": "virmach",
+      "site": "https://virmach.com/",
+      "logo_file": "virmach.png",
+      "source": "https://virmach.com/wp-content/uploads/2022/09/cropped-logo-192x192.png",
+      "status": "ok",
+      "bytes": 27941,
+      "kind": "icon"
+    },
+    "interserver": {
+      "name": "InterServer",
+      "slug": "interserver",
+      "site": "https://www.interserver.net/",
+      "logo_file": "interserver.png",
+      "source": "https://www.interserver.net/common/images/apple/logo-ios-144px.png",
+      "status": "ok",
+      "bytes": 11587,
+      "kind": "apple"
+    },
+    "servermania": {
+      "name": "ServerMania",
+      "slug": "servermania",
+      "site": "https://www.servermania.com/",
+      "logo_file": "servermania.png",
+      "source": "https://cdn.servermania.com/favicon.png",
+      "status": "ok",
+      "bytes": 843,
+      "kind": "icon"
+    },
+    "hostwinds": {
+      "name": "Hostwinds",
+      "slug": "hostwinds",
+      "site": "https://www.hostwinds.com/",
+      "logo_file": "hostwinds.png",
+      "source": "https://www.hostwinds.com/images/apple-touch-icon-180x180.png",
+      "status": "ok",
+      "bytes": 9512,
+      "kind": "apple"
+    },
+    "knownhost": {
+      "name": "KnownHost",
+      "slug": "knownhost",
+      "site": "https://www.knownhost.com/",
+      "logo_file": "knownhost.png",
+      "source": "https://www.knownhost.com/assets/images/icons/favicon/android-icon-192x192.png?v=3",
+      "status": "ok",
+      "bytes": 12840,
+      "kind": "icon"
+    },
+    "accuwebhosting": {
+      "name": "AccuWebHosting",
+      "slug": "accuwebhosting",
+      "site": "https://www.accuwebhosting.com/",
+      "logo_file": "accuwebhosting.svg",
+      "source": "https://www.accuwebhosting.com/images/accuweb_hosting_icon.svg",
+      "status": "ok",
+      "bytes": 2052,
+      "kind": "icon"
+    },
+    "liquid-web": {
+      "name": "Liquid Web",
+      "slug": "liquid-web",
+      "site": "https://www.liquidweb.com/",
+      "logo_file": "liquid-web.ico",
+      "source": "https://www.liquidweb.com/favicon.ico",
+      "status": "ok",
+      "bytes": 4286,
+      "kind": "favicon"
+    },
+    "cherry-servers": {
+      "name": "Cherry Servers",
+      "slug": "cherry-servers",
+      "site": "https://www.cherryservers.com/",
+      "logo_file": "cherry-servers.ico",
+      "source": "https://www.cherryservers.com/cherryservers-favicon.ico",
+      "status": "ok",
+      "bytes": 15086,
+      "kind": "icon"
+    },
+    "latitude-sh": {
+      "name": "Latitude.sh",
+      "slug": "latitude-sh",
+      "site": "https://www.latitude.sh/",
+      "logo_file": "latitude-sh.svg",
+      "source": "https://www.latitude.sh/favicon.svg",
+      "status": "ok",
+      "bytes": 573,
+      "kind": "icon"
+    },
+    "hosthatch": {
+      "name": "HostHatch",
+      "slug": "hosthatch",
+      "site": "https://hosthatch.com/",
+      "logo_file": "hosthatch.svg",
+      "source": "https://hosthatch.com/images/favicon.svg",
+      "status": "ok",
+      "bytes": 4115,
+      "kind": "icon"
+    },
+    "alphavps": {
+      "name": "AlphaVPS",
+      "slug": "alphavps",
+      "site": "https://alphavps.com/",
+      "logo_file": "alphavps.ico",
+      "source": "https://alphavps.com/assets/img/favicon.ico",
+      "status": "ok",
+      "bytes": 102726,
+      "kind": "icon"
+    },
+    "buyvm": {
+      "name": "BuyVM",
+      "slug": "buyvm",
+      "site": "https://buyvm.net/",
+      "logo_file": "buyvm.ico",
+      "source": "https://buyvm.net/favicon.ico",
+      "status": "ok",
+      "bytes": 1150,
+      "kind": "favicon"
+    },
+    "ssdnodes": {
+      "name": "SSDNodes",
+      "slug": "ssdnodes",
+      "site": "https://www.ssdnodes.com/",
+      "logo_file": "ssdnodes.svg",
+      "source": "https://www.ssdnodes.com/wp-content/uploads/2024/09/fav.svg",
+      "status": "ok",
+      "bytes": 1303,
+      "kind": "apple"
+    },
+    "dreamhost": {
+      "name": "DreamHost",
+      "slug": "dreamhost",
+      "site": "https://www.dreamhost.com/",
+      "logo_file": "dreamhost.svg",
+      "source": "https://www.dreamhost.com/icon.svg?icon.003t-algmmvru.svg",
+      "status": "ok",
+      "bytes": 805,
+      "kind": "icon"
+    },
+    "a2-hosting": {
+      "name": "A2 Hosting",
+      "slug": "a2-hosting",
+      "site": "https://www.a2hosting.com/",
+      "logo_file": null,
+      "source": null,
+      "status": "no_image_found"
+    },
+    "inmotion-hosting": {
+      "name": "InMotion Hosting",
+      "slug": "inmotion-hosting",
+      "site": "https://www.inmotionhosting.com/",
+      "logo_file": "inmotion-hosting.png",
+      "source": "https://www.inmotionhosting.com/wp-content/themes/imh-responsive/favicon.png",
+      "status": "ok",
+      "bytes": 9330,
+      "kind": "icon"
+    }
+  }
+}

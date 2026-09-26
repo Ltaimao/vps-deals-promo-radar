@@ -211,6 +211,94 @@ main { padding: 26px 0 40px; }
   text-overflow: ellipsis;
 }
 
+/* ---------- 厂商 logo ---------- */
+/* logo 由 fetch_logos.py 从各厂商官网抓来；抓不到的仍是首字母色块。
+   has-logo 把底色转白（logo 自带品牌色），is-wide 是横版 logo 用 contain 不裁切。 */
+.avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.mini-card .avatar.has-logo {
+  background: #fff;
+  border: 1px solid var(--border-light);
+}
+.mini-card .avatar.is-wide {
+  border-radius: 9px;
+  padding: 4px;
+}
+.mini-card .avatar.is-wide > img { border-radius: 6px; }
+
+/* 厂商页头部的大 logo */
+.provider-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+.provider-head h2 { margin: 0; }
+.provider-head .avatar {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.15rem;
+  overflow: hidden;
+}
+.provider-head .avatar.has-logo {
+  background: #fff;
+  border: 1px solid var(--border-light);
+}
+.provider-head .avatar.is-wide {
+  width: auto;
+  max-width: 190px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+.provider-head .avatar.is-wide > img {
+  width: auto;
+  max-width: 170px;
+  height: 100%;
+}
+
+/* 对比表单元格里的小 logo */
+a.cell-provider {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+a.cell-provider .avatar {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: .62rem;
+  overflow: hidden;
+}
+a.cell-provider .avatar.has-logo {
+  background: #fff;
+  border: 1px solid var(--border-light);
+}
+a.cell-provider .avatar.is-wide {
+  border-radius: 5px;
+  padding: 2px;
+}
+
 /* ---------- 优惠卡 ---------- */
 .deal-card {
   background: var(--bg-card);
