@@ -20,7 +20,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 from fetch_logos import (LOGO_DIR, OUT_FILE, OPENER, fetch, abs_url,
                          reg_domain, candidates_from_html, ext_for,
-                         parse_ilang_providers, BAD_LOGO_PATH)
+                         parse_ilang_providers, BAD_LOGO_PATH, MIN_LOGO_PX)
 
 # 站点常放但首页 HTML 里不一定 link 出来的标准路径
 COMMON_PATHS = [
@@ -83,6 +83,9 @@ def score(data, ext):
         return 300
     s = min(w, h)
     if s <= 0:
+        return 0
+    if s < MIN_LOGO_PX:
+        # 比头像渲染尺寸还小，放大就是糊块，不如首字母兜底
         return 0
     if 0.8 <= r <= 1.25:
         sq = 1.0

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-26T18:07:56Z",
+  "generated_at": "2026-09-26T20:11:26Z",
   "logos": {
     "hetzner-cloud": {
       "name": "Hetzner Cloud",
@@ -263,11 +263,12 @@
       "name": "BuyVM",
       "slug": "buyvm",
       "site": "https://buyvm.net/",
-      "logo_file": "buyvm.ico",
-      "source": "https://buyvm.net/favicon.ico",
-      "status": "ok",
-      "bytes": 1150,
-      "kind": "favicon"
+      "logo_file": null,
+      "source": null,
+      "status": "no_square_mark",
+      "bytes": null,
+      "kind": null,
+      "note": "官网只有横版文字标 (assets/img/buyvm.png 144x34 / header_logo.png 426x34)，没有方形图标；唯一方形资源是 16x16 的 favicon，放大到 22/42/56px 就是一团糊。横版标塞进方框也只会是一条线，所以按设计退回首字母头像。"
     },
     "ssdnodes": {
       "name": "SSDNodes",
@@ -307,5 +308,6 @@
       "bytes": 9330,
       "kind": "icon"
     }
-  }
+  },
+  "buyvm_reviewed_at": "2026-09-26T20:15:05Z"
 }

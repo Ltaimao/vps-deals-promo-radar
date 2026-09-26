@@ -20,6 +20,11 @@ ILANG_FILE = os.path.join(ROOT, ".ilang", "site.ilang")
 LOGO_DIR = os.path.join(ROOT, "assets", "logos")
 OUT_FILE = os.path.join(ROOT, "data", "logos.json")
 
+# 头像渲染尺寸是 22 / 42 / 56 px。光栅图原生最大边小于这个值就是被放大，
+# 放出来是一团糊 —— 比首字母兜底更难看，所以宁可不收。
+# （buyvm 官网只有 16x16 的 favicon，就是这么被挡掉的。）
+MIN_LOGO_PX = 32
+
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36")
 
@@ -201,15 +206,22 @@ def main():
             if not ext:
                 continue
 
-            # 圆形头像要方图：比例极端的（横幅/长条）先不收，留作备选
+            # 圆形头像要方图：比例极端的（横幅/长条）先不收，留作备选。
+            # 另外太小的光栅图直接淘汰 —— 放大到 42px 只会糊。
+            dims = None
             if ext != ".svg":
                 try:
                     from PIL import Image
                     im = Image.open(io.BytesIO(data))
+                    dims = im.size
                     rt = im.size[0] / max(1, im.size[1])
                     if rt > 3.0 or rt < 0.34:
                         if wide_fallback is None:
                             wide_fallback = (kind, url, data, ext)
+                        continue
+                    if max(im.size) < MIN_LOGO_PX:
+                        print("      skip {:<6s} {:>8d}B  {} (只有 {}x{}，太小)".format(
+                            kind, len(data), url[:52], im.size[0], im.size[1]))
                         continue
                 except Exception:
                     pass
@@ -219,6 +231,8 @@ def main():
                 f.write(data)
             rec.update({"logo_file": fname, "source": url,
                         "status": "ok", "bytes": len(data), "kind": kind})
+            if dims:
+                rec["w"], rec["h"] = dims
             print("      ok {:<6s} {:>8d}B  {}".format(kind, len(data), url[:62]))
             got = True
             break
@@ -230,6 +244,13 @@ def main():
                 f.write(data)
             rec.update({"logo_file": fname, "source": url, "status": "ok_wide",
                         "bytes": len(data), "kind": kind})
+            if ext != ".svg":
+                try:
+                    from PIL import Image
+                    im = Image.open(io.BytesIO(data))
+                    rec["w"], rec["h"] = im.size
+                except Exception:
+                    pass
             print("      ok {:<6s} {:>8d}B  {} (横版,需 contain)".format(
                 kind, len(data), url[:52]))
             got = True

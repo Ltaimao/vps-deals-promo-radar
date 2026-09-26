@@ -686,10 +686,23 @@ def main():
     if logos:
         logo_dir = SITE / "assets" / "logos"
         logo_dir.mkdir(parents=True, exist_ok=True)
+        want = set()
         for _rec in logos.values():
             shutil.copyfile(LOGO_DIR / _rec["file"], logo_dir / _rec["file"])
-    print("  provider logos:", len(logos), "/", len(data["providers"]),
-          "(抓不到的回退首字母)")
+            want.add(_rec["file"])
+        # 站点目录是整份部署上去的，旧图不清掉就会一直挂在线上（虽然没人引用）
+        stale = [f.name for f in logo_dir.iterdir()
+                 if f.is_file() and f.name not in want]
+        for name in stale:
+            (logo_dir / name).unlink()
+        if stale:
+            print("  清掉站点里过期的 logo:", len(stale), sorted(stale)[:6])
+    # 只按「当前在线的厂商」算，否则下线的厂商（logo 还留在 logos.json 里）
+    # 会把这个比例撑好看 —— 报数就得报线上真实有多少个头像位有图。
+    with_logo = [p["slug"] for p in data["providers"] if p["slug"] in logos]
+    no_logo = [p["slug"] for p in data["providers"] if p["slug"] not in logos]
+    print("  provider logos:", len(with_logo), "/", len(data["providers"]),
+          "(回退首字母:", ", ".join(no_logo) or "无", ")")
 
     all_paths = []
 
