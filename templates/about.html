@@ -1,0 +1,109 @@
+<div class="crumbs">{{CRUMBS}}</div>
+
+<div class="content-card">
+  <h2>About this site</h2>
+  <p>
+    {{BRAND_DISPLAY}} is an independent, automated price tracker for VPS hosting. It
+    publishes current public pricing and promotions from <strong>{{PROVIDER_COUNT}}</strong>
+    hosting providers, and rebuilds itself every 6 hours from those providers' own pages.
+  </p>
+</div>
+
+<div class="section-heading">
+  <h2>Who runs it</h2>
+</div>
+<div class="content-card">
+  <p>
+    This site is run by a single independent publisher. That is the whole of it. We are
+    not going to dress it up with a company name, a team page, or a list of credentials
+    — because we do not have any of those, and inventing them would make everything else
+    on this site worth less.
+  </p>
+  <p>
+    Because it is one person, the fastest way to reach that person is email:
+    <a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a>. There is more on the
+    <a href="/contact/">contact page</a>.
+  </p>
+</div>
+
+<div class="section-heading">
+  <h2>What this site is not</h2>
+</div>
+<div class="content-card">
+  <p>
+    We are not a hosting provider. We do not sell hosting, take orders, process payments,
+    or provide technical support. We have no access to any provider's systems or to any
+    customer account. If you need help with a server you bought, the provider is the only
+    party who can help you.
+  </p>
+  <p>
+    We are not owned by, operated by, or endorsed by any of the providers listed here, and
+    no provider has any editorial control over what appears on this site. For how outbound
+    links work, see the <a href="/privacy/">privacy policy</a>.
+  </p>
+</div>
+
+<div class="section-heading">
+  <h2>How a provider gets listed</h2>
+</div>
+<div class="content-card">
+  <p>
+    A provider is included when three things hold: it runs its own hosting service, it
+    publishes a public pricing or promotions page, and that page answers with
+    <code>HTTP 200</code> when we fetch it. Nothing else is considered.
+  </p>
+  <p>
+    There is no way to pay to be added, to be moved up the list, or to stay on it.
+    Providers we cannot read are marked as <em>unreachable</em> rather than quietly
+    removed or filled in from somewhere else.
+  </p>
+</div>
+
+<div class="section-heading">
+  <h2>How the numbers are produced</h2>
+</div>
+<div class="content-card">
+  <p>
+    Every price on this site is read from the provider's own public page by an automated
+    script. Nothing is estimated, converted, or invented. When a page cannot be read, the
+    offer is shown without a price rather than with a guess.
+  </p>
+  <p>
+    Currency is reported exactly as the provider publishes it. We apply no exchange-rate
+    conversion, so a figure here is the figure the provider wrote.
+  </p>
+  <p>
+    Where a provider's page contains more qualifying offers than we extract, the count is
+    written as <strong>12+</strong> rather than a flat number: that means "at least this
+    many", and we do not claim to know the exact total. A count without a plus sign is
+    exact.
+  </p>
+</div>
+
+<div class="section-heading">
+  <h2>Corrections</h2>
+</div>
+<div class="content-card">
+  <p>
+    If something here is wrong — a price, a link, a provider whose pages have changed —
+    email <a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a> and it will be looked
+    at. Fixes are made in the source and the site is rebuilt from it, so a correction
+    holds for every future refresh too.
+  </p>
+</div>
+
+<div class="section-heading">
+  <h2>Source and rules</h2>
+</div>
+<div class="content-card">
+  <p>
+    The generator, the provider list, and the rules this site runs under are public:
+    <a href="https://github.com/{{REPO_FULL}}">github.com/{{REPO_FULL}}</a>.
+  </p>
+  <p>
+    The site's own rules are written in the I-Lang protocol — including the ones that
+    forbid inventing a price, a commission, or a currency conversion. They are readable
+    in the repository, and the protocol is documented at
+    <a href="https://ilang.ai" rel="noopener">ilang.ai</a>.
+  </p>
+</div>

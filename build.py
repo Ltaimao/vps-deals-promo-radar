@@ -547,6 +547,28 @@ def render_404(ctx, data, cfg, base_url):
     return render_base(ctx, content, "{}")
 
 
+def render_legal(ctx, data, cfg, base_url, tpl_name, crumb_label):
+    """隐私政策 / 关于 / 联系 三页共用一个渲染器。
+    这三个页面的正文是固定的说明文字，只替换厂商数、联系邮箱、修订日期、仓库地址 ——
+    没有任何一个数字是从别处推出来的。"""
+    content = fill(load_template(tpl_name), {
+        "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", crumb_label)]),
+        "{{LAST_UPDATED}}": e(ctx.get("legal_updated", "")),
+        "{{CONTACT_EMAIL}}": e(ctx.get("contact_email", "")),
+        "{{BRAND_DISPLAY}}": e(ctx.get("brand_display", ctx["brand"])),
+        "{{PROVIDER_COUNT}}": str(len(data["providers"])),
+    })
+    jsonld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "ContactPage" if tpl_name == "contact.html" else "WebPage",
+        "url": ctx["canonical_url"],
+        "name": ctx["title"],
+        "inLanguage": ctx["lang"],
+        "isPartOf": {"@type": "WebSite", "url": base_url + "/"},
+    }, ensure_ascii=False)
+    return render_base(ctx, content, jsonld)
+
+
 def render_base(ctx, content_html, jsonld_text):
     base = load_template("_base.html")
     subs = {
@@ -662,6 +684,16 @@ def main():
     base_url = "https://" + site_cfg.get("domain", brand + ".pages.dev")
     repo_full = "vps-deals-promo-radar"
     last_fetched = data["generated_at"][:19].replace("T", " ") + " UTC"
+    # 联系邮箱来自 site.ilang 的 @CONTACT。它必须是一个真能收信的地址 ——
+    # 挂一个收不到信的邮箱等于在页面上写一句假话，所以这里只读配置，不兜底编一个。
+    contact_email = site_cfg.get("email", "")
+    if not contact_email:
+        print("missing ::STATE{@CONTACT, email:...} in .ilang/site.ilang", file=sys.stderr)
+        sys.exit(1)
+    if not re.match(r"^[^@\s]+@[^@\s]+\.[a-z]{2,}$", contact_email, re.I):
+        print("contact email looks malformed:", contact_email, file=sys.stderr)
+        sys.exit(1)
+    legal_updated = site_cfg.get("legal_updated", "")
 
     # Ensure site/ exists. Don't bulk-delete: per-file overwrite is safe,
     # and stale orphan pages are pruned only via the workflow's git diff/commit.
@@ -740,6 +772,9 @@ def main():
         "lang": lang,
         "last_fetched_at": last_fetched,
         "repo_full": repo_full,
+        "contact_email": contact_email,
+        "legal_updated": legal_updated,
+        "brand_display": brand,
         "hreflang_tags": "",
         "logos": logos,
     }
@@ -832,6 +867,36 @@ def main():
           render_compare(ctx, data, cfg, base_url))
     all_paths.append({"path": "compare/", "lastmod": data["generated_at"]})
 
+    # 4b. 隐私政策 / 关于 / 联系 —— 三个必备页。页脚三条链接指向它们，
+    #     三页一起进 sitemap。正文里没有任何编造的资质、公司名或邮箱。
+    legal_pages = (
+        ("privacy.html", "privacy", "Privacy",
+         "Privacy policy — what this site does with data",
+         "What this site collects (nothing that identifies you), why it sets no cookies, "
+         "how affiliate links would work if we add them, and why it runs no third-party ads."),
+        ("about.html", "about", "About",
+         "About this site — who runs it and how the numbers are made",
+         "An independent VPS price tracker run by a single publisher. How a provider gets "
+         "listed, how every price is read from the provider's own page, and what this site is not."),
+        ("contact.html", "contact", "Contact",
+         "Contact — " + contact_email,
+         "The one way to reach this site is email: " + contact_email
+         + ". What to write about, and what the provider has to handle instead."),
+    )
+    for tpl_name, slug, crumb, title, desc in legal_pages:
+        c = dict(ctx_index)
+        c["title"] = title
+        c["meta_description"] = desc
+        c["canonical_url"] = base_url + "/" + slug + "/"
+        c["og_title"] = title
+        c["og_description"] = desc
+        c["og_type"] = "website"
+        c["nav"] = nav_html("")   # 三页不进主导航，从页脚进
+        write(SITE / slug / "index.html",
+              render_legal(c, data, cfg, base_url, tpl_name, crumb))
+        all_paths.append({"path": slug + "/",
+                          "lastmod": legal_updated or data["generated_at"]})
+
     # 5. 样式表 —— 从 templates/ 拷到站点根，页面用 /site.css 引它
     css_src = TEMPLATES / "site.css"
     if css_src.exists():
@@ -842,8 +907,9 @@ def main():
     write_robots(SITE / "robots.txt", base_url)
 
     print("built site/")
-    print("  index +", len(data["providers"]), "provider pages + compare + sitemap + robots + _redirects")
+    print("  index +", len(data["providers"]), "provider pages + compare + privacy + about + contact + sitemap + robots + _redirects")
     print("  offers rendered into provider-page dynamic layer:", len(data["deals"]))
+    print("  contact email:", contact_email)
     print("  sitemap urls:", len(all_paths))
     return 0
 

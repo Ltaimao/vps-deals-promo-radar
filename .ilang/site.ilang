@@ -5,6 +5,15 @@ LANG zh
 
 ::STATE{@SITE, brand:vps-deals, niche:VPS主机, domain:vpsdealswire.com, locale:en-US, currency:USD, repo_name:vps-deals-promo-radar}
 
+# 联系邮箱：必须是真能收信的地址。挂一个收不到信的邮箱 = 页面上写一句假话。
+# 现状（2026-09-27 实测）：Cloudflare Email Routing 已开启，3 条 MX 生效，
+# SMTP RCPT TO 回 250 2.1.0 Ok，对照的不存在地址回 550 5.1.1，转发到 owner 已验证的收件箱。
+::STATE{@CONTACT, email:contact@vpsdealswire.com, verified:2026-09-27}
+
+# 隐私政策/关于/联系三页的修订日期。由人手动改，不跟数据刷新走 ——
+# 页面内容没变就不该动这个日期。
+::STATE{@LEGAL, legal_updated:2026-09-27}
+
 ::MODULE{PROVIDERS|title:抓哪几家 这里改了 scraper 重启时 抓的可信公开源就变}
 # 格式: 名称 | 官网 | 优惠页或定价页或sitemap或feed | 联盟链接(可空)
 # 入选标准: 单家自营的主机商 + 有公开优惠/定价页 + 实测 HTTP 200
@@ -76,5 +85,9 @@ LANG zh
 ::RULE{valid_until 已过 ⇒ 标记 expired 不许留着冒充有效}
 ::RULE{HTTP 非 200 或被反爬挡 ⇒ 标 unreachable 不许重试绕过 不许拿别处的数据冒充}
 ::RULE{sitemap 或 feed 用作 source_url 不许拿市价页当优惠页 除非该厂商明示优惠}
+::RULE{隐私政策 关于 联系 三页按实测现状写 联盟链接 第三方广告 数据与 cookie 各写一节 没做过的事一句都不写}
+::RULE{联系邮箱挂上去之前必须先验能收信 MX 生效且 SMTP 收下这个地址 验不过就不挂}
+::RULE{关于页只写「一名独立发布者运营」 不许编公司名 不许编团队 不许编资质}
 ::BOUNDARY{never:编优惠 编价格 编佣金 编汇率 编折扣|scope:permanent}
+::BOUNDARY{never:编邮箱 编公司 编资质 编用户数|scope:permanent}
 ::BOUNDARY{never:绕过反爬 伪造 UA 抓登录后内容 违反目标站 robots.txt|scope:permanent}
