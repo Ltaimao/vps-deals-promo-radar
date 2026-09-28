@@ -1395,6 +1395,14 @@ def main():
         if _src.exists():
             shutil.copyfile(_src, SITE / _name)
 
+    # 5c. 根目录静态文件 —— static/ 下的所有文件原样拷到站点根
+    #     （第三方平台的 HTML 所有权验证文件放这里，build 才会带上部署）
+    static_src = ROOT / "static"
+    if static_src.is_dir():
+        for _src in sorted(static_src.iterdir()):
+            if _src.is_file() and not _src.name.startswith("."):
+                shutil.copyfile(_src, SITE / _src.name)
+
     # 6. sitemap.xml + robots.txt
     write_sitemap(all_paths, SITE / "sitemap.xml", base_url)
     write_robots(SITE / "robots.txt", base_url)
