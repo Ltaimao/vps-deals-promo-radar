@@ -108,8 +108,8 @@ main { padding: 26px 0 40px; }
   box-shadow: 0 10px 28px rgba(22, 119, 255, .22);
 }
 .hero h1 {
-  margin: 0 0 8px;
-  font-size: 1.6rem;
+  margin: 0 0 10px;
+  font-size: 1.9rem;
   font-weight: 700;
   letter-spacing: -.02em;
 }
@@ -592,7 +592,7 @@ td.num { font-variant-numeric: tabular-nums; }
   .site-header .wrap { height: auto; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; gap: 12px; }
   .site-nav { margin-left: 0; width: 100%; overflow-x: auto; }
   .hero { padding: 22px 20px; }
-  .hero h1 { font-size: 1.3rem; }
+  .hero h1 { font-size: 1.45rem; }
   .hero-stats { gap: 20px; }
   .card-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
   .deal-card { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -614,4 +614,11 @@ td.num { font-variant-numeric: tabular-nums; }
 @media (max-width: 720px) {
   .article h1 { font-size: 1.3rem; }
   .article .table-wrap { overflow-x: auto; }
+}
+
+/* ---------- 焦点可见性 ---------- */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
