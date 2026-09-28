@@ -3,7 +3,7 @@ TYPE config
 PROJECT vps-deals-promo-radar
 LANG zh
 
-::STATE{@SITE, brand:vps-deals, niche:VPS主机, domain:vpsdealswire.com, locale:en-US, currency:USD, repo_name:vps-deals-promo-radar}
+::STATE{@SITE, brand:vps-deals, niche:VPS主机, domain:www.vpsdealswire.com, locale:en-US, currency:USD, repo_name:vps-deals-promo-radar}
 
 # 联系邮箱：必须是真能收信的地址。挂一个收不到信的邮箱 = 页面上写一句假话。
 # 现状（2026-09-27 实测）：Cloudflare Email Routing 已开启，3 条 MX 生效，
