@@ -322,6 +322,7 @@ a.cell-provider .avatar.is-wide {
 }
 .deal-card:hover .title { color: var(--primary); }
 .deal-card .meta { font-size: .82rem; color: var(--text-muted); }
+.deal-card .verified { display: block; font-size: .75rem; color: var(--text-muted); margin-top: 2px; }
 .deal-card .price {
   font-size: 1.3rem;
   font-weight: 700;
@@ -351,6 +352,39 @@ a.cell-provider .avatar.is-wide {
 .badge.expired { background: #fdecec; color: var(--danger); }
 .badge.noprice { background: #f3f5f8; color: var(--text-muted); }
 .badge.unreachable { background: #fff4e6; color: #b25c12; }
+
+/* ---------- 优惠筛选条 ---------- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.filter-field input,
+.filter-field select {
+  font-size: .9rem;
+  padding: 7px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text-primary);
+  min-width: 160px;
+}
+.filter-count { margin-left: auto; font-size: .82rem; color: var(--text-muted); }
 
 /* ---------- 通用内容卡 ---------- */
 .content-card {

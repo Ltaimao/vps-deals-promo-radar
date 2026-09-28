@@ -76,6 +76,12 @@ LANG zh
   jsonld:["Offer","Product","Service","ItemList","BreadcrumbList","FAQPage"]
   sitemap_lastmod:true
   robots_allow_all:false
+  # Phase 1 (2026-09-28)：deal 卡片显示 fetched_at 的最后验证时间；
+  # 首页优惠列表支持客户端按价格/厂商筛选（纯前端，不新增网址）；
+  # 新增 /methodology/ 方法论页。
+  deal_card_verified_from:fetched_at
+  deal_filters:price,provider
+  methodology:/methodology/
 
 ::MODULE{SCHEDULE|title:更新频率}
   cron:0 */6 * * *
@@ -88,6 +94,9 @@ LANG zh
 ::RULE{隐私政策 关于 联系 三页按实测现状写 联盟链接 第三方广告 数据与 cookie 各写一节 没做过的事一句都不写}
 ::RULE{联系邮箱挂上去之前必须先验能收信 MX 生效且 SMTP 收下这个地址 验不过就不挂}
 ::RULE{关于页只写「一名独立发布者运营」 不许编公司名 不许编团队 不许编资质}
+::RULE{deal 卡片必须显示 fetched_at 对应的最后验证时间 写绝对时间 不许只写"几天前"这类相对时间 拿不到 fetched_at 就不显示 不许编}
+::RULE{首页优惠列表的筛选是纯客户端行为 按价格和厂商过滤 不新增网址 不调接口 关掉 JS 时全部优惠默认可见}
+::RULE{方法论页 /methodology/ 只写实测可验证的流水线事实：数据来源 更新频率 提取字段 质检规则 与 about 页互补不重复}
 ::BOUNDARY{never:编优惠 编价格 编佣金 编汇率 编折扣|scope:permanent}
 ::BOUNDARY{never:编邮箱 编公司 编资质 编用户数|scope:permanent}
 ::BOUNDARY{never:绕过反爬 伪造 UA 抓登录后内容 违反目标站 robots.txt|scope:permanent}

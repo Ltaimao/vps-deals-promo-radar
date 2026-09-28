@@ -20,9 +20,46 @@
 <div class="section-heading">
   <h2>Latest deals ({{DEAL_COUNT}})</h2>
 </div>
-<div class="deal-list">
+<div class="filter-bar" id="deal-filters">
+  <label class="filter-field">Max $/mo
+    <input type="number" id="f-maxprice" min="0" step="1" inputmode="decimal" placeholder="e.g. 10">
+  </label>
+  <label class="filter-field">Provider
+    <select id="f-provider">
+{{PROVIDER_OPTIONS}}
+    </select>
+  </label>
+  <span class="filter-count" id="f-count" aria-live="polite"></span>
+</div>
+<div class="deal-list" id="deal-list">
 {{DEAL_CARDS}}
 </div>
+<script>
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#deal-list .deal-card'));
+  var maxEl = document.getElementById('f-maxprice');
+  var provEl = document.getElementById('f-provider');
+  var countEl = document.getElementById('f-count');
+  if (!maxEl || !provEl || !countEl) return;
+  function apply() {
+    var max = parseFloat(maxEl.value);
+    var prov = provEl.value;
+    var shown = 0;
+    cards.forEach(function (c) {
+      var p = parseFloat(c.getAttribute('data-price'));
+      var ok = true;
+      if (!isNaN(max) && (isNaN(p) || p > max)) ok = false;
+      if (prov && c.getAttribute('data-provider') !== prov) ok = false;
+      c.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    countEl.textContent = shown + ' of ' + cards.length + ' shown';
+  }
+  maxEl.addEventListener('input', apply);
+  provEl.addEventListener('change', apply);
+  apply();
+})();
+</script>
 
 <div class="section-heading">
   <h2>About this data</h2>

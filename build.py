@@ -284,21 +284,32 @@ def render_index(ctx, data, cfg, base_url):
         if not d.get("price"):
             badge += ' <span class="badge noprice">no price</span>'
         price_main = money(d.get("price"), d.get("currency")) or "—"
+        # ::RULE{deal 卡片必须显示 fetched_at 对应的最后验证时间}
+        verified = verified_label(d.get("fetched_at"))
+        verified_html = ('<span class="verified">Verified ' + e(verified) + '</span>'
+                         if verified else "")
         # ::RULE{出口只有一个} — 卡片指向所属厂商页的动态层，不再开 /deals/ 网址
         # ::RULE{抓坏的字段一律不许留} — 卡片标题由厂商名+价格生成
+        # 筛选用 data 属性：data-price 是真实价格（没有就不写），data-provider 是 slug
         prov_url = "/providers/" + e(d.get("provider_slug", "")) + "/"
+        data_price = (' data-price="' + e("{:.2f}".format(float(d["price"]))) + '"'
+                      if d.get("price") is not None else "")
         card = (
-            '<a class="deal-card" href="{purl}">'
+            '<a class="deal-card" href="{purl}" data-provider="{pslug}"{dprice}>'
             '<span class="left">'
             '<span class="title">{label}{badge}</span>'
             '<span class="meta">Go to {pname} deals ›</span>'
+            '{verified}'
             '</span>'
             '<span class="price">{price}<span class="cur">{cur}</span></span>'
             '</a>'
         ).format(
             purl=prov_url,
+            pslug=e(d.get("provider_slug", "")),
+            dprice=data_price,
             label=e(offer_label(d, len(deal_cards) + 1)),
             badge=badge,
+            verified=verified_html,
             price=e(price_main),
             cur=e(d.get("currency", "")),
             pname=e(d.get("provider_name", "")),
@@ -306,6 +317,17 @@ def render_index(ctx, data, cfg, base_url):
         deal_cards.append(card)
     if not deal_cards:
         deal_cards = ['<div class="content-card"><p>No structured deals extracted from the listed providers this run. The scraper only writes entries when it can verify price + currency + URL together. If a provider\'s page is unreachable it is marked as such.</p></div>']
+
+    # 筛选器的厂商下拉：只列真实有优惠的厂商，按名称排序
+    filter_providers = sorted(
+        {d.get("provider_slug"): d.get("provider_name") for d in deals
+         if d.get("provider_slug")}.items(),
+        key=lambda kv: (kv[1] or "").lower(),
+    )
+    provider_options = ['<option value="">All providers</option>'] + [
+        '<option value="' + e(slug) + '">' + e(name or slug) + "</option>"
+        for slug, name in filter_providers
+    ]
 
     # ItemList 指向厂商页（出口唯一），不再指向已下线的 /deals/ 网址
     deal_index = []
@@ -333,6 +355,7 @@ def render_index(ctx, data, cfg, base_url):
         "{{PROVIDER_LIST}}": provider_links,
         "{{DEAL_COUNT}}": str(len(deals)),
         "{{DEAL_CARDS}}": "\n".join(deal_cards),
+        "{{PROVIDER_OPTIONS}}": "\n".join(provider_options),
     })
 
     jsonld = jsonld_itemlist(deal_index, base_url) if deal_index else ""
@@ -481,6 +504,18 @@ def money(value, currency):
     sym = {"USD": "$", "EUR": "€", "GBP": "£", "JPY": "¥", "CAD": "C$",
            "AUD": "A$", "CNY": "¥"}.get(currency, "$")
     return "{}{:.2f}".format(sym, float(value))
+
+
+def verified_label(fetched_at):
+    """deal 卡片的「最后验证时间」—— 直接来自 fetched_at 的绝对时间。
+    解析失败或缺失就返回 None（调用方不显示），不许编一个。"""
+    if not fetched_at:
+        return None
+    try:
+        dt = datetime.fromisoformat(str(fetched_at).replace("Z", "+00:00"))
+    except Exception:
+        return None
+    return dt.strftime("%b %d, %Y %H:%M UTC")
 
 
 def current_month_year():
@@ -867,8 +902,8 @@ def main():
           render_compare(ctx, data, cfg, base_url))
     all_paths.append({"path": "compare/", "lastmod": data["generated_at"]})
 
-    # 4b. 隐私政策 / 关于 / 联系 —— 三个必备页。页脚三条链接指向它们，
-    #     三页一起进 sitemap。正文里没有任何编造的资质、公司名或邮箱。
+    # 4b. 隐私政策 / 关于 / 联系 / 方法论 —— 必备页。页脚链接指向它们，
+    # 一起进 sitemap。正文里没有任何编造的资质、公司名或邮箱。
     legal_pages = (
         ("privacy.html", "privacy", "Privacy",
          "Privacy policy — what this site does with data",
@@ -882,6 +917,10 @@ def main():
          "Contact — " + contact_email,
          "The one way to reach this site is email: " + contact_email
          + ". What to write about, and what the provider has to handle instead."),
+        ("methodology.html", "methodology", "Methodology",
+         "Methodology — how every number on this site is made",
+         "The exact pipeline behind this site: where the data comes from, what is extracted "
+         "per offer, the quality rules, and what this site never does."),
     )
     for tpl_name, slug, crumb, title, desc in legal_pages:
         c = dict(ctx_index)
@@ -907,7 +946,7 @@ def main():
     write_robots(SITE / "robots.txt", base_url)
 
     print("built site/")
-    print("  index +", len(data["providers"]), "provider pages + compare + privacy + about + contact + sitemap + robots + _redirects")
+    print("  index +", len(data["providers"]), "provider pages + compare + privacy + about + contact + methodology + sitemap + robots + _redirects")
     print("  offers rendered into provider-page dynamic layer:", len(data["deals"]))
     print("  contact email:", contact_email)
     print("  sitemap urls:", len(all_paths))
