@@ -68,13 +68,26 @@ function page(title, body) {
 }
 
 async function sendMail(env, to, subject, text, html) {
-  await env.EMAIL.send({
-    from: FROM,
-    to,
-    subject,
-    text,
-    html,
+  // Resend (free tier: 100/day, 3000/month) — key lives in the Worker secret
+  // RESEND_API_KEY, never in code or chat. Requires the sending domain
+  // (vpsdealswire.com) verified in the Resend dashboard.
+  if (!env.RESEND_API_KEY) throw new Error("missing RESEND_API_KEY");
+  const r = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + env.RESEND_API_KEY,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: FROM.name + " <" + FROM.email + ">",
+      to: [to],
+      reply_to: "contact@vpsdealswire.com",
+      subject,
+      text,
+      html,
+    }),
   });
+  if (!r.ok) throw new Error("resend " + r.status);
 }
 
 function confirmEmailBody(link) {

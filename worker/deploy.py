@@ -18,7 +18,6 @@ metadata = {
     "compatibility_date": "2026-09-28",
     "bindings": [
         {"type": "kv_namespace", "name": "SUBS", "namespace_id": KV_ID},
-        {"type": "send_email", "name": "EMAIL"},
     ],
 }
 

@@ -92,10 +92,16 @@ LANG zh
   price_history:true
   history_source:git(data/offers.json)
   # Phase 4 (2026-09-28)：订阅。Worker+KV，double opt-in，一键退订；
-  # 发信走 Cloudflare Email Sending（事务性邮件，确认信+降价提醒）。
+  # 发信走 Resend API（事务性邮件：确认信+降价提醒；免费版 100 封/天、
+  # 3000 封/月；API key 存在 Worker secret RESEND_API_KEY，不在代码里）。
+  # 2026-09-28 起弃用 Cloudflare Email Sending（原方案需补权限且发任意
+  # 收件人可能收费），改用 Resend 免费通道。
   subscription:true
   subscribe_endpoint:/api/subscribe
   double_opt_in:true
+  email_provider:resend
+  email_from:alerts@vpsdealswire.com
+  email_reply_to:contact@vpsdealswire.com
   # 品牌资产（2026-09-28）："Deal Radar" mark —— 深海军蓝圆角底 + 雷达环 +
   # 蓝色扫描扇 + 绿色降价光点；呼应仓库名 promo-radar。favicon.ico(16/32/48)、
   # icon.svg、apple-touch-icon.png(180)、logo.svg（横版全名）。
