@@ -1354,7 +1354,8 @@ def main():
         ("privacy.html", "privacy", "Privacy",
          "Privacy policy — what this site does with data",
          "What this site collects (nothing that identifies you), why it sets no cookies, "
-         "how affiliate links would work if we add them, and why it runs no third-party ads."),
+         "how affiliate links would work if we add them, and how third-party ads "
+         "will be disclosed before the first one goes live."),
         ("about.html", "about", "About",
          "About this site — who runs it and how the numbers are made",
          "An independent VPS price tracker run by a single publisher. How a provider gets "
