@@ -235,6 +235,15 @@ async function handleUnsubscribe(url, env) {
     await env.SUBS.delete("sub:" + ehash);
     await env.SUBS.delete("unsub:" + token);
     if (sub && sub.token) await env.SUBS.delete("pending:" + sub.token);
+    // drop this subscriber's per-deal alert markers as well
+    let acursor;
+    do {
+      const alist = await env.SUBS.list({ prefix: "alerted:", cursor: acursor });
+      for (const k of alist.keys) {
+        if (k.name.endsWith(":sub:" + ehash)) await env.SUBS.delete(k.name);
+      }
+      acursor = alist.list_complete ? undefined : alist.cursor;
+    } while (acursor);
   }
   // Always show the same page (anti-enumeration).
   return page(
@@ -263,8 +272,12 @@ async function handleScheduled(env) {
   const series = history.deal_series || {};
   const now = new Date().toISOString();
 
-  // fresh drops: current price is a NEW ALL-TIME LOW for the deal
-  const drops = [];
+  // Two-snapshot confirmation (I-Lang RULE): a new all-time low becomes
+  // alertable only after a second consecutive snapshot shows the same price.
+  // First sighting -> dropwatch:<key> = {price, prev}; the price moving away
+  // voids the watch; only a repeated sighting promotes it to "confirmed".
+  const confirmed = [];
+  let watching = 0;
   for (const d of offers.deals || []) {
     if (d.price == null) continue;
     const key =
@@ -280,23 +293,29 @@ async function handleScheduled(env) {
     const prices = s.points.map((p) => p[1]);
     const prevLow = Math.min(...prices.slice(0, -1));
     const cur = prices[prices.length - 1];
-    if (cur >= prevLow) continue;
-    const alerted = parseFloat((await env.SUBS.get("alerted:" + key)) || "Infinity");
-    if (cur >= alerted) continue; // already told them about this low
-    drops.push({
-      key,
-      provider: d.provider_name,
-      slug: d.provider_slug,
-      title: d.title,
-      cur,
-      prev: prevLow,
-      currency: d.currency || "USD",
-      url: d.offer_url || d.source_url,
-    });
-  }
-  if (!drops.length) {
-    await env.SUBS.put("meta:last_cron", now + " no-drops");
-    return;
+    const watch = await env.SUBS.get("dropwatch:" + key, "json");
+    if (watch && watch.price === cur) {
+      // confirmed: the new low survived a full snapshot cycle
+      confirmed.push({
+        key,
+        provider: d.provider_name,
+        slug: d.provider_slug,
+        title: d.title,
+        cur,
+        prev: watch.prev,
+        currency: d.currency || "USD",
+      });
+    } else if (cur < prevLow) {
+      // first sighting of a new (or deeper) low: watch it, do not alert yet
+      await env.SUBS.put(
+        "dropwatch:" + key,
+        JSON.stringify({ price: cur, prev: prevLow })
+      );
+      watching++;
+    } else if (watch) {
+      // price moved away from the watched low: void the watch
+      await env.SUBS.delete("dropwatch:" + key);
+    }
   }
 
   // collect active subscribers (KV list, paginated)
@@ -306,15 +325,27 @@ async function handleScheduled(env) {
     const list = await env.SUBS.list({ prefix: "sub:", cursor });
     for (const k of list.keys) {
       const sub = await env.SUBS.get(k.name, "json");
-      if (sub && sub.status === "active" && EMAIL_RE.test(sub.email)) subs.push(sub);
+      if (sub && sub.status === "active" && EMAIL_RE.test(sub.email))
+        subs.push({ kv: k.name, ...sub });
     }
     cursor = list.list_complete ? undefined : list.cursor;
   } while (cursor);
 
+  // Per-subscriber alert state: mark alerted only after a SUCCESSFUL send,
+  // so a failed send is retried on the next run instead of being lost.
   const sym = { USD: "$", EUR: "€", GBP: "£" };
+  let sent = 0;
+  let failed = 0;
   for (const sub of subs) {
+    const mine = [];
+    for (const x of confirmed) {
+      const akey = "alerted:" + x.key + ":" + sub.kv;
+      const already = parseFloat((await env.SUBS.get(akey)) || "Infinity");
+      if (x.cur < already) mine.push({ ...x, akey });
+    }
+    if (!mine.length) continue;
     const unsubLink = SITE + "/api/unsubscribe?token=" + sub.unsub_token;
-    const lines = drops.map(
+    const lines = mine.map(
       (x) =>
         "- " + x.provider + " — " + x.title + ": now " +
         (sym[x.currency] || x.currency + " ") + x.cur + "/mo (was " +
@@ -322,11 +353,11 @@ async function handleScheduled(env) {
     );
     const text =
       "Price drops on VPS Deals Wire:\n\n" + lines.join("\n") + "\n\n" +
-      drops.map((x) => x.provider + ": " + SITE + "/providers/" + x.slug + "/").join("\n") +
+      mine.map((x) => x.provider + ": " + SITE + "/providers/" + x.slug + "/").join("\n") +
       "\n\nUnsubscribe any time (one click, immediate):\n" + unsubLink;
     const html =
       "<p><strong>Price drops on VPS Deals Wire:</strong></p><ul>" +
-      drops.map(
+      mine.map(
         (x) =>
           "<li>" + escapeHtml(x.provider) + " — " + escapeHtml(x.title) + ": now <strong>" +
           escapeHtml((sym[x.currency] || x.currency + " ") + x.cur) + "/mo</strong> (was " +
@@ -335,20 +366,24 @@ async function handleScheduled(env) {
       ).join("") + "</ul>" +
       "<p><a href=\"" + unsubLink + "\">Unsubscribe</a> — one click, immediate.</p>";
     const subject =
-      drops.length === 1
-        ? "Price drop: " + drops[0].provider + " now " +
-          (sym[drops[0].currency] || "") + drops[0].cur + "/mo"
-        : drops.length + " VPS price drops";
+      mine.length === 1
+        ? "Price drop: " + mine[0].provider + " now " +
+          (sym[mine[0].currency] || "") + mine[0].cur + "/mo"
+        : mine.length + " VPS price drops";
     try {
       await sendMail(env, sub.email, subject, text, html);
+      for (const x of mine) await env.SUBS.put(x.akey, String(x.cur));
+      sent++;
     } catch {
-      // per-recipient failure must not block the rest
+      // per-recipient failure must not block the rest; unmarked -> retried next run
+      failed++;
     }
   }
-  for (const x of drops) {
-    await env.SUBS.put("alerted:" + x.key, String(x.cur));
-  }
-  await env.SUBS.put("meta:last_cron", now + " drops=" + drops.length);
+  await env.SUBS.put(
+    "meta:last_cron",
+    now + " confirmed=" + confirmed.length + " watching=" + watching +
+      " sent=" + sent + " failed=" + failed
+  );
 }
 
 export default {

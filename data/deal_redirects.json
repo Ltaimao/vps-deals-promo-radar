@@ -62,13 +62,13 @@
   {
     "deal_path": "/deals/available-in-singapore-australia-location-from-42793/",
     "http_code": 200,
-    "provider_slug": "ovh-promotions",
+    "provider_slug": "ovhcloud",
     "ok": true
   },
   {
     "deal_path": "/deals/search-multiple-transfer-72849/",
     "http_code": 200,
-    "provider_slug": "ovh-promotions",
+    "provider_slug": "ovhcloud",
     "ok": true
   },
   {
