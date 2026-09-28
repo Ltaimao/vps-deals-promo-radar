@@ -6,6 +6,7 @@
 #       写到 data/offers.json 任何抓不到的字段都留空或跳过 不许拿估的填
 # BOUNDARY never:编优惠 编价格 编佣金 编汇率 编折扣|scope:permanent
 # BOUNDARY never:绕过反爬 伪造 UA 抓登录后内容 违反 robots.txt|scope:permanent
+import hashlib
 import json
 import os
 import re
@@ -201,6 +202,18 @@ def extract_offers(html, source_url, provider_name):
     return deals
 
 
+# ---------- 稳定身份 ----------
+# ::RULE{deal 身份键=provider_slug+offer_url+title 归一化小写去空白后哈希 价格不许进键}
+# offer_id 在抓取时一次算好、永久稳定；build.py 的历史重建用完全相同的归一化
+# 对无 offer_id 的旧快照补算（见 build.py::deal_history_key）。
+def offer_id_for(provider_slug, offer_url, title):
+    parts = [
+        re.sub(r"\s+", " ", (p or "").strip().lower())
+        for p in (provider_slug, offer_url, title)
+    ]
+    return hashlib.sha1("\x00".join(parts).encode("utf-8")).hexdigest()[:16]
+
+
 # ---------- main ----------
 def slugify(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
@@ -242,6 +255,7 @@ def main():
             entry["deals_capped"] = len(extracted) >= MAX_DEALS_PER_PROVIDER
             for d in extracted:
                 d["provider_slug"] = slug
+                d["offer_id"] = offer_id_for(slug, d.get("offer_url"), d.get("title"))
                 deals_out.append(d)
         providers_out.append(entry)
         time.sleep(0.6)

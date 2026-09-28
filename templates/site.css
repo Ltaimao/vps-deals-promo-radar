@@ -345,6 +345,12 @@ a.cell-provider .avatar.is-wide {
   margin-left: 3px;
 }
 
+/* ---------- 价格历史 ---------- */
+.price-chart { width: 100%; height: auto; display: block; margin: 6px 0; }
+.pc-lbl { font-size: 11px; fill: var(--text-muted); }
+.pc-r { text-anchor: end; }
+.history-caption { color: var(--text-secondary); font-size: .9rem; margin: 6px 0; }
+
 /* ---------- 深评页：数据一览 ---------- */
 .stat-grid {
   display: grid;

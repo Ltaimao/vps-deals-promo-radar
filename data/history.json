@@ -1,0 +1,4189 @@
+{
+ "meta": {
+  "snapshots": 16,
+  "since": "2026-09-23T21:41:34.791520+00:00",
+  "until": "2026-09-28T02:25:52.249122+00:00",
+  "built_at": "2026-09-28T08:15:20.841008+00:00",
+  "source": "git log -- data/offers.json"
+ },
+ "deal_series": {
+  "95295dce0d78afad": {
+   "provider_slug": "digitalocean",
+   "provider_name": "DigitalOcean",
+   "title": "Highly scalable View App Platform pricing Droplets Starting at",
+   "url": "https://www.digitalocean.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:38.292777+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:38.292777+00:00",
+     4.0
+    ]
+   ]
+  },
+  "f331581fcb3d7189": {
+   "provider_slug": "digitalocean",
+   "provider_name": "DigitalOcean",
+   "title": "Highly-efficient virtual machines Per-sec billing with 60 sec minimum or",
+   "url": "https://www.digitalocean.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:38.292908+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:38.292908+00:00",
+     0.01
+    ]
+   ]
+  },
+  "f37ae64e3c76d274": {
+   "provider_slug": "digitalocean",
+   "provider_name": "DigitalOcean",
+   "title": "Droplet Kubernetes Starting",
+   "url": "https://www.digitalocean.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:38.293176+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:38.293176+00:00",
+     12.0
+    ]
+   ]
+  },
+  "82ff6c60f449ca22": {
+   "provider_slug": "digitalocean",
+   "provider_name": "DigitalOcean",
+   "title": "Scale automatically View Functions pricing Cloudways Managed Hosting Starting at",
+   "url": "https://www.digitalocean.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:38.293347+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:38.293347+00:00",
+     11.0
+    ]
+   ]
+  },
+  "9c1d7540f8725a6a": {
+   "provider_slug": "digitalocean",
+   "provider_name": "DigitalOcean",
+   "title": "Droplet cost per month Usage-based starting at",
+   "url": "https://www.digitalocean.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:38.293449+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:38.293449+00:00",
+     0.01
+    ]
+   ]
+  },
+  "cb055797763bf0f4": {
+   "provider_slug": "digitalocean",
+   "provider_name": "DigitalOcean",
+   "title": "Backups Databases Starting",
+   "url": "https://www.digitalocean.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:38.293555+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:38.293555+00:00",
+     15.0
+    ]
+   ]
+  },
+  "3f17c86d2269dbd7": {
+   "provider_slug": "digitalocean",
+   "provider_name": "DigitalOcean",
+   "title": "Storage Spaces Starting",
+   "url": "https://www.digitalocean.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:38.293719+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:38.293719+00:00",
+     5.0
+    ]
+   ]
+  },
+  "20dbae8f370e9397": {
+   "provider_slug": "digitalocean",
+   "provider_name": "DigitalOcean",
+   "title": "Built in CDN View Spaces Object Storage pricing Network File Storage Starting at",
+   "url": "https://www.digitalocean.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:38.293801+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:38.293801+00:00",
+     0.15
+    ]
+   ]
+  },
+  "a44260ad1aab154f": {
+   "provider_slug": "digitalocean",
+   "provider_name": "DigitalOcean",
+   "title": "Standard GiB-month High",
+   "url": "https://www.digitalocean.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:38.293925+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:38.293925+00:00",
+     0.3
+    ]
+   ]
+  },
+  "c84c70856cd94578": {
+   "provider_slug": "digitalocean",
+   "provider_name": "DigitalOcean",
+   "title": "Storage Volumes Starting",
+   "url": "https://www.digitalocean.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:38.294034+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:38.294034+00:00",
+     10.0
+    ]
+   ]
+  },
+  "ef9c9394fcfece20": {
+   "provider_slug": "ovh-promotions",
+   "provider_name": "OVH Promotions",
+   "title": "Available in Singapore & Australia location From",
+   "url": "https://www.ovh.com/world/promotions/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:39.442800+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:39.442800+00:00",
+     677.0
+    ]
+   ]
+  },
+  "3cbe47362ffa35e3": {
+   "provider_slug": "ovh-promotions",
+   "provider_name": "OVH Promotions",
+   "title": "Search Multiple Transfer",
+   "url": "https://www.ovh.com/world/promotions/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:39.443358+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:39.443358+00:00",
+     7.79
+    ]
+   ]
+  },
+  "4479b3a023daf2cf": {
+   "provider_slug": "racknerd",
+   "provider_name": "RackNerd",
+   "title": "DEDICATED SERVERS Starting",
+   "url": "https://www.racknerd.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:40.341370+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:40.341370+00:00",
+     139.0
+    ]
+   ]
+  },
+  "027ad3311a06a8a8": {
+   "provider_slug": "racknerd",
+   "provider_name": "RackNerd",
+   "title": "Toronto starting at just",
+   "url": "https://www.racknerd.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:40.341556+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:40.341556+00:00",
+     2.24
+    ]
+   ]
+  },
+  "ba18f8ce71b43aec": {
+   "provider_slug": "racknerd",
+   "provider_name": "RackNerd",
+   "title": "COLOCATION PLANS Starting",
+   "url": "https://www.racknerd.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:40.341665+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:40.341665+00:00",
+     179.0
+    ]
+   ]
+  },
+  "f2c1fcecbc5e7b35": {
+   "provider_slug": "racknerd",
+   "provider_name": "RackNerd",
+   "title": "Storage Premium Low Latency Network Multiple Datacenter Locations Instantly Setup",
+   "url": "https://www.racknerd.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:40.341827+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:40.341827+00:00",
+     2.0
+    ]
+   ]
+  },
+  "80e6c9dd2bbae197": {
+   "provider_slug": "racknerd",
+   "provider_name": "RackNerd",
+   "title": "Access Low Latency Network Multiple Datacenter Locations Scale/Upgrade Seamlessly",
+   "url": "https://www.racknerd.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:40.341938+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:40.341938+00:00",
+     39.0
+    ]
+   ]
+  },
+  "11ed8529c5a0b9a3": {
+   "provider_slug": "racknerd",
+   "provider_name": "RackNerd",
+   "title": "Processor Servers Low Latency Network DDoS Protected Network SSD & HDD Options",
+   "url": "https://www.racknerd.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:40.342090+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:40.342090+00:00",
+     139.0
+    ]
+   ]
+  },
+  "d8ea353d86f8d897": {
+   "provider_slug": "racknerd",
+   "provider_name": "RackNerd",
+   "title": "U Available 24x7 Smart Hands & Eyes Free Receiving Premium Bandwidth Included",
+   "url": "https://www.racknerd.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-23T21:41:40.342252+00:00",
+   "points": [
+    [
+     "2026-09-23T21:41:40.342252+00:00",
+     99.0
+    ]
+   ]
+  },
+  "a8d38eacc002c3de": {
+   "provider_slug": "ovhcloud",
+   "provider_name": "OVHcloud",
+   "title": "Available in Singapore & Australia location From",
+   "url": "https://www.ovh.com/world/promotions/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:25.334457+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:25.334457+00:00",
+     677.0
+    ]
+   ]
+  },
+  "cdfb93cf9ed7484e": {
+   "provider_slug": "ovhcloud",
+   "provider_name": "OVHcloud",
+   "title": "Search Multiple Transfer",
+   "url": "https://www.ovh.com/world/promotions/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:25.335026+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:25.335026+00:00",
+     7.79
+    ]
+   ]
+  },
+  "9697c4a67ca6f0ad": {
+   "provider_slug": "hostinger",
+   "provider_name": "Hostinger",
+   "title": "Choose VPS KVM",
+   "url": "https://www.hostinger.com/vps-hosting",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:27.208078+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:27.208078+00:00",
+     6.49
+    ]
+   ]
+  },
+  "66038ec1d9adccae": {
+   "provider_slug": "hostinger",
+   "provider_name": "Hostinger",
+   "title": "Choose plan Renews at",
+   "url": "https://www.hostinger.com/vps-hosting",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:27.209141+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:27.209141+00:00",
+     49.99
+    ]
+   ]
+  },
+  "1fa268312a126e63": {
+   "provider_slug": "hostinger",
+   "provider_name": "Hostinger",
+   "title": "MOST POPULAR KVM",
+   "url": "https://www.hostinger.com/vps-hosting",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:27.208448+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:27.208448+00:00",
+     8.99
+    ]
+   ]
+  },
+  "71e22aae63e3eda5": {
+   "provider_slug": "hostinger",
+   "provider_name": "Hostinger",
+   "title": "RAM NVMe KVM",
+   "url": "https://www.hostinger.com/vps-hosting",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:27.209060+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:27.209060+00:00",
+     25.99
+    ]
+   ]
+  },
+  "7559c818aa8f7850": {
+   "provider_slug": "ionos",
+   "provider_name": "IONOS",
+   "title": "Starting at",
+   "url": "https://www.ionos.com/servers/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:28.269349+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:28.269349+00:00",
+     4.0
+    ]
+   ]
+  },
+  "9abb3a16c6726821": {
+   "provider_slug": "ionos",
+   "provider_name": "IONOS",
+   "title": "Unlimited traffic and no setup fees See plans Starting at",
+   "url": "https://www.ionos.com/servers/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:28.270540+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:28.270540+00:00",
+     2.0
+    ]
+   ]
+  },
+  "efffb976ea805b24": {
+   "provider_slug": "ionos",
+   "provider_name": "IONOS",
+   "title": "Placeholder VPS Save",
+   "url": "https://www.ionos.com/servers/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:28.271461+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:28.271461+00:00",
+     14.0
+    ]
+   ]
+  },
+  "cb2beaf67d2937cd": {
+   "provider_slug": "ionos",
+   "provider_name": "IONOS",
+   "title": "Bestseller VPS Save",
+   "url": "https://www.ionos.com/servers/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:28.271188+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:28.271188+00:00",
+     8.0
+    ]
+   ]
+  },
+  "3870aabdc0eabea9": {
+   "provider_slug": "ionos",
+   "provider_name": "IONOS",
+   "title": "VPS XXL Save",
+   "url": "https://www.ionos.com/servers/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:28.271776+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:28.271776+00:00",
+     20.0
+    ]
+   ]
+  },
+  "3d7cdd0d00ffc857": {
+   "provider_slug": "ionos",
+   "provider_name": "IONOS",
+   "title": "Unlimited traffic Transfer as much data as you need with a",
+   "url": "https://www.ionos.com/servers/vps",
+   "currency": "GBP",
+   "first_seen": "2026-09-26T06:21:28.272137+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:28.272137+00:00",
+     1.0
+    ]
+   ]
+  },
+  "20de3a7666085381": {
+   "provider_slug": "scaleway",
+   "provider_name": "Scaleway",
+   "title": "Servers Start Affordable",
+   "url": "https://www.scaleway.com/en/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:29.272621+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:29.272621+00:00",
+     4.99
+    ]
+   ]
+  },
+  "394daf4fc83e46a6": {
+   "provider_slug": "scaleway",
+   "provider_name": "Scaleway",
+   "title": "French Dedibox VPS",
+   "url": "https://www.scaleway.com/en/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:29.272815+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:29.272815+00:00",
+     4.99
+    ]
+   ]
+  },
+  "2d19903e043779ce": {
+   "provider_slug": "scaleway",
+   "provider_name": "Scaleway",
+   "title": "Benefit from up to",
+   "url": "https://www.scaleway.com/en/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:29.273500+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:29.273500+00:00",
+     36.0
+    ]
+   ]
+  },
+  "a3ac15a8d40a9045": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "SLA Starting from",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.423928+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.423928+00:00",
+     3.0
+    ]
+   ]
+  },
+  "179bedfed60a0283": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "GB 1 250 Mbit/s 20 GB",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.424270+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.424270+00:00",
+     6.0
+    ],
+    [
+     "2026-09-26T14:47:20.559959+00:00",
+     7.0
+    ],
+    [
+     "2026-09-26T15:19:00.818079+00:00",
+     6.0
+    ],
+    [
+     "2026-09-27T01:08:56.806890+00:00",
+     7.0
+    ],
+    [
+     "2026-09-27T03:24:32.994629+00:00",
+     6.0
+    ],
+    [
+     "2026-09-27T04:55:18.609357+00:00",
+     7.0
+    ],
+    [
+     "2026-09-27T10:59:05.765889+00:00",
+     6.0
+    ],
+    [
+     "2026-09-27T20:33:47.072978+00:00",
+     7.0
+    ]
+   ]
+  },
+  "926f3daf4bd4e3bf": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "GB 2 250 Mbit/s 30 GB",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.424402+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.424402+00:00",
+     8.0
+    ],
+    [
+     "2026-09-26T14:47:20.560004+00:00",
+     10.0
+    ],
+    [
+     "2026-09-26T15:19:00.818131+00:00",
+     8.0
+    ],
+    [
+     "2026-09-27T01:08:56.806920+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T03:24:32.994670+00:00",
+     8.0
+    ],
+    [
+     "2026-09-27T04:55:18.609401+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T10:59:05.765943+00:00",
+     8.0
+    ],
+    [
+     "2026-09-27T20:33:47.073022+00:00",
+     10.0
+    ]
+   ]
+  },
+  "74caa8bcf6644a05": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "GB 1 250 Mbit/s 30 GB",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.424517+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.424517+00:00",
+     10.0
+    ],
+    [
+     "2026-09-26T14:47:20.560044+00:00",
+     12.0
+    ],
+    [
+     "2026-09-26T15:19:00.818180+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T01:08:56.806947+00:00",
+     12.0
+    ],
+    [
+     "2026-09-27T03:24:32.994709+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T04:55:18.609440+00:00",
+     12.0
+    ],
+    [
+     "2026-09-27T10:59:05.765993+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T20:33:47.073061+00:00",
+     12.0
+    ]
+   ]
+  },
+  "9ab333bd675b8330": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "GB 2 500 Mbit/s 30 GB",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.424613+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.424613+00:00",
+     12.0
+    ],
+    [
+     "2026-09-26T14:47:20.560078+00:00",
+     14.0
+    ],
+    [
+     "2026-09-26T15:19:00.818219+00:00",
+     12.0
+    ],
+    [
+     "2026-09-27T01:08:56.806970+00:00",
+     14.0
+    ],
+    [
+     "2026-09-27T03:24:32.994740+00:00",
+     12.0
+    ],
+    [
+     "2026-09-27T04:55:18.609475+00:00",
+     14.0
+    ],
+    [
+     "2026-09-27T10:59:05.766033+00:00",
+     12.0
+    ],
+    [
+     "2026-09-27T20:33:47.073095+00:00",
+     14.0
+    ]
+   ]
+  },
+  "f763c177f7729dd8": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "GB 2 500 Mbit/s 40 GB",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.424699+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.424699+00:00",
+     18.0
+    ],
+    [
+     "2026-09-26T14:47:20.560101+00:00",
+     20.0
+    ],
+    [
+     "2026-09-26T15:19:00.818246+00:00",
+     18.0
+    ],
+    [
+     "2026-09-27T01:08:56.806984+00:00",
+     20.0
+    ],
+    [
+     "2026-09-27T03:24:32.994762+00:00",
+     18.0
+    ],
+    [
+     "2026-09-27T04:55:18.609498+00:00",
+     20.0
+    ],
+    [
+     "2026-09-27T10:59:05.766061+00:00",
+     18.0
+    ],
+    [
+     "2026-09-27T20:33:47.073119+00:00",
+     20.0
+    ]
+   ]
+  },
+  "97c7198842d9f946": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "GB 4 500 Mbit/s 40 GB",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.424771+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.424771+00:00",
+     20.0
+    ],
+    [
+     "2026-09-26T14:47:20.560123+00:00",
+     24.0
+    ],
+    [
+     "2026-09-26T15:19:00.818271+00:00",
+     20.0
+    ],
+    [
+     "2026-09-27T01:08:56.806997+00:00",
+     24.0
+    ],
+    [
+     "2026-09-27T03:24:32.994781+00:00",
+     20.0
+    ],
+    [
+     "2026-09-27T04:55:18.609519+00:00",
+     24.0
+    ],
+    [
+     "2026-09-27T10:59:05.766087+00:00",
+     20.0
+    ],
+    [
+     "2026-09-27T20:33:47.073140+00:00",
+     24.0
+    ]
+   ]
+  },
+  "7f2a8362b35c38b7": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "GB 2 500 Mbit/s 50 GB",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.424845+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.424845+00:00",
+     24.0
+    ],
+    [
+     "2026-09-26T14:47:20.560146+00:00",
+     28.0
+    ],
+    [
+     "2026-09-26T15:19:00.818297+00:00",
+     24.0
+    ],
+    [
+     "2026-09-27T01:08:56.807011+00:00",
+     28.0
+    ],
+    [
+     "2026-09-27T03:24:32.994800+00:00",
+     24.0
+    ],
+    [
+     "2026-09-27T04:55:18.609542+00:00",
+     28.0
+    ],
+    [
+     "2026-09-27T10:59:05.766113+00:00",
+     24.0
+    ],
+    [
+     "2026-09-27T20:33:47.073162+00:00",
+     28.0
+    ]
+   ]
+  },
+  "3c586c7b6c0900b6": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "GB 4 500 Mbit/s 50 GB",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.424935+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.424935+00:00",
+     28.0
+    ],
+    [
+     "2026-09-26T14:47:20.560168+00:00",
+     32.0
+    ],
+    [
+     "2026-09-26T15:19:00.818322+00:00",
+     28.0
+    ],
+    [
+     "2026-09-27T01:08:56.807025+00:00",
+     32.0
+    ],
+    [
+     "2026-09-27T03:24:32.994819+00:00",
+     28.0
+    ],
+    [
+     "2026-09-27T04:55:18.609564+00:00",
+     32.0
+    ],
+    [
+     "2026-09-27T10:59:05.766139+00:00",
+     28.0
+    ],
+    [
+     "2026-09-27T20:33:47.073183+00:00",
+     32.0
+    ]
+   ]
+  },
+  "af47726014356592": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "MaxIOPS high performance storage 1000 Mbps Internet & IPv4 included Starting from",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.425247+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.425247+00:00",
+     5.0
+    ],
+    [
+     "2026-09-26T14:47:20.560274+00:00",
+     6.0
+    ],
+    [
+     "2026-09-26T15:19:00.818427+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T01:08:56.807092+00:00",
+     6.0
+    ],
+    [
+     "2026-09-27T03:24:32.994903+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T04:55:18.609669+00:00",
+     6.0
+    ],
+    [
+     "2026-09-27T10:59:05.766247+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T20:33:47.073291+00:00",
+     6.0
+    ]
+   ]
+  },
+  "3564c66ee6423b41": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "CPU MaxIOPS Price",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:30.425589+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:30.425589+00:00",
+     26.0
+    ]
+   ]
+  },
+  "87f328f84c7ea76e": {
+   "provider_slug": "kamatera",
+   "provider_name": "Kamatera",
+   "title": "Servers Firewalls CMS Databases Monitoring VPN ERP Virtual Desktop Forex Basic",
+   "url": "https://www.kamatera.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:31.394532+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:31.394532+00:00",
+     4.0
+    ]
+   ]
+  },
+  "195403fd1b1e7bbb": {
+   "provider_slug": "kamatera",
+   "provider_name": "Kamatera",
+   "title": "Dallas Standard",
+   "url": "https://www.kamatera.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:31.394724+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:31.394724+00:00",
+     25.0
+    ]
+   ]
+  },
+  "b80027475975f416": {
+   "provider_slug": "kamatera",
+   "provider_name": "Kamatera",
+   "title": "Dallas Pro",
+   "url": "https://www.kamatera.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:31.394859+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:31.394859+00:00",
+     39.0
+    ]
+   ]
+  },
+  "9267f615c0be9ba2": {
+   "provider_slug": "kamatera",
+   "provider_name": "Kamatera",
+   "title": "TB Operating System Ubuntu Server",
+   "url": "https://www.kamatera.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:31.399336+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:31.399336+00:00",
+     10.0
+    ]
+   ]
+  },
+  "f33bbf7a907b2af8": {
+   "provider_slug": "kamatera",
+   "provider_name": "Kamatera",
+   "title": "Per Month Hourly rate",
+   "url": "https://www.kamatera.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:31.399567+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:31.399567+00:00",
+     0.01
+    ]
+   ]
+  },
+  "e8bed161b5ce3ee5": {
+   "provider_slug": "kamatera",
+   "provider_name": "Kamatera",
+   "title": "GB Additional storage is only",
+   "url": "https://www.kamatera.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:31.399653+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:31.399653+00:00",
+     0.05
+    ]
+   ]
+  },
+  "ea5cebed117851d1": {
+   "provider_slug": "cloudcone",
+   "provider_name": "CloudCone",
+   "title": "Simple Pricing Unbeatable",
+   "url": "https://cloudcone.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:33.237992+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:33.237992+00:00",
+     63.09
+    ]
+   ]
+  },
+  "53a53716a3fdb0b0": {
+   "provider_slug": "cloudcone",
+   "provider_name": "CloudCone",
+   "title": "SC2 Starter Plan",
+   "url": "https://cloudcone.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:33.238175+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:33.238175+00:00",
+     5.2
+    ]
+   ]
+  },
+  "1341317d701db8eb": {
+   "provider_slug": "cloudcone",
+   "provider_name": "CloudCone",
+   "title": "US Feature-rich Panel Enable Auto-backups Enable Snapshots SC2 Basic Plan",
+   "url": "https://cloudcone.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:33.238560+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:33.238560+00:00",
+     10.34
+    ]
+   ]
+  },
+  "0e0388b1a4b940b5": {
+   "provider_slug": "cloudcone",
+   "provider_name": "CloudCone",
+   "title": "Plan Per Month",
+   "url": "https://cloudcone.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:33.241580+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:33.241580+00:00",
+     0.08
+    ]
+   ]
+  },
+  "b8775631bc2ee71e": {
+   "provider_slug": "cloudcone",
+   "provider_name": "CloudCone",
+   "title": "US Feature-rich Panel Enable Auto-backups Enable Snapshots SC2 Standard Plan",
+   "url": "https://cloudcone.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:33.239348+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:33.239348+00:00",
+     14.51
+    ]
+   ]
+  },
+  "be0d613f9c14324f": {
+   "provider_slug": "cloudcone",
+   "provider_name": "CloudCone",
+   "title": "US Feature-rich Panel Enable Auto-backups Enable Snapshots SC2 Business Plan",
+   "url": "https://cloudcone.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:33.240048+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:33.240048+00:00",
+     17.56
+    ]
+   ]
+  },
+  "583e87e4e758151a": {
+   "provider_slug": "cloudcone",
+   "provider_name": "CloudCone",
+   "title": "Panel Enable Auto-backups Enable Snapshots Power House SC2 Professional Plan",
+   "url": "https://cloudcone.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:33.240655+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:33.240655+00:00",
+     31.99
+    ]
+   ]
+  },
+  "a2d149cbcc897c2a": {
+   "provider_slug": "cloudcone",
+   "provider_name": "CloudCone",
+   "title": "US Feature-rich Panel Enable Auto-backups Enable Snapshots SC2 Premium Plan",
+   "url": "https://cloudcone.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:33.241285+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:33.241285+00:00",
+     63.09
+    ]
+   ]
+  },
+  "0d4e39d74ca59902": {
+   "provider_slug": "bandwagonhost",
+   "provider_name": "BandwagonHost",
+   "title": "Gigabit Multiple locations",
+   "url": "https://bandwagonhost.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:34.147881+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:34.147881+00:00",
+     119.99
+    ]
+   ]
+  },
+  "13899a718b1968ab": {
+   "provider_slug": "hostdare",
+   "provider_name": "HostDare",
+   "title": "Uptime Guarantee    24/7/365 Support Starting at",
+   "url": "https://hostdare.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:35.056261+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:35.056261+00:00",
+     12.99
+    ]
+   ]
+  },
+  "d283ffef894c4759": {
+   "provider_slug": "hostdare",
+   "provider_name": "HostDare",
+   "title": "Storage Bandwidth/month ORDER",
+   "url": "https://hostdare.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:35.056645+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:35.056645+00:00",
+     89.99
+    ]
+   ]
+  },
+  "31e156e91956e1e5": {
+   "provider_slug": "hostdare",
+   "provider_name": "HostDare",
+   "title": "GB RAM 400 GB NVMe SSD Storage 3500 GB Bandwidth/month ORDER",
+   "url": "https://hostdare.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:35.057266+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:35.057266+00:00",
+     99.99
+    ]
+   ]
+  },
+  "51604aa6941a36d9": {
+   "provider_slug": "scalahosting",
+   "provider_name": "ScalaHosting",
+   "title": "Support from A to Z Anytime Unconditional Money-back Guarantee Starting From",
+   "url": "https://www.scalahosting.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:36.099089+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:36.099089+00:00",
+     29.95
+    ]
+   ]
+  },
+  "1b9fcc5de59e146b": {
+   "provider_slug": "scalahosting",
+   "provider_name": "ScalaHosting",
+   "title": "Turbo-fast NVMe SSD 36 M 12 M 1 M",
+   "url": "https://www.scalahosting.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:36.101790+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:36.101790+00:00",
+     94.95
+    ]
+   ]
+  },
+  "e1afeb0b668b273f": {
+   "provider_slug": "scalahosting",
+   "provider_name": "ScalaHosting",
+   "title": "SAVE Get Started",
+   "url": "https://www.scalahosting.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:36.102000+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:36.102000+00:00",
+     244.95
+    ]
+   ]
+  },
+  "8d2c2a8d999787ed": {
+   "provider_slug": "scalahosting",
+   "provider_name": "ScalaHosting",
+   "title": "Backup for the last seven days",
+   "url": "https://www.scalahosting.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:36.104901+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:36.104901+00:00",
+     15.0
+    ]
+   ]
+  },
+  "ce0ff4733a187bf8": {
+   "provider_slug": "scalahosting",
+   "provider_name": "ScalaHosting",
+   "title": "LiteSpeed 5 Domains 8GB RAM",
+   "url": "https://www.scalahosting.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:36.105082+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:36.105082+00:00",
+     10.0
+    ]
+   ]
+  },
+  "3d3fecd5fb58be28": {
+   "provider_slug": "scalahosting",
+   "provider_name": "ScalaHosting",
+   "title": "LiteSpeed 5 Domains Unlimited RAM",
+   "url": "https://www.scalahosting.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:36.105247+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:36.105247+00:00",
+     16.0
+    ]
+   ]
+  },
+  "383b25fd12ac7617": {
+   "provider_slug": "hostens",
+   "provider_name": "Hostens",
+   "title": "VPS SMALL OFF",
+   "url": "https://www.hostens.com/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:37.193438+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:37.193438+00:00",
+     7.0
+    ]
+   ]
+  },
+  "f87a223b26de2a2f": {
+   "provider_slug": "hostens",
+   "provider_name": "Hostens",
+   "title": "RAM CPU Daily/Weekly",
+   "url": "https://www.hostens.com/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:37.193604+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:37.193604+00:00",
+     1.0
+    ]
+   ]
+  },
+  "debf5366388182a1": {
+   "provider_slug": "hostens",
+   "provider_name": "Hostens",
+   "title": "Daily/Weekly Plesk DirectAdmin",
+   "url": "https://www.hostens.com/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:37.193712+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:37.193712+00:00",
+     9.99
+    ]
+   ]
+  },
+  "814dc540be7b4a98": {
+   "provider_slug": "hostens",
+   "provider_name": "Hostens",
+   "title": "Order MEDIUM OFF",
+   "url": "https://www.hostens.com/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:37.195614+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:37.195614+00:00",
+     11.0
+    ]
+   ]
+  },
+  "5221e755d253f250": {
+   "provider_slug": "hostens",
+   "provider_name": "Hostens",
+   "title": "Order LARGE OFF",
+   "url": "https://www.hostens.com/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:37.195038+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:37.195038+00:00",
+     77.0
+    ]
+   ]
+  },
+  "a485ae742cdbc7e3": {
+   "provider_slug": "hostens",
+   "provider_name": "Hostens",
+   "title": "Order SMALL OFF",
+   "url": "https://www.hostens.com/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:37.195347+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:37.195347+00:00",
+     6.0
+    ]
+   ]
+  },
+  "79fbc298389801ac": {
+   "provider_slug": "ramnode",
+   "provider_name": "RamNode",
+   "title": "Uptime Guaranteed Cloud VPS plans starting at",
+   "url": "https://www.ramnode.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:38.437083+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:38.437083+00:00",
+     4.0
+    ]
+   ]
+  },
+  "e7995ecd09e35187": {
+   "provider_slug": "ramnode",
+   "provider_name": "RamNode",
+   "title": "NVMe VPS From",
+   "url": "https://www.ramnode.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:38.437623+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:38.437623+00:00",
+     14.0
+    ]
+   ]
+  },
+  "2b846527980827a5": {
+   "provider_slug": "ramnode",
+   "provider_name": "RamNode",
+   "title": "Linode Shared Monthly",
+   "url": "https://www.ramnode.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:38.438160+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:38.438160+00:00",
+     12.0
+    ]
+   ]
+  },
+  "eef741159437eda9": {
+   "provider_slug": "ramnode",
+   "provider_name": "RamNode",
+   "title": "NVMe-backed shared option is the 4GB tier at",
+   "url": "https://www.ramnode.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:38.438587+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:38.438587+00:00",
+     24.0
+    ]
+   ]
+  },
+  "27ea3f28f5ba0f65": {
+   "provider_slug": "virmach",
+   "provider_name": "Virmach",
+   "title": "RAM CPU SSD",
+   "url": "https://virmach.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:39.304795+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:39.304795+00:00",
+     12.5
+    ]
+   ]
+  },
+  "47d42abfb37a474c": {
+   "provider_slug": "virmach",
+   "provider_name": "Virmach",
+   "title": "LITE CPU SSD",
+   "url": "https://virmach.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:39.305123+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:39.305123+00:00",
+     12.0
+    ]
+   ]
+  },
+  "a772fbae93965ed5": {
+   "provider_slug": "virmach",
+   "provider_name": "Virmach",
+   "title": "STORAGE-500G RAM HDD",
+   "url": "https://virmach.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:39.305351+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:39.305351+00:00",
+     5.0
+    ]
+   ]
+  },
+  "e0659db7750c594e": {
+   "provider_slug": "virmach",
+   "provider_name": "Virmach",
+   "title": "EC2 AZURE B1ms",
+   "url": "https://virmach.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:39.306622+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:39.306622+00:00",
+     6.0
+    ]
+   ]
+  },
+  "e8187f07be169662": {
+   "provider_slug": "virmach",
+   "provider_name": "Virmach",
+   "title": "AZURE B1ms SALE",
+   "url": "https://virmach.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:39.320422+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:39.320422+00:00",
+     18.1
+    ]
+   ]
+  },
+  "8ac0cfeb88ae13b3": {
+   "provider_slug": "virmach",
+   "provider_name": "Virmach",
+   "title": "SSD NVMe SSD",
+   "url": "https://virmach.com/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:39.321561+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:39.321561+00:00",
+     2.0
+    ]
+   ]
+  },
+  "6edb5d6b260e9472": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Speed Test Login Cloud compute / VPS Cloud compute that scales from",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.212455+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.212455+00:00",
+     3.0
+    ]
+   ]
+  },
+  "611780b24a1de702": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Starts at",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.212593+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.212593+00:00",
+     3.0
+    ]
+   ]
+  },
+  "b01757a7ed88aca3": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Server Remote Desktop",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.212725+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.212725+00:00",
+     10.0
+    ]
+   ]
+  },
+  "cde9406fbb0a1168": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Slice 1 Slice",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.212977+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.212977+00:00",
+     3.0
+    ]
+   ]
+  },
+  "6025d78336d6d5d7": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "GB memory 40GB SSD 2TB transfer",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "GBP",
+   "first_seen": "2026-09-26T06:21:40.213090+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.213090+00:00",
+     10.0
+    ]
+   ]
+  },
+  "1d5054738d20c118": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Gbps Shared port Root access Full server control Order 1 Slice 2 Slices 2 Slices",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.213255+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.213255+00:00",
+     6.0
+    ]
+   ]
+  },
+  "1c8fe7fce1310539": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Gbps Shared port Root access Full server control Order 2 Slices 3 Slices 3 Slices",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.213702+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.213702+00:00",
+     9.0
+    ]
+   ]
+  },
+  "93cbe1fb2611b33e": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Gbps Shared port Root access Full server control Order 3 Slices 4 Slices 4 Slices",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.213985+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.213985+00:00",
+     12.0
+    ]
+   ]
+  },
+  "abd5e1ec1aa863cd": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Gbps Shared port Root access Full server control Order 4 Slices 5 Slices 5 Slices",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.214103+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.214103+00:00",
+     15.0
+    ]
+   ]
+  },
+  "ab43168774d84b5a": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Gbps Shared port Root access Full server control Order 5 Slices 6 Slices 6 Slices",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.214216+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.214216+00:00",
+     18.0
+    ]
+   ]
+  },
+  "773eb47a11a919a6": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Gbps Shared port Root access Full server control Order 6 Slices 7 Slices 7 Slices",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.216082+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.216082+00:00",
+     21.0
+    ]
+   ]
+  },
+  "d8c2afa1498d0f1c": {
+   "provider_slug": "interserver",
+   "provider_name": "InterServer",
+   "title": "Gbps Shared port Root access Full server control Order 7 Slices 8 Slices 8 Slices",
+   "url": "https://www.interserver.net/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:40.216320+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:40.216320+00:00",
+     24.0
+    ]
+   ]
+  },
+  "daeadafb5e9e043e": {
+   "provider_slug": "hostwinds",
+   "provider_name": "Hostwinds",
+   "title": "RAM Storage Bandwidth Price CPU 1 CPU RAM 1 GB Storage 30 GB Bandwidth 1 TB Price",
+   "url": "https://www.hostwinds.com/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:42.627937+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:42.627937+00:00",
+     10.99
+    ]
+   ]
+  },
+  "ffec9df93208af03": {
+   "provider_slug": "hostwinds",
+   "provider_name": "Hostwinds",
+   "title": "Storage Bandwidth Price",
+   "url": "https://www.hostwinds.com/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:42.629797+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:42.629797+00:00",
+     64.99
+    ]
+   ]
+  },
+  "b5dc38524026334d": {
+   "provider_slug": "hostwinds",
+   "provider_name": "Hostwinds",
+   "title": "CPU 1 CPU RAM 2 GB Storage 50 GB Bandwidth 2 TB Price",
+   "url": "https://www.hostwinds.com/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:42.628540+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:42.628540+00:00",
+     21.99
+    ]
+   ]
+  },
+  "a4013bcfedcae9c9": {
+   "provider_slug": "hostwinds",
+   "provider_name": "Hostwinds",
+   "title": "CPU 2 CPU RAM 4 GB Storage 75 GB Bandwidth 2 TB Price",
+   "url": "https://www.hostwinds.com/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:42.628811+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:42.628811+00:00",
+     39.99
+    ]
+   ]
+  },
+  "c335bc30f3ff3a92": {
+   "provider_slug": "hostwinds",
+   "provider_name": "Hostwinds",
+   "title": "CPU 2 CPU RAM 6 GB Storage 100 GB Bandwidth 2 TB Price",
+   "url": "https://www.hostwinds.com/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:42.629061+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:42.629061+00:00",
+     50.99
+    ]
+   ]
+  },
+  "c503ca4a8a9eb714": {
+   "provider_slug": "hostwinds",
+   "provider_name": "Hostwinds",
+   "title": "CPU 4 CPU RAM 8 GB Storage 150 GB Bandwidth 3 TB Price",
+   "url": "https://www.hostwinds.com/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:42.629402+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:42.629402+00:00",
+     79.99
+    ]
+   ]
+  },
+  "e3f9b8584ef47452": {
+   "provider_slug": "hostwinds",
+   "provider_name": "Hostwinds",
+   "title": "CPU 4 CPU RAM 12 GB Storage 200 GB Bandwidth 4 TB Price",
+   "url": "https://www.hostwinds.com/vps",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:42.629659+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:42.629659+00:00",
+     99.99
+    ]
+   ]
+  },
+  "eb7598f63fad6d12": {
+   "provider_slug": "knownhost",
+   "provider_name": "KnownHost",
+   "title": "Free migrations with supported control panel Starting at",
+   "url": "https://www.knownhost.com/vps-hosting",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:43.436510+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:43.436510+00:00",
+     43.25
+    ]
+   ]
+  },
+  "65b5db386c068231": {
+   "provider_slug": "knownhost",
+   "provider_name": "KnownHost",
+   "title": "Fully self-managed environment Starting at",
+   "url": "https://www.knownhost.com/vps-hosting",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:43.436630+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:43.436630+00:00",
+     5.0
+    ]
+   ]
+  },
+  "b7b0f6d259cc3351": {
+   "provider_slug": "accuwebhosting",
+   "provider_name": "AccuWebHosting",
+   "title": "Cheap VPS Hosting",
+   "url": "https://www.accuwebhosting.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:44.607823+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:44.607823+00:00",
+     4.99
+    ]
+   ]
+  },
+  "e710c38bac155d08": {
+   "provider_slug": "accuwebhosting",
+   "provider_name": "AccuWebHosting",
+   "title": "Only Enterprise WordPress Cloud Now Starting at",
+   "url": "https://www.accuwebhosting.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:44.607940+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:44.607940+00:00",
+     6.99
+    ]
+   ]
+  },
+  "a33868835e6d7fc8": {
+   "provider_slug": "accuwebhosting",
+   "provider_name": "AccuWebHosting",
+   "title": "Windows VPS SSD Plan Starting at",
+   "url": "https://www.accuwebhosting.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:44.609808+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:44.609808+00:00",
+     6.33
+    ]
+   ]
+  },
+  "31b3c42b55198383": {
+   "provider_slug": "accuwebhosting",
+   "provider_name": "AccuWebHosting",
+   "title": "OS Learn More Most Trending Forex Trading VPS Plan Starting at",
+   "url": "https://www.accuwebhosting.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:44.609961+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:44.609961+00:00",
+     7.99
+    ]
+   ]
+  },
+  "8f1e5f9e286a1855": {
+   "provider_slug": "accuwebhosting",
+   "provider_name": "AccuWebHosting",
+   "title": "High-Speed Network Connectivity Features",
+   "url": "https://www.accuwebhosting.com/vps-hosting/",
+   "currency": "GBP",
+   "first_seen": "2026-09-26T06:21:44.610221+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:44.610221+00:00",
+     1.0
+    ]
+   ]
+  },
+  "685928ef23dbb4a8": {
+   "provider_slug": "liquid-web",
+   "provider_name": "Liquid Web",
+   "title": "VPS Hosting Starting at",
+   "url": "https://www.liquidweb.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:45.806062+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:45.806062+00:00",
+     5.0
+    ]
+   ]
+  },
+  "1118938c3bfed1ce": {
+   "provider_slug": "liquid-web",
+   "provider_name": "Liquid Web",
+   "title": "Root Dedicated RAM",
+   "url": "https://www.liquidweb.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:45.827611+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:45.827611+00:00",
+     90.0
+    ]
+   ]
+  },
+  "5179509c30257b60": {
+   "provider_slug": "liquid-web",
+   "provider_name": "Liquid Web",
+   "title": "Build now 1 2 GB 60 GB 2 TB",
+   "url": "https://www.liquidweb.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:45.828413+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:45.828413+00:00",
+     11.0
+    ]
+   ]
+  },
+  "5448e23f4b768590": {
+   "provider_slug": "liquid-web",
+   "provider_name": "Liquid Web",
+   "title": "Hourly Compute Build",
+   "url": "https://www.liquidweb.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:45.828609+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:45.828609+00:00",
+     0.01
+    ]
+   ]
+  },
+  "437d679d7b6f6f09": {
+   "provider_slug": "liquid-web",
+   "provider_name": "Liquid Web",
+   "title": "Compute Build Build",
+   "url": "https://www.liquidweb.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:45.828907+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:45.828907+00:00",
+     0.02
+    ]
+   ]
+  },
+  "34a457df574e4747": {
+   "provider_slug": "liquid-web",
+   "provider_name": "Liquid Web",
+   "title": "Build now 2 6 GB 120 GB 4 TB",
+   "url": "https://www.liquidweb.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:45.829061+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:45.829061+00:00",
+     22.0
+    ]
+   ]
+  },
+  "13d9a4ccf7dfafef": {
+   "provider_slug": "liquid-web",
+   "provider_name": "Liquid Web",
+   "title": "Build Build Build",
+   "url": "https://www.liquidweb.com/vps-hosting/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:45.829382+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:45.829382+00:00",
+     0.06
+    ]
+   ]
+  },
+  "b9fe1ac9180420ee": {
+   "provider_slug": "cherry-servers",
+   "provider_name": "Cherry Servers",
+   "title": "Storage For From",
+   "url": "https://www.cherryservers.com/pricing",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:47.140357+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:47.140357+00:00",
+     0.07
+    ]
+   ]
+  },
+  "07df850a716ed82b": {
+   "provider_slug": "cherry-servers",
+   "provider_name": "Cherry Servers",
+   "title": "Ensured high availability Learn more Backup Storage For a safe data store From",
+   "url": "https://www.cherryservers.com/pricing",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:47.140514+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:47.140514+00:00",
+     3.5
+    ]
+   ]
+  },
+  "cef6102790ec796f": {
+   "provider_slug": "cherry-servers",
+   "provider_name": "Cherry Servers",
+   "title": "Scale up to 2TB on the go Learn more Floating IP For persistent access From",
+   "url": "https://www.cherryservers.com/pricing",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:47.140622+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:47.140622+00:00",
+     2.34
+    ]
+   ]
+  },
+  "053b0238bc6863c3": {
+   "provider_slug": "cherry-servers",
+   "provider_name": "Cherry Servers",
+   "title": "DDOS protection Learn more Public IP Subnet For multiple access points From",
+   "url": "https://www.cherryservers.com/pricing",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:47.140732+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:47.140732+00:00",
+     18.72
+    ]
+   ]
+  },
+  "87b4210ef090df95": {
+   "provider_slug": "cherry-servers",
+   "provider_name": "Cherry Servers",
+   "title": "Manage via UI or API Learn more Load Balancer For distributing requests From",
+   "url": "https://www.cherryservers.com/pricing",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:47.140830+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:47.140830+00:00",
+     11.86
+    ]
+   ]
+  },
+  "e5db2b55dad2fb0c": {
+   "provider_slug": "latitude-sh",
+   "provider_name": "Latitude.sh",
+   "title": "GPU 8 x NVIDIA HGX B300",
+   "url": "https://www.latitude.sh/pricing",
+   "currency": "GBP",
+   "first_seen": "2026-09-26T06:21:48.048510+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:48.048510+00:00",
+     800.0
+    ]
+   ]
+  },
+  "158c19fd33960adf": {
+   "provider_slug": "latitude-sh",
+   "provider_name": "Latitude.sh",
+   "title": "NVME NVME Network",
+   "url": "https://www.latitude.sh/pricing",
+   "currency": "GBP",
+   "first_seen": "2026-09-26T06:21:48.048850+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:48.048850+00:00",
+     100.0
+    ]
+   ]
+  },
+  "ae41770e22ea351d": {
+   "provider_slug": "latitude-sh",
+   "provider_name": "Latitude.sh",
+   "title": "Gbps Locations Starting At",
+   "url": "https://www.latitude.sh/pricing",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:48.050379+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:48.050379+00:00",
+     1.68
+    ]
+   ]
+  },
+  "35d8b34dd726fb1b": {
+   "provider_slug": "latitude-sh",
+   "provider_name": "Latitude.sh",
+   "title": "Gbps Locations Starting",
+   "url": "https://www.latitude.sh/pricing",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:48.051190+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:48.051190+00:00",
+     3.97
+    ]
+   ]
+  },
+  "72e3d866c22c5981": {
+   "provider_slug": "latitude-sh",
+   "provider_name": "Latitude.sh",
+   "title": "Storage NVME Network",
+   "url": "https://www.latitude.sh/pricing",
+   "currency": "GBP",
+   "first_seen": "2026-09-26T06:21:48.050136+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:48.050136+00:00",
+     10.0
+    ]
+   ]
+  },
+  "200e5b1d8f7d3c30": {
+   "provider_slug": "latitude-sh",
+   "provider_name": "Latitude.sh",
+   "title": "Hourly Monthly Paid yearly Gen 4 DDR5 RAM Ultra fast NVMe SVE-compatible Up to",
+   "url": "https://www.latitude.sh/pricing",
+   "currency": "GBP",
+   "first_seen": "2026-09-26T06:21:48.050696+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:48.050696+00:00",
+     200.0
+    ]
+   ]
+  },
+  "508e517a79f274b7": {
+   "provider_slug": "latitude-sh",
+   "provider_name": "Latitude.sh",
+   "title": "Starting At",
+   "url": "https://www.latitude.sh/pricing",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:48.050969+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:48.050969+00:00",
+     5.44
+    ]
+   ]
+  },
+  "be9a4b7e0251cfc7": {
+   "provider_slug": "alphavps",
+   "provider_name": "AlphaVPS",
+   "title": "VAT BY TYPE 04 Cheap VPS BEST VALUE",
+   "url": "https://alphavps.com/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:49.789615+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:49.789615+00:00",
+     2.54
+    ]
+   ]
+  },
+  "7ccf84642cf442e9": {
+   "provider_slug": "alphavps",
+   "provider_name": "AlphaVPS",
+   "title": "Affordable hosting High-Performance VPS POPULAR",
+   "url": "https://alphavps.com/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:49.790056+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:49.790056+00:00",
+     4.24
+    ]
+   ]
+  },
+  "4dcc25069512962c": {
+   "provider_slug": "alphavps",
+   "provider_name": "AlphaVPS",
+   "title": "AMD Ryzen powered Storage VPS",
+   "url": "https://alphavps.com/",
+   "currency": "EUR",
+   "first_seen": "2026-09-26T06:21:49.790262+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:49.790262+00:00",
+     1.67
+    ]
+   ]
+  },
+  "6f5f2a082641967e": {
+   "provider_slug": "buyvm",
+   "provider_name": "BuyVM",
+   "title": "SSD storage starting at",
+   "url": "https://buyvm.net/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:50.682480+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:50.682480+00:00",
+     2.0
+    ]
+   ]
+  },
+  "41d1ce5898bfe1a4": {
+   "provider_slug": "buyvm",
+   "provider_name": "BuyVM",
+   "title": "E PACKAGES DEDICATED RESOURCES DEDICATED KVM SLICES SSD 20 GB Memory 1 GB Monthly",
+   "url": "https://buyvm.net/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:50.682642+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:50.682642+00:00",
+     3.5
+    ]
+   ]
+  },
+  "6aea7bf171f5de3b": {
+   "provider_slug": "buyvm",
+   "provider_name": "BuyVM",
+   "title": "STORAGE INTENSIVE Block Storage Slabs HDD 256 GB Monthly",
+   "url": "https://buyvm.net/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:50.683949+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:50.683949+00:00",
+     1.25
+    ]
+   ]
+  },
+  "97a12d8ae406715d": {
+   "provider_slug": "ssdnodes",
+   "provider_name": "SSDNodes",
+   "title": "KVM SMALL OFF",
+   "url": "https://www.ssdnodes.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:51.928663+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:51.928663+00:00",
+     52.0
+    ]
+   ]
+  },
+  "95a60c838e3c0882": {
+   "provider_slug": "ssdnodes",
+   "provider_name": "SSDNodes",
+   "title": "METEOR20 Coupon code is copied",
+   "url": "https://www.ssdnodes.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:51.930494+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:51.930494+00:00",
+     166.0
+    ]
+   ]
+  },
+  "e7531550d7159442": {
+   "provider_slug": "ssdnodes",
+   "provider_name": "SSDNodes",
+   "title": "Code METEOR20 Coupon",
+   "url": "https://www.ssdnodes.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:51.929832+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:51.929832+00:00",
+     113.0
+    ]
+   ]
+  },
+  "0ced9b2616baf64a": {
+   "provider_slug": "ssdnodes",
+   "provider_name": "SSDNodes",
+   "title": "Per Year Save",
+   "url": "https://www.ssdnodes.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:51.929952+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:51.929952+00:00",
+     597.0
+    ]
+   ]
+  },
+  "96cfaaed1e1f8ca9": {
+   "provider_slug": "ssdnodes",
+   "provider_name": "SSDNodes",
+   "title": "IPv6 Included That",
+   "url": "https://www.ssdnodes.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:51.930119+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:51.930119+00:00",
+     9.42
+    ]
+   ]
+  },
+  "f084daf3f060975a": {
+   "provider_slug": "ssdnodes",
+   "provider_name": "SSDNodes",
+   "title": "KVM MEDIUM OFF",
+   "url": "https://www.ssdnodes.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:51.929618+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:51.929618+00:00",
+     90.0
+    ]
+   ]
+  },
+  "0ce84e5bb82d589e": {
+   "provider_slug": "ssdnodes",
+   "provider_name": "SSDNodes",
+   "title": "KVM LARGE OFF",
+   "url": "https://www.ssdnodes.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:51.930333+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:51.930333+00:00",
+     106.0
+    ]
+   ]
+  },
+  "788df2332b4f213c": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "COM - See All Extensions",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:53.085111+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:53.085111+00:00",
+     9.99
+    ]
+   ]
+  },
+  "353e86af4268be17": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "On Sale Stack 4 For lightweight apps and solo projects On Sale First 3 months at",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:53.085670+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:53.085670+00:00",
+     8.99
+    ]
+   ]
+  },
+  "875f6c0661f4032e": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "Sign Up Now Auto-renews at",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:53.086624+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:53.086624+00:00",
+     59.99
+    ],
+    [
+     "2026-09-26T14:47:41.265113+00:00",
+     39.99
+    ],
+    [
+     "2026-09-27T02:22:22.476211+00:00",
+     59.99
+    ],
+    [
+     "2026-09-27T04:22:22.226496+00:00",
+     39.99
+    ],
+    [
+     "2026-09-27T10:59:25.485262+00:00",
+     59.99
+    ],
+    [
+     "2026-09-27T15:58:17.152896+00:00",
+     39.99
+    ],
+    [
+     "2026-09-27T20:34:06.406222+00:00",
+     59.99
+    ]
+   ]
+  },
+  "fb8191c1950115ba": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "Support Stack 8 For apps running in production On Sale First 3 months at",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:53.085947+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:53.085947+00:00",
+     13.99
+    ]
+   ]
+  },
+  "4351ab04082fc99e": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "Stack 16 For demanding workloads and multiple services On Sale First 3 months at",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:53.086190+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:53.086190+00:00",
+     22.99
+    ]
+   ]
+  },
+  "7e05ad4830f80c70": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "For high-traffic platforms and data-intensive apps On Sale First 3 months at",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:53.086514+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:53.086514+00:00",
+     45.99
+    ]
+   ]
+  },
+  "09182e8e28bd91c3": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "Most DreamHost",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:53.086764+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:53.086764+00:00",
+     810.0
+    ]
+   ]
+  },
+  "3302ce534f0ab61e": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "AWS Lightsail Metered",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:53.087104+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:53.087104+00:00",
+     4.41
+    ]
+   ]
+  },
+  "2ec52e41f14bc547": {
+   "provider_slug": "inmotion-hosting",
+   "provider_name": "InMotion Hosting",
+   "title": "VPS You Save",
+   "url": "https://www.inmotionhosting.com/vps-hosting",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:55.347211+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:55.347211+00:00",
+     19.99
+    ]
+   ]
+  },
+  "98b8d524d14fa5bf": {
+   "provider_slug": "inmotion-hosting",
+   "provider_name": "InMotion Hosting",
+   "title": "For 24 month term Renews at",
+   "url": "https://www.inmotionhosting.com/vps-hosting",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:55.347954+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:55.347954+00:00",
+     56.99
+    ]
+   ]
+  },
+  "639b19bdd5538cb3": {
+   "provider_slug": "inmotion-hosting",
+   "provider_name": "InMotion Hosting",
+   "title": "Select You Save",
+   "url": "https://www.inmotionhosting.com/vps-hosting",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:55.348093+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:55.348093+00:00",
+     22.99
+    ]
+   ]
+  },
+  "663e9ef0a981c316": {
+   "provider_slug": "inmotion-hosting",
+   "provider_name": "InMotion Hosting",
+   "title": "Onboarding Server Setup",
+   "url": "https://www.inmotionhosting.com/vps-hosting",
+   "currency": "USD",
+   "first_seen": "2026-09-26T06:21:55.346739+00:00",
+   "points": [
+    [
+     "2026-09-26T06:21:55.346739+00:00",
+     199.0
+    ]
+   ]
+  },
+  "86110798cf7174fd": {
+   "provider_slug": "upcloud",
+   "provider_name": "UpCloud",
+   "title": "MaxIOPS Global Price",
+   "url": "https://upcloud.com/pricing/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T14:47:20.560421+00:00",
+   "points": [
+    [
+     "2026-09-26T14:47:20.560421+00:00",
+     26.0
+    ]
+   ]
+  },
+  "bf8cf1cd95eeae2e": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "On Sale Stack 4 For lightweight apps and solo projects On Sale First 2 years at",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T14:47:41.264737+00:00",
+   "points": [
+    [
+     "2026-09-26T14:47:41.264737+00:00",
+     5.99
+    ]
+   ]
+  },
+  "ca5bdc5a432a2dad": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "Support Stack 8 For apps running in production On Sale First 2 years at",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T14:47:41.264859+00:00",
+   "points": [
+    [
+     "2026-09-26T14:47:41.264859+00:00",
+     9.49
+    ]
+   ]
+  },
+  "9456747574ce58d9": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "Stack 16 For demanding workloads and multiple services On Sale First 2 years at",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T14:47:41.264964+00:00",
+   "points": [
+    [
+     "2026-09-26T14:47:41.264964+00:00",
+     15.49
+    ]
+   ]
+  },
+  "41494874cab488bc": {
+   "provider_slug": "dreamhost",
+   "provider_name": "DreamHost",
+   "title": "For high-traffic platforms and data-intensive apps On Sale First 2 years at",
+   "url": "https://www.dreamhost.com/servers/vps/",
+   "currency": "USD",
+   "first_seen": "2026-09-26T14:47:41.265070+00:00",
+   "points": [
+    [
+     "2026-09-26T14:47:41.265070+00:00",
+     30.99
+    ]
+   ]
+  }
+ },
+ "provider_min": {
+  "digitalocean": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-23T21:41:34.791520+00:00",
+     0.01
+    ],
+    [
+     "2026-09-24T06:38:49.798582+00:00",
+     0.01
+    ],
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     0.01
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     0.01
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     0.01
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     0.01
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     0.01
+    ]
+   ]
+  },
+  "ovh-promotions": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-23T21:41:34.791520+00:00",
+     7.79
+    ],
+    [
+     "2026-09-24T06:38:49.798582+00:00",
+     7.79
+    ]
+   ]
+  },
+  "racknerd": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-23T21:41:34.791520+00:00",
+     2.0
+    ],
+    [
+     "2026-09-24T06:38:49.798582+00:00",
+     2.0
+    ],
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     2.0
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     2.0
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     2.0
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     2.0
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     2.0
+    ]
+   ]
+  },
+  "ovhcloud": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     7.79
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     7.79
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     7.79
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     7.79
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     7.79
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     7.79
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     7.79
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     7.79
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     7.79
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     7.79
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     7.79
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     7.79
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     7.79
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     7.79
+    ]
+   ]
+  },
+  "hostinger": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     6.49
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     6.49
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     6.49
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     6.49
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     6.49
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     6.49
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     6.49
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     6.49
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     6.49
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     6.49
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     6.49
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     6.49
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     6.49
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     6.49
+    ]
+   ]
+  },
+  "ionos": {
+   "currency": "GBP",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     1.0
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     1.0
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     1.0
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     1.0
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     1.0
+    ]
+   ]
+  },
+  "scaleway": {
+   "currency": "EUR",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     4.99
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     4.99
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     4.99
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     4.99
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     4.99
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     4.99
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     4.99
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     4.99
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     4.99
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     4.99
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     4.99
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     4.99
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     4.99
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     4.99
+    ]
+   ]
+  },
+  "upcloud": {
+   "currency": "EUR",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     3.0
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     3.0
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     3.0
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     3.0
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     3.0
+    ]
+   ]
+  },
+  "kamatera": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     0.01
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     0.01
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     0.01
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     0.01
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     0.01
+    ]
+   ]
+  },
+  "cloudcone": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     0.08
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     0.08
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     0.08
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     0.08
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     0.08
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     0.08
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     0.08
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     0.08
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     0.08
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     0.08
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     0.08
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     0.08
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     0.08
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     0.08
+    ]
+   ]
+  },
+  "bandwagonhost": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     119.99
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     119.99
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     119.99
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     119.99
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     119.99
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     119.99
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     119.99
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     119.99
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     119.99
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     119.99
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     119.99
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     119.99
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     119.99
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     119.99
+    ]
+   ]
+  },
+  "hostdare": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     12.99
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     12.99
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     12.99
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     12.99
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     12.99
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     12.99
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     12.99
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     12.99
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     12.99
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     12.99
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     12.99
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     12.99
+    ]
+   ]
+  },
+  "scalahosting": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     10.0
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     10.0
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     10.0
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     10.0
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     10.0
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     10.0
+    ]
+   ]
+  },
+  "hostens": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     1.0
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     1.0
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     1.0
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     1.0
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     1.0
+    ]
+   ]
+  },
+  "ramnode": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     4.0
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     4.0
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     4.0
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     4.0
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     4.0
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     4.0
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     4.0
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     4.0
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     4.0
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     4.0
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     4.0
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     4.0
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     4.0
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     4.0
+    ]
+   ]
+  },
+  "virmach": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     2.0
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     2.0
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     2.0
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     2.0
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     2.0
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     2.0
+    ]
+   ]
+  },
+  "interserver": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     3.0
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     3.0
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     3.0
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     3.0
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     3.0
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     3.0
+    ]
+   ]
+  },
+  "hostwinds": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     10.99
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     10.99
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     10.99
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     10.99
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     10.99
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     10.99
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     10.99
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     10.99
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     10.99
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     10.99
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     10.99
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     10.99
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     10.99
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     10.99
+    ]
+   ]
+  },
+  "knownhost": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     5.0
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     5.0
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     5.0
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     5.0
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     5.0
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     5.0
+    ]
+   ]
+  },
+  "accuwebhosting": {
+   "currency": "GBP",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     1.0
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     1.0
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     1.0
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     1.0
+    ]
+   ]
+  },
+  "liquid-web": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     0.01
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     0.01
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     0.01
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     0.01
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     0.01
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     0.01
+    ]
+   ]
+  },
+  "cherry-servers": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     0.07
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     0.07
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     0.07
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     0.07
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     0.07
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     0.07
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     0.07
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     0.07
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     0.07
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     0.07
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     0.07
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     0.07
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     0.07
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     0.07
+    ]
+   ]
+  },
+  "latitude-sh": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     1.68
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     1.68
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     1.68
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     1.68
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     1.68
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     1.68
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     1.68
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     1.68
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     1.68
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     1.68
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     1.68
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     1.68
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     1.68
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     1.68
+    ]
+   ]
+  },
+  "alphavps": {
+   "currency": "EUR",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     1.67
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     1.67
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     1.67
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     1.67
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     1.67
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     1.67
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     1.67
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     1.67
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     1.67
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     1.67
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     1.67
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     1.67
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     1.67
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     1.67
+    ]
+   ]
+  },
+  "buyvm": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     1.25
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     1.25
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     1.25
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     1.25
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     1.25
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     1.25
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     1.25
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     1.25
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     1.25
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     1.25
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     1.25
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     1.25
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     1.25
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     1.25
+    ]
+   ]
+  },
+  "ssdnodes": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     9.42
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     9.42
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     9.42
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     9.42
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     9.42
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     9.42
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     9.42
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     9.42
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     9.42
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     9.42
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     9.42
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     9.42
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     9.42
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     9.42
+    ]
+   ]
+  },
+  "dreamhost": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     4.41
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     4.41
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     4.41
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     4.41
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     4.41
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     4.41
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     4.41
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     4.41
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     4.41
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     4.41
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     4.41
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     4.41
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     4.41
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     4.41
+    ]
+   ]
+  },
+  "inmotion-hosting": {
+   "currency": "USD",
+   "points": [
+    [
+     "2026-09-26T06:21:21.861731+00:00",
+     19.99
+    ],
+    [
+     "2026-09-26T14:47:10.643571+00:00",
+     19.99
+    ],
+    [
+     "2026-09-26T15:18:53.707528+00:00",
+     19.99
+    ],
+    [
+     "2026-09-26T20:19:21.625498+00:00",
+     19.99
+    ],
+    [
+     "2026-09-27T01:08:47.096029+00:00",
+     19.99
+    ],
+    [
+     "2026-09-27T02:21:50.706345+00:00",
+     19.99
+    ],
+    [
+     "2026-09-27T03:24:24.270331+00:00",
+     19.99
+    ],
+    [
+     "2026-09-27T04:05:34.722319+00:00",
+     19.99
+    ],
+    [
+     "2026-09-27T04:21:52.652466+00:00",
+     19.99
+    ],
+    [
+     "2026-09-27T04:55:08.914299+00:00",
+     19.99
+    ],
+    [
+     "2026-09-27T10:58:57.475611+00:00",
+     19.99
+    ],
+    [
+     "2026-09-27T15:57:49.994396+00:00",
+     19.99
+    ],
+    [
+     "2026-09-27T20:33:39.567691+00:00",
+     19.99
+    ],
+    [
+     "2026-09-28T02:25:52.249122+00:00",
+     19.99
+    ]
+   ]
+  }
+ }
+}

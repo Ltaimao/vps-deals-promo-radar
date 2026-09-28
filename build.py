@@ -35,7 +35,7 @@ LOGO_DIR = ROOT / "assets" / "logos"
 REFETCH_JSON = ROOT / "data" / "refetch.json"
 
 sys.path.insert(0, str(ROOT))
-from scraper import parse_ilang, slugify, MAX_DEALS_PER_PROVIDER  # reuse the parser
+from scraper import parse_ilang, slugify, MAX_DEALS_PER_PROVIDER, offer_id_for  # reuse the parser
 
 
 def e(s):
@@ -459,6 +459,32 @@ def render_provider(ctx, data, cfg, base_url, provider):
         for q, a in faqs
     )
 
+    # ---- 价格历史：该厂商每次抓取时的全站最低价序列（真实快照，零 JS 纯 SVG）----
+    price_history_html = ""
+    _hist = ctx.get("history") or {}
+    _pmin = (_hist.get("provider_min") or {}).get(slug)
+    _meta = _hist.get("meta") or {}
+    if _pmin and len(_pmin.get("points", [])) >= 2:
+        _pts = _pmin["points"]
+        _prices = [float(p[1]) for p in _pts]
+        _cur2 = _pmin.get("currency") or cur
+        _chart = svg_price_chart(
+            _pts, _cur2,
+            "Lowest listed price of " + provider["name"] + " over time")
+        _caption = ("Lowest listed price at each check — %d checks, %s → %s. "
+                    "Only real snapshots are plotted; missing checks are gaps, not guesses."
+                    % (_meta.get("snapshots", len(_pts)),
+                       fmt_date(_meta.get("since", _pts[0][0])),
+                       fmt_date(_meta.get("until", _pts[-1][0]))))
+        _extremes = ("Range observed: %s – %s/mo"
+                     % (money(min(_prices), _cur2), money(max(_prices), _cur2)))
+        price_history_html = (
+            '<div class="section-heading"><h2>Price history</h2></div>\n'
+            '<div class="content-card"><p class="history-caption">' + e(_caption) + "</p>\n"
+            + _chart +
+            '\n<p class="history-caption">' + e(_extremes) + "</p></div>"
+        )
+
     content = fill(load_template("provider.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", e(provider["name"]))]),
         "{{PROVIDER_LOGO}}": logo_html(provider, logos, "avatar p-logo"),
@@ -470,6 +496,7 @@ def render_provider(ctx, data, cfg, base_url, provider):
         "{{DEAL_TABLE}}": deal_table,
         "{{TRACKING_INFO}}": tracking_info,
         "{{FAQ}}": faq_html,
+        "{{PRICE_HISTORY}}": price_history_html,
         "{{LAST_FETCHED_AT}}": e(provider["fetched_at"][:19].replace("T", " ") + " UTC"),
     })
 
@@ -865,6 +892,238 @@ def build_redirect_map(data):
     return mapping
 
 
+HISTORY_JSON = ROOT / "data" / "history.json"
+
+
+def deal_history_key(d):
+    """价格历史的身份键。优先用抓取时算好的 offer_id；旧快照没有 offer_id
+    就用 scraper.offer_id_for 按完全相同的归一化补算 —— 同一个函数，
+    新旧快照的键必然一致。价格永远不进键（要追的就是价格变化）。"""
+    oid = d.get("offer_id")
+    if oid:
+        return str(oid)
+    return offer_id_for(d.get("provider_slug"), d.get("offer_url"), d.get("title"))
+
+
+def build_price_history(data, cfg):
+    """构建时生成价格历史（::RULE{history_source} ::RULE{价格历史只记录真实快照的价格变动点}）。
+
+    数据源 = git 里 data/offers.json 的快照链 + 工作区当前快照（update.yml 里
+    scraper 刚抓完还没提交的那一份）。只记录真实的价格变动点（delta 编码，
+    含首点）；快照里没出现就是没出现，不插值、不编造。
+    结果写 data/history.json 并提交入库 —— shallow checkout（deploy.yml）
+    时 git 链太短，就用它当回退底座继续追加。
+    快照不足 2 个返回 None：调用方不渲染历史区块，而不是画一张假图。
+
+    已知数据质量问题（2026-09-28 实测）：UpCloud 10 条 deal 级序列呈严格
+    交替振荡（如 6↔7），是 scraper 正则在同一页面交替抓到两个不同数字，
+    不是真实调价。厂商级 min 序列不受影响（UpCloud min 为干净的 $3.0
+    平直线）。Phase 4 做降价提醒时必须加"连续两次快照确认"去抖，
+    不能直接拿 deal 级变动点触发。
+    """
+    render_cfg = cfg.get("RENDER") or {}
+    if str(render_cfg.get("price_history", "")).lower() != "true":
+        return None
+
+    import subprocess
+
+    def git(*args):
+        r = subprocess.run(["git", "-C", str(ROOT)] + list(args),
+                           capture_output=True, text=True, timeout=120)
+        return r.stdout if r.returncode == 0 else None
+
+    snapshots = []  # [(generated_at, deals)]
+    log = git("log", "--format=%H%x00%aI", "--reverse", "--", "data/offers.json")
+    if log:
+        for line in log.strip().split("\n"):
+            sha, _, _ad = line.partition("\x00")
+            blob = git("show", sha + ":data/offers.json")
+            if not blob:
+                continue
+            try:
+                doc = json.loads(blob)
+            except Exception:
+                continue
+            snapshots.append((doc.get("generated_at") or _ad, doc.get("deals") or []))
+    # 工作区当前快照：update.yml 里它是刚抓完未提交的新数据
+    wt_gen = data.get("generated_at") or ""
+    if not snapshots or snapshots[-1][0] != wt_gen:
+        snapshots.append((wt_gen, data.get("deals") or []))
+
+    if len(snapshots) < 2:
+        # 回退：用已提交的 history.json 当底座，把当前快照追加进去
+        base = None
+        if HISTORY_JSON.exists():
+            try:
+                base = json.loads(HISTORY_JSON.read_text(encoding="utf-8"))
+            except Exception:
+                base = None
+        if not base or not base.get("deal_series"):
+            return None
+        pts = {}
+        for d in data.get("deals") or []:
+            if d.get("price") is None:
+                continue
+            try:
+                price = float(d["price"])
+            except (TypeError, ValueError):
+                continue
+            pts[deal_history_key(d)] = (d.get("fetched_at") or wt_gen, price, d)
+        changed = _append_points(base, pts, wt_gen, provider_delta=False)
+        if changed:
+            base["meta"]["built_at"] = datetime.now(timezone.utc).isoformat()
+            HISTORY_JSON.write_text(json.dumps(base, ensure_ascii=False, indent=1),
+                                    encoding="utf-8")
+        return base
+
+    deal_series = {}
+    provider_min = {}
+    for gen_at, deals in snapshots:
+        pts = {}
+        for d in deals:
+            if d.get("price") is None:
+                continue
+            try:
+                price = float(d["price"])
+            except (TypeError, ValueError):
+                continue
+            ts = d.get("fetched_at") or gen_at or ""
+            pts[deal_history_key(d)] = (ts, price, d)
+        _append_points({"deal_series": deal_series, "provider_min": provider_min},
+                       pts, gen_at, provider_delta=False)
+
+    #  series 太稀疏（全站 <2 个变动点）就不渲染
+    total_points = sum(len(s["points"]) for s in deal_series.values())
+    history = {
+        "meta": {
+            "snapshots": len(snapshots),
+            "since": snapshots[0][0],
+            "until": snapshots[-1][0],
+            "built_at": datetime.now(timezone.utc).isoformat(),
+            "source": "git log -- data/offers.json",
+        },
+        "deal_series": deal_series,
+        "provider_min": provider_min,
+    }
+    if total_points < 2:
+        return None
+    HISTORY_JSON.write_text(json.dumps(history, ensure_ascii=False, indent=1),
+                            encoding="utf-8")
+    print("  price history: snapshots=%d deals_tracked=%d points=%d" %
+          (len(snapshots), len(deal_series), total_points))
+    return history
+
+
+def _append_points(history, pts, gen_at, provider_delta=True):
+    """把一个快照的点并入 series。
+    deal 级别：只在价格变化时追加（含首点）—— 省空间。
+    厂商最低价：默认同样 delta；传 provider_delta=False 则每个快照都记一个点，
+      这样价格从没动过的厂商也能画出一条如实的平直线（"N 次检查无变动"）。
+    同一时间戳重复出现则后值覆盖前值。返回是否发生变化。"""
+    changed = False
+    deal_series = history["deal_series"]
+    provider_min = history["provider_min"]
+    for key, (ts, price, d) in pts.items():
+        s = deal_series.get(key)
+        if s is None:
+            s = deal_series[key] = {
+                "provider_slug": d.get("provider_slug"),
+                "provider_name": d.get("provider_name"),
+                "title": d.get("title"),
+                "url": d.get("offer_url") or d.get("source_url"),
+                "currency": d.get("currency"),
+                "first_seen": ts,
+                "points": [],
+            }
+        points = s["points"]
+        if points and points[-1][0] == ts:
+            if points[-1][1] != price:
+                points[-1][1] = price
+                changed = True
+        elif not points or points[-1][1] != price:
+            points.append([ts, price])
+            changed = True
+    # 每家厂商当次快照的最低价（只看带真实价格的 deal）
+    per_provider = {}
+    for key, (ts, price, d) in pts.items():
+        slug = d.get("provider_slug")
+        if not slug:
+            continue
+        if slug not in per_provider or price < per_provider[slug][0]:
+            per_provider[slug] = (price, ts, d.get("currency"))
+    for slug, (price, ts, cur) in per_provider.items():
+        s = provider_min.get(slug)
+        if s is None:
+            s = provider_min[slug] = {"currency": cur, "points": []}
+        points = s["points"]
+        if points and points[-1][0] == gen_at:
+            if points[-1][1] != price:
+                points[-1][1] = price
+                changed = True
+        elif not points or not provider_delta or points[-1][1] != price:
+            points.append([gen_at, price])
+            changed = True
+    return changed
+
+
+def svg_price_chart(points, currency, label):
+    """纯服务端 SVG 折线图，零 JS。points=[[ts_iso, price],...] 已按时间排序。
+    x 按真实时间戳定位（快照间隔不均匀也不撒谎）；y 按价格区间缩放。
+    少于 2 个点返回空字符串 —— 调用方不渲染区块。"""
+    if len(points) < 2:
+        return ""
+    W, H = 560, 190
+    PL, PR, PT, PB = 46, 10, 12, 26
+    iw, ih = W - PL - PR, H - PT - PB
+
+    def ts(s):
+        try:
+            return datetime.fromisoformat(str(s).replace("Z", "+00:00")).timestamp()
+        except Exception:
+            return 0.0
+
+    xs = [ts(p[0]) for p in points]
+    ys = [float(p[1]) for p in points]
+    x0, x1 = min(xs), max(xs)
+    y0, y1 = min(ys), max(ys)
+    if x1 == x0:
+        x1 = x0 + 1
+    if y1 == y0:
+        y0, y1 = y0 * 0.95, y1 * 1.05 or 1
+
+    def X(t):
+        return PL + (t - x0) / (x1 - x0) * iw
+
+    def Y(v):
+        return PT + (1 - (v - y0) / (y1 - y0)) * ih
+
+    path = "M" + " L".join("%.1f,%.1f" % (X(t), Y(v)) for t, v in zip(xs, ys))
+    dots = "".join(
+        '<circle cx="%.1f" cy="%.1f" r="3" fill="#1677ff"><title>%s: %s</title></circle>'
+        % (X(t), Y(v), e(fmt_date(p[0])), e(money(v, currency)))
+        for (t, v), p in zip(zip(xs, ys), points)
+    )
+    sym = {"USD": "$", "EUR": "€", "GBP": "£"}.get((currency or "USD").upper(), "")
+    out = [
+        '<svg class="price-chart" viewBox="0 0 %d %d" role="img" aria-label="%s">' % (W, H, e(label)),
+        '<path d="%s" fill="none" stroke="#1677ff" stroke-width="2"/>' % path,
+        dots,
+        '<text x="%d" y="%d" class="pc-lbl">%s%.2f</text>' % (PL, PT - 2, sym, y1),
+        '<text x="%d" y="%d" class="pc-lbl">%s%.2f</text>' % (PL, H - 8, sym, y0),
+        '<text x="%d" y="%d" class="pc-lbl pc-r">%s</text>' % (W - PR, H - 8, e(fmt_date(points[0][0]))),
+        '<text x="%d" y="%d" class="pc-lbl">%s</text>' % (PL, H - 8, e(fmt_date(points[-1][0]))),
+        "</svg>",
+    ]
+    return "\n".join(out)
+
+
+def fmt_date(ts_iso):
+    try:
+        return datetime.fromisoformat(str(ts_iso).replace("Z", "+00:00")).strftime("%b %d")
+    except Exception:
+        return str(ts_iso)[:10]
+
+
 def main():
     cfg = load_cfg()
     data = load_data()
@@ -908,6 +1167,10 @@ def main():
           "| 补进优惠", len(extra_deals),
           "| 下线厂商", len(offline_providers),
           [p["slug"] for p in offline_providers])
+
+    # 0a2. 价格历史 —— git 快照链重建，只记真实变动点；写 data/history.json 入库。
+    #      快照不足时返回 None，厂商页直接不渲染该区块（不画假图）。
+    history = build_price_history(data, cfg)
 
     # 0b. 厂商 logo —— fetch_logos.py 抓来的图拷进站点 /assets/logos/，
     #    渲染时按 slug 查表；抓不到的厂商保持首字母色块，不拿别的图顶替。
@@ -974,6 +1237,7 @@ def main():
         "brand_display": brand,
         "hreflang_tags": "",
         "logos": logos,
+        "history": history,
     }
     write(SITE / "index.html", render_index(ctx_index, data, cfg, base_url))
     all_paths.append({"path": "", "lastmod": data["generated_at"]})

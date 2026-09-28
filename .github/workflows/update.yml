@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # 价格历史要从 git 快照链重建 —— shallow clone 只有 1 个快照，
+          # 必须拿完整历史（仓库小，成本可忽略）
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -36,7 +40,7 @@ jobs:
         run: |
           git config user.name "vps-deals-bot"
           git config user.email "vps-deals-bot@users.noreply.github.com"
-          git add data/offers.json
+          git add data/offers.json data/history.json
           if git diff --cached --quiet; then
             echo "no data changes"
           else
