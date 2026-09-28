@@ -1,0 +1,72 @@
+title: What 1 vCPU and 2 GB RAM Actually Run: A Cheap VPS Sizing Guide
+date: 2026-09-28
+description: Stop guessing. A workload-to-spec table for cheap VPS plans, the unit math providers never show (GB vs GiB, Mbps to MB/s), and the three signs your $5 box is too small.
+gap: unit-conversion-and-sizing
+
+<h1>What 1 vCPU and 2 GB RAM Actually Run: A Cheap VPS Sizing Guide</h1>
+<p>
+  Every cheap VPS roundup lists specs. Almost none tell you what those specs can
+  actually <em>do</em>. This guide maps common workloads to minimum specs, shows the
+  unit math providers never print, and flags when a $5 box is enough — and when it isn't.
+</p>
+
+<h2>The short answer</h2>
+<div class="table-wrap">
+<table>
+  <tr><th>Workload</th><th>Minimum spec</th><th>Typical price band*</th><th>Why this is enough</th></tr>
+  <tr><td>Static site / personal blog</td><td>1 vCPU · 1 GB RAM</td><td>$4–6/mo</td><td>nginx serving static files barely sips CPU; 1 GB covers the OS plus cache.</td></tr>
+  <tr><td>WordPress, under ~10k visits/mo</td><td>1 vCPU · 2 GB RAM</td><td>$5–8/mo</td><td>PHP-FPM + MySQL want RAM more than CPU. 1 GB works until plugins pile up.</td></tr>
+  <tr><td>WireGuard VPN, 1–3 users</td><td>1 vCPU · 512 MB–1 GB RAM</td><td>$3–5/mo</td><td>Encryption is cheap; bandwidth and latency matter more than cores.</td></tr>
+  <tr><td>Dev / test box, a few Docker containers</td><td>2 vCPU · 4 GB RAM</td><td>$8–12/mo</td><td>Containers eat RAM first. 2 GB runs two or three light ones, then it swaps.</td></tr>
+  <tr><td>Small Minecraft server (&lt;10 players)</td><td>2 vCPU · 4 GB RAM</td><td>$8–12/mo</td><td>Minecraft is single-threaded and RAM-hungry; clock speed beats core count.</td></tr>
+  <tr><td>WooCommerce starter store</td><td>2 vCPU · 4 GB RAM</td><td>$10–15/mo</td><td>PHP workers plus the database. Skimp here and checkout slows under load.</td></tr>
+  <tr><td>High-bandwidth relay / seedbox</td><td>1–2 vCPU · 2 GB RAM</td><td>$5–10/mo</td><td>Bandwidth allowance matters more than CPU — check the TB cap, not the cores.</td></tr>
+</table>
+</div>
+<p><small>*Typical market range for unmanaged plans, September 2026. Managed plans cost roughly double.</small></p>
+
+<h2>The unit math nobody prints</h2>
+<h3>GB vs GiB: your 100 GB disk is 93.1 GiB</h3>
+<p>
+  Providers advertise decimal gigabytes (1 GB = 1,000,000,000 bytes). Your OS reports
+  gibibytes (1 GiB = 1,073,741,824 bytes). So a "100 GB" SSD shows up as about
+  <strong>93.1 GiB</strong> inside the machine. You didn't lose 7 GB — the units changed.
+  Same story for RAM: "8 GB" on the plan page is 7.45 GiB to the OS.
+</p>
+<h3>Mbps to MB/s: divide by 8</h3>
+<p>
+  A 1 Gbps port moves at most ~125 MB/s. A "100 Mbps unmetered" plan caps you at
+  12.5 MB/s — fine for a VPN, tight for a busy file mirror. When a provider quotes
+  bandwidth in TB per month, convert it to sustained speed:
+</p>
+<ul>
+  <li><strong>1 TB/month ≈ 3.1 Mbps sustained</strong> (1,000 GB × 8 ÷ 30 ÷ 24 ÷ 3,600)</li>
+  <li><strong>4 TB/month ≈ 12.3 Mbps sustained</strong> — enough for a small video relay, not for 4K streaming to many viewers</li>
+  <li>"Unmetered" usually still has a port-speed cap — read the fair-use clause, not the headline</li>
+</ul>
+<h3>vCPU: one thread's worth of time</h3>
+<p>
+  One vCPU is roughly one hyper-thread of a physical core, shared with neighbors.
+  Two kinds exist: <strong>dedicated</strong> (yours alone, costs more) and
+  <strong>shared/burstable</strong> (fine for spiky workloads, throttled under sustained
+  load). A $5 plan is almost always shared — great for a blog, bad for 24/7 video encoding.
+</p>
+
+<h2>The $5 trap: three signs your box is too small</h2>
+<ol>
+  <li><strong>Load average stays above your vCPU count.</strong> Run <code>uptime</code>: on a 1-vCPU box, a 15-minute load average persistently above 1.0 means the CPU queue never drains.</li>
+  <li><strong>Swap is in use.</strong> <code>free -m</code> showing used swap means RAM ran out and the disk is now pretending to be memory — everything gets 10–100× slower.</li>
+  <li><strong>OOM kills in the log.</strong> <code>dmesg | grep -i oom</code> returning lines means Linux already murdered a process to survive. Step up a tier.</li>
+</ol>
+<p>
+  None of these mean the provider is bad. They mean the workload outgrew the tier —
+  the normal, expected reason cheap-VPS buyers upgrade.
+</p>
+
+<h2>Before you commit: the 10-minute verification</h2>
+<ul>
+  <li><strong>Ping the test IP.</strong> Most budget providers publish one. Over 150 ms to your audience = pick another region.</li>
+  <li><strong>Check the looking glass.</strong> It shows real routing from the provider's network — more honest than any "premium network" claim.</li>
+  <li><strong>Start hourly if you can.</strong> Providers with per-hour billing let you benchmark for a day for cents before committing to a month.</li>
+  <li><strong>Read the renewal price.</strong> The headline is usually an intro rate. The number that matters is what month two costs.</li>
+</ul>

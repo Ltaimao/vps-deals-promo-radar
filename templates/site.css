@@ -598,3 +598,20 @@ td.num { font-variant-numeric: tabular-nums; }
   .deal-card { flex-direction: column; align-items: flex-start; gap: 10px; }
   .table-wrap { overflow-x: auto; }
 }
+
+/* ---------- 文章页 ---------- */
+.article h1 { font-size: 1.6rem; line-height: 1.35; margin: 0 0 14px; }
+.article h2 { font-size: 1.15rem; margin: 22px 0 10px; }
+.article h3 { font-size: 1rem; margin: 18px 0 8px; }
+.article p, .article li { font-size: .95rem; line-height: 1.75; color: var(--text-secondary); }
+.article ul, .article ol { margin: 0 0 12px 20px; }
+.article li { margin-bottom: 6px; }
+.article-date { color: var(--text-muted); font-size: .82rem; margin: 0 0 12px; }
+.article table { width: 100%; border-collapse: collapse; margin: 12px 0 16px; font-size: .88rem; }
+.article th, .article td { border: 1px solid var(--border); padding: 9px 10px; text-align: left; vertical-align: top; }
+.article th { background: var(--bg-soft); font-weight: 600; }
+.article-note p { font-size: .85rem; color: var(--text-muted); }
+@media (max-width: 720px) {
+  .article h1 { font-size: 1.3rem; }
+  .article .table-wrap { overflow-x: auto; }
+}

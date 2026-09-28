@@ -135,3 +135,11 @@ LANG zh
 ::BOUNDARY{never:编优惠 编价格 编佣金 编汇率 编折扣|scope:permanent}
 ::BOUNDARY{never:编邮箱 编公司 编资质 编用户数|scope:permanent}
 ::BOUNDARY{never:绕过反爬 伪造 UA 抓登录后内容 违反目标站 robots.txt|scope:permanent}
+::MODULE{ARTICLES|title:每日发布的内容页 第 10 步主线 cheap vps}
+# articles/ 下每篇一个 .html 文件：头部 frontmatter（title/date/description/gap 四行）+ 空行 + 正文 HTML。
+# build.py 渲染到 site/articles/<slug>/ 并写入 sitemap.xml；另生成 /articles/ 索引页。
+::RULE{每篇第一屏就是答案；独家内容不低于 30%；无中文原文痕迹；一篇只打一个缺口；同一个缺口不写第二篇}
+::RULE{正文里所有价格与日期必须来自 data/offers.json 或 data/history.json 的真实抓取值，并标注抓取日期；没有数据的断言不写}
+::RULE{不编造联盟链接；不抄对手原文一个字；结构和角度可以学}
+::RULE{文章 slug 用英文小写短横线；date 用文章发布当天日期 YYYY-MM-DD}
+::BOUNDARY{never:为凑字数编价格 编日期 编厂商承诺|scope:permanent}

@@ -49,6 +49,45 @@ def load_data():
         return json.load(f)
 
 
+def load_articles():
+    """读 articles/ 下的文章源文件。
+
+    文件格式: 头部 frontmatter(每行 key: value, 取 title/date/description/gap)
+    + 一个空行 + 正文 HTML。slug 取文件名(小写英文短横线)。
+    ::RULE{缺任一 frontmatter 字段就报错停下 不许带病发布}"""
+    adir = ROOT / "articles"
+    if not adir.is_dir():
+        return []
+    arts = []
+    for f in sorted(adir.glob("*.html")):
+        slug = f.stem.strip().lower()
+        if not re.fullmatch(r"[a-z0-9-]+", slug):
+            raise ValueError("article slug must be lowercase alnum/hyphen: " + f.name)
+        text = f.read_text(encoding="utf-8")
+        head, sep, body = text.partition("\n\n")
+        if not sep or not body.strip():
+            raise ValueError("article missing frontmatter/body separator: " + f.name)
+        meta = {}
+        for line in head.splitlines():
+            if ":" in line:
+                k, v = line.split(":", 1)
+                meta[k.strip().lower()] = v.strip()
+        for req in ("title", "date", "description", "gap"):
+            if req not in meta or not meta[req]:
+                raise ValueError("article %s missing frontmatter: %s" % (f.name, req))
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", meta["date"]):
+            raise ValueError("article %s date must be YYYY-MM-DD" % f.name)
+        arts.append({
+            "slug": slug,
+            "title": meta["title"],
+            "date": meta["date"],
+            "description": meta["description"],
+            "gap": meta["gap"],
+            "body": body.strip(),
+        })
+    return arts
+
+
 def load_cfg():
     return parse_ilang(ILANG_FILE)
 
@@ -92,7 +131,7 @@ def fill(template, mapping):
 
 
 def nav_html(active):
-    items = [("/", "Home"), ("/compare/", "Compare")]
+    items = [("/", "Home"), ("/compare/", "Compare"), ("/articles/", "Articles")]
     parts = []
     for href, label in items:
         cls = ' class="active"' if active == href else ""
@@ -793,6 +832,27 @@ def render_legal(ctx, data, cfg, base_url, tpl_name, crumb_label):
     return render_base(ctx, content, jsonld)
 
 
+def render_article(ctx, data, cfg, base_url, article):
+    """单篇内容页。正文 HTML 由作者手写，build 只做转义安全的字段替换；
+    价格/日期类断言的真实性由 I-Lang ::MODULE{ARTICLES} 约束，build 不校验内容真伪。"""
+    content = fill(load_template("article.html"), {
+        "{{CRUMBS}}": crumbs_html([("/", "Home"), ("/articles/", "Articles"), ("", article["title"])]),
+        "{{ARTICLE_DATE}}": "Published " + e(article["date"]),
+        "{{ARTICLE_BODY}}": article["body"],
+    })
+    jsonld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "url": ctx["canonical_url"],
+        "headline": article["title"],
+        "description": article["description"],
+        "datePublished": article["date"],
+        "inLanguage": ctx["lang"],
+        "isPartOf": {"@type": "WebSite", "url": base_url + "/"},
+    }, ensure_ascii=False)
+    return render_base(ctx, content, jsonld)
+
+
 def render_base(ctx, content_html, jsonld_text):
     base = load_template("_base.html")
     subs = {
@@ -1382,6 +1442,49 @@ def main():
               render_legal(c, data, cfg, base_url, tpl_name, crumb))
         all_paths.append({"path": slug + "/",
                           "lastmod": legal_updated or data["generated_at"]})
+
+    # 4d. 内容文章页 —— articles/*.html，每篇渲染到 /articles/<slug>/，进 sitemap；
+    #     另生成 /articles/ 索引页。见 .ilang ::MODULE{ARTICLES}。
+    articles = load_articles()
+    for a in articles:
+        c = dict(ctx_index)
+        c["title"] = a["title"]
+        c["meta_description"] = a["description"]
+        c["canonical_url"] = base_url + "/articles/" + a["slug"] + "/"
+        c["og_title"] = a["title"]
+        c["og_description"] = a["description"]
+        c["og_type"] = "article"
+        c["nav"] = nav_html("")
+        write(SITE / "articles" / a["slug"] / "index.html",
+              render_article(c, data, cfg, base_url, a))
+        all_paths.append({"path": "articles/" + a["slug"] + "/",
+                          "lastmod": a["date"]})
+    if articles:
+        _idx_rows = []
+        for a in sorted(articles, key=lambda x: x["date"], reverse=True):
+            _idx_rows.append(
+                '<div class="content-card"><p class="article-date">Published ' + e(a["date"]) + '</p>'
+                + '<h2><a href="/articles/' + a["slug"] + '/">' + e(a["title"]) + '</a></h2>'
+                + '<p>' + e(a["description"]) + '</p></div>')
+        _idx_article = {
+            "slug": "index", "title": "Articles", "date": articles[0]["date"],
+            "description": "Hands-on VPS buying guides with live-checked prices.",
+            "gap": "index",
+            "body": "\n".join(_idx_rows),
+        }
+        c = dict(ctx_index)
+        c["title"] = "Articles — " + ctx_index["brand"]
+        c["meta_description"] = "Hands-on VPS buying guides. Every price live-checked from the provider's own page."
+        c["canonical_url"] = base_url + "/articles/"
+        c["og_title"] = c["title"]
+        c["og_description"] = c["meta_description"]
+        c["og_type"] = "website"
+        c["nav"] = nav_html("")
+        write(SITE / "articles" / "index.html",
+              render_article(c, data, cfg, base_url, _idx_article))
+        all_paths.append({"path": "articles/",
+                          "lastmod": max(a["date"] for a in articles)})
+    print("  articles rendered:", len(articles))
 
     # 5. 样式表 —— 从 templates/ 拷到站点根，页面用 /site.css 引它
     css_src = TEMPLATES / "site.css"
