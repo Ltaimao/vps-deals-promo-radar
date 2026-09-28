@@ -18,13 +18,40 @@
 </div>
 <div class="content-card">
   <p>
-    Nothing that identifies you. This site has no accounts, no sign-up, no login,
-    no comment section, no newsletter, and no contact form. There is nothing here you
-    can type into.
+    Almost nothing. This site has no accounts, no login, no comment section, and
+    no contact form. The one thing you <em>can</em> give it is your email address —
+    only if you use the <strong>price-drop alerts</strong> form in the footer.
   </p>
   <p>
-    We do not ask for your name, your email address, or any other personal detail, and
-    there is no mechanism on this site through which you could give them to us.
+    <strong>If you subscribe, this is exactly what happens:</strong>
+  </p>
+  <ul>
+    <li>
+      Your address is stored in a Cloudflare KV store (on Cloudflare's
+      infrastructure, in the same account that hosts this site), together with a
+      random confirmation token and timestamps. Nothing else about you is stored —
+      no name, no IP address, no browsing history.
+    </li>
+    <li>
+      You receive <strong>one</strong> confirmation email
+      (<strong>double opt-in</strong>). Until you click the link in it, nothing
+      else is ever sent to you, and the pending record expires after 30 days.
+    </li>
+    <li>
+      After you confirm, you get an email only when a tracked deal drops to a new
+      lowest price. No newsletters, no digests, no marketing — the subscription
+      does one thing and the form says what it is.
+    </li>
+    <li>
+      Every email carries a <strong>one-click unsubscribe link</strong>. Clicking
+      it deletes all records for your address immediately — no retention, no
+      "are you sure" flow.
+    </li>
+  </ul>
+  <p>
+    We do not buy lists, we do not pre-tick anything, and subscribing is never
+    bundled with another feature. If you never touch the form, we never hold your
+    address.
   </p>
 </div>
 
@@ -145,8 +172,12 @@
 </div>
 <div class="content-card">
   <p>
-    Because this site collects no personal data, there is nothing to opt out of and no
-    profile to delete. If you believe we nonetheless hold something about you, write to
+    If you subscribed to price-drop alerts, every email has a one-click
+    unsubscribe link — immediate, and it deletes all records for your address.
+    There is nothing else to opt out of and no profile to delete.
+  </p>
+  <p>
+    If you believe we nonetheless hold something about you, write to
     <a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a> and we will look into it and
     remove it.
   </p>

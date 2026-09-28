@@ -550,6 +550,38 @@ td.num { font-variant-numeric: tabular-nums; }
 .site-footer p { margin: 0 0 7px; }
 .site-footer .flinks { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
 
+/* ---------- 页脚订阅 ---------- */
+.site-footer .subscribe {
+  background: #20304f;
+  border: 1px solid #2c3f63;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+.site-footer .subscribe label { display: block; color: #cfe0f5; margin-bottom: 10px; }
+.site-footer .subscribe-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.site-footer .subscribe input[type="email"] {
+  flex: 1 1 220px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid #3a4f78;
+  background: #141f38;
+  color: #fff;
+  font-size: .9rem;
+}
+.site-footer .subscribe button {
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-size: .9rem;
+  cursor: pointer;
+}
+.site-footer .subscribe button:hover { background: var(--primary-hover); }
+.site-footer .subscribe button:disabled { opacity: .6; cursor: default; }
+.site-footer .subscribe-msg { margin: 8px 0 0; min-height: 1.2em; color: #9fd08a; }
+
 /* ---------- 响应式 ---------- */
 @media (max-width: 720px) {
   .site-header .wrap { height: auto; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; gap: 12px; }

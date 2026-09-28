@@ -12,7 +12,7 @@ LANG zh
 
 # 隐私政策/关于/联系三页的修订日期。由人手动改，不跟数据刷新走 ——
 # 页面内容没变就不该动这个日期。
-::STATE{@LEGAL, legal_updated:2026-09-27}
+::STATE{@LEGAL, legal_updated:2026-09-28}
 
 ::MODULE{PROVIDERS|title:抓哪几家 这里改了 scraper 重启时 抓的可信公开源就变}
 # 格式: 名称 | 官网 | 优惠页或定价页或sitemap或feed | 联盟链接(可空)
@@ -91,6 +91,11 @@ LANG zh
   # 后哈希（价格不许进键）；历史数据源=git 里的 data/offers.json 快照链。
   price_history:true
   history_source:git(data/offers.json)
+  # Phase 4 (2026-09-28)：订阅。Worker+KV，double opt-in，一键退订；
+  # 发信走 Cloudflare Email Sending（事务性邮件，确认信+降价提醒）。
+  subscription:true
+  subscribe_endpoint:/api/subscribe
+  double_opt_in:true
 
 ::MODULE{SCHEDULE|title:更新频率}
   cron:0 */6 * * *
@@ -110,6 +115,9 @@ LANG zh
 ::RULE{Black Friday 页的日期 2026-11-27 是真实日历事实； tracked 厂商尚未发布 BF 专项优惠时如实写暂无 不许编造 BF 折扣}
 ::RULE{deal 身份键=provider_slug+offer_url+title 归一化小写去空白后哈希 价格不许进键 同一键多 title 即判歧义 宁可断开不许串联}
 ::RULE{价格历史只记录真实快照的价格变动点 缺失快照留空不许插值 图表必须标注快照数与起止日期}
+::RULE{订阅必须 double opt-in：提交只记 pending 点确认邮件后才激活 未确认永不发信}
+::RULE{每封订阅邮件必须带一键退订链接 退订立即删记录 不许挽留流程}
+::RULE{隐私政策必须与实际机制一致：收什么 存哪（KV） 发什么 谁发信；机制变了政策同步改}
 ::BOUNDARY{never:编优惠 编价格 编佣金 编汇率 编折扣|scope:permanent}
 ::BOUNDARY{never:编邮箱 编公司 编资质 编用户数|scope:permanent}
 ::BOUNDARY{never:绕过反爬 伪造 UA 抓登录后内容 违反目标站 robots.txt|scope:permanent}

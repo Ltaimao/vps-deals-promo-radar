@@ -38,6 +38,16 @@
 
 <footer class="site-footer">
   <div class="wrap">
+    <div class="subscribe">
+      <form id="subscribe-form" action="/api/subscribe" method="post">
+        <label for="subscribe-email"><strong>Price-drop alerts</strong> — one email when a tracked deal hits a new lowest price. Double opt-in, unsubscribe anytime.</label>
+        <div class="subscribe-row">
+          <input id="subscribe-email" name="email" type="email" required maxlength="254" placeholder="you@example.com" autocomplete="email">
+          <button type="submit">Notify me</button>
+        </div>
+        <p class="subscribe-msg" id="subscribe-msg" aria-live="polite"></p>
+      </form>
+    </div>
     <div class="flinks">
       <a href="/">Home</a>
       <a href="/compare/">Compare</a>
@@ -54,6 +64,39 @@
     <p>站点规则用 I-Lang 协议描述 · <a href="https://github.com/{{REPO_FULL}}">github.com/{{REPO_FULL}}</a> · 协议说明 <a href="https://ilang.ai">ilang.ai</a></p>
   </div>
 </footer>
+
+<script>
+(function () {
+  var form = document.getElementById("subscribe-form");
+  if (!form) return;
+  form.addEventListener("submit", function (e) {
+    // Without JS the form posts normally and the API answers with a page.
+    if (!window.fetch) return;
+    e.preventDefault();
+    var msg = document.getElementById("subscribe-msg");
+    var email = document.getElementById("subscribe-email").value.trim();
+    msg.textContent = "Sending…";
+    fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email: email })
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      if (d.ok) {
+        msg.textContent = "Check your inbox to confirm — the confirmation link expires in 30 days.";
+        form.querySelector("button").disabled = true;
+      } else if (d.error === "invalid_email") {
+        msg.textContent = "That email address doesn't look valid.";
+      } else if (d.error === "rate_limited") {
+        msg.textContent = "Too many attempts — try again later.";
+      } else {
+        msg.textContent = "Something went wrong — please try again.";
+      }
+    }).catch(function () {
+      msg.textContent = "Something went wrong — please try again.";
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
