@@ -364,9 +364,42 @@ def render_index(ctx, data, cfg, base_url):
 
 
 def render_provider(ctx, data, cfg, base_url, provider):
+    """厂商深评页。只写数据可验证的事实：状态、条数、价格区间、验证时间。
+    ::RULE{厂商深评页只写数据可验证的事实} —— 不许星级评分，不许优缺点，
+    不许性能/uptime 断言。"""
     slug = provider["slug"]
     logos = ctx.get("logos") or {}
     deals = [d for d in data["deals"] if d.get("provider_slug") == slug]
+
+    # ---- At a glance：全部由真实数据算出 ----
+    prices = [d.get("price") for d in deals if d.get("price") is not None]
+    cur = next((d.get("currency") for d in deals if d.get("currency")), "USD")
+    n_label = count_label(len(deals), is_capped(provider, len(deals)))
+    if provider["fetch_status"] == "ok":
+        status_html = '<span class="badge">reachable</span> <span class="num">HTTP 200</span>'
+    else:
+        status_html = ('<span class="badge unreachable">unreachable</span> '
+                       '<span class="num">HTTP ' + e(provider["http_code"]) + "</span>")
+    if prices:
+        price_range = money(min(prices), cur) + "/mo – " + money(max(prices), cur) + "/mo"
+        with_price = str(len(prices)) + " of " + str(len(deals))
+    else:
+        price_range = "—"
+        with_price = "0 of " + str(len(deals))
+    stats = [
+        ("Status", status_html, False),
+        ("Offers listed", e(n_label), False),
+        ("Price range", e(price_range), False),
+        ("With verified price", e(with_price), False),
+        ("Last checked", e(provider["fetched_at"][:19].replace("T", " ") + " UTC"), False),
+        ("Currency", e(cur), False),
+    ]
+    stat_grid = "\n".join(
+        '<div class="stat"><span class="k">' + k + "</span>"
+        '<span class="v">' + (v if not esc else e(v)) + "</span></div>"
+        for k, v, esc in stats
+    )
+
     if deals:
         rows = ['<div class="table-wrap"><table><thead><tr>'
                 '<th>Offer</th><th>Price</th><th>Currency</th><th>Source</th>'
@@ -397,18 +430,63 @@ def render_provider(ctx, data, cfg, base_url, provider):
                       'HTTP {} — provider page did not return 200. Try again on the next run, '
                       'or check the URL.</p></div>').format(e(provider["http_code"]))
 
+    # ---- 跟踪说明 + FAQ：只写流水线事实 ----
+    tracking_info = (
+        "<p>Every figure on this page is read from " + e(provider["name"]) +
+        "'s own public page (<a href=\"" + e(provider["source_url"]) +
+        "\" rel=\"noopener nofollow\">" + e(provider["source_url"]) +
+        "</a>) by an automated job that runs every 6 hours. "
+        "Nothing is estimated, converted, or written by hand. "
+        "The full pipeline is described on the "
+        "<a href=\"/methodology/\">methodology page</a>.</p>"
+    )
+    faqs = [
+        ("Where does the pricing data for " + provider["name"] + " come from?",
+         "From " + provider["name"] + "'s own public pricing page. Each entry links to "
+         "the exact page it was read from via its source link."),
+        ("How often is it updated?",
+         "Every 6 hours, together with the rest of this site. Each deal card shows "
+         "the exact time its entry was last verified."),
+        ("Why do some offers show no price?",
+         "An offer is published with a price only when price, currency, and URL can "
+         "all be verified together. Otherwise it is listed without a price rather "
+         "than with a guess."),
+        ("Is this a paid placement?",
+         "No. No provider can pay to be listed, ranked, or kept on this site."),
+    ]
+    faq_html = "\n".join(
+        "<details><summary>" + e(q) + "</summary><p>" + e(a) + "</p></details>"
+        for q, a in faqs
+    )
+
     content = fill(load_template("provider.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", e(provider["name"]))]),
         "{{PROVIDER_LOGO}}": logo_html(provider, logos, "avatar p-logo"),
         "{{PROVIDER_NAME}}": e(provider["name"]),
         "{{PROVIDER_URL}}": e(provider["url"]),
         "{{SOURCE_URL}}": e(provider["source_url"]),
-        "{{DEAL_COUNT}}": count_label(len(deals), is_capped(provider, len(deals))),
+        "{{DEAL_COUNT}}": n_label,
+        "{{STAT_GRID}}": stat_grid,
         "{{DEAL_TABLE}}": deal_table,
+        "{{TRACKING_INFO}}": tracking_info,
+        "{{FAQ}}": faq_html,
         "{{LAST_FETCHED_AT}}": e(provider["fetched_at"][:19].replace("T", " ") + " UTC"),
     })
 
-    jsonld = jsonld_service(provider, deals, base_url)
+    jsonld = json.dumps({
+        "@context": "https://schema.org",
+        "@graph": [
+            json.loads(jsonld_service(provider, deals, base_url)),
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {"@type": "Question", "name": q,
+                     "acceptedAnswer": {"@type": "Answer", "text": a}}
+                    for q, a in faqs
+                ],
+            },
+        ],
+    }, ensure_ascii=False)
 
     return render_base(ctx, content, jsonld)
 
@@ -483,6 +561,90 @@ def render_compare(ctx, data, cfg, base_url):
             "name": p["name"],
         })
     jsonld = jsonld_itemlist(itemlist, base_url)
+    return render_base(ctx, content, jsonld)
+
+
+def render_black_friday(ctx, data, cfg, base_url):
+    """Black Friday 2026 专题页。
+    ::RULE{Black Friday 页的日期 2026-11-27 是真实日历事实；暂无 BF 专项优惠时如实写}
+    页面内容全部来自真实数据：倒计时目标是 I-Lang 里声明的真实日期；
+    BF 专项优惠按标题含 black friday 检出（当前为 0 就如实写 0）；
+    「当前最低价」是全站真实价格排序的前 15。"""
+    bf_date = (cfg.get("RENDER") or {}).get("black_friday_date", "2026-11-27").strip()
+    try:
+        bf_label = datetime.fromisoformat(bf_date).strftime("%B %d, %Y")
+    except Exception:
+        bf_label = bf_date
+
+    # BF 专项优惠：标题里明确写 black friday 的才算，不许从普通优惠里挑
+    bf_deals = [d for d in data["deals"]
+                if "black friday" in (d.get("title") or "").lower()]
+    if bf_deals:
+        bf_block = ('<div class="content-card"><p><strong>' + str(len(bf_deals)) +
+                    "</strong> Black Friday offers published by tracked providers:</p></div>")
+    else:
+        bf_block = ('<div class="content-card"><p>No Black Friday–specific offers have been '
+                    "published by the tracked providers yet. This page rebuilds every 6 hours — "
+                    "anything a provider publishes will show up here on the next refresh.</p></div>")
+
+    # 当前全站最低价 top 15（真实价格排序）
+    priced = sorted(
+        [d for d in data["deals"] if d.get("price") is not None],
+        key=lambda d: float(d["price"]),
+    )[:15]
+    rows = []
+    for i, d in enumerate(priced, 1):
+        url = d.get("offer_url") or d.get("source_url") or "#"
+        rows.append(
+            '<tr><td class="num">' + str(i) + "</td>"
+            '<td><a href="/providers/' + e(d.get("provider_slug", "")) + '/">' +
+            e(d.get("provider_name", "")) + "</a></td>"
+            '<td><a href="' + e(url) + '" rel="noopener nofollow">' +
+            e(offer_label(d, i)) + "</a></td>"
+            '<td class="price-cell num">' + e(money(d.get("price"), d.get("currency")) or "—") +
+            "</td></tr>"
+        )
+    cheap_table = (
+        '<div class="table-wrap"><table><thead><tr><th>#</th><th>Provider</th>'
+        "<th>Offer</th><th>Price</th></tr></thead><tbody>\n" +
+        "\n".join(rows) + "\n</tbody></table></div>"
+    ) if rows else '<div class="content-card"><p>No priced offers right now.</p></div>'
+
+    countdown_js = (
+        "<script>(function(){"
+        "var target=new Date('" + e(bf_date) + "T00:00:00Z').getTime();"
+        "var el=document.getElementById('bf-countdown');"
+        "if(!el||isNaN(target))return;"
+        "function tick(){"
+        "var diff=target-Date.now();"
+        "if(diff<=0){el.textContent='Black Friday is here — check the offers below.';return;}"
+        "var d=Math.floor(diff/864e5),h=Math.floor(diff%864e5/36e5),"
+        "m=Math.floor(diff%36e5/6e4),s=Math.floor(diff%6e4/1e3);"
+        "el.textContent=d+'d '+h+'h '+m+'m '+s+'s';"
+        "}"
+        "tick();setInterval(tick,1000);"
+        "})();</script>"
+    )
+
+    content = fill(load_template("black-friday.html"), {
+        "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", "Black Friday 2026")]),
+        "{{BF_DATE_LABEL}}": e(bf_label),
+        "{{BF_DEAL_COUNT}}": str(len(bf_deals)),
+        "{{BF_DEAL_BLOCK}}": bf_block,
+        "{{CHEAP_TABLE}}": cheap_table,
+        "{{COUNTDOWN_JS}}": countdown_js,
+        "{{PROVIDER_COUNT}}": str(len(data["providers"])),
+    })
+
+    itemlist = []
+    for i, d in enumerate(priced):
+        itemlist.append({
+            "@type": "ListItem",
+            "position": i + 1,
+            "url": base_url + "/providers/" + d.get("provider_slug", "") + "/",
+            "name": d.get("provider_name", "") + " — " + (money(d.get("price"), d.get("currency")) or ""),
+        })
+    jsonld = jsonld_itemlist(itemlist, base_url) if itemlist else ""
     return render_base(ctx, content, jsonld)
 
 
@@ -901,6 +1063,26 @@ def main():
     write(SITE / "compare" / "index.html",
           render_compare(ctx, data, cfg, base_url))
     all_paths.append({"path": "compare/", "lastmod": data["generated_at"]})
+
+    # 4c. Black Friday 2026 专题页 —— 日期是 I-Lang 里声明的真实日历事实，
+    #     内容全部来自真实数据；暂无 BF 专项优惠时如实写暂无。
+    _bf_title = "Black Friday VPS Deals 2026 — " + str(len(data["providers"])) + " Providers"
+    if _all_prices:
+        _bf_title += " from " + money(min(_all_prices), _cur) + "/mo"
+    _bf_desc = ("Black Friday 2026 VPS deals (" +
+                (cfg.get("RENDER") or {}).get("black_friday_date", "2026-11-27").strip() +
+                "), verified from each provider's own page and refreshed every 6 hours.")
+    c = dict(ctx_index)
+    c["title"] = _bf_title
+    c["meta_description"] = _bf_desc
+    c["canonical_url"] = base_url + "/black-friday/"
+    c["og_title"] = "Black Friday VPS Deals 2026"
+    c["og_description"] = _bf_desc
+    c["og_type"] = "website"
+    c["nav"] = nav_html("")
+    write(SITE / "black-friday" / "index.html",
+          render_black_friday(c, data, cfg, base_url))
+    all_paths.append({"path": "black-friday/", "lastmod": data["generated_at"]})
 
     # 4b. 隐私政策 / 关于 / 联系 / 方法论 —— 必备页。页脚链接指向它们，
     # 一起进 sitemap。正文里没有任何编造的资质、公司名或邮箱。

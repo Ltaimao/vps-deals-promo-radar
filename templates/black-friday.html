@@ -1,0 +1,41 @@
+<div class="crumbs">{{CRUMBS}}</div>
+
+<section class="hero hero-slim">
+  <h1>Black Friday VPS Deals 2026</h1>
+  <p>Black Friday 2026 falls on <strong>{{BF_DATE_LABEL}}</strong>. This page collects
+  every Black Friday offer our {{PROVIDER_COUNT}} tracked providers publish —
+  verified from their own pages, refreshed every 6 hours.</p>
+  <div class="countdown" id="bf-countdown" aria-live="polite">…</div>
+</section>
+
+<div class="section-heading">
+  <h2>Black Friday offers ({{BF_DEAL_COUNT}})</h2>
+</div>
+{{BF_DEAL_BLOCK}}
+
+<div class="section-heading">
+  <h2>Cheapest live offers right now</h2>
+</div>
+<div class="content-card">
+  <p>
+    While providers publish their Black Friday lineups, these are the lowest verified
+    prices across the site today — a baseline to judge any November deal against.
+  </p>
+</div>
+{{CHEAP_TABLE}}
+
+<div class="section-heading">
+  <h2>How this page works</h2>
+</div>
+<div class="content-card">
+  <ul>
+    <li>An offer appears above only when a tracked provider publishes it as a
+      Black Friday offer on its own public page. We do not guess, convert, or
+      invent discounts.</li>
+    <li>Every entry links back to the provider page it was read from, with the
+      exact verification time.</li>
+    <li>The page rebuilds automatically every 6 hours through the same pipeline
+      described on the <a href="/methodology/">methodology page</a>.</li>
+  </ul>
+</div>
+{{COUNTDOWN_JS}}

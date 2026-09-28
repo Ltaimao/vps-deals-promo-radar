@@ -109,6 +109,14 @@ main { padding: 26px 0 40px; }
   letter-spacing: -.02em;
 }
 .hero p { margin: 0; opacity: .92; font-size: .96rem; }
+.hero-slim { padding: 24px 28px; }
+.countdown {
+  margin-top: 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  font-variant-numeric: tabular-nums;
+}
 .hero-stats {
   display: flex;
   gap: 30px;
@@ -336,6 +344,48 @@ a.cell-provider .avatar.is-wide {
   color: var(--text-muted);
   margin-left: 3px;
 }
+
+/* ---------- 深评页：数据一览 ---------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.stat .k {
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.stat .v { font-size: 1.02rem; font-weight: 700; color: var(--text-primary); }
+
+/* ---------- FAQ ---------- */
+.faq details {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+}
+.faq summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+.faq details p { margin: 8px 0 2px; color: var(--text-secondary, #444); }
 
 /* ---------- 徽标 ---------- */
 .badge {

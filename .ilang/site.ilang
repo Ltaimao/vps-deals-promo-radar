@@ -82,6 +82,11 @@ LANG zh
   deal_card_verified_from:fetched_at
   deal_filters:price,provider
   methodology:/methodology/
+  # Phase 2 (2026-09-28)：厂商页升级为深评模板（只写数据事实，不写评分/优缺点）；
+  # Black Friday 2026 专题页（2026-11-27，周五，真实日历事实）。
+  provider_review:true
+  black_friday:/black-friday/
+  black_friday_date:2026-11-27
 
 ::MODULE{SCHEDULE|title:更新频率}
   cron:0 */6 * * *
@@ -97,6 +102,8 @@ LANG zh
 ::RULE{deal 卡片必须显示 fetched_at 对应的最后验证时间 写绝对时间 不许只写"几天前"这类相对时间 拿不到 fetched_at 就不显示 不许编}
 ::RULE{首页优惠列表的筛选是纯客户端行为 按价格和厂商过滤 不新增网址 不调接口 关掉 JS 时全部优惠默认可见}
 ::RULE{方法论页 /methodology/ 只写实测可验证的流水线事实：数据来源 更新频率 提取字段 质检规则 与 about 页互补不重复}
+::RULE{厂商深评页只写数据可验证的事实：价格区间 条数 抓取状态 验证时间 不许写星级评分 优缺点 性能或 uptime 断言}
+::RULE{Black Friday 页的日期 2026-11-27 是真实日历事实； tracked 厂商尚未发布 BF 专项优惠时如实写暂无 不许编造 BF 折扣}
 ::BOUNDARY{never:编优惠 编价格 编佣金 编汇率 编折扣|scope:permanent}
 ::BOUNDARY{never:编邮箱 编公司 编资质 编用户数|scope:permanent}
 ::BOUNDARY{never:绕过反爬 伪造 UA 抓登录后内容 违反目标站 robots.txt|scope:permanent}
