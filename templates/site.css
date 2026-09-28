@@ -78,6 +78,11 @@ a:hover { color: var(--primary-hover); }
   margin-right: 7px;
   vertical-align: middle;
 }
+.brand .brand-mark {
+  width: 26px; height: 26px;
+  vertical-align: -6px;
+  margin-right: 8px;
+}
 .site-nav { display: flex; gap: 4px; margin-left: auto; }
 .site-nav a {
   padding: 7px 14px;

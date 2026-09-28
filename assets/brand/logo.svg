@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 64">
+  <g>
+    <rect x="2" y="2" width="60" height="60" rx="14" fill="#172033"/>
+    <circle cx="32" cy="32" r="20" fill="none" stroke="#47639e" stroke-width="2.5"/>
+    <circle cx="32" cy="32" r="12" fill="none" stroke="#2e4a82" stroke-width="2"/>
+    <g stroke="#2e4a82" stroke-width="2" stroke-linecap="round">
+      <line x1="32" y1="10" x2="32" y2="18"/>
+      <line x1="32" y1="46" x2="32" y2="54"/>
+      <line x1="10" y1="32" x2="18" y2="32"/>
+      <line x1="46" y1="32" x2="54" y2="32"/>
+    </g>
+    <path d="M32 32 L32 12 A20 20 0 0 1 49.32 22 Z" fill="#1677ff" opacity="0.9"/>
+    <circle cx="39" cy="20" r="6.5" fill="#2fc963" opacity="0.28"/>
+    <circle cx="39" cy="20" r="3.2" fill="#2fc963"/>
+    <circle cx="32" cy="32" r="2.6" fill="#9db9f2"/>
+  </g>
+  <text x="78" y="41" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Segoe UI',system-ui,sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5"><tspan fill="#1677ff">VPS </tspan><tspan fill="#172033">Deals Wire</tspan></text>
+</svg>

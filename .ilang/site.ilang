@@ -96,6 +96,11 @@ LANG zh
   subscription:true
   subscribe_endpoint:/api/subscribe
   double_opt_in:true
+  # 品牌资产（2026-09-28）："Deal Radar" mark —— 深海军蓝圆角底 + 雷达环 +
+  # 蓝色扫描扇 + 绿色降价光点；呼应仓库名 promo-radar。favicon.ico(16/32/48)、
+  # icon.svg、apple-touch-icon.png(180)、logo.svg（横版全名）。
+  brand_mark:/icon.svg
+  brand_logo:/logo.svg
 
 ::MODULE{SCHEDULE|title:更新频率}
   cron:0 */6 * * *

@@ -1387,6 +1387,14 @@ def main():
     if css_src.exists():
         write(SITE / "site.css", css_src.read_text(encoding="utf-8"))
 
+    # 5b. 品牌资产 —— assets/brand/ 的 logo.svg / icon.svg / favicon.ico /
+    #     apple-touch-icon.png 拷到站点根（_base.html 的 head 引用它们）
+    brand_src = ROOT / "assets" / "brand"
+    for _name in ("logo.svg", "icon.svg", "favicon.ico", "apple-touch-icon.png"):
+        _src = brand_src / _name
+        if _src.exists():
+            shutil.copyfile(_src, SITE / _name)
+
     # 6. sitemap.xml + robots.txt
     write_sitemap(all_paths, SITE / "sitemap.xml", base_url)
     write_robots(SITE / "robots.txt", base_url)
