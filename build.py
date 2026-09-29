@@ -1502,6 +1502,15 @@ def main():
               render_article(c, data, cfg, base_url, _idx_article))
         all_paths.append({"path": "articles/",
                           "lastmod": max(a["date"] for a in articles)})
+    # 4e. 文章配图 —— static/articles/<slug>.png 拷到 site/articles/<slug>.png
+    #     （正文引用 /articles/<slug>.png；5c 的 static/ 根拷贝不进子目录，这里单独处理；
+    #     见 .ilang ::MODULE{ARTICLES} 配图规则）
+    _art_img_src = ROOT / "static" / "articles"
+    if _art_img_src.is_dir():
+        (SITE / "articles").mkdir(parents=True, exist_ok=True)
+        for _img in sorted(_art_img_src.glob("*.png")):
+            if _img.is_file():
+                shutil.copyfile(_img, SITE / "articles" / _img.name)
     print("  articles rendered:", len(articles))
 
     # 5. 样式表 —— 从 templates/ 拷到站点根，页面用 /site.css 引它

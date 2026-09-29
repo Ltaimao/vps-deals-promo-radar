@@ -150,6 +150,9 @@ LANG zh
 ::MODULE{ARTICLES|title:每日发布的内容页 第 10 步主线 cheap vps}
 # articles/ 下每篇一个 .html 文件：头部 frontmatter（title/date/description/gap 四行）+ 空行 + 正文 HTML。
 # build.py 渲染到 site/articles/<slug>/ 并写入 sitemap.xml；另生成 /articles/ 索引页。
+# 配图：static/articles/<slug>.png（1200x630），build.py 拷到 site/articles/<slug>.png，
+# 正文用 <img src="/articles/<slug>.png" alt="..."> 引用。新旧文章补图都走这条路径。
+::RULE{文章配图只认 static/articles/<slug>.png；build 必须把它拷到 /articles/<slug>.png；缺图就无图发布，不许编占位图}
 ::RULE{每篇第一屏就是答案；独家内容不低于 30%；无中文原文痕迹；一篇只打一个缺口；同一个缺口不写第二篇}
 ::RULE{正文里所有价格与日期必须来自 data/offers.json 或 data/history.json 的真实抓取值，并标注抓取日期；没有数据的断言不写}
 ::RULE{不编造联盟链接；不抄对手原文一个字；结构和角度可以学}
