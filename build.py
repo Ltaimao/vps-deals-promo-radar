@@ -871,6 +871,7 @@ def render_base(ctx, content_html, jsonld_text):
         "{{LAST_FETCHED_AT}}": e(ctx["last_fetched_at"]),
         "{{REPO_FULL}}": e(ctx["repo_full"]),
         "{{JSONLD}}": jsonld_text,
+        "{{GA4_TAG}}": ctx.get("ga4_tag", ""),
     }
     out = base
     for k, v in subs.items():
@@ -1211,6 +1212,22 @@ def main():
         sys.exit(1)
     legal_updated = site_cfg.get("legal_updated", "")
 
+    # GA4 标签：衡量 ID 只从 .ilang ::MODULE{ANALYTICS} 读（I-Lang RULE），
+    # 这里拼好整段标签，模板里只放 {{GA4_TAG}} 占位符，不许手写 ID。
+    _analytics = cfg.get("ANALYTICS", {})
+    _ga4_id = _analytics.get("ga4_measurement_id", "").strip()
+    if _analytics.get("ga4_enabled") == "true" and _ga4_id:
+        ga4_tag = (
+            '<script async src="https://www.googletagmanager.com/gtag/js?id='
+            + _ga4_id + '"></script>\n'
+            '<script>\nwindow.dataLayer = window.dataLayer || [];\n'
+            'function gtag(){dataLayer.push(arguments);}\n'
+            'gtag("js", new Date());\n'
+            'gtag("config", "' + _ga4_id + '");\n</script>'
+        )
+    else:
+        ga4_tag = ""
+
     # Ensure site/ exists. Don't bulk-delete: per-file overwrite is safe,
     # and stale orphan pages are pruned only via the workflow's git diff/commit.
     SITE.mkdir(exist_ok=True)
@@ -1294,6 +1311,7 @@ def main():
         "repo_full": repo_full,
         "contact_email": contact_email,
         "legal_updated": legal_updated,
+        "ga4_tag": ga4_tag,
         "brand_display": brand,
         "hreflang_tags": "",
         "logos": logos,

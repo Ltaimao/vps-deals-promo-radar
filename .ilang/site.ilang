@@ -12,7 +12,7 @@ LANG zh
 
 # 隐私政策/关于/联系三页的修订日期。由人手动改，不跟数据刷新走 ——
 # 页面内容没变就不该动这个日期。
-::STATE{@LEGAL, legal_updated:2026-09-28}
+::STATE{@LEGAL, legal_updated:2026-09-29}
 
 ::MODULE{PROVIDERS|title:抓哪几家 这里改了 scraper 重启时 抓的可信公开源就变}
 # 格式: 名称 | 官网 | 优惠页或定价页或sitemap或feed | 联盟链接(可空)
@@ -111,6 +111,18 @@ LANG zh
 ::MODULE{SCHEDULE|title:更新频率}
   cron:0 */6 * * *
   timezone:UTC
+
+::MODULE{ANALYTICS|title:统计分析 衡量 ID 只写在这里 build.py 渲染标签时来读 不许在模板或代码里写死另一个 ID}
+  ga4_enabled:true
+  ga4_measurement_id:G-X9HXH2TNH7
+  ga4_stream_id:15862740471
+  ga4_account:VPS Deals Wire
+  ga4_installed:2026-09-29
+  # YouTube 频道（2026-09-29 新建，品牌账号流程）：名称 VPS Deals Wire，
+  # handle @VPSDealsWire，频道页 https://www.youtube.com/@VPSDealsWire，
+  # 频道 ID UCfgVJrtBJSeViu95AnaQxyA。原个人频道 "Amo li"(@ltaimao) 保留不动。
+
+::RULE{GA4 衡量 ID 只从 .ilang 的 ANALYTICS 读 build.py 拼标签 模板里只留占位符 不许手写 ID}
 
 ::RULE{抓不到 price ⇒ 这条不写 price 字段 也不进结构化数据 不许拿估的填}
 ::RULE{valid_until 已过 ⇒ 标记 expired 不许留着冒充有效}
