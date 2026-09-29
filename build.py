@@ -77,10 +77,14 @@ def load_articles():
                 raise ValueError("article %s missing frontmatter: %s" % (f.name, req))
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", meta["date"]):
             raise ValueError("article %s date must be YYYY-MM-DD" % f.name)
+        _updated = meta.get("updated", "").strip()
+        if _updated and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", _updated):
+            raise ValueError("article %s updated must be YYYY-MM-DD" % f.name)
         arts.append({
             "slug": slug,
             "title": meta["title"],
             "date": meta["date"],
+            "updated": _updated,
             "description": meta["description"],
             "gap": meta["gap"],
             "body": body.strip(),
@@ -835,9 +839,12 @@ def render_legal(ctx, data, cfg, base_url, tpl_name, crumb_label):
 def render_article(ctx, data, cfg, base_url, article):
     """单篇内容页。正文 HTML 由作者手写，build 只做转义安全的字段替换；
     价格/日期类断言的真实性由 I-Lang ::MODULE{ARTICLES} 约束，build 不校验内容真伪。"""
+    _date_line = "Published " + e(article["date"])
+    if article.get("updated"):
+        _date_line += " · Updated " + e(article["updated"])
     content = fill(load_template("article.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("/articles/", "Articles"), ("", article["title"])]),
-        "{{ARTICLE_DATE}}": "Published " + e(article["date"]),
+        "{{ARTICLE_DATE}}": _date_line,
         "{{ARTICLE_BODY}}": article["body"],
     })
     jsonld = json.dumps({
@@ -847,6 +854,7 @@ def render_article(ctx, data, cfg, base_url, article):
         "headline": article["title"],
         "description": article["description"],
         "datePublished": article["date"],
+        **({"dateModified": article["updated"]} if article.get("updated") else {}),
         "inLanguage": ctx["lang"],
         "isPartOf": {"@type": "WebSite", "url": base_url + "/"},
     }, ensure_ascii=False)

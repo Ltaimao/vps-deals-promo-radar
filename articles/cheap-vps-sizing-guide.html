@@ -1,9 +1,10 @@
-title: What 1 vCPU and 2 GB RAM Actually Run: A Cheap VPS Sizing Guide
+title: What 1 vCPU and 2 GB RAM Actually Run: A Cheap VPS Sizing Guide (Sep. 2026)
 date: 2026-09-28
+updated: 2026-09-29
 description: Stop guessing. A workload-to-spec table for cheap VPS plans, the unit math providers never show (GB vs GiB, Mbps to MB/s), and the three signs your $5 box is too small.
 gap: unit-conversion-and-sizing
 
-<h1>What 1 vCPU and 2 GB RAM Actually Run: A Cheap VPS Sizing Guide</h1>
+<h1>What 1 vCPU and 2 GB RAM Actually Run: A Cheap VPS Sizing Guide (Sep. 2026)</h1>
 <p>
   Every cheap VPS roundup lists specs. Almost none tell you what those specs can
   actually <em>do</em>. This guide maps common workloads to minimum specs, shows the
@@ -13,17 +14,18 @@ gap: unit-conversion-and-sizing
 <h2>The short answer</h2>
 <div class="table-wrap">
 <table>
-  <tr><th>Workload</th><th>Minimum spec</th><th>Typical price band*</th><th>Why this is enough</th></tr>
-  <tr><td>Static site / personal blog</td><td>1 vCPU · 1 GB RAM</td><td>$4–6/mo</td><td>nginx serving static files barely sips CPU; 1 GB covers the OS plus cache.</td></tr>
-  <tr><td>WordPress, under ~10k visits/mo</td><td>1 vCPU · 2 GB RAM</td><td>$5–8/mo</td><td>PHP-FPM + MySQL want RAM more than CPU. 1 GB works until plugins pile up.</td></tr>
-  <tr><td>WireGuard VPN, 1–3 users</td><td>1 vCPU · 512 MB–1 GB RAM</td><td>$3–5/mo</td><td>Encryption is cheap; bandwidth and latency matter more than cores.</td></tr>
-  <tr><td>Dev / test box, a few Docker containers</td><td>2 vCPU · 4 GB RAM</td><td>$8–12/mo</td><td>Containers eat RAM first. 2 GB runs two or three light ones, then it swaps.</td></tr>
-  <tr><td>Small Minecraft server (&lt;10 players)</td><td>2 vCPU · 4 GB RAM</td><td>$8–12/mo</td><td>Minecraft is single-threaded and RAM-hungry; clock speed beats core count.</td></tr>
-  <tr><td>WooCommerce starter store</td><td>2 vCPU · 4 GB RAM</td><td>$10–15/mo</td><td>PHP workers plus the database. Skimp here and checkout slows under load.</td></tr>
-  <tr><td>High-bandwidth relay / seedbox</td><td>1–2 vCPU · 2 GB RAM</td><td>$5–10/mo</td><td>Bandwidth allowance matters more than CPU — check the TB cap, not the cores.</td></tr>
+  <tr><th>Workload</th><th>Minimum spec</th><th>Typical price band*</th><th>Renewal price**</th><th>Why this is enough</th></tr>
+  <tr><td>Static site / personal blog</td><td>1 vCPU · 1 GB RAM</td><td>$4–6/mo</td><td>—</td><td>nginx serving static files barely sips CPU; 1 GB covers the OS plus cache.</td></tr>
+  <tr><td>WordPress, under ~10k visits/mo</td><td>1 vCPU · 2 GB RAM</td><td>$5–8/mo</td><td>—</td><td>PHP-FPM + MySQL want RAM more than CPU. 1 GB works until plugins pile up.</td></tr>
+  <tr><td>WireGuard VPN, 1–3 users</td><td>1 vCPU · 512 MB–1 GB RAM</td><td>$3–5/mo</td><td>—</td><td>Encryption is cheap; bandwidth and latency matter more than cores.</td></tr>
+  <tr><td>Dev / test box, a few Docker containers</td><td>2 vCPU · 4 GB RAM</td><td>$8–12/mo</td><td>—</td><td>Containers eat RAM first. 2 GB runs two or three light ones, then it swaps.</td></tr>
+  <tr><td>Small Minecraft server (&lt;10 players)</td><td>2 vCPU · 4 GB RAM</td><td>$8–12/mo</td><td>—</td><td>Minecraft is single-threaded and RAM-hungry; clock speed beats core count.</td></tr>
+  <tr><td>WooCommerce starter store</td><td>2 vCPU · 4 GB RAM</td><td>$10–15/mo</td><td>—</td><td>PHP workers plus the database. Skimp here and checkout slows under load.</td></tr>
+  <tr><td>High-bandwidth relay / seedbox</td><td>1–2 vCPU · 2 GB RAM</td><td>$5–10/mo</td><td>—</td><td>Bandwidth allowance matters more than CPU — check the TB cap, not the cores.</td></tr>
 </table>
 </div>
-<p><small>*Typical market range for unmanaged plans, September 2026. Managed plans cost roughly double.</small></p>
+<p><small>*Typical market range for unmanaged plans, September 2026. Managed plans cost roughly double.<br>
+**Renewal prices are not tracked yet — "—" means we have no verified data, not that the price stays the same. The headline price is usually an intro rate; the number that matters is what month two costs.</small></p>
 
 <h2>The unit math nobody prints</h2>
 <h3>GB vs GiB: your 100 GB disk is 93.1 GiB</h3>
@@ -70,3 +72,42 @@ gap: unit-conversion-and-sizing
   <li><strong>Start hourly if you can.</strong> Providers with per-hour billing let you benchmark for a day for cents before committing to a month.</li>
   <li><strong>Read the renewal price.</strong> The headline is usually an intro rate. The number that matters is what month two costs.</li>
 </ul>
+
+<h2>Quick answers</h2>
+<h3>How much RAM does WordPress really need on a VPS?</h3>
+<p>
+  For under ~10k visits a month, 1 vCPU with 2 GB RAM is the honest minimum —
+  PHP-FPM and MySQL want RAM more than CPU. 1 GB works until plugins pile up,
+  then the site starts swapping and admin pages crawl.
+</p>
+<h3>How much RAM per player does a Minecraft server need?</h3>
+<p>
+  Budget roughly 1 GB of RAM per 5 players. A server for under 10 players wants
+  2 vCPU with 4 GB RAM — Minecraft is single-threaded and RAM-hungry, so clock
+  speed and memory matter more than core count.
+</p>
+<h3>What does "1 TB bandwidth" actually mean?</h3>
+<p>
+  About 3.1 Mbps of sustained transfer if you spread it evenly across a month
+  (1,000 GB × 8 ÷ 30 ÷ 24 ÷ 3,600). That's plenty for a VPN or a small relay,
+  tight for anything serving video. For bandwidth-heavy workloads, read the TB
+  cap — not the core count — before you buy.
+</p>
+<h3>Will my site be slow because it's cheap?</h3>
+<p>
+  Usually no — cheap plans are slow because they're undersized, not because the
+  provider is bad. Run the three checks above: if load average stays above your
+  vCPU count, swap is in use, or the log shows OOM kills, the workload outgrew
+  the tier and it's time to step up.
+</p>
+<h3>Does the price renew higher next month?</h3>
+<p>
+  Often yes: the headline price is usually an intro rate, and month two is the
+  number that matters. We don't track renewal prices yet (see the "—" column
+  above) — read the provider's terms page before you buy, not the promo banner.
+</p>
+<h3>Can I run a VPN on the cheapest plan?</h3>
+<p>
+  Yes. A WireGuard VPN for 1–3 users runs fine on 1 vCPU with 512 MB–1 GB RAM,
+  typically $3–5/mo. Encryption is cheap — bandwidth allowance and latency to
+  your users matter far more than cores.</p>

@@ -1,0 +1,109 @@
+title: Are Cheap VPS Deals Still Valid? A Date-First Q&A
+date: 2026-09-29
+description: Deal pages quote prices with no dates. Five questions answered with this site's own dated price data — 224 offers re-verified 2026-09-29, refreshed every 6 hours.
+gap: question-cheap-vps-deals-still-valid
+
+<h1>Are Cheap VPS Deals Still Valid? A Date-First Q&A</h1>
+<img src="/articles/cheap-vps-deals-still-valid.png" alt="Illustration of a calendar page with a verification checkmark over server racks: every price needs a date">
+<p>
+  A price without a date is a rumor. This Q&amp;A answers the five questions
+  readers actually ask about cheap VPS deal pages — using this site's own
+  price database, where every figure carries the exact moment it was last
+  verified.
+</p>
+
+<h2>Q1: Is this cheap VPS price still valid?</h2>
+<p><strong>The 10-second check:</strong> look for a date on the page. If the page shows when the price was last checked — or when the offer expires — you have something to trust. If it doesn't, assume the number is stale until proven otherwise.</p>
+<div class="table-wrap">
+<table>
+  <tr><th>What you see</th><th>Verdict</th><th>Why</th></tr>
+  <tr><td>A "last checked" or "updated" date</td><td>Probably valid</td><td>You know the price's age; verify it against the provider page if the date is old.</td></tr>
+  <tr><td>An expiry date on the coupon</td><td>Valid until that date</td><td>Rare — see Q4 for why almost nobody publishes one.</td></tr>
+  <tr><td>No date at all, just "$3/mo"</td><td>Unverifiable</td><td>The page could have been written years ago. Two of the three biggest cheap-VPS roundups we audited (29 pages, 2026-09-28) print prices with no survey date on most pages.</td></tr>
+  <tr><td>"Was $8, now $2" with no dates</td><td>Marketing</td><td>Without a when, a "was" price is decoration.</td></tr>
+</table>
+</div>
+
+<h2>Q2: Why does every price on this site carry a date?</h2>
+<p>
+  Because we got tired of undated deal pages too. Every deal card on
+  vpsdealswire.com shows a <code>fetched_at</code> timestamp — the exact moment
+  that price was read from the provider's own page, written as an absolute
+  date and time, never "a few days ago".
+</p>
+<p>Here is what the tracker reported this morning:</p>
+<div class="table-wrap">
+<table>
+  <tr><th>Fact</th><th>Value</th><th>Checked</th></tr>
+  <tr><td>Offers tracked</td><td>224</td><td rowspan="3">2026-09-29, 08:21 Beijing time (00:21 UTC)</td></tr>
+  <tr><td>Providers covered</td><td>31</td></tr>
+  <tr><td>Refresh cadence</td><td>Every 6 hours</td></tr>
+  <tr><td>Price history depth</td><td>22 snapshots, back to 2026-09-23</td><td>2026-09-29</td></tr>
+</table>
+</div>
+<p>
+  That is the whole point of this article's gap: <em>dated</em> price data.
+  A $4 plan means nothing without "as of this morning". With it, you can
+  decide whether to trust the number or click through and re-check.
+</p>
+
+<h2>Q3: Why is the same VPS listed at $0.01 and $4?</h2>
+<p>
+  <strong>Because a price without a billing unit is as useless as a price
+  without a date.</strong> This morning's snapshot shows the trap clearly:
+  DigitalOcean, Kamatera, CloudCone, and Liquid Web all have entries priced
+  at $0.01–$0.03 — but the listing titles say "per-sec billing",
+  "Hourly rate", and "Hourly Compute". Those are per-second or per-hour
+  figures, not $0.01/month plans. A $4/month Droplet and a $0.01/hour
+  listing can describe the same machine.
+</p>
+<p>Before you compare two prices, confirm three things match:</p>
+<ol>
+  <li><strong>The billing unit</strong> — monthly, hourly, or per-second.</li>
+  <li><strong>The date</strong> — when each figure was last verified.</li>
+  <li><strong>The billing term</strong> — first-month promo vs. ongoing rate.</li>
+</ol>
+<p>
+  In our database, 47 of 224 entries price at or under $5 — but the sub-$1
+  ones are hourly-billed listings, not monthly plans. Strip those out and the
+  real entry-level monthly band starts around $1–2/mo.
+</p>
+
+<h2>Q4: The post says "coupon: $2/mo" — is the coupon still good?</h2>
+<p>
+  <strong>Probably unknowable from the post alone.</strong> Here is a telling
+  number from our own feed: of the 224 offers we track across 31 providers,
+  <strong>zero</strong> carry a provider-published expiry date. Providers
+  simply don't ship machine-readable "valid until" fields on their pricing
+  pages, so deal blogs can't show them either — they can only show the
+  date <em>they</em> last verified the deal.
+</p>
+<p>When a coupon's fate is unclear, run this checklist:</p>
+<ol>
+  <li>Check the post's date or the site's "last verified" stamp.</li>
+  <li>Click through to the provider's pricing or checkout page — dead coupons usually fail loudly there.</li>
+  <li>On this site, use the deal card's <code>fetched_at</code> time: if we verified the price this morning and the provider page agrees, the deal is alive.</li>
+</ol>
+
+<h2>Q5: How fresh should deal data be?</h2>
+<p>
+  <strong>Fresh enough that a price change can't hide between checks.</strong>
+  VPS promos rotate constantly — especially around events like Black Friday —
+  so we re-read all 31 provider pages every 6 hours and keep 22 snapshots
+  going back to 2026-09-23. One bad scrape can't fake a trend when the next
+  check lands six hours later.
+</p>
+<p>
+  What should you demand from any deal page? Three things: a visible
+  verification date, a stated refresh cadence, and prices read from the
+  provider's own page rather than copied from another roundup. Credit where
+  it's due: of the three big roundups we audited, hostingadvice does date
+  its list (marked updated 2026-09-25). The other two mostly don't — which is
+  exactly the gap this article fills.
+</p>
+<p>
+  <small>All figures above come from this site's own scraper output
+  (<code>data/offers.json</code>, <code>data/history.json</code>), last
+  generated 2026-09-29. Prices are in USD as listed by each provider.
+  See <a href="/methodology/">how the numbers are made</a>.</small>
+</p>
