@@ -842,10 +842,17 @@ def render_article(ctx, data, cfg, base_url, article):
     _date_line = "Published " + e(article["date"])
     if article.get("updated"):
         _date_line += " · Updated " + e(article["updated"])
+    _body = article["body"]
+    # 移动端防溢出：正文里的 <table> 统一包进 .table-wrap（CSS 在 ≤720px 给它
+    # overflow-x:auto），避免宽表把 375px 页面撑破。body 是手写源文件，
+    # 不是上次构建产物，不会重复包裹；已包过的跳过。
+    if "<table" in _body and "table-wrap" not in _body:
+        _body = re.sub(r"<table(\s[^>]*)?>", r'<div class="table-wrap"><table\1>', _body)
+        _body = _body.replace("</table>", "</table></div>")
     content = fill(load_template("article.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("/articles/", "Articles"), ("", article["title"])]),
         "{{ARTICLE_DATE}}": _date_line,
-        "{{ARTICLE_BODY}}": article["body"],
+        "{{ARTICLE_BODY}}": _body,
     })
     jsonld = json.dumps({
         "@context": "https://schema.org",
