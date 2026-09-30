@@ -601,6 +601,10 @@ td.num { font-variant-numeric: tabular-nums; }
 
 /* ---------- 文章页 ---------- */
 .article h1 { font-size: 1.6rem; line-height: 1.35; margin: 0 0 14px; }
+/* 全站图片兜底：图片永远不超过容器宽度（文章头图 1200×630 在窄屏上曾溢出页面）。
+   .avatar 等已有更具体的 width/height 规则，不受影响。 */
+img { max-width: 100%; height: auto; }
+.article img { display: block; border-radius: 10px; margin: 4px 0 18px; }
 .article h2 { font-size: 1.15rem; margin: 22px 0 10px; }
 .article h3 { font-size: 1rem; margin: 18px 0 8px; }
 .article p, .article li { font-size: .95rem; line-height: 1.75; color: var(--text-secondary); }
