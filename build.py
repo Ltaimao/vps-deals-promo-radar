@@ -1207,7 +1207,7 @@ def main():
     # the requested name is taken, so users must put the actual deployed URL
     # here, not just "{brand}.pages.dev".
     base_url = "https://" + site_cfg.get("domain", brand + ".pages.dev")
-    repo_full = "vps-deals-promo-radar"
+    repo_full = "Ltaimao/vps-deals-promo-radar"
     last_fetched = data["generated_at"][:19].replace("T", " ") + " UTC"
     # 联系邮箱来自 site.ilang 的 @CONTACT。它必须是一个真能收信的地址 ——
     # 挂一个收不到信的邮箱等于在页面上写一句假话，所以这里只读配置，不兜底编一个。
