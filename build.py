@@ -839,9 +839,12 @@ def render_legal(ctx, data, cfg, base_url, tpl_name, crumb_label):
 def render_article(ctx, data, cfg, base_url, article):
     """单篇内容页。正文 HTML 由作者手写，build 只做转义安全的字段替换；
     价格/日期类断言的真实性由 I-Lang ::MODULE{ARTICLES} 约束，build 不校验内容真伪。"""
-    _date_line = "Published " + e(article["date"])
-    if article.get("updated"):
-        _date_line += " · Updated " + e(article["updated"])
+    _date_line = ""
+    if article.get("date"):
+        _date_line = '<p class="article-date">Published ' + e(article["date"])
+        if article.get("updated"):
+            _date_line += " · Updated " + e(article["updated"])
+        _date_line += "</p>"
     _body = article["body"]
     # 移动端防溢出：正文里的 <table> 统一包进 .table-wrap（CSS 在 ≤720px 给它
     # overflow-x:auto），避免宽表把 375px 页面撑破。body 是手写源文件，
@@ -851,7 +854,7 @@ def render_article(ctx, data, cfg, base_url, article):
         _body = _body.replace("</table>", "</table></div>")
     content = fill(load_template("article.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("/articles/", "Articles"), ("", article["title"])]),
-        "{{ARTICLE_DATE}}": _date_line,
+        "{{ARTICLE_DATE_LINE}}": _date_line,
         "{{ARTICLE_BODY}}": _body,
     })
     jsonld = json.dumps({
@@ -860,7 +863,7 @@ def render_article(ctx, data, cfg, base_url, article):
         "url": ctx["canonical_url"],
         "headline": article["title"],
         "description": article["description"],
-        "datePublished": article["date"],
+        **({"datePublished": article["date"]} if article.get("date") else {}),
         **({"dateModified": article["updated"]} if article.get("updated") else {}),
         "inLanguage": ctx["lang"],
         "isPartOf": {"@type": "WebSite", "url": base_url + "/"},
@@ -1500,7 +1503,7 @@ def main():
                 + '<h2><a href="/articles/' + a["slug"] + '/">' + e(a["title"]) + '</a></h2>'
                 + '<p>' + e(a["description"]) + '</p></div>')
         _idx_article = {
-            "slug": "index", "title": "Articles", "date": articles[0]["date"],
+            "slug": "index", "title": "Articles", "date": "",
             "description": "Hands-on VPS buying guides with live-checked prices.",
             "gap": "index",
             "body": "\n".join(_idx_rows),

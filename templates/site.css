@@ -206,8 +206,9 @@ main { padding: 26px 0 40px; }
   letter-spacing: -.02em;
   overflow: hidden;
 }
-.mini-card .body { min-width: 0; }
+.mini-card .body { min-width: 0; flex: 1; }
 .mini-card .name {
+  display: block;
   font-weight: 600;
   font-size: .95rem;
   color: var(--text-primary);
@@ -217,6 +218,7 @@ main { padding: 26px 0 40px; }
 }
 .mini-card:hover .name { color: var(--primary); }
 .mini-card .desc {
+  display: block;
   font-size: .8rem;
   color: var(--text-muted);
   white-space: nowrap;
