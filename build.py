@@ -1548,6 +1548,15 @@ def main():
         for _img in sorted(_art_img_src.glob("*.png")):
             if _img.is_file():
                 shutil.copyfile(_img, SITE / "articles" / _img.name)
+    # 4f. 每日视频 —— static/videos/<slug>.mp4 拷到 site/videos/<slug>.mp4
+    #     （YouTube Data API 上传接口从本站 /videos/<slug>.mp4 取视频；
+    #     4e 的配图单独处理，视频同样单独处理）
+    _vid_src = ROOT / "static" / "videos"
+    if _vid_src.is_dir():
+        (SITE / "videos").mkdir(parents=True, exist_ok=True)
+        for _vid in sorted(_vid_src.glob("*.mp4")):
+            if _vid.is_file():
+                shutil.copyfile(_vid, SITE / "videos" / _vid.name)
     print("  articles rendered:", len(articles))
 
     # 5. 样式表 —— 从 templates/ 拷到站点根，页面用 /site.css 引它
