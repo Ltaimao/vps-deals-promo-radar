@@ -288,7 +288,30 @@ def render_index(ctx, data, cfg, base_url):
     hero_title = "VPS Hosting Deals & Public Promotions"
     hero_sub = ("Live pricing pulled straight from " + str(len(providers))
                 + " hosting providers' own public pages. "
-                  "Nothing here is invented or paid for.")
+                  "Nothing here is invented; sponsored placements are labeled as such.")
+
+    # Sponsored 联盟广告位：链接只从 .ilang ::MODULE{AFFILIATE} 读（前 2 条），
+    # 渲染带 rel="sponsored nofollow noopener"，卡片上标 Sponsored，不许混进普通内容。
+    _aff = (cfg.get("AFFILIATE") or [])[:2]
+    _aff_cards = []
+    for a in _aff:
+        _aff_cards.append(
+            '<a class="sponsored-card" href="' + e(a["url"]) + '" '
+            'rel="sponsored nofollow noopener" target="_blank">'
+            '<span class="sponsored-badge">Sponsored</span>'
+            '<strong class="sponsored-name">' + e(a["name"]) + "</strong>"
+            '<span class="sponsored-desc">' + e(a["blurb"]) + "</span>"
+            '<span class="sponsored-cta">Visit site \u2192</span></a>'
+        )
+    if _aff_cards:
+        sponsored_html = (
+            '<div class="section-heading"><h2>Sponsored</h2></div>\n'
+            '<div class="sponsored-grid">\n' + "\n".join(_aff_cards) + "\n</div>\n"
+            '<p class="sponsored-note">Affiliate links: if you buy through one, '
+            "we may earn a commission at no extra cost to you.</p>"
+        )
+    else:
+        sponsored_html = ""
 
     # 厂商卡：圆形头像位 + 名称 + 最低价（照参考站 site-mini-card + site-avatar）
     prov_cards = []
@@ -399,6 +422,7 @@ def render_index(ctx, data, cfg, base_url):
         "{{DEAL_COUNT}}": str(len(deals)),
         "{{DEAL_CARDS}}": "\n".join(deal_cards),
         "{{PROVIDER_OPTIONS}}": "\n".join(provider_options),
+        "{{SPONSORED}}": sponsored_html,
     })
 
     jsonld = jsonld_itemlist(deal_index, base_url) if deal_index else ""

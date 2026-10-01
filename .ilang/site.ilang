@@ -12,7 +12,7 @@ LANG zh
 
 # 隐私政策/关于/联系三页的修订日期。由人手动改，不跟数据刷新走 ——
 # 页面内容没变就不该动这个日期。
-::STATE{@LEGAL, legal_updated:2026-09-29}
+::STATE{@LEGAL, legal_updated:2026-10-01}
 
 ::MODULE{PROVIDERS|title:抓哪几家 这里改了 scraper 重启时 抓的可信公开源就变}
 # 格式: 名称 | 官网 | 优惠页或定价页或sitemap或feed | 联盟链接(可空)
@@ -147,6 +147,18 @@ LANG zh
 ::BOUNDARY{never:编优惠 编价格 编佣金 编汇率 编折扣|scope:permanent}
 ::BOUNDARY{never:编邮箱 编公司 编资质 编用户数|scope:permanent}
 ::BOUNDARY{never:绕过反爬 伪造 UA 抓登录后内容 违反目标站 robots.txt|scope:permanent}
+::MODULE{AFFILIATE|title:联盟推广链接 每条必须是联盟后台真实生成的追踪链接 不许编 不许拼参数}
+  # 格式: 名称 | 追踪链接原文 | 一句话描述(不许编价格/佣金) | 联盟网络
+  # 首页 Sponsored 区按此顺序渲染前 2 条（与本站 cheap vps 受众最相关的 VPS 落地页）
+  Contabo VPS|https://www.dpbolvw.net/click-8084695-17165311|VPS hosting plans on Contabo's official site|CJ Affiliate
+  Namecheap VPS|https://www.dpbolvw.net/click-8084695-11429085|VPS hosting plans on Namecheap's official site|CJ Affiliate
+  Contabo|https://www.dpbolvw.net/click-8084695-17207185|Contabo official homepage|CJ Affiliate
+  Namecheap|https://www.dpbolvw.net/click-8084695-11426545|Namecheap official homepage|CJ Affiliate
+
+::RULE{联盟链接只从 .ilang ::MODULE{AFFILIATE} 读 build.py 渲染 不许在模板或代码里写死链接}
+::RULE{联盟链接渲染必须带 rel="sponsored nofollow noopener" 必须标 Sponsored 不许混进普通内容}
+::RULE{联盟链接的描述不许写价格 佣金 折扣 除非该数字来自联盟后台原文}
+
 ::MODULE{ARTICLES|title:每日发布的内容页 第 10 步主线 cheap vps}
 # articles/ 下每篇一个 .html 文件：头部 frontmatter（title/date/description/gap 四行）+ 空行 + 正文 HTML。
 # build.py 渲染到 site/articles/<slug>/ 并写入 sitemap.xml；另生成 /articles/ 索引页。

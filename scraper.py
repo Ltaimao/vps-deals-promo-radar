@@ -27,7 +27,7 @@ def parse_ilang(path):
     cfg = {
         "SITE": {}, "PROVIDERS": [], "FIELDS": [],
         "LOCALE": {}, "RENDER": {}, "SCHEDULE": {},
-        "ANALYTICS": {},
+        "ANALYTICS": {}, "AFFILIATE": [],
         "RULES": [], "BOUNDARIES": [],
     }
     in_module = None
@@ -94,6 +94,16 @@ def parse_ilang(path):
             elif in_module == "ANALYTICS" and ":" in s:
                 k, _, v = s.partition(":")
                 cfg["ANALYTICS"][k.strip()] = v.strip()
+            elif in_module == "AFFILIATE" and "|" in s:
+                parts = [p.strip() for p in s.split("|")]
+                if len(parts) < 4:
+                    continue
+                cfg["AFFILIATE"].append({
+                    "name": parts[0],
+                    "url": parts[1],
+                    "blurb": parts[2],
+                    "network": parts[3],
+                })
     return cfg
 
 
