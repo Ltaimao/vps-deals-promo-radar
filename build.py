@@ -502,31 +502,11 @@ def render_provider(ctx, data, cfg, base_url, provider):
         for q, a in faqs
     )
 
-    # ---- 价格历史：该厂商每次抓取时的全站最低价序列（真实快照，零 JS 纯 SVG）----
+    # ---- 价格历史：2026-10-01 lee 要求隐藏该展示模块。只隐藏渲染；
+    # 数据管线 build_price_history 照常运行，data/history.json 继续写，
+    # 降价提醒 worker（worker/api.js）每 6 小时还在读它。SVG 图表代码保留，
+    # 以后想重新展示时把下面这行改回原来的构建逻辑即可。----
     price_history_html = ""
-    _hist = ctx.get("history") or {}
-    _pmin = (_hist.get("provider_min") or {}).get(slug)
-    _meta = _hist.get("meta") or {}
-    if _pmin and len(_pmin.get("points", [])) >= 2:
-        _pts = _pmin["points"]
-        _prices = [float(p[1]) for p in _pts]
-        _cur2 = _pmin.get("currency") or cur
-        _chart = svg_price_chart(
-            _pts, _cur2,
-            "Lowest listed price of " + provider["name"] + " over time")
-        _caption = ("Lowest listed price at each check — %d checks, %s → %s. "
-                    "Only real snapshots are plotted; missing checks are gaps, not guesses."
-                    % (_meta.get("snapshots", len(_pts)),
-                       fmt_date(_meta.get("since", _pts[0][0])),
-                       fmt_date(_meta.get("until", _pts[-1][0]))))
-        _extremes = ("Range observed: %s – %s/mo"
-                     % (money(min(_prices), _cur2), money(max(_prices), _cur2)))
-        price_history_html = (
-            '<div class="section-heading"><h2>Price history</h2></div>\n'
-            '<div class="content-card"><p class="history-caption">' + e(_caption) + "</p>\n"
-            + _chart +
-            '\n<p class="history-caption">' + e(_extremes) + "</p></div>"
-        )
 
     content = fill(load_template("provider.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", e(provider["name"]))]),
