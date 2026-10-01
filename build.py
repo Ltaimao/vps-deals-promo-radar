@@ -290,15 +290,22 @@ def render_index(ctx, data, cfg, base_url):
                 + " hosting providers' own public pages. "
                   "Nothing here is invented; sponsored placements are labeled as such.")
 
-    # Sponsored 联盟广告位：链接只从 .ilang ::MODULE{AFFILIATE} 读（前 4 条），
+    # Sponsored 联盟广告位：链接只从 .ilang ::MODULE{AFFILIATE} 读（前 5 条），
     # 渲染带 rel="sponsored nofollow noopener"，卡片上标 Sponsored，不许混进普通内容。
-    _aff = (cfg.get("AFFILIATE") or [])[:4]
+    # 有 logo 字段时渲染品牌 logo（/sponsored/<file>），无则回退纯文字卡。
+    _aff = (cfg.get("AFFILIATE") or [])[:5]
     _aff_cards = []
     for a in _aff:
+        _logo = a.get("logo")
+        _logo_html = (
+            '<img class="sponsored-logo" src="/sponsored/' + e(_logo) + '" '
+            'alt="' + e(a["name"]) + ' logo" loading="lazy">' if _logo else ""
+        )
         _aff_cards.append(
             '<a class="sponsored-card" href="' + e(a["url"]) + '" '
             'rel="sponsored nofollow noopener" target="_blank">'
             '<span class="sponsored-badge">Sponsored</span>'
+            + _logo_html +
             '<strong class="sponsored-name">' + e(a["name"]) + "</strong>"
             '<span class="sponsored-desc">' + e(a["blurb"]) + "</span>"
             '<span class="sponsored-cta">Visit site \u2192</span></a>'
@@ -1557,6 +1564,14 @@ def main():
         for _vid in sorted(_vid_src.glob("*.mp4")):
             if _vid.is_file():
                 shutil.copyfile(_vid, SITE / "videos" / _vid.name)
+    # 4g. Sponsored 品牌 logo —— static/sponsored/*.svg 拷到 site/sponsored/*.svg
+    #     （首页 Sponsored 卡片引用 /sponsored/<file>；只认真实品牌 logo，不许编）
+    _spn_src = ROOT / "static" / "sponsored"
+    if _spn_src.is_dir():
+        (SITE / "sponsored").mkdir(parents=True, exist_ok=True)
+        for _lg in sorted(_spn_src.glob("*.svg")):
+            if _lg.is_file():
+                shutil.copyfile(_lg, SITE / "sponsored" / _lg.name)
     print("  articles rendered:", len(articles))
 
     # 5. 样式表 —— 从 templates/ 拷到站点根，页面用 /site.css 引它

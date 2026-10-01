@@ -641,29 +641,41 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   background: var(--bg-card);
   border: 1px dashed var(--border-light);
   border-radius: var(--radius);
-  padding: 16px;
-  display: block;
+  padding: 20px 18px 18px;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: inherit;
   box-shadow: var(--shadow-sm);
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
 }
 .sponsored-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-md);
   border-color: var(--primary-soft);
 }
 .sponsored-badge {
-  display: inline-block;
+  position: absolute;
+  top: 12px;
+  right: 12px;
   font-size: .68rem;
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
   color: var(--text-secondary);
+  background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: 4px;
   padding: 2px 8px;
-  margin-bottom: 10px;
+}
+.sponsored-logo {
+  display: block;
+  height: 42px;
+  max-width: 190px;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+  margin: 2px 0 12px;
 }
 .sponsored-card .sponsored-name {
   display: block;
@@ -677,14 +689,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   display: block;
   font-size: .88rem;
   color: var(--text-secondary);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .sponsored-card .sponsored-cta {
-  display: inline-block;
-  font-size: .9rem;
+  display: block;
+  margin-top: auto;
+  text-align: center;
+  font-size: .92rem;
   font-weight: 700;
-  color: var(--primary);
+  color: #fff;
+  background: var(--primary);
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: background .16s ease;
 }
+.sponsored-card:hover .sponsored-cta { background: var(--primary-hover); }
 .sponsored-note {
   font-size: .78rem;
   color: var(--text-secondary);

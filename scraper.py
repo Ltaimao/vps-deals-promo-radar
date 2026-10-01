@@ -103,6 +103,7 @@ def parse_ilang(path):
                     "url": parts[1],
                     "blurb": parts[2],
                     "network": parts[3],
+                    "logo": parts[4] if len(parts) > 4 and parts[4] else None,
                 })
     return cfg
 
