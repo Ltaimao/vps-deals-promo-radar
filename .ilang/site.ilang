@@ -149,9 +149,11 @@ LANG zh
 ::BOUNDARY{never:绕过反爬 伪造 UA 抓登录后内容 违反目标站 robots.txt|scope:permanent}
 ::MODULE{AFFILIATE|title:联盟推广链接 每条必须是联盟后台真实生成的追踪链接 不许编 不许拼参数}
   # 格式: 名称 | 追踪链接原文 | 一句话描述(不许编价格/佣金) | 联盟网络
-  # 首页 Sponsored 区按此顺序渲染前 2 条（与本站 cheap vps 受众最相关的 VPS 落地页）
+  # 首页 Sponsored 区按此顺序渲染前 4 条（与本站 cheap vps 受众最相关的落地页）
   Contabo VPS|https://www.dpbolvw.net/click-8084695-17165311|VPS hosting plans on Contabo's official site|CJ Affiliate
   Namecheap VPS|https://www.dpbolvw.net/click-8084695-11429085|VPS hosting plans on Namecheap's official site|CJ Affiliate
+  Domain.com|https://afflat3c1.com/trk/lnk/CAF13121-040C-4717-9E50-A975CC73D567/?o=31453&c=918277&a=806486&k=618D|Domains, hosting and website builder on Domain.com's official site|MaxBounty
+  Network Solutions|https://afflat3c1.com/trk/lnk/CAF13121-040C-4717-9E50-A975CC73D567/?o=28812&c=918277&a=806486&k=BBD5|Official site of Network Solutions|MaxBounty
   Contabo|https://www.dpbolvw.net/click-8084695-17207185|Contabo official homepage|CJ Affiliate
   Namecheap|https://www.dpbolvw.net/click-8084695-11426545|Namecheap official homepage|CJ Affiliate
 

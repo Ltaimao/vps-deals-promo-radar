@@ -290,9 +290,9 @@ def render_index(ctx, data, cfg, base_url):
                 + " hosting providers' own public pages. "
                   "Nothing here is invented; sponsored placements are labeled as such.")
 
-    # Sponsored 联盟广告位：链接只从 .ilang ::MODULE{AFFILIATE} 读（前 2 条），
+    # Sponsored 联盟广告位：链接只从 .ilang ::MODULE{AFFILIATE} 读（前 4 条），
     # 渲染带 rel="sponsored nofollow noopener"，卡片上标 Sponsored，不许混进普通内容。
-    _aff = (cfg.get("AFFILIATE") or [])[:2]
+    _aff = (cfg.get("AFFILIATE") or [])[:4]
     _aff_cards = []
     for a in _aff:
         _aff_cards.append(
