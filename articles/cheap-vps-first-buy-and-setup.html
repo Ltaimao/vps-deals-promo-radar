@@ -1,0 +1,177 @@
+title: Buying Your First Cheap VPS: A Step-by-Step Q&A
+date: 2026-10-01
+description: The 7 questions every first-time cheap VPS buyer asks — answered with this site's own dated price data (230 offers verified 2026-09-30) and a first-login checklist.
+gap: question-cheap-vps-first-buy-and-setup
+
+<h1>Buying Your First Cheap VPS: A Step-by-Step Q&amp;A</h1>
+<img src="/articles/cheap-vps-first-buy-and-setup.png" alt="Checklist-style illustration: a first-time buyer's 6-step path from picking a cheap VPS plan to a secured, running server">
+<p>
+  Buying your first cheap VPS takes about ten minutes of clicking and fifteen
+  minutes of setup. This Q&amp;A walks through the whole thing in the order it
+  actually happens — pick the plan, pick the location, order, connect, secure —
+  with prices pulled from this site's own price database, last verified
+  <strong>2026-09-30</strong> (230 offers across 31 providers, refreshed every
+  6 hours). Every price below is real data from that snapshot, not a
+  marketing quote.
+</p>
+
+<h2>The 6-step path, at a glance</h2>
+<table>
+  <thead>
+    <tr><th>Step</th><th>What you do</th><th>Typical cost (2026-09-30 data)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Pick a starting plan size</td><td>from $2.00/mo entry tiers</td></tr>
+    <tr><td>2</td><td>Choose the closest datacenter location</td><td>free at checkout</td></tr>
+    <tr><td>3</td><td>Check the renewal terms before you pay</td><td>varies by provider</td></tr>
+    <tr><td>4</td><td>Order and wait for the login email</td><td>5–30 minutes to provision</td></tr>
+    <tr><td>5</td><td>Connect over SSH for the first time</td><td>free</td></tr>
+    <tr><td>6</td><td>Run the 15-minute first-login security checklist</td><td>free</td></tr>
+  </tbody>
+</table>
+
+<h2>Q1: How much does a cheap VPS actually cost to start?</h2>
+<p>
+  Less than most people expect. In our 2026-09-30 snapshot, entry tiers at
+  several tracked providers start at $2.00/month: RackNerd ($2.00),
+  IONOS ($2.00), Virmach ($2.00) and BuyVM ($2.00) all have starting prices
+  at that level, with InterServer at $3.00/month. Annual billing usually drops
+  the effective monthly figure further — this is how "from $1.25/month"
+  pricing you see in deal threads is typically constructed.
+</p>
+<p>
+  Budget honestly, though: the sticker price is the starting price, not
+  necessarily the forever price. Read Q6 before you pay.
+</p>
+
+<h2>Q2: Which plan should a first-timer actually pick?</h2>
+<p>
+  Buy one tier above the absolute minimum. The cheapest slot on a page is
+  usually sized for "one tiny thing" (a personal VPN endpoint, a static
+  site, a bot) — and beginners almost always run two things on their first
+  box. The sweet spot for a first server is typically <strong>2 GB RAM</strong>:
+  enough for a small WordPress site or a project with a database, still
+  squarely in cheap territory.
+</p>
+<p>
+  If you want the full sizing math — what 1 vCPU and 2 GB RAM actually run —
+  see our <a href="/articles/cheap-vps-sizing-guide/">VPS sizing guide</a>.
+  And ignore the upsells at checkout: managed backups, control panels and
+  premium support are optional add-ons, not requirements.
+</p>
+
+<h2>Q3: Which datacenter location should I choose?</h2>
+<p>
+  The one closest to whoever will use the server. Distance is latency: a
+  visitor in Berlin reaching a server in Frankfurt gets ~10 ms; reaching Los
+  Angeles gets ~150 ms. There is no "best" location in the abstract.
+</p>
+<p>
+  At checkout, providers list their available cities and you pick one — it is
+  not assigned randomly. Two traps to know about: (1) some budget providers
+  only offer IPv6 in a handful of locations, so if you need IPv4 everywhere,
+  confirm it for your chosen city; (2) switching datacenters later is usually
+  <em>not</em> an upgrade — it means ordering a new box and moving your data
+  yourself. So spend the extra minute choosing the right city now.
+</p>
+
+<h2>Q4: What happens between clicking "order" and my first login?</h2>
+<p>
+  The real, unglamorous sequence:
+</p>
+<ol>
+  <li><strong>Checkout.</strong> You pick the plan, location, operating
+  system (choose Ubuntu 22.04 or 24.04 LTS if unsure) and billing cycle. You
+  will be asked for an email address that can actually receive mail —
+  your root password and server IP arrive there.</li>
+  <li><strong>Payment and verification.</strong> Card or PayPal. Some budget
+  providers run a fraud check on the first order; a short delay or a support
+  email asking for confirmation is normal, not a scam.</li>
+  <li><strong>Provisioning.</strong> Anywhere from 5 minutes (automated
+  clouds) to a few hours (manual-review budget hosts). You will get a
+  "your server is ready" email with an IP address, a username (usually
+  <code>root</code>) and a password.</li>
+  <li><strong>First login.</strong> That email is your starting point for
+  Q5.</li>
+</ol>
+
+<h2>Q5: How do I connect to my new VPS for the first time?</h2>
+<p>
+  Over SSH — the encrypted remote shell that is the front door of every
+  Linux VPS. On macOS or Linux, open a terminal and type:
+</p>
+<pre><code>ssh root@YOUR_SERVER_IP</code></pre>
+<p>
+  You will be prompted for the password from the setup email (paste it; the
+  terminal shows nothing while you type — that is normal). On Windows, open
+  Windows Terminal or PowerShell and run the same command, or use
+  PuTTY if you prefer a graphical tool.
+</p>
+<p>
+  Accept the host-key fingerprint when asked. Then change the root password
+  immediately:
+</p>
+<pre><code>passwd</code></pre>
+
+<h2>Q6: What should I do in the first 15 minutes on a fresh box?</h2>
+<p>
+  Run this checklist before you install anything else. These are the steps
+  that separate a server that survives from one that gets compromised in its
+  first week:
+</p>
+<ol>
+  <li><strong>Update everything:</strong> <code>apt update &amp;&amp; apt upgrade -y</code></li>
+  <li><strong>Create a non-root user</strong> with sudo access and log in as
+  them from now on (<code>adduser deploy</code>, then <code>usermod -aG sudo deploy</code>).</li>
+  <li><strong>Switch to SSH key login</strong> and disable password
+  authentication. Copy your public key to
+  <code>~/.ssh/authorized_keys</code> for the new user, then set
+  <code>PasswordAuthentication no</code> in
+  <code>/etc/ssh/sshd_config</code> and restart SSH.</li>
+  <li><strong>Turn on the firewall:</strong> <code>ufw allow OpenSSH</code>,
+  then <code>ufw enable</code>. Only open the ports you actually need.</li>
+  <li><strong>Set up backups you control.</strong> Cheap plans usually do not
+  include automated backups, or charge extra for them. A daily off-provider
+  backup (object storage, or even a second cheap box) is non-negotiable for
+  anything you care about.</li>
+</ol>
+
+<h2>Q7: Will the price jump on renewal — and can I upgrade later without reinstalling?</h2>
+<p>
+  The renewal question is the one deal pages least want to answer. The
+  pattern in the budget VPS market: annual specials are frequently
+  <strong>recurring at the same price</strong> (you pay the same next year),
+  while "first-year 80% off" monthly plans from the big hosts typically jump
+  2–3× on renewal. Neither behavior is universal — the only reliable source
+  is the provider's terms page or cart, which shows "renewal price" separately
+  from the promo price. If a page shows no renewal price, treat that as a
+  question to ask support before paying.
+</p>
+<p>
+  As for upgrades: most KVM providers upgrade you <strong>in place</strong> —
+  you pick a bigger tier in the control panel, the server reboots, and the new
+  RAM/CPU take effect with no reinstall and no data loss. But moving between
+  <em>locations</em> is a different story: that usually means a fresh server
+  and a manual migration (see Q3). So plan the location carefully and the
+  plan size loosely.
+</p>
+
+<h2>Do I need managed VPS as a beginner?</h2>
+<p>
+  Honest answer: managed hosting buys you someone to call when things break.
+  Unmanaged cheap VPS buys you full control and full responsibility — security
+  updates, failures and configuration are yours (see the checklist in Q6).
+  If your project is a hobby or a learning box, unmanaged is fine and much
+  cheaper. If it is a business that loses money when the site is down, either
+  buy managed or make sure you know what Q6 means line by line.
+</p>
+
+<hr>
+<p>
+  <em>Data note:</em> All prices in this article come from
+  vpsdealswire.com's own price database — 230 offers from 31 providers,
+  last re-verified <strong>2026-09-30</strong>, refreshed every 6 hours.
+  Prices move; check the current numbers on the
+  <a href="/">homepage</a> before buying. Steps in this guide describe the
+  standard unmanaged-VPS flow; individual providers may differ slightly.
+</p>
