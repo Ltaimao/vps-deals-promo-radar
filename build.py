@@ -879,6 +879,7 @@ def render_base(ctx, content_html, jsonld_text):
         "{{REPO_FULL}}": e(ctx["repo_full"]),
         "{{JSONLD}}": jsonld_text,
         "{{GA4_TAG}}": ctx.get("ga4_tag", ""),
+        "{{CSS_VER}}": ctx.get("css_ver", ""),
     }
     out = base
     for k, v in subs.items():
@@ -1304,7 +1305,12 @@ def main():
     if _month:
         _idx_desc += ", updated " + _month
     _idx_desc += ". Refreshed every 6 hours from each provider's own page. Nothing is invented."
+    # 样式表缓存击穿：site.css 内容哈希拼在 URL 上（?v=），以后改 CSS
+    # 用户浏览器/中间缓存会立即取新版，不用等 max-age 过期。哈希取自
+    # templates/site.css —— 第 5 步拷到站点的就是这个文件。
+    css_ver = hashlib.md5((TEMPLATES / "site.css").read_bytes()).hexdigest()[:8]
     ctx_index = {
+        "css_ver": css_ver,
         "title": _idx_title,
         "meta_description": _idx_desc,
         "canonical_url": base_url + "/",
