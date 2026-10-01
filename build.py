@@ -852,6 +852,15 @@ def render_article(ctx, data, cfg, base_url, article):
     if "<table" in _body and "table-wrap" not in _body:
         _body = re.sub(r"<table(\s[^>]*)?>", r'<div class="table-wrap"><table\1>', _body)
         _body = _body.replace("</table>", "</table></div>")
+    # 结构自检：正文 <div> 开闭必须平衡。多余的 </div> 会被浏览器拿去提前
+    # 关掉外层的 .wrap 布局容器，导致其后所有内容全屏贴边（2026-10-01 真实
+    # 事故：误补 </div> 造成手机端文章文字贴边）。不平衡直接让构建失败，
+    # 不许悄悄上线。
+    if len(re.findall(r"<div(?=[\s>])", _body)) != _body.count("</div>"):
+        raise SystemExit(
+            "build failed: unbalanced <div> in article '%s' (opens=%d closes=%d)"
+            % (article.get("slug", "?"),
+               len(re.findall(r"<div(?=[\s>])", _body)), _body.count("</div>")))
     content = fill(load_template("article.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("/articles/", "Articles"), ("", article["title"])]),
         "{{ARTICLE_DATE_LINE}}": _date_line,
