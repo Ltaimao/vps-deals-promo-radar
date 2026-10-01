@@ -400,7 +400,10 @@ export default {
       return handleUnsubscribe(url, env);
     }
     if (url.pathname === "/api/health") {
-      return json({ ok: true, version: "phase4-1" });
+      return json({ ok: true, version: "phase4-2" });
+    }
+    if (url.pathname === "/api/youtube/publish" && request.method === "POST") {
+      return handleYouTubePublish(request, env);
     }
     return json({ ok: false, error: "not_found" }, 404);
   },
@@ -408,3 +411,136 @@ export default {
     ctx.waitUntil(handleScheduled(env));
   },
 };
+
+// ---------- YouTube publish (server-side, no browser session) ----------
+// The daily cron renders the mp4, commits it to static/videos/<slug>.mp4,
+// pushes, waits for Pages to serve it, then POSTs here. The Worker fetches
+// the video from the public site URL and uploads it to the @VPSDealsWire
+// channel via the YouTube Data API resumable-upload protocol.
+// Secrets (YT_CLIENT_ID / YT_CLIENT_SECRET / YT_REFRESH_TOKEN) live in
+// Worker secrets — never in code, chat, or the repo.
+// Auth model: no bearer token. The endpoint only accepts video URLs hosted
+// on www.vpsdealswire.com/videos/ (which only the site owner can publish),
+// and is rate-limited to a few uploads/day via KV. Worst case abuse is
+// re-uploading our own public videos, capped by the daily counter and the
+// YouTube API quota.
+
+const YT_VIDEO_PREFIX = "https://www.vpsdealswire.com/videos/";
+const YT_SLUG_RE = /^[a-z0-9-]{1,80}$/;
+const YT_MAX_UPLOADS_PER_DAY = 5;
+const YT_MAX_BYTES = 100 * 1024 * 1024;
+
+async function ytAccessToken(env) {
+  if (!env.YT_CLIENT_ID || !env.YT_CLIENT_SECRET || !env.YT_REFRESH_TOKEN)
+    throw new Error("youtube_not_configured");
+  const r = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "refresh_token",
+      client_id: env.YT_CLIENT_ID,
+      client_secret: env.YT_CLIENT_SECRET,
+      refresh_token: env.YT_REFRESH_TOKEN,
+    }),
+  });
+  if (!r.ok) throw new Error("youtube_token_refresh_failed:" + r.status);
+  const j = await r.json();
+  if (!j.access_token) throw new Error("youtube_token_no_access_token");
+  return j.access_token;
+}
+
+async function handleYouTubePublish(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ ok: false, error: "invalid_json" }, 400);
+  }
+  const { video_url, title, description, privacy, slug } = body || {};
+  if (
+    typeof video_url !== "string" ||
+    !video_url.startsWith(YT_VIDEO_PREFIX) ||
+    !video_url.endsWith(".mp4")
+  )
+    return json({ ok: false, error: "bad_video_url" }, 400);
+  const urlSlug = video_url.slice(YT_VIDEO_PREFIX.length, -4);
+  if (!YT_SLUG_RE.test(urlSlug) || (slug && slug !== urlSlug))
+    return json({ ok: false, error: "bad_slug" }, 400);
+  if (typeof title !== "string" || !title.trim() || title.length > 100)
+    return json({ ok: false, error: "bad_title" }, 400);
+  if (typeof description !== "string" || description.length > 5000)
+    return json({ ok: false, error: "bad_description" }, 400);
+  if (!["private", "unlisted", "public"].includes(privacy))
+    return json({ ok: false, error: "bad_privacy" }, 400);
+
+  const day = new Date().toISOString().slice(0, 10);
+  const rlKey = "yt:rl:" + day;
+  const used = parseInt((await env.SUBS.get(rlKey)) || "0", 10);
+  if (used >= YT_MAX_UPLOADS_PER_DAY)
+    return json({ ok: false, error: "daily_limit" }, 429);
+
+  let access;
+  try {
+    access = await ytAccessToken(env);
+  } catch (e) {
+    return json({ ok: false, error: String((e && e.message) || e) }, 502);
+  }
+
+  const vres = await fetch(video_url, { cf: { cacheTtl: 60 } });
+  if (!vres.ok) return json({ ok: false, error: "video_fetch_failed:" + vres.status }, 502);
+  const buf = await vres.arrayBuffer();
+  if (!buf.byteLength || buf.byteLength > YT_MAX_BYTES)
+    return json({ ok: false, error: "video_bad_size:" + buf.byteLength }, 400);
+
+  const meta = {
+    snippet: {
+      title: title.trim(),
+      description: description,
+      categoryId: "27",
+      tags: ["vps", "cheap vps", "vps hosting", "vpsdealswire"],
+    },
+    status: { privacyStatus: privacy, selfDeclaredMadeForKids: false },
+  };
+  const init = await fetch(
+    "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
+    {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + access,
+        "Content-Type": "application/json; charset=UTF-8",
+        "X-Upload-Content-Length": String(buf.byteLength),
+        "X-Upload-Content-Type": "video/mp4",
+      },
+      body: JSON.stringify(meta),
+    }
+  );
+  if (!init.ok) {
+    const t = await init.text().catch(() => "");
+    return json(
+      { ok: false, error: "youtube_init_failed:" + init.status, detail: t.slice(0, 300) },
+      502
+    );
+  }
+  const sessionUrl = init.headers.get("location");
+  if (!sessionUrl) return json({ ok: false, error: "youtube_no_session" }, 502);
+
+  const up = await fetch(sessionUrl, {
+    method: "PUT",
+    headers: { "Content-Type": "video/mp4", "Content-Length": String(buf.byteLength) },
+    body: buf,
+  });
+  const ures = await up.json().catch(() => null);
+  if (!up.ok || !ures || !ures.id) {
+    return json(
+      { ok: false, error: "youtube_upload_failed:" + up.status, detail: JSON.stringify(ures).slice(0, 300) },
+      502
+    );
+  }
+  await env.SUBS.put(rlKey, String(used + 1), { expirationTtl: 86400 * 2 });
+  await env.SUBS.put(
+    "yt:last:" + ures.id,
+    JSON.stringify({ slug: urlSlug, title: title.trim(), at: new Date().toISOString() }),
+    { expirationTtl: 86400 * 90 }
+  );
+  return json({ ok: true, videoId: ures.id, url: "https://youtu.be/" + ures.id });
+}
