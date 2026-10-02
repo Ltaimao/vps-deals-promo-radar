@@ -1,0 +1,159 @@
+title: Which Cheap VPS for Which Job: A Scenario-First Pick Guide
+date: 2026-10-02
+description: Six common jobs — WordPress blog, WireGuard VPN, Minecraft server, Docker playground, dev/test box, small shop — matched to the cheapest fitting plans in our own price snapshot, verified 2026-10-01.
+gap: use-case-picks
+
+<h1>Which Cheap VPS for Which Job: A Scenario-First Pick Guide</h1>
+<img src="/articles/cheap-vps-use-case-picks.png" alt="Illustration of six scenario cards — a WordPress blog, a VPN node, a Minecraft server, Docker containers, dev tools, and an online store — each paired with a small price tag">
+<p>
+  Stop comparing VPS providers in the abstract. Nobody buys "a cheap VPS" —
+  they buy a box to run a WordPress blog, a WireGuard tunnel, a Minecraft
+  server for friends, a Docker playground. The right provider depends on the
+  job, and the big roundups we audited never tell you which box fits which
+  job. They give generic advice — "check support, SLA, location, scalability"
+  — and stop there.
+</p>
+<p>
+  This guide does the other thing: six common jobs, one starting pick for
+  each, with real prices from this site's own database — <strong>230 live
+  offers across the 28 providers we list, last verified
+  2026-10-01</strong>. Every dollar figure below was scraped from a
+  provider's own page on that date. Plan names are abbreviated the way the
+  scrape caught them; always confirm the exact spec on the provider's page
+  before you pay.
+</p>
+
+<h2>The short answer: the scenario matrix</h2>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>The job</th><th>Starting pick</th><th>From</th><th>Why it fits</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Personal WordPress blog</td><td>InterServer</td><td>$3.00/mo</td><td>Cheapest monthly KVM in our data; no annual lock-in</td></tr>
+    <tr><td>Personal WireGuard VPN</td><td>Virmach</td><td>$2.00/mo</td><td>Entry NVMe tier; a VPN needs almost no CPU</td></tr>
+    <tr><td>Small Minecraft server (4–5 players)</td><td>Kamatera</td><td>$4.00/mo</td><td>Hourly billing — pay for the hours you actually play</td></tr>
+    <tr><td>Docker/self-hosting playground</td><td>Hostens</td><td>$1.00/mo</td><td>Cheapest sandbox in our snapshot for breaking things on</td></tr>
+    <tr><td>Dev, test, or CI runner</td><td>DigitalOcean</td><td>$4.00/mo</td><td>Per-second billing; resize or destroy in seconds</td></tr>
+    <tr><td>Small business site / light shop</td><td>KnownHost</td><td>$5.00/mo</td><td>Fully self-managed tier with a steadier reputation band</td></tr>
+  </tbody>
+</table>
+</div>
+<p><em>Prices: cheapest offer per provider in our 2026-10-01 snapshot. Foreign-currency plans (IONOS £1.00, UpCloud €3.00) exist below these figures but are billed in their own currency.</em></p>
+
+<h2>1. Personal WordPress blog — start at $3/month</h2>
+<p>
+  A WordPress install is mostly a RAM question. Our sizing guide puts a light
+  WordPress-with-caching install at home on 1–2 GB of RAM; what you don't want
+  is the absolute rock-bottom tier where MySQL starts fighting the OS for
+  memory. <a href="https://www.interserver.net/vps/" rel="nofollow">InterServer</a>
+  is our starting pick because $3.00/month (cheapest offer caught
+  2026-10-01) buys a monthly-billed KVM box — no annual commitment, so you can
+  walk away if the blog idea dies in week three.
+</p>
+<p>
+  Runner-up: <a href="https://www.digitalocean.com/pricing/" rel="nofollow">DigitalOcean</a>
+  from $4.00/month, if you want the polished panel and one-click WordPress
+  image. Skip the $1–2 tiers for WordPress unless it's a static site with no
+  database — a $1 box runs a static Hugo blog fine, but WordPress plus plugins
+  will feel it.
+</p>
+
+<h2>2. Personal WireGuard VPN — start at $2/month</h2>
+<p>
+  "Can I run a VPN on the cheapest plan?" is one of the most-asked cheap-VPS
+  questions we see, and the answer is yes — WireGuard is absurdly light. It
+  needs almost no CPU and a few dozen megabytes of RAM; the thing that matters
+  is a stable IP and a location near you. <a href="https://virmach.com/" rel="nofollow">Virmach</a>
+  from $2.00/month (NVMe entry tier in our 2026-10-01 snapshot) is the
+  cheapest box that still looks like a real server.
+</p>
+<p>
+  Runner-up: <a href="https://www.racknerd.com/" rel="nofollow">RackNerd</a>
+  from $2.00/month with multiple US and EU datacenter locations — pick the
+  city closest to your couch, because latency is the whole game for a VPN.
+  BuyVM's $1.25/month storage slab is cheaper on paper, but it's specced for
+  storage, not as a general box.
+</p>
+
+<h2>3. Small Minecraft server (4–5 players) — start at $4/month</h2>
+<p>
+  Community wisdom says roughly 1 GB of RAM per 5 players for a vanilla
+  Minecraft server, and single-core clock speed matters more than core count.
+  The honest cheap-VPS move is <strong>hourly billing</strong>: a game server
+  for friends doesn't need to run 24/7. <a href="https://www.kamatera.com/pricing/" rel="nofollow">Kamatera</a>
+  lists an hourly rate with a $4.00/month equivalent in our snapshot
+  (2026-10-01) — spin the box up for game night, destroy it after, pay for
+  hours.
+</p>
+<p>
+  Runner-up: <a href="https://www.digitalocean.com/pricing/" rel="nofollow">DigitalOcean</a>
+  from $4.00/month, per-second billing with a monthly cap, and trivial
+  resizing when the friend group grows from 5 to 15. Don't try this on a $1–2
+  tier: a starved Minecraft server doesn't run slowly, it runs <em>angrily</em>.
+</p>
+
+<h2>4. Docker/self-hosting playground — start at $1/month</h2>
+<p>
+  The playground box exists to be broken: install five containers, fill the
+  disk with images, nuke it on Sunday. For that job the only spec that matters
+  is price. <a href="https://www.hostens.com/vps/" rel="nofollow">Hostens</a>
+  at $1.00/month is the cheapest offer in our entire 2026-10-01 snapshot —
+  the box you reinstall without a second thought.
+</p>
+<p>
+  Runner-up: <a href="https://buyvm.net/" rel="nofollow">BuyVM</a> from
+  $1.25/month, whose storage-heavy slabs are genuinely useful when your
+  playground starts hoarding container images and media. Once the playground
+  becomes "production" (real users, real data), graduate it to the $4–5 tier
+  below — don't run anything you care about on the $1 box.
+</p>
+
+<h2>5. Dev, test, or CI runner — start at $4/month</h2>
+<p>
+  Test boxes have the opposite economics of game servers: they live for hours
+  or days, not months. Paying annually for a staging box is burning money.
+  <a href="https://www.digitalocean.com/pricing/" rel="nofollow">DigitalOcean</a>
+  from $4.00/month with per-second billing (visible right in the scraped plan
+  text) is our pick — run a CI job for a weekend, destroy it, pay cents.
+</p>
+<p>
+  Runner-up: <a href="https://www.kamatera.com/pricing/" rel="nofollow">Kamatera</a>
+  from $4.00/month, also hourly-rated. Either way, the move is the same:
+  never buy a year of server for a week of testing.
+</p>
+
+<h2>6. Small business site / light shop — start at $5/month</h2>
+<p>
+  When the site takes money, the calculus changes: you want a provider band
+  with a longer track record and a support team that answers. Among our
+  tracked providers,
+  <a href="https://www.knownhost.com/vps-hosting" rel="nofollow">KnownHost</a>
+  lists a fully self-managed tier from $5.00/month in our 2026-10-01 snapshot,
+  and <a href="https://www.liquidweb.com/vps-hosting/" rel="nofollow">Liquid Web</a>
+  lists VPS hosting starting at $5.00/month the same day.
+</p>
+<p>
+  One caution from our own data: $5 is the <em>starting</em> price, and
+  business hosting has a way of outgrowing the entry tier. Budget for the
+  tier with 2 GB RAM from the start — migrating a live shop under load is
+  the most expensive kind of migration there is.
+</p>
+
+<h2>How these picks were made (and what we left out)</h2>
+<p>
+  Every price above is the cheapest offer per provider from our own scraper
+  run on <strong>2026-10-01</strong> — 230 offers across the 28 providers we
+  list, refreshed every 6 hours. The scenario-to-spec mapping (how much RAM a
+  WordPress install or a Minecraft server needs) comes from our
+  <a href="/articles/cheap-vps-sizing-guide/">sizing guide</a> and widely
+  repeated community experience, not from benchmarks we ran ourselves.
+</p>
+<p>
+  Two things this guide deliberately does not do. First, no performance
+  claims: we don't run load tests, so we don't rank providers by speed — any
+  site that does without showing its test rig is guessing. Second, no
+  "absolute cheapest for everything" crown. The $1 box wins the playground
+  and loses everywhere else; buying for the job beats buying for the price
+  tag every time.
+</p>
