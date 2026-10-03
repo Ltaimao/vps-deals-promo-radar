@@ -386,10 +386,170 @@ async function handleScheduled(env) {
   );
 }
 
+/* ------------------------------------------------------------------
+ * MCP server (Model Context Protocol, Streamable HTTP) — read-only.
+ * Serves the same public deal dataset the static site renders
+ * (GET https://www.vpsdealswire.com/api/deals.json, rebuilt every 6h).
+ * No login, no writes, no invented data.
+ * ------------------------------------------------------------------ */
+const MCP_NAME = "vpsdealswire-mcp";
+const MCP_VERSION = "1.0.0";
+const MCP_DATASET_URL = SITE + "/api/deals.json";
+let mcpCache = null; // {at, data}
+
+function mcpJson(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      "content-type": "application/json",
+      "access-control-allow-origin": "*",
+      "access-control-allow-methods": "POST, GET, OPTIONS",
+      "access-control-allow-headers": "content-type, accept",
+    },
+  });
+}
+
+function mcpOk(id, result) {
+  return mcpJson({ jsonrpc: "2.0", id: id === undefined ? null : id, result });
+}
+
+function mcpErr(id, code, message) {
+  return mcpJson({ jsonrpc: "2.0", id: id === undefined ? null : id,
+                   error: { code, message } });
+}
+
+async function mcpDataset() {
+  const now = Date.now();
+  if (mcpCache && now - mcpCache.at < 3600 * 1000) return mcpCache.data;
+  const res = await fetch(MCP_DATASET_URL, { cf: { cacheTtl: 3600 } });
+  if (!res.ok) throw new Error("dataset unavailable (HTTP " + res.status + ")");
+  const data = await res.json();
+  mcpCache = { at: now, data };
+  return data;
+}
+
+const MCP_TOOLS = [
+  {
+    name: "list_providers",
+    description:
+      "List all VPS providers tracked by VPS Deals Wire with cheapest observed price.",
+    inputSchema: { type: "object", properties: {},
+                   additionalProperties: false },
+  },
+  {
+    name: "get_provider",
+    description: "Get details and current offers for one provider by slug.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        slug: { type: "string", description: "Provider slug, e.g. digitalocean" },
+      },
+      required: ["slug"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "find_deals",
+    description:
+      "Find VPS offers at or below a maximum monthly USD price, optionally limited to one provider.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        max_usd: { type: "number", description: "Maximum monthly price in USD" },
+        provider_slug: { type: "string", description: "Provider slug filter" },
+        limit: { type: "number", description: "Max offers to return (default 20, max 50)" },
+      },
+      additionalProperties: false,
+    },
+  },
+];
+
+async function mcpCallTool(name, args) {
+  const ds = await mcpDataset();
+  const providers = ds.providers || [];
+  const offers = ds.offers || [];
+  if (name === "list_providers") {
+    return providers.map((p) => ({
+      name: p.name, slug: p.slug, page: p.page,
+      cheapest_usd: p.cheapest_usd, plans: p.plans,
+    }));
+  }
+  if (name === "get_provider") {
+    const slug = (args && args.slug) || "";
+    const p = providers.find((x) => x.slug === slug);
+    if (!p) throw new Error("unknown provider slug: " + slug);
+    return Object.assign({}, p, {
+      offers: offers.filter((o) => o.provider_slug === slug).slice(0, 50),
+    });
+  }
+  if (name === "find_deals") {
+    let list = offers.slice();
+    if (args && args.provider_slug) {
+      list = list.filter((o) => o.provider_slug === args.provider_slug);
+    }
+    if (args && typeof args.max_usd === "number") {
+      list = list.filter((o) => typeof o.price_usd === "number" &&
+                                o.price_usd <= args.max_usd);
+    }
+    list.sort((a, b) => (a.price_usd === null ? 1e9 : a.price_usd) -
+                        (b.price_usd === null ? 1e9 : b.price_usd));
+    const limit = Math.min((args && args.limit) || 20, 50);
+    return list.slice(0, limit);
+  }
+  throw new Error("unknown tool: " + name);
+}
+
+async function handleMcp(request) {
+  if (request.method === "GET") {
+    return mcpJson({ name: MCP_NAME, version: MCP_VERSION,
+                     transport: "streamable-http",
+                     note: "POST JSON-RPC 2.0 here (initialize, tools/list, tools/call)." });
+  }
+  if (request.method !== "POST") {
+    return mcpJson({ error: "method not allowed" }, 405);
+  }
+  let body;
+  try {
+    body = await request.json();
+  } catch (e) {
+    return mcpErr(null, -32700, "parse error");
+  }
+  const id = body && body.id !== undefined ? body.id : null;
+  if (!body || body.jsonrpc !== "2.0" || typeof body.method !== "string") {
+    return mcpErr(id, -32600, "invalid request");
+  }
+  try {
+    if (body.method === "initialize") {
+      return mcpOk(id, {
+        protocolVersion: "2025-03-26",
+        capabilities: { tools: {} },
+        serverInfo: { name: MCP_NAME, version: MCP_VERSION },
+      });
+    }
+    if (body.method === "tools/list") {
+      return mcpOk(id, { tools: MCP_TOOLS });
+    }
+    if (body.method === "tools/call") {
+      const params = body.params || {};
+      const result = await mcpCallTool(params.name, params.arguments || {});
+      return mcpOk(id, {
+        content: [{ type: "text", text: JSON.stringify(result) }],
+      });
+    }
+    if (body.method.indexOf("notifications/") === 0) {
+      return new Response(null, { status: 202 });
+    }
+    return mcpErr(id, -32601, "method not found: " + body.method);
+  } catch (e) {
+    return mcpErr(id, -32602, String((e && e.message) || e));
+  }
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (request.method === "OPTIONS") return json({ ok: true });
+    if (url.pathname === "/mcp") return handleMcp(request);
     if (url.pathname === "/api/subscribe" && request.method === "POST") {
       return handleSubscribe(request, env);
     }

@@ -334,6 +334,17 @@ description: Look up live cheap-VPS deal data on vpsdealswire.com — providers,
                     "find a buying guide for first-time VPS buyers",
                 ],
             },
+            {
+                "identifier": "urn:air:www.vpsdealswire.com:mcp:deals",
+                "displayName": "VPS deals MCP server",
+                "type": "application/mcp-server-card+json",
+                "url": base_url + "/.well-known/mcp/server-card.json",
+                "representativeQueries": [
+                    "list all VPS providers with their cheapest prices",
+                    "find VPS deals under 5 dollars per month",
+                    "get current offers for a specific VPS provider",
+                ],
+            },
         ],
     }, indent=2) + "\n")
 
@@ -352,5 +363,67 @@ description: Look up live cheap-VPS deal data on vpsdealswire.com — providers,
               f"- Full URL list: {base_url}/sitemap.xml",
               f"- Machine entry: {base_url}/ai/", ""]
     _w(site_dir / "index.md", "\n".join(lines))
+
+    # ---- 12. api/deals.json: machine-readable dataset for the MCP server ----
+    # Same source data as the HTML pages; regenerated every build (6h).
+    _slug_to_name = {}
+    _prov_out = []
+    for name, slug, _ in prov_rows:
+        _slug_to_name[slug] = name
+    for p in providers:
+        slug = p.get("slug", "")
+        if not slug:
+            continue
+        _slug_to_name[slug] = p.get("name", slug)
+    prov_deals = {}
+    for d in deals:
+        s = d.get("provider_slug") or ""
+        prov_deals.setdefault(s, []).append(d)
+    for name, slug, _ in prov_rows:
+        pdeals = prov_deals.get(slug, [])
+        prices = [d.get("price") for d in pdeals
+                  if isinstance(d.get("price"), (int, float))]
+        _prov_out.append({
+            "name": name,
+            "slug": slug,
+            "page": base_url + "/providers/" + slug + "/",
+            "cheapest_usd": min(prices) if prices else None,
+            "plans": len(pdeals),
+        })
+    _offer_out = []
+    for d in deals:
+        slug = d.get("provider_slug") or ""
+        price = d.get("price")
+        _offer_out.append({
+            "provider_name": d.get("provider_name", ""),
+            "provider_slug": slug,
+            "title": (d.get("title") or "")[:140],
+            "price_usd": price if isinstance(price, (int, float)) else None,
+            "currency": d.get("currency", "USD"),
+            "offer_url": d.get("offer_url", ""),
+            "fetched_at": d.get("fetched_at", ""),
+        })
+    _w(site_dir / "api" / "deals.json", json.dumps({
+        "generated_at": gen,
+        "providers": _prov_out,
+        "offers": _offer_out,
+    }, ensure_ascii=False) + "\n")
+
+    # ---- 13. MCP server card (SEP-1649) ----
+    _w(site_dir / ".well-known" / "mcp" / "server-card.json", json.dumps({
+        "serverInfo": {"name": "vpsdealswire-mcp", "version": "1.0.0"},
+        "endpoint": base_url + "/mcp",
+        "transport": {"type": "streamable-http"},
+        "capabilities": {
+            "tools": [
+                {"name": "list_providers",
+                 "description": "List all tracked VPS providers with cheapest observed price."},
+                {"name": "get_provider",
+                 "description": "Get details and current offers for one provider by slug."},
+                {"name": "find_deals",
+                 "description": "Find VPS offers at or below a max monthly USD price."},
+            ],
+        },
+    }, indent=2) + "\n")
 
     return {"skill_digest": digest, "providers": len(providers)}

@@ -435,7 +435,11 @@ def render_index(ctx, data, cfg, base_url):
 
     jsonld = jsonld_itemlist(deal_index, base_url) if deal_index else ""
 
-    return render_base(ctx, content, jsonld)
+    html_out = render_base(ctx, content, jsonld)
+    # WebMCP：只在首页暴露真实页面工具（feature-detected，无 API 时无操作）
+    html_out = html_out.replace(
+        "</body>", '<script src="/webmcp.js" defer></script>\n</body>', 1)
+    return html_out
 
 
 def render_provider(ctx, data, cfg, base_url, provider):
