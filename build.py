@@ -36,6 +36,7 @@ REFETCH_JSON = ROOT / "data" / "refetch.json"
 
 sys.path.insert(0, str(ROOT))
 from scraper import parse_ilang, slugify, MAX_DEALS_PER_PROVIDER, offer_id_for  # reuse the parser
+from agent_discovery import write_agent_discovery  # isitagentready profile files
 
 
 def e(s):
@@ -950,6 +951,7 @@ def write_robots(out_path, base_url):
     body = (
         "User-agent: *\n"
         "Allow: /\n"
+        "Content-Signal: ai-train=yes, search=yes, ai-input=yes\n"
         "Sitemap: " + base_url + "/sitemap.xml\n"
     )
     write(out_path, body)
@@ -1598,6 +1600,12 @@ def main():
     # 6. sitemap.xml + robots.txt
     write_sitemap(all_paths, SITE / "sitemap.xml", base_url)
     write_robots(SITE / "robots.txt", base_url)
+
+    # 6b. Agent-discovery 文件（isitagentready 默认 profile）
+    #     _headers（Link 头 + content-type）、llms.txt、/ai/、openapi.json、
+    #     api-catalog、OAuth 占位（明确 under_construction）、auth.md、
+    #     agent skill（含 served bytes 的 sha256 digest）、ARD、index.md
+    write_agent_discovery(SITE, base_url, data)
 
     print("built site/")
     print("  index +", len(data["providers"]), "provider pages + compare + privacy + about + contact + methodology + sitemap + robots + _redirects")
