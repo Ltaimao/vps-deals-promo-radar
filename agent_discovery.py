@@ -364,8 +364,9 @@ description: Look up live cheap-VPS deal data on vpsdealswire.com — providers,
               f"- Machine entry: {base_url}/ai/", ""]
     _w(site_dir / "index.md", "\n".join(lines))
 
-    # ---- 12. api/deals.json: machine-readable dataset for the MCP server ----
+    # ---- 12. data/deals.json: machine-readable dataset for the MCP server ----
     # Same source data as the HTML pages; regenerated every build (6h).
+    # NOTE: served from /data/ (not /api/) so the worker route never shadows it.
     _slug_to_name = {}
     _prov_out = []
     for name, slug, _ in prov_rows:
@@ -403,7 +404,7 @@ description: Look up live cheap-VPS deal data on vpsdealswire.com — providers,
             "offer_url": d.get("offer_url", ""),
             "fetched_at": d.get("fetched_at", ""),
         })
-    _w(site_dir / "api" / "deals.json", json.dumps({
+    _w(site_dir / "data" / "deals.json", json.dumps({
         "generated_at": gen,
         "providers": _prov_out,
         "offers": _offer_out,

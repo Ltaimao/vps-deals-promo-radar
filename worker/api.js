@@ -394,7 +394,7 @@ async function handleScheduled(env) {
  * ------------------------------------------------------------------ */
 const MCP_NAME = "vpsdealswire-mcp";
 const MCP_VERSION = "1.0.0";
-const MCP_DATASET_URL = SITE + "/api/deals.json";
+const MCP_DATASET_URL = SITE + "/data/deals.json";
 let mcpCache = null; // {at, data}
 
 function mcpJson(data, status = 200) {
