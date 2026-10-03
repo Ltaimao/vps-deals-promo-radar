@@ -7,6 +7,12 @@
  * Ordinary requests fall through to the static asset untouched.
  */
 export async function onRequest({ request, env, next }) {
+  // _headers does not apply to Function responses, so set Link here.
+  const LINK =
+    '</.well-known/api-catalog>; rel="api-catalog", ' +
+    '</openapi.json>; rel="service-desc", ' +
+    '</ai/>; rel="service-doc", ' +
+    '</auth.md>; rel="describedby"';
   const accept = request.headers.get("Accept") || "";
   if (accept.includes("text/markdown")) {
     try {
@@ -19,6 +25,7 @@ export async function onRequest({ request, env, next }) {
             "Content-Type": "text/markdown; charset=utf-8",
             "Cache-Control": "public, max-age=300",
             "Vary": "Accept",
+            Link: LINK,
           },
         });
       }
@@ -26,5 +33,12 @@ export async function onRequest({ request, env, next }) {
       // fall through to static HTML on any edge failure
     }
   }
-  return next();
+  const res = await next();
+  const headers = new Headers(res.headers);
+  headers.set("Link", LINK);
+  return new Response(res.body, {
+    status: res.status,
+    statusText: res.statusText,
+    headers,
+  });
 }

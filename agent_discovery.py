@@ -33,26 +33,43 @@ def write_agent_discovery(site_dir, base_url, data):
         prov_rows.append((name, slug, cheapest))
     prov_rows.sort(key=lambda r: r[0].lower())
 
-    # ---- 1. _headers (Cloudflare Pages): Link headers + content types ----
+    # ---- 1. _headers (Cloudflare Pages): content types for extensionless files.
+    # NOTE: _headers only applies to *static asset* responses, never to
+    # Function responses. The homepage (/) is served by functions/index.js,
+    # so its Link header is set there instead. Blank lines between blocks
+    # are required by the Pages parser.
     _w(site_dir / "_headers", """\
-/:
-  Link: </.well-known/api-catalog>; rel="api-catalog", </openapi.json>; rel="service-desc", </ai/>; rel="service-doc", </auth.md>; rel="describedby"
 /.well-known/api-catalog:
+
   Content-Type: application/linkset+json
+
 /.well-known/oauth-authorization-server:
+
   Content-Type: application/json
+
 /.well-known/oauth-protected-resource:
+
   Content-Type: application/json
+
 /.well-known/agent-skills/index.json:
+
   Content-Type: application/json
+
 /.well-known/ai-catalog.json:
+
   Content-Type: application/json
   Access-Control-Allow-Origin: *
+
 /auth.md:
+
   Content-Type: text/markdown; charset=utf-8
+
 /llms.txt:
+
   Content-Type: text/markdown; charset=utf-8
+
 /ai/skills/site-lookup/SKILL.md:
+
   Content-Type: text/markdown; charset=utf-8
 """)
 
