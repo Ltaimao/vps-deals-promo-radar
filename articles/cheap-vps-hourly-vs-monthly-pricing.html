@@ -1,0 +1,164 @@
+title: Why Some "Cheap VPS" Lists Show $0.01 Plans: Hourly vs Monthly Pricing, With Real Numbers
+date: 2026-10-04
+description: Our price tracker scraped 225 live offers and some read $0.01 — they are hourly rates and add-ons, not $0.01/month servers. This guide shows how to read them, with the 730-hour math and a staging-vs-always-on decision rule.
+gap: hourly-vs-monthly-pricing
+
+<h1>Why Some "Cheap VPS" Lists Show $0.01 Plans: Hourly vs Monthly Pricing, With Real Numbers</h1>
+<img src="/articles/cheap-vps-hourly-vs-monthly-pricing.png" alt="Illustration of a price tag split in two halves: one labeled one cent per hour and the other showing seven dollars thirty per month, with a small clock and calendar icon beside it">
+<p>
+  Every price figure below comes from this site's own scrape —
+  <strong>225 live offers across the 28 providers we list, last verified
+  2026-10-03</strong>. Roundups of cheap VPS plans almost never explain the
+  difference between an hourly price and a monthly price, so the cheapest
+  numbers on any price list are often the most misunderstood. Here is the
+  answer table first, then the math.
+</p>
+
+<h2>The answer table: what the cheapest rows on our tracker actually are</h2>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Row on our tracker</th><th>What it is</th><th>True cost if left running 24/7</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>$0.01 — DigitalOcean ("Per-sec billing with 60 sec minimum")</td><td>Usage rate, billed per second</td><td>$0.01 × 730 hours = $7.30/month</td></tr>
+    <tr><td>$0.01 — Kamatera ("Per Month / Hourly rate")</td><td>Hourly rate</td><td>$0.01 × 730 hours = $7.30/month</td></tr>
+    <tr><td>$0.01 — Liquid Web ("Hourly Compute Build")</td><td>Hourly rate</td><td>$0.01 × 730 hours = $7.30/month</td></tr>
+    <tr><td>$0.15 — DigitalOcean ("Spaces Object Storage pricing…")</td><td>Storage add-on, not a server</td><td>Not a VPS price at all</td></tr>
+    <tr><td>$0.30 — DigitalOcean ("Standard GiB-month")</td><td>Storage add-on, not a server</td><td>Not a VPS price at all</td></tr>
+    <tr><td>$1.00 — IONOS ("Unlimited traffic… Starting at")</td><td>Monthly plan, entry tier</td><td>$1.00/month</td></tr>
+    <tr><td>$1.00 — Hostens ("RAM CPU Daily/Weekly")</td><td>Daily/weekly billing — unit unclear from the title</td><td>Verify before you buy</td></tr>
+    <tr><td>$1.67 — AlphaVPS ("AMD Ryzen powered Storage VPS")</td><td>Monthly plan, storage VPS tier</td><td>$1.67/month</td></tr>
+    <tr><td>$2.00 — IONOS ("Starting at")</td><td>Monthly plan, entry tier</td><td>$2.00/month</td></tr>
+  </tbody>
+</table>
+</div>
+<p>
+  The headline lesson: <strong>a "$0.01 plan" is never a $0.01/month
+  server.</strong> It is either an hourly rate, or it is not a server price
+  at all. Out of 225 offers on our tracker, 37 sit under $4 — and as the
+  table shows, a good share of those are hourly rates, storage add-ons, or
+  per-unit billing, not sub-$4 monthly plans. The median listed price across
+  the whole tracker is $14.60/month.
+</p>
+
+<h2>The three kinds of cheap numbers on pricing pages</h2>
+<p>
+  When you scan any cheap VPS price list — ours included — the smallest
+  numbers fall into three buckets:
+</p>
+<ol>
+  <li>
+    <strong>Hourly (or per-second) rates.</strong> Words like "hourly",
+    "per-sec billing", or "usage-based" give these away. DigitalOcean's
+    pricing page advertises per-second billing with a 60-second minimum;
+    Kamatera and Liquid Web show explicit hourly rows. These are built for
+    short-lived workloads, not for leaving a server on all month.
+  </li>
+  <li>
+    <strong>Add-on and per-unit prices.</strong> Object storage per
+    GB-month, extra storage slabs (our scrape caught BuyVM's $1.25/month
+    256 GB storage slab and DigitalOcean's storage lines), bandwidth packs.
+    These ride along with a server; they are not the server.
+  </li>
+  <li>
+    <strong>True monthly plans.</strong> "Starting at $1.00" from IONOS, or
+    AlphaVPS's $1.67/month storage VPS. These are the only rows you can
+    compare one-to-one with the $5 or $10 figures in a roundup.
+  </li>
+</ol>
+<p>
+  None of the three big roundups we audit (liquidweb.com, hostingadvice.com,
+  lowendbox.com) walk readers through this distinction. Their tables mix
+  "starting at" monthly figures with whatever the provider puts first,
+  which is exactly how a $0.01 row gets misread as a $0.01/month plan.
+</p>
+
+<h2>The 730-hour math</h2>
+<p>
+  Providers that bill hourly define the conversion against a standard
+  month of roughly <strong>730 hours</strong> (24 × 365 ÷ 12 = 730).
+  Vultr's FAQ states its hourly rate is the monthly price divided by 730;
+  the same arithmetic underlies every hourly figure on a pricing page.
+  So:
+</p>
+<ul>
+  <li>$0.01/hour × 730 hours = <strong>$7.30/month</strong> if the server never sleeps</li>
+  <li>$0.005/hour × 730 hours = <strong>$3.65/month</strong> if the server never sleeps</li>
+  <li>Conversely, a $5/month flat plan implies an hourly equivalent of about <strong>$0.0068/hour</strong> — always-on is the discount, not the markup</li>
+</ul>
+<p>
+  Some providers add a monthly cap to hourly billing, so a forgotten
+  instance cannot bill the full 730 hours. Others bill per second with a
+  minimum charge per boot (DigitalOcean's 60-second minimum means a 10-second
+  test still bills 60 seconds). The principle is the same: multiply the
+  hourly rate by the hours you will actually use.
+</p>
+
+<h2>The one decision that matters: always-on vs. sometimes-on</h2>
+<p>
+  This is the real buying question, and it maps directly to something
+  readers actually ask: <em>is a cheap hourly VPS enough for a staging
+  box, or do I need monthly billing?</em>
+</p>
+<p>
+  <strong>Buy monthly if the box runs most of the time.</strong> Break-even
+  is simple: hourly rate × hours. At $0.01/hour, 500 hours of uptime costs
+  $5.00 — exactly the price of a typical $5/month flat plan. If your server
+  runs more than roughly 500 hours a month (about 21 days), the monthly
+  plan wins. A blog, a VPN, a game server, a production API: all
+  always-on, all monthly.
+</p>
+<p>
+  <strong>Use hourly if the box sleeps.</strong> A staging box you spin up
+  for two hours of testing, ten times a month, is 20 hours: $0.20 at
+  $0.01/hour. Compare that with a $5/month plan you leave running out of
+  laziness, and hourly billing is a 25× saving. Hourly billing exists for
+  this job — testing, CI runners, short migrations, "spin it up, break
+  things, destroy it."
+</p>
+<p>
+  <strong>Watch the forgotten-server trap.</strong> The cheapest hourly
+  plan in the world becomes the most expensive the month you forget to
+  destroy the instance. If you choose hourly, set a reminder to tear the
+  box down — or pick a provider with a monthly cap on hourly billing so
+  there is a ceiling.
+</p>
+
+<h2>How to read our tracker without getting fooled</h2>
+<p>
+  A few practical rules, using the data on this site as the example:
+</p>
+<ul>
+  <li>
+    <strong>Read the title fragment, not just the number.</strong> Our rows
+    keep the provider's own wording. "Hourly", "per-sec", "GiB-month",
+    "Daily/Weekly" tell you the unit; "Starting at" and "Per Month" tell
+    you it is monthly. When the unit is ambiguous — like Hostens'
+    $1.00 "Daily/Weekly" row — treat the number as unconfirmed until you
+    check the provider page.
+  </li>
+  <li>
+    <strong>18 of the 27 priced providers on our tracker have at least one
+    row under $5</strong> — but after separating hourly rates and add-ons,
+    the count of true sub-$5 <em>monthly plans</em> is smaller. We publish
+    the raw rows precisely so you can do this separation yourself; every
+    row carries its fetched date.
+  </li>
+  <li>
+    <strong>Never compare an hourly row with a monthly row.</strong> "$0.01
+    vs $5" is not a comparison, it is a category error. Convert first,
+    compare second.
+  </li>
+</ul>
+
+<h2>The bottom line</h2>
+<p>
+  There is no $0.01/month VPS on any reputable price list — there are
+  $0.01/hour rates, storage add-ons, and genuine $1–2/month entry plans,
+  and they are different products for different jobs. Decide whether your
+  server sleeps or not, do the 730-hour math, and the cheapest option
+  stops being a mystery. All figures above are from our own scrape of
+  2026-10-03; prices move, and the tracker's per-row fetched dates tell
+  you exactly how fresh each one is.
+</p>
