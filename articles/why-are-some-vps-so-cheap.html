@@ -1,0 +1,137 @@
+title: Why Are Some VPS Plans So Cheap? A Q&A on the Catch Behind Ultra-Cheap Prices
+date: 2026-10-05
+description: Our tracker scraped 225 live VPS offers and found 19 providers with entry plans at $5/month or less — starting at $1/month. This Q&A explains what you are actually trading for that price, with every figure traced to our 2026-10-03 price snapshot.
+gap: question-why-are-some-vps-so-cheap
+
+<h1>Why Are Some VPS Plans So Cheap? A Q&A on the Catch Behind Ultra-Cheap Prices</h1>
+<img src="/articles/why-are-some-vps-so-cheap.png" alt="Illustration of a small server with a short stack of coins next to a large server with a tall stack of coins, showing the price gap between budget and premium VPS plans">
+<p>
+  Every number below comes from this site's own scrape —
+  <strong>225 live offers across the providers we list, last verified
+  2026-10-03</strong>. Cheap-VPS roundups rarely say what you give up for
+  the price on the headline banner. Here is the short answer first, then
+  the full Q&A.
+</p>
+
+<h2>The short answer: the catch checklist</h2>
+<table>
+  <thead>
+    <tr><th>Why the price is low</th><th>What it costs you</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Shared CPU cores spread across many tenants</td><td>Your speed depends partly on your neighbors' load</td></tr>
+    <tr><td>Unmanaged only — you are the sysadmin</td><td>No help installing, patching, or fixing things</td></tr>
+    <tr><td>Backups sold as an add-on, or not offered</td><td>Your data protection is your own job</td></tr>
+    <tr><td>Ticket-based support, small teams</td><td>Slower answers than a premium provider's chat line</td></tr>
+    <tr><td>Annual prepay on the deepest discounts</td><td>You commit for 12 months to get the headline rate</td></tr>
+    <tr><td>Fewer datacenter locations</td><td>Less choice of where your server lives</td></tr>
+  </tbody>
+</table>
+<p>
+  None of this is a scam — 19 of the 27 providers in our price database
+  have entry tiers at <strong>$5/month or less</strong> (snapshot
+  2026-10-03), and those prices hold. The catch is knowing which trade
+  each one makes, then matching the plan to your job.
+</p>
+
+<h2>Q: How is a $1/month VPS even possible?</h2>
+<p>
+  These are the cheapest entry tiers we actually scraped from provider
+  pricing pages on <strong>2026-10-03</strong> (monthly-billed rows only;
+  hourly and storage add-on rows excluded):
+</p>
+<table>
+  <thead>
+    <tr><th>Provider</th><th>Entry tier scraped</th><th>Scrape date</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>IONOS</td><td>$1.00/month</td><td>2026-10-03</td></tr>
+    <tr><td>Hostens</td><td>$1.00/month</td><td>2026-10-03</td></tr>
+    <tr><td>AccuWebHosting</td><td>$1.00/month</td><td>2026-10-03</td></tr>
+    <tr><td>Latitude.sh</td><td>$1.23/month</td><td>2026-10-03</td></tr>
+    <tr><td>BuyVM</td><td>$1.25/month</td><td>2026-10-03</td></tr>
+    <tr><td>AlphaVPS</td><td>$1.67/month</td><td>2026-10-03</td></tr>
+    <tr><td>Virmach</td><td>$2.00/month</td><td>2026-10-03</td></tr>
+    <tr><td>RackNerd</td><td>$2.24/month</td><td>2026-10-03</td></tr>
+    <tr><td>UpCloud</td><td>$3.00/month</td><td>2026-10-03</td></tr>
+    <tr><td>InterServer</td><td>$3.00/month</td><td>2026-10-03</td></tr>
+  </tbody>
+</table>
+<p>
+  Compare that to the <strong>median of $14.51/month</strong> across all
+  225 offers in the same snapshot. The $1 tier exists because at that
+  price you are buying one thin slice of a big machine — typically a
+  single shared vCPU, a gigabyte or two of RAM, and a ticket queue instead
+  of a phone line. The provider's margin comes from volume and automation,
+  not from the plan itself.
+</p>
+
+<h2>Q: Why is one provider so much cheaper than another for similar specs?</h2>
+<p>
+  This is the question Reddit asks monthly about the cheapest European
+  hosts, and the commonly reported answer has five parts: hardware bought
+  in bulk, datacenters the provider owns rather than rents, CPU cores
+  shared across many tenants at ratios that work for bursty workloads,
+  unmanaged service so there is no support staff cost to pass on, and flat
+  monthly or annual billing with no hourly metering to operate. Nothing
+  exotic — just fewer layers of cost between the metal and your invoice.
+</p>
+
+<h2>Q: Is the ultra-low price real, or will it jump on renewal?</h2>
+<p>
+  It is usually real. The cheapest annual specials in our data are
+  priced-to-stay, not bait-and-switch — the catch is the commitment: you
+  pay 12 months up front and stock per location is limited. Where prices
+  do jump is the classic intro-rate model, which we covered in full in
+  <a href="/articles/cheap-vps-renewal-prices/">our Q&A on renewals and
+  hidden fees</a>. Rule of thumb: a $15/year special that renews at
+  $15/year is a commitment play; a $1.99 first-month rate with no renewal
+  price printed next to it is a pricing play. Read the cart page, not the
+  banner.
+</p>
+
+<h2>Q: Will my site be slow because the VPS is cheap?</h2>
+<p>
+  It depends on your workload, not the price tag. A static site, a blog,
+  or a WireGuard VPN barely touches the CPU — those run fine on a $1–$2
+  tier. The moment you run heavy database joins or a plugin-loaded CMS on
+  a single shared core, you will feel it. That is physics, not a defect:
+  shared cores mean your neighbors' load is part of your performance
+  envelope. We do not run our own benchmarks (we will not invent
+  numbers), so our advice is workload-first — see
+  <a href="/articles/cheap-vps-use-case-picks/">which VPS for which
+  job</a> for the scenario picks.
+</p>
+
+<h2>Q: What do I actually give up on the cheapest tier?</h2>
+<p>The checklist at the top, in practice:</p>
+<ul>
+  <li><strong>Backups are on you.</strong> Most budget tiers either
+  charge extra for automated backups or do not offer them. Set up your
+  own off-site copy on day one.</li>
+  <li><strong>Support is tickets, sometimes slow.</strong> Fine for "my
+  invoice is wrong", less fine for "my server is down at 3 a.m.".</li>
+  <li><strong>Fewer locations.</strong> Budget hosts concentrate in a few
+  datacenters, so check that one is near your visitors before you buy.</li>
+  <li><strong>No hand-holding.</strong> Unmanaged means the OS install,
+  the firewall, and the 2 a.m. outage are all yours.</li>
+</ul>
+
+<h2>Q: When is an ultra-cheap VPS the right buy?</h2>
+<p>
+  Buy the $1–$5 tier when the job is boring: a static site, a personal
+  blog, a staging box, a VPN endpoint, a cron runner. Spend more when the
+  job is revenue: a store taking card payments, anything with an SLA you
+  promised someone, or a workload you cannot afford to debug at midnight.
+  And if a plan looks impossibly cheap, run it through our
+  <a href="/articles/cheap-vps-renewal-prices/">renewal checklist</a> and
+  <a href="/articles/cheap-vps-hourly-vs-monthly-pricing/">the
+  hourly-vs-monthly math</a> before you enter your card — the price on the
+  banner is only the first of three numbers that matter.
+</p>
+
+<p><em>Data note: all prices from vpsdealswire.com's own price tracker,
+snapshot 2026-10-03, 225 offers. Entry tiers are the cheapest
+monthly-billed row scraped from each provider's pricing page; hourly
+rates and storage add-ons excluded. Prices change — check the provider
+page before buying.</em></p>
