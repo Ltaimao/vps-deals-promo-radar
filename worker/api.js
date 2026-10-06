@@ -565,6 +565,9 @@ export default {
     if (url.pathname === "/api/youtube/publish" && request.method === "POST") {
       return handleYouTubePublish(request, env);
     }
+    if (url.pathname === "/api/youtube/delete" && request.method === "POST") {
+      return handleYouTubeDelete(request, env);
+    }
     if (url.pathname === "/api/x/post" && request.method === "POST") {
       return handleXPost(request, env);
     }
@@ -616,6 +619,7 @@ async function ytAccessToken(env) {
 }
 
 async function handleYouTubePublish(request, env) {
+  if (!ytApiAuth(request, env)) return json({ ok: false, error: "unauthorized" }, 401);
   let body;
   try {
     body = await request.json();
@@ -709,6 +713,40 @@ async function handleYouTubePublish(request, env) {
     { expirationTtl: 86400 * 90 }
   );
   return json({ ok: true, videoId: ures.id, url: "https://youtu.be/" + ures.id });
+}
+
+function ytApiAuth(request, env) {
+  if (!env.YT_API_SECRET) return false;
+  const h = request.headers.get("Authorization") || "";
+  return h === "Bearer " + env.YT_API_SECRET;
+}
+
+async function handleYouTubeDelete(request, env) {
+  if (!ytApiAuth(request, env)) return json({ ok: false, error: "unauthorized" }, 401);
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ ok: false, error: "invalid_json" }, 400);
+  }
+  const { video_id } = body || {};
+  if (typeof video_id !== "string" || !/^[A-Za-z0-9_-]{11}$/.test(video_id))
+    return json({ ok: false, error: "bad_video_id" }, 400);
+  let access;
+  try {
+    access = await ytAccessToken(env);
+  } catch (e) {
+    return json({ ok: false, error: String((e && e.message) || e) }, 502);
+  }
+  const r = await fetch(
+    "https://www.googleapis.com/youtube/v3/videos?id=" + encodeURIComponent(video_id),
+    { method: "DELETE", headers: { Authorization: "Bearer " + access } }
+  );
+  if (!r.ok && r.status !== 204) {
+    const detail = await r.text().catch(() => "");
+    return json({ ok: false, error: "youtube_delete_failed:" + r.status, detail: detail.slice(0, 300) }, 502);
+  }
+  return json({ ok: true, video_id });
 }
 
 // ---------- X (Twitter) posting via OAuth 1.0a ----------
