@@ -565,6 +565,12 @@ export default {
     if (url.pathname === "/api/youtube/publish" && request.method === "POST") {
       return handleYouTubePublish(request, env);
     }
+    if (url.pathname === "/api/x/post" && request.method === "POST") {
+      return handleXPost(request, env);
+    }
+    if (url.pathname === "/api/x/me" && request.method === "GET") {
+      return handleXMe(request, env);
+    }
     return json({ ok: false, error: "not_found" }, 404);
   },
   async scheduled(event, env, ctx) {
@@ -703,4 +709,130 @@ async function handleYouTubePublish(request, env) {
     { expirationTtl: 86400 * 90 }
   );
   return json({ ok: true, videoId: ures.id, url: "https://youtu.be/" + ures.id });
+}
+
+// ---------- X (Twitter) posting via OAuth 1.0a ----------
+// Posts promotional tweets as @liomao for each daily article.
+// Secrets (X_CONSUMER_KEY / X_CONSUMER_SECRET / X_ACCESS_TOKEN /
+// X_ACCESS_TOKEN_SECRET) live in Worker secrets — never in code, chat,
+// or the repo. The /api/x/post endpoint requires the X_POST_SECRET bearer
+// (stored in the Worker's secrets and on the operator's machine only),
+// and is rate-limited to 5 posts/day via KV.
+
+const X_MAX_POSTS_PER_DAY = 5;
+
+function xPercentEncode(s) {
+  return encodeURIComponent(s).replace(/[!'()*]/g, (c) =>
+    "%" + c.charCodeAt(0).toString(16).toUpperCase()
+  );
+}
+
+async function xOAuthHeader(env, method, baseUrl, extraParams) {
+  const oauth = {
+    oauth_consumer_key: env.X_CONSUMER_KEY,
+    oauth_nonce: crypto.randomUUID().replace(/-/g, ""),
+    oauth_signature_method: "HMAC-SHA1",
+    oauth_timestamp: String(Math.floor(Date.now() / 1000)),
+    oauth_token: env.X_ACCESS_TOKEN,
+    oauth_version: "1.0",
+  };
+  const all = { ...oauth, ...(extraParams || {}) };
+  const paramStr = Object.keys(all)
+    .sort()
+    .map((k) => xPercentEncode(k) + "=" + xPercentEncode(all[k]))
+    .join("&");
+  const baseString =
+    method.toUpperCase() +
+    "&" +
+    xPercentEncode(baseUrl) +
+    "&" +
+    xPercentEncode(paramStr);
+  const signingKey =
+    xPercentEncode(env.X_CONSUMER_SECRET) + "&" + xPercentEncode(env.X_ACCESS_TOKEN_SECRET);
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(signingKey),
+    { name: "HMAC", hash: "SHA-1" },
+    false,
+    ["sign"]
+  );
+  const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(baseString));
+  const sigB64 = btoa(String.fromCharCode(...new Uint8Array(sig)));
+  oauth.oauth_signature = sigB64;
+  return (
+    "OAuth " +
+    Object.keys(oauth)
+      .sort()
+      .map((k) => xPercentEncode(k) + '="' + xPercentEncode(oauth[k]) + '"')
+      .join(", ")
+  );
+}
+
+function xConfigured(env) {
+  return !!(
+    env.X_CONSUMER_KEY &&
+    env.X_CONSUMER_SECRET &&
+    env.X_ACCESS_TOKEN &&
+    env.X_ACCESS_TOKEN_SECRET &&
+    env.X_POST_SECRET
+  );
+}
+
+function xAuth(request, env) {
+  const h = request.headers.get("Authorization") || "";
+  return h === "Bearer " + env.X_POST_SECRET;
+}
+
+async function handleXMe(request, env) {
+  if (!xConfigured(env)) return json({ ok: false, error: "x_not_configured" }, 500);
+  if (!xAuth(request, env)) return json({ ok: false, error: "unauthorized" }, 401);
+  const url = "https://api.x.com/2/users/me";
+  const r = await fetch(url, {
+    headers: { Authorization: await xOAuthHeader(env, "GET", url) },
+  });
+  const j = await r.json().catch(() => null);
+  if (!r.ok) return json({ ok: false, error: "x_api_error:" + r.status, detail: JSON.stringify(j).slice(0, 300) }, 502);
+  return json({ ok: true, user: j && j.data ? { id: j.data.id, username: j.data.username, name: j.data.name } : null });
+}
+
+async function handleXPost(request, env) {
+  if (!xConfigured(env)) return json({ ok: false, error: "x_not_configured" }, 500);
+  if (!xAuth(request, env)) return json({ ok: false, error: "unauthorized" }, 401);
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ ok: false, error: "invalid_json" }, 400);
+  }
+  const { text, dry_run } = body || {};
+  if (typeof text !== "string" || !text.trim() || text.length > 280)
+    return json({ ok: false, error: "bad_text" }, 400);
+
+  const day = new Date().toISOString().slice(0, 10);
+  const rlKey = "x:rl:" + day;
+  const used = parseInt((await env.SUBS.get(rlKey)) || "0", 10);
+  if (used >= X_MAX_POSTS_PER_DAY)
+    return json({ ok: false, error: "daily_limit" }, 429);
+
+  const url = "https://api.x.com/2/tweets";
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: await xOAuthHeader(env, "POST", url),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ text: dry_run ? "[DRY RUN] " + text : text }),
+  });
+  const j = await r.json().catch(() => null);
+  if (!r.ok)
+    return json({ ok: false, error: "x_api_error:" + r.status, detail: JSON.stringify(j).slice(0, 500) }, 502);
+  await env.SUBS.put(rlKey, String(used + 1), { expirationTtl: 86400 * 2 });
+  const tweetId = j && j.data && j.data.id;
+  if (tweetId)
+    await env.SUBS.put(
+      "x:last:" + tweetId,
+      JSON.stringify({ text: text.slice(0, 120), at: new Date().toISOString() }),
+      { expirationTtl: 86400 * 90 }
+    );
+  return json({ ok: true, tweet_id: tweetId || null, dry_run: !!dry_run });
 }
