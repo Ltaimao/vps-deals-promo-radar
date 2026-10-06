@@ -294,7 +294,7 @@ def render_index(ctx, data, cfg, base_url):
     # Sponsored 联盟广告位：链接只从 .ilang ::MODULE{AFFILIATE} 读（前 5 条），
     # 渲染带 rel="sponsored nofollow noopener"，卡片上标 Sponsored，不许混进普通内容。
     # 有 logo 字段时渲染品牌 logo（/sponsored/<file>），无则回退纯文字卡。
-    _aff = (cfg.get("AFFILIATE") or [])[:5]
+    _aff = cfg.get("AFFILIATE") or []
     _aff_cards = []
     for a in _aff:
         _logo = a.get("logo")

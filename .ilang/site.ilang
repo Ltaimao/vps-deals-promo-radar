@@ -149,7 +149,7 @@ LANG zh
 ::BOUNDARY{never:绕过反爬 伪造 UA 抓登录后内容 违反目标站 robots.txt|scope:permanent}
 ::MODULE{AFFILIATE|title:联盟推广链接 每条必须是联盟后台真实生成的追踪链接 不许编 不许拼参数}
   # 格式: 名称 | 追踪链接原文 | 一句话描述(不许编价格/佣金) | 联盟网络 | logo(可选 static/sponsored/ 下文件名)
-  # 首页 Sponsored 区按此顺序渲染前 5 条（与本站 cheap vps 受众最相关的落地页）
+  # 首页 Sponsored 区按此顺序渲染全部条目（与本站 cheap vps 受众最相关的落地页排前面）
   Contabo VPS|https://www.dpbolvw.net/click-8084695-17165311|VPS hosting plans on Contabo's official site|CJ Affiliate|contabo.svg
   Namecheap VPS|https://www.dpbolvw.net/click-8084695-11429085|VPS hosting plans on Namecheap's official site|CJ Affiliate|namecheap.svg
   Domain.com|https://afflat3c1.com/trk/lnk/CAF13121-040C-4717-9E50-A975CC73D567/?o=31453&c=918277&a=806486&k=618D|Domains, hosting and website builder on Domain.com's official site|MaxBounty|domain.svg
@@ -157,6 +157,8 @@ LANG zh
   Liquid Web|https://afflat3c2.com/trk/lnk/CAF13121-040C-4717-9E50-A975CC73D567/?o=29331&c=918277&a=806486&k=0F10|Hosting plans on Liquid Web's official site|MaxBounty|liquidweb.svg
   Contabo|https://www.dpbolvw.net/click-8084695-17207185|Contabo official homepage|CJ Affiliate|contabo.svg
   Namecheap|https://www.dpbolvw.net/click-8084695-11426545|Namecheap official homepage|CJ Affiliate|namecheap.svg
+  HostGator|https://afflat3c2.com/trk/lnk/CAF13121-040C-4717-9E50-A975CC73D567/?o=31144&c=918277&a=806486&k=F7BD19941B557C8A264078F7914DC11C&l=36296|Web hosting plans on HostGator's official site|MaxBounty|hostgator.svg
+  Bluehost|https://afflat3c1.com/trk/lnk/CAF13121-040C-4717-9E50-A975CC73D567/?o=28991&c=918277&a=806486&k=DD7D3DBB687CFBB16E8862987E57A3E1&l=32606|Web hosting plans on Bluehost's official site|MaxBounty|bluehost.svg
 
 ::RULE{联盟链接只从 .ilang ::MODULE{AFFILIATE} 读 build.py 渲染 不许在模板或代码里写死链接}
 ::RULE{联盟链接渲染必须带 rel="sponsored nofollow noopener" 必须标 Sponsored 不许混进普通内容}
