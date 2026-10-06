@@ -568,6 +568,12 @@ export default {
     if (url.pathname === "/api/youtube/delete" && request.method === "POST") {
       return handleYouTubeDelete(request, env);
     }
+    if (url.pathname === "/api/gsc/query" && request.method === "GET") {
+      return handleGscQuery(request, env);
+    }
+    if (url.pathname === "/api/gsc/sites" && request.method === "GET") {
+      return handleGscSites(request, env);
+    }
     if (url.pathname === "/api/x/post" && request.method === "POST") {
       return handleXPost(request, env);
     }
@@ -873,4 +879,128 @@ async function handleXPost(request, env) {
       { expirationTtl: 86400 * 90 }
     );
   return json({ ok: true, tweet_id: tweetId || null, dry_run: !!dry_run });
+}
+
+// ---------- Google Search Console (read-only) ----------
+// Search Analytics API for the 28-day STEP 10 report (daily visitors goal).
+// Secrets (GSC_CLIENT_ID / GSC_CLIENT_SECRET / GSC_REFRESH_TOKEN) live in
+// Worker secrets — never in code, chat, or the repo. The refresh token needs
+// the https://www.googleapis.com/auth/webmasters.readonly scope, granted by
+// the site owner via OAuth consent (one-time, on their own machine).
+// Endpoints require the same bearer as the YouTube API endpoints.
+
+const GSC_SITE_CANDIDATES = [
+  "https://www.vpsdealswire.com/",
+  "https://vpsdealswire.com/",
+  "sc-domain:vpsdealswire.com",
+];
+
+async function gscAccessToken(env) {
+  if (!env.GSC_CLIENT_ID || !env.GSC_CLIENT_SECRET || !env.GSC_REFRESH_TOKEN)
+    throw new Error("gsc_not_configured");
+  const r = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "refresh_token",
+      client_id: env.GSC_CLIENT_ID,
+      client_secret: env.GSC_CLIENT_SECRET,
+      refresh_token: env.GSC_REFRESH_TOKEN,
+    }),
+  });
+  if (!r.ok) throw new Error("gsc_token_refresh_failed:" + r.status);
+  const j = await r.json();
+  if (!j.access_token) throw new Error("gsc_token_no_access_token");
+  return j.access_token;
+}
+
+async function gscFetch(access, path, body) {
+  const r = await fetch("https://www.googleapis.com/webmasters/v3" + path, {
+    method: body ? "POST" : "GET",
+    headers: {
+      Authorization: "Bearer " + access,
+      "Content-Type": "application/json",
+    },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  const j = await r.json().catch(() => null);
+  return { status: r.status, ok: r.ok, json: j };
+}
+
+async function handleGscSites(request, env) {
+  if (!ytApiAuth(request, env)) return json({ ok: false, error: "unauthorized" }, 401);
+  let access;
+  try {
+    access = await gscAccessToken(env);
+  } catch (e) {
+    return json({ ok: false, error: String((e && e.message) || e) }, 502);
+  }
+  const res = await gscFetch(access, "/sites");
+  if (!res.ok)
+    return json({ ok: false, error: "gsc_api_error:" + res.status, detail: JSON.stringify(res.json).slice(0, 300) }, 502);
+  const sites = (res.json && res.json.siteEntry) || [];
+  return json({
+    ok: true,
+    sites: sites.map((s) => ({ siteUrl: s.siteUrl, permissionLevel: s.permissionLevel })),
+  });
+}
+
+async function handleGscQuery(request, env) {
+  if (!ytApiAuth(request, env)) return json({ ok: false, error: "unauthorized" }, 401);
+  const q = new URL(request.url).searchParams;
+  const days = Math.min(Math.max(parseInt(q.get("days") || "28", 10) || 28, 1), 90);
+  const end = new Date();
+  end.setDate(end.getDate() - 3); // GSC data lags ~2-3 days
+  const start = new Date(end);
+  start.setDate(start.getDate() - (days - 1));
+  const fmt = (d) => d.toISOString().slice(0, 10);
+
+  let access;
+  try {
+    access = await gscAccessToken(env);
+  } catch (e) {
+    return json({ ok: false, error: String((e && e.message) || e) }, 502);
+  }
+
+  let siteUrl = null;
+  let lastErr = null;
+  for (const cand of GSC_SITE_CANDIDATES) {
+    const res = await gscFetch(access, "/sites/" + encodeURIComponent(cand) + "/searchAnalytics/query", {
+      startDate: fmt(start),
+      endDate: fmt(end),
+      dimensions: ["date"],
+      rowLimit: 1000,
+    });
+    if (res.ok) {
+      siteUrl = cand;
+      var rows = (res.json && res.json.rows) || [];
+      break;
+    }
+    lastErr = "gsc_api_error:" + res.status;
+  }
+  if (!siteUrl)
+    return json({ ok: false, error: lastErr || "gsc_no_site", detail: "tried: " + GSC_SITE_CANDIDATES.join(", ") }, 502);
+
+  let clicks = 0;
+  let impressions = 0;
+  for (const row of rows) {
+    clicks += row.clicks || 0;
+    impressions += row.impressions || 0;
+  }
+  return json({
+    ok: true,
+    site: siteUrl,
+    startDate: fmt(start),
+    endDate: fmt(end),
+    days_with_data: rows.length,
+    total_clicks: Math.round(clicks),
+    total_impressions: Math.round(impressions),
+    avg_daily_clicks: rows.length ? Math.round((clicks / rows.length) * 10) / 10 : 0,
+    avg_daily_impressions: rows.length ? Math.round((impressions / rows.length) * 10) / 10 : 0,
+    last_14_days: rows.slice(-14).map((r) => ({
+      date: r.keys[0],
+      clicks: Math.round(r.clicks || 0),
+      impressions: Math.round(r.impressions || 0),
+    })),
+  });
 }
