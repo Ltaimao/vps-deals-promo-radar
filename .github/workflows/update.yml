@@ -34,6 +34,8 @@ jobs:
         with:
           name: site
           path: site/
+          # v4 默认不传 dotfile；site/.well-known/* 是 agent-discovery 必需文件
+          include-hidden-files: true
           retention-days: 1
 
       - name: Commit if data changed
@@ -52,10 +54,26 @@ jobs:
     needs: build-and-deploy
     runs-on: ubuntu-latest
     steps:
+      # deploy 需要仓库根的 functions/（Pages middleware：Link 头 + markdown 协商），
+      # 不能只拿 site/ artifact，否则 middleware 丢失且部署静默降级。
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
       - uses: actions/download-artifact@v4
         with:
           name: site
           path: site
+
+      # 关键文件缺失就大声失败，不许静默发一个残缺的部署
+      - name: Verify deploy payload
+        run: |
+          test -f site/.well-known/api-catalog || { echo "MISSING site/.well-known/api-catalog"; exit 1; }
+          test -f site/.well-known/mcp/server-card.json || { echo "MISSING site/.well-known/mcp/server-card.json"; exit 1; }
+          test -f site/.well-known/agent-skills/index.json || { echo "MISSING site/.well-known/agent-skills/index.json"; exit 1; }
+          test -f site/.well-known/ai-catalog.json || { echo "MISSING site/.well-known/ai-catalog.json"; exit 1; }
+          test -f functions/_middleware.js || { echo "MISSING functions/_middleware.js"; exit 1; }
+          echo "deploy payload OK"
 
       - name: Set up Node
         uses: actions/setup-node@v4
