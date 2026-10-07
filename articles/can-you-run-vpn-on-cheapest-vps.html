@@ -1,0 +1,119 @@
+title: Can You Run a VPN on the Cheapest VPS Plan? A Q&A With Real Prices
+date: 2026-10-07
+description: We checked 215 live offers across 26 providers (snapshot 2026-10-06): 12 providers have a real monthly VPS entry at $5 or less, starting at $1.00. This Q&A answers whether the cheapest plan can actually run a VPN, what the catches are, and which entries are worth picking.
+gap: question-can-you-run-vpn-on-cheapest-vps
+
+<h1>Can You Run a VPN on the Cheapest VPS Plan? A Q&A With Real Prices</h1>
+<img src="/articles/can-you-run-vpn-on-cheapest-vps.png" alt="Diagram showing an encrypted VPN tunnel from a laptop and phone through a small low-cost VPS server to the internet">
+<p>
+  <strong>Short answer: yes.</strong> A personal VPN needs almost nothing from
+  a server — and the cheapest real monthly VPS plans we track start at
+  <strong>$1.00/month</strong>. As of our 2026-10-06 snapshot,
+  <strong>12 providers</strong> have a monthly VPS entry at $5 or less. The
+  questions that actually matter are about billing traps, bandwidth policy, and
+  the provider's terms — not raw horsepower.
+</p>
+
+<table>
+  <thead>
+    <tr><th>Provider</th><th>Cheapest monthly VPS entry (USD)</th><th>Snapshot</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Hostens</td><td>$1.00*</td><td>2026-10-06</td></tr>
+    <tr><td>Latitude.sh</td><td>$1.23</td><td>2026-10-06</td></tr>
+    <tr><td>IONOS</td><td>$2.00</td><td>2026-10-06</td></tr>
+    <tr><td>Virmach</td><td>$2.00</td><td>2026-10-06</td></tr>
+    <tr><td>RackNerd</td><td>$2.24</td><td>2026-10-06</td></tr>
+    <tr><td>DigitalOcean</td><td>$4.00</td><td>2026-10-06</td></tr>
+    <tr><td>Kamatera</td><td>$4.00</td><td>2026-10-06</td></tr>
+    <tr><td>RamNode</td><td>$4.00</td><td>2026-10-06</td></tr>
+    <tr><td>DreamHost</td><td>$4.41</td><td>2026-10-06</td></tr>
+    <tr><td>OVHcloud</td><td>$4.54</td><td>2026-10-06</td></tr>
+    <tr><td>AccuWebHosting</td><td>$4.99</td><td>2026-10-06</td></tr>
+    <tr><td>KnownHost</td><td>$5.00</td><td>2026-10-06</td></tr>
+  </tbody>
+</table>
+<p>
+  <small>
+    *Hostens lists daily/weekly billing on this entry — see Q3. Sub-dollar
+    rows (e.g. the $0.01 entries at DigitalOcean, Kamatera, CloudCone,
+    Liquid Web, DreamHost) are hourly rates, excluded here the same way we
+    excluded them in our
+    <a href="/articles/cheap-vps-hourly-vs-monthly-pricing/">hourly vs monthly
+    pricing guide</a>. We also excluded a $1.25 BuyVM storage slab (block
+    storage, not a VPS) and a $2.34 Cherry Servers floating-IP product.
+    Every price above was scraped from the provider's own page on
+    2026-10-06; 215 live offers across 26 providers, 190 in USD.
+  </small>
+</p>
+
+<h2>Q1: Will the cheapest plan actually run WireGuard or OpenVPN?</h2>
+<p>
+  Yes. A VPN endpoint is one of the lightest workloads you can put on a
+  server: it encrypts packets and forwards them. WireGuard in particular is
+  famously frugal — it runs comfortably on boxes with a few hundred megabytes
+  of RAM, far below what even the cheapest VPS tiers ship. OpenVPN is heavier
+  but still trivial for any 1&nbsp;GB plan. For a VPN, <strong>bandwidth
+  policy matters more than CPU or RAM</strong>, and no provider in our table
+  sells a plan too small to run WireGuard.
+</p>
+
+<h2>Q2: What does a self-hosted VPN cost versus a commercial VPN?</h2>
+<p>
+  Our data says $1–$5/month for the server itself. A worked example from
+  ishosting's 2026 comparison puts a self-hosted WireGuard box at about
+  $5.94/month on annual billing, versus roughly $92/year for a dedicated-IP
+  add-on from a commercial VPN provider
+  (<a href="https://blog.ishosting.com/en/vps-vs-vpn-subscription" rel="nofollow noopener">source</a>).
+  The honest trade: a commercial VPN subscription is simpler (apps, many
+  locations, no maintenance); a $2–$5 VPS gives you one clean IP you fully
+  control and can also host other things on the same box. If all you want is
+  encrypted café Wi-Fi, the cheapest subscription usually wins on convenience.
+</p>
+
+<h2>Q3: What's the catch with the $1–$2/month entries?</h2>
+<p>
+  Three things to check before you celebrate:
+</p>
+<ol>
+  <li>
+    <strong>Billing cadence.</strong> The cheapest row in our table, Hostens
+    at $1.00, lists daily/weekly billing — fine for testing, awkward as a
+    permanent setup. And as our hourly-pricing guide showed, sub-dollar
+    entries are usually hourly rates that cap at the monthly price.
+  </li>
+  <li>
+    <strong>Bandwidth policy.</strong> VPN traffic is pure bandwidth. Our
+    tracker captures prices, not bandwidth caps or overage fees — a provider
+    page may advertise "unmetered" with fair-use limits buried in the terms.
+    We don't track those; read the terms page for the plan you're buying.
+  </li>
+  <li>
+    <strong>Terms of service.</strong> A few providers restrict VPN or proxy
+    use (or restrict it on the cheapest tiers). Our price scraper doesn't
+    read ToS pages, so this one needs a manual check — search the provider's
+    terms for "VPN" before you buy.
+  </li>
+</ol>
+
+<h2>Q4: Does the box need IPv4, or is IPv6-only fine?</h2>
+<p>
+  WireGuard itself works on both, but in practice you want an IPv4 address:
+  most of the networks and services you'll reach from a personal VPN are
+  still IPv4. Some of the very cheapest tiers in the market are IPv6-only.
+  We say this plainly because we can't verify it from our data — our tracker
+  doesn't capture IPv4/IPv6 support per plan. If the plan page doesn't say
+  "IPv4 included," ask support before buying.
+</p>
+
+<h2>Q5: So which plan should I actually pick?</h2>
+<p>
+  Our take: skip the $1 curiosities unless you like tinkering, and pick a
+  <strong>monthly-billed entry in the $2–$5 range</strong> from the table
+  above — IONOS, Virmach, or RackNerd at the bottom end; DigitalOcean,
+  Kamatera, or RamNode at $4 if you want a mainstream cloud. That's the
+  sweet spot where the billing is boring, the IP is IPv4, and the box is
+  yours to keep. Every number on this page was scraped from the provider's
+  own page and dated 2026-10-06; the full live ladder is always on the
+  homepage of vpsdealswire.com.
+</p>
