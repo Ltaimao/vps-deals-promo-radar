@@ -1,0 +1,128 @@
+title: $6.49 First, $11.99 on Renewal: A Q&A on Drip Pricing in Cheap VPS Ads
+date: 2026-10-08
+description: Our 2026-10-06 snapshot of 215 live VPS offers caught the pricing trick red-handed: Hostinger advertises $6.49 and renews at $11.99, DreamHost's "first 2 years" cards sit next to auto-renew cards at 2.5x the price — and only 3 of 26 providers print a renewal number on the page at all.
+gap: question-drip-pricing-first-year-vs-renewal
+
+<h1>$6.49 First, $11.99 on Renewal: A Q&A on Drip Pricing in Cheap VPS Ads</h1>
+<img src="/articles/cheap-vps-drip-pricing-first-year-vs-renewal.png" alt="Bar chart comparing advertised intro prices with renewal prices for cheap VPS plans, showing the renewal price gap">
+<p>
+  <strong>Short answer: the big number in the ad is the intro price, not your
+  price.</strong> In our 2026-10-06 snapshot of 215 live VPS offers across 26
+  providers, the renewal number is printed right on the same page for only
+  three providers — and where it appears, it runs <strong>1.85x to
+  2.58x</strong> the advertised price. Everyone else shows you one number and
+  lets you discover the second one on your invoice.
+</p>
+
+<table>
+  <thead>
+    <tr><th>Provider</th><th>Advertised (first-term) price</th><th>Renewal price, same page</th><th>The jump</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Hostinger KVM 1</td><td>$6.49</td><td>$11.99</td><td>1.85x (+85%)</td></tr>
+    <tr><td>DreamHost</td><td>$5.99 (first 2 years)</td><td>$14.99 (auto-renews)</td><td>2.50x (+150%)</td></tr>
+    <tr><td>DreamHost</td><td>$9.49 (first 2 years)</td><td>$23.49 (auto-renews)</td><td>2.47x (+148%)</td></tr>
+    <tr><td>DreamHost</td><td>$15.49 (first 2 years)</td><td>$39.99 (auto-renews)</td><td>2.58x (+158%)</td></tr>
+    <tr><td>InMotion Hosting</td><td><em>not shown in our scrape</em></td><td>$16.99–$56.99 ("renews at", 24-month term)</td><td>intro hidden</td></tr>
+  </tbody>
+</table>
+<p>
+  <small>
+    Every figure above was scraped from the provider's own pricing page on
+    2026-10-06. Intro and renewal figures come from separate cards on the same
+    page; Hostinger pairs are listed as intro/"renews at" card pairs, and
+    DreamHost pairs are matched in the order the cards appear (note the
+    near-identical ~2.5x ratio across all three pairs, which is what makes the
+    matching credible). The renewal cards name no plan — that ambiguity is
+    part of the problem. InMotion's page lists only the renewal rate, no intro
+    price at all. 215 live offers, 26 providers, 190 in USD.
+  </small>
+</p>
+
+<h2>Q1: What is "drip pricing"?</h2>
+<p>
+  It's the name shoppers gave to the practice of advertising a price that
+  excludes fees and conditions you can't avoid — the total "drips" out later.
+  On a recent r/SelfHosting thread asking why VPS hosts "lie about pricing",
+  one commenter noted that some countries already outlaw it: in Australia,
+  consumer law requires the headline price to include all unavoidable fees.
+  The US has no such rule for hosting, so the advertised VPS price is usually
+  the <em>best-case</em> price: longest term, first billing cycle, promo
+  applied.
+</p>
+
+<h2>Q2: How do I know the pair above is real and not a scraping mix-up?</h2>
+<p>
+  Fair question — card scrapers can misalign rows. Two checks: first, the
+  Hostinger pairing is confirmed by an independent September 2026 price check
+  that lists the KVM 1 at exactly $6.49 advertised and $11.99 on renewal, the
+  same numbers our scraper read on 2026-10-06. Second, the DreamHost pairs
+  land at 2.50x, 2.47x and 2.58x — three independent card pairs converging on
+  the same multiplier is a pattern, not a coincidence. What the scrape
+  <em>can't</em> tell you is which renewal card belongs to which plan name,
+  because the renewal cards don't name the plan. Treat the individual
+  DreamHost rows as ±one card of uncertainty; the direction and scale of the
+  jump are not uncertain.
+</p>
+
+<h2>Q3: How common is this? Do most providers hide the renewal price?</h2>
+<p>
+  In our snapshot, <strong>23 of 26 providers show no renewal figure at
+  all</strong> — a single price per plan, no "renews at" line anywhere on the
+  page our scraper reads. Only Hostinger, DreamHost and InMotion Hosting print
+  both numbers where we can see them. That is the actual drip: for the vast
+  majority of cheap VPS plans, the renewal price is not hidden in fine print —
+  it simply isn't on the pricing page. If it isn't shown, assume the headline
+  is the first-term price and go read the terms page before you buy. (We wrote
+  a separate guide on
+  <a href="/articles/cheap-vps-renewal-prices/">renewals and hidden fees</a>
+  with what to check line by line.)
+</p>
+
+<h2>Q4: What's the real first-year cost, then? How do I compute it?</h2>
+<p>
+  Multiply the promo price by the promo months, add the regular price for the
+  remaining months, divide by 12. A published worked example: one provider's
+  plan is $5/month for the first 3 months of a 1-year term, then $14/month —
+  that's $5×3 + $14×9 = $141 for the year, or <strong>$11.75/month
+  effective</strong>, not $5. The advertised $5 is true for exactly one
+  quarter. Our take: the only honest way to compare two "cheap" plans is
+  effective monthly cost over the full term you're actually committing to. A
+  $6.49 plan on a 24-month term is a $155.76 commitment whose renewal is
+  $287.76 — compare <em>those</em> numbers, not the headlines.
+</p>
+
+<h2>Q5: Are there providers that don't play this game?</h2>
+<p>
+  Yes — the flat-rate ones. Providers that bill the same month to month with
+  no intro term have no second number to hide: what you see is what renews.
+  In our data these are typically the hourly/monthly cloud-style billers
+  rather than the long-term-discount sellers. They look more expensive in
+  month one and cheaper by month thirty. If you hate doing the arithmetic in
+  Q4, that trade is worth real money to you.
+</p>
+
+<h2>Q6: So is the $6.49 deal still worth taking?</h2>
+<p>
+  Often yes — $6.49 for a 1 vCPU / 4 GB RAM box is genuinely cheap hardware,
+  and the renewal at $11.99 is still a fair price for the specs. Drip pricing
+  is a disclosure problem, not a scam verdict. The mistake is budgeting $6.49
+  forever and getting surprised. Go in knowing the second number, set a
+  calendar reminder before the intro term ends, and re-shop the market at
+  renewal — our price table is refreshed every 6 hours, so the renewal
+  decision gets easier each time. The plans that deserve suspicion are the
+  ones where <em>no</em> renewal number exists anywhere: that's not a deal,
+  that's a surprise with a login page.
+</p>
+
+<p>
+  <small>
+    Data: 215 live offers across 26 providers, scraped 2026-10-06 from each
+    provider's own page (190 in USD). Intro/renewal card text quoted as
+    scraped. External confirmations cited are public price checks, not our
+    data. Prices change; always verify on the provider's page before buying.
+    Related reading:
+    <a href="/articles/cheap-vps-hourly-vs-monthly-pricing/">hourly vs monthly
+    pricing</a>.
+  </small>
+</p>

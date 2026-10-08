@@ -949,6 +949,8 @@ async function handleGscQuery(request, env) {
   if (!ytApiAuth(request, env)) return json({ ok: false, error: "unauthorized" }, 401);
   const q = new URL(request.url).searchParams;
   const days = Math.min(Math.max(parseInt(q.get("days") || "28", 10) || 28, 1), 90);
+  const dim = (q.get("dimension") || "date").toLowerCase();
+  const dimension = ["date", "query", "page"].includes(dim) ? dim : "date";
   const end = new Date();
   end.setDate(end.getDate() - 3); // GSC data lags ~2-3 days
   const start = new Date(end);
@@ -968,7 +970,7 @@ async function handleGscQuery(request, env) {
     const res = await gscFetch(access, "/sites/" + encodeURIComponent(cand) + "/searchAnalytics/query", {
       startDate: fmt(start),
       endDate: fmt(end),
-      dimensions: ["date"],
+      dimensions: [dimension],
       rowLimit: 1000,
     });
     if (res.ok) {
@@ -987,20 +989,33 @@ async function handleGscQuery(request, env) {
     clicks += row.clicks || 0;
     impressions += row.impressions || 0;
   }
-  return json({
+  const out = {
     ok: true,
     site: siteUrl,
     startDate: fmt(start),
     endDate: fmt(end),
-    days_with_data: rows.length,
+    dimension,
     total_clicks: Math.round(clicks),
     total_impressions: Math.round(impressions),
-    avg_daily_clicks: rows.length ? Math.round((clicks / rows.length) * 10) / 10 : 0,
-    avg_daily_impressions: rows.length ? Math.round((impressions / rows.length) * 10) / 10 : 0,
-    last_14_days: rows.slice(-14).map((r) => ({
+  };
+  if (dimension === "date") {
+    out.days_with_data = rows.length;
+    out.avg_daily_clicks = rows.length ? Math.round((clicks / rows.length) * 10) / 10 : 0;
+    out.avg_daily_impressions = rows.length ? Math.round((impressions / rows.length) * 10) / 10 : 0;
+    out.last_14_days = rows.slice(-14).map((r) => ({
       date: r.keys[0],
       clicks: Math.round(r.clicks || 0),
       impressions: Math.round(r.impressions || 0),
-    })),
-  });
+    }));
+  } else {
+    rows.sort((a, b) => (b.impressions || 0) - (a.impressions || 0));
+    out.top_rows = rows.slice(0, 50).map((r) => ({
+      [dimension]: r.keys[0],
+      clicks: Math.round(r.clicks || 0),
+      impressions: Math.round(r.impressions || 0),
+      ctr: r.ctr,
+      position: Math.round((r.position || 0) * 10) / 10,
+    }));
+  }
+  return json(out);
 }
