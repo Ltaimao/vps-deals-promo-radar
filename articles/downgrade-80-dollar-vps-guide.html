@@ -1,0 +1,131 @@
+title: Paying $80/Month for a VPS? Here's What $5, $10, and $20 Actually Buy
+date: 2026-10-09
+description: A real downgrade budget check from our 2026-10-08 snapshot of 214 live VPS offers across 31 providers: 15 providers have a monthly entry plan at $5 or under, 21 at $10 or under — and why one r/VPS commenter warns that a cheap box with weak bandwidth "can end up being way worse than the $80 box."
+gap: question-downgrade-80-dollar-vps
+
+<h1>Paying $80/Month for a VPS? Here's What $5, $10, and $20 Actually Buy</h1>
+<img src="/articles/downgrade-80-dollar-vps-guide.png" alt="Tier chart showing how many VPS providers offer entry plans at $5, $10, and $20 per month, based on 214 tracked offers">
+<p>
+  <strong>Short answer: you can cut that $80 bill by 90% and still get a real
+  monthly-billed VPS — but only if you know which traps to dodge.</strong> In
+  our 2026-10-08 snapshot of 214 live VPS offers across 31 providers
+  (190 priced in USD), <strong>15 providers</strong> sell a monthly entry plan
+  at <strong>$5 or under</strong>, <strong>21 providers</strong> at
+  <strong>$10 or under</strong>, and the median entry price is just
+  <strong>$4.54/month</strong>. The catch, as one r/VPS commenter put it, is
+  that a cheap box with weak bandwidth limits "can end up being way worse than
+  the $80 box" for the wrong workload. This guide shows exactly what each
+  budget buys, and the three traps that turn a $5 downgrade into an expensive
+  mistake.
+</p>
+
+<table>
+  <thead>
+    <tr><th>Monthly budget</th><th>How many providers' entry plans fit</th><th>Real examples (scraped 2026-10-08)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>$5</strong></td><td>15 of 23 USD providers</td><td>Hostens $1.00, Latitude.sh $1.23, BuyVM $1.25, IONOS $2.00, Virmach $2.00, RackNerd $2.24, Cherry Servers $2.34, DigitalOcean $4.00, Kamatera $4.00, RamNode $4.00, DreamHost $4.41, OVHcloud $4.54, AccuWebHosting $4.99, KnownHost $5.00, Liquid Web $5.00</td></tr>
+    <tr><td><strong>$10</strong></td><td>21 of 23 USD providers</td><td>everything above, plus CloudCone $5.20, SSDNodes $5.50, Hostinger $6.49, Hostwinds $7.14, InMotion Hosting $9.99, ScalaHosting $10.00</td></tr>
+    <tr><td><strong>$20</strong></td><td>all 23 USD providers</td><td>everything above, plus HostDare $12.99, BandwagonHost $19.99</td></tr>
+    <tr><td><strong>$80</strong></td><td>every provider, most plans</td><td>this budget reaches high-end rows in our data — RackNerd $139.00, ScalaHosting $244.95, DreamHost $810.00</td></tr>
+  </tbody>
+</table>
+<p>
+  <small>
+    Every price above was scraped from the provider's own pricing page on
+    2026-10-08. "Entry plan" means the cheapest monthly-billed row we tracked
+    for that provider; 18 sub-dollar rows (hourly rates, storage slabs, add-on
+    IPs) were excluded from the provider counts because they are not usable
+    monthly plans — see the trap section below. 214 live offers, 31 providers,
+    190 priced in USD, median monthly offer $17.54, median entry plan $4.54.
+  </small>
+</p>
+
+<h2>The $80 question that started this</h2>
+<p>
+  On a recent r/VPS thread titled "Cheaper and stable VPs options," a user
+  paying about $80 a month asked for cheaper suggestions in the US. The
+  top-voted reply was a joke — "how about this $1.50/mo instance" — and it
+  makes a real point: without knowing the workload, any price quote is a
+  guess. The most useful reply went one layer deeper: before switching, figure
+  out whether the server is only receiving and relaying RTMP streams or
+  actually transcoding them. Transcoding is CPU-heavy; relaying is
+  bandwidth-heavy. Those are two completely different shopping lists.
+</p>
+<p>
+  That is the first thing a downgrade has to get right. The price tiers above
+  tell you what $5, $10, or $20 can buy — but only your actual CPU, RAM, and
+  bandwidth usage tells you which tier you can safely land on. Check your
+  current server's usage graphs before you read another pricing page.
+</p>
+
+<h2>Trap 1: the sub-dollar rows that aren't real plans</h2>
+<p>
+  Our 2026-10-08 snapshot contains 18 sub-dollar rows that look like "$0.01"
+  plans on a pricing page: DigitalOcean $0.01 (per-second billing rows),
+  Kamatera $0.01 (hourly rate), CloudCone $0.01 ("plan per month" teaser
+  rows), plus storage slabs at $0.05–$0.30 per GB-month. These are
+  hourly-billing or add-on rows, not $1/month servers. One LowEndTalk
+  commenter summarized the math bluntly: hourly adds up too expensive per
+  month. When we computed the tier table above, we threw these rows out —
+  your $5 budget only counts if the plan is actually billed at $5 a month.
+</p>
+
+<h2>Trap 2: weak bandwidth that costs more than the $80 box</h2>
+<p>
+  This is the trap the r/VPS thread nailed. A commenter warned that a cheap
+  VPS with weak bandwidth limits can end up being way worse than the $80 box
+  for streaming. The $80 plan usually bundles generous or unmetered transfer;
+  the $5 plan often includes a fixed monthly allowance, and overage fees —
+  where they exist at all — are rarely printed next to the headline price.
+  If your workload pushes real traffic (media, downloads, proxies), the
+  bandwidth line on the pricing page matters more than the CPU line. A plan
+  that is $75 cheaper on paper can cost more the month you exceed the cap.
+</p>
+
+<h2>Trap 3: the advertised price isn't the price you keep</h2>
+<p>
+  Yesterday we published a full breakdown of drip pricing in cheap-VPS ads:
+  providers that advertise $6.49 and renew at $11.99, or show "first 2 years"
+  cards next to auto-renew cards at 2.5x the price. The $5-tier providers in
+  the table above are the same pages — always scroll to the renewal line
+  before you compare. An $80 bill you understand beats a $5 bill that
+  surprises you.
+</p>
+
+<h2>The downgrade checklist</h2>
+<ol>
+  <li><strong>Measure first.</strong> Pull 30 days of CPU, RAM, and bandwidth
+  usage from your $80 box. If CPU sits under 20% and RAM under half, you're
+  over-provisioned and a $5–10 tier is a realistic target.</li>
+  <li><strong>Classify the workload.</strong> Relaying streams, static sites,
+  small APIs, and personal VPNs are bandwidth/RAM questions. Transcoding,
+  compiling, and busy databases are CPU questions — and cheap shared cores
+  are where downgrades go to die.</li>
+  <li><strong>Read the bandwidth line, not just the price line.</strong> Note
+  the monthly transfer allowance and what happens at the cap (throttle vs.
+  overage fee vs. cutoff). If the page doesn't say, assume the worst.</li>
+  <li><strong>Buy monthly first.</strong> The cheapest annual prices in our
+  data assume 12 months upfront — don't lock in until the box has survived a
+  full month of your real workload.</li>
+  <li><strong>Check the renewal number.</strong> See our drip-pricing guide:
+  the intro price is not your price.</li>
+</ol>
+
+<h2>Our take</h2>
+<p>
+  If your $80 box is running a blog, a small store, or a dev server at low
+  utilization, staying there is paying a convenience tax — the data above
+  shows you can get a monthly plan from a known provider for $4–$10 and
+  pocket the difference. But if that $80 exists because of sustained CPU or
+  heavy egress, don't downgrade on price alone: the wrong $5 plan will cost
+  you more in overages, throttling, and migration pain than the box you were
+  trying to leave. We track 214 live offers so you can compare the real
+  numbers; the workload math is on you.
+</p>
+<p>
+  <small>
+    Data: vpsdealswire.com price tracker, snapshot 2026-10-08 (214 offers,
+    31 providers, 190 USD rows). Prices change; every figure above is dated.
+  </small>
+</p>
