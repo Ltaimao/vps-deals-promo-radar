@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — VPS Deal Alert Extension</title>
+<style>body{font-family:system-ui,sans-serif;max-width:680px;margin:4vh auto;padding:0 20px;color:#1a2333;line-height:1.7}h1{font-size:1.5rem}h2{font-size:1.1rem;margin-top:2em}.muted{color:#64748b;font-size:.9em}</style>
+</head>
+<body>
+<h1>Privacy Policy — VPS Deal Alert</h1>
+<p class="muted">Last updated: October 10, 2026</p>
+
+<h2>What this extension does</h2>
+<p>VPS Deal Alert shows VPS price comparisons while you browse VPS provider websites. It displays a small badge with the lowest tracked price for the provider you are visiting, and a popup with the cheapest current deals.</p>
+
+<h2>Data we collect</h2>
+<p><strong>We do not collect any personal data.</strong> Specifically, we do not collect, store, or transmit:</p>
+<ul>
+<li>Names, email addresses, or contact information</li>
+<li>Browsing history or URLs you visit</li>
+<li>Location data</li>
+<li>Any identifiers that could be linked to you</li>
+</ul>
+
+<h2>Data the extension handles</h2>
+<ul>
+<li><strong>Public price data:</strong> The extension fetches a public deals snapshot from <code>https://www.vpsdealswire.com/api/deals-snapshot</code> no more than once every 6 hours. This contains only VPS provider names and prices — no user data.</li>
+<li><strong>Local cache:</strong> The fetched price data is cached in your browser's local extension storage (<code>chrome.storage.local</code>) to reduce server requests. This cache never leaves your device.</li>
+</ul>
+
+<h2>Data sharing</h2>
+<p>We do not sell, rent, or share any data with third parties, because we do not collect any user data in the first place.</p>
+
+<h2>Permissions explained</h2>
+<ul>
+<li><strong>storage:</strong> Used only to cache public price data locally for 6 hours.</li>
+<li><strong>Host access to VPS provider sites:</strong> Used only to display the price-comparison badge on those sites. The extension does not read, record, or transmit anything from the pages you visit.</li>
+<li><strong>https://www.vpsdealswire.com/*:</strong> Used only to fetch the public deals snapshot.</li>
+</ul>
+
+<h2>Changes to this policy</h2>
+<p>If this policy changes, the updated version will be posted at this URL and the extension will be updated accordingly.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy: <a href="https://www.vpsdealswire.com/contact/">https://www.vpsdealswire.com/contact/</a></p>
+</body>
+</html>
