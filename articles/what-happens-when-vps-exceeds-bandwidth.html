@@ -1,0 +1,153 @@
+title: What Happens When Your VPS Exceeds Its Bandwidth Limit? A Q&A on Overage Fees and Throttling
+date: 2026-10-10
+description: Real overage rules from 5 providers' terms pages, checked 2026-10-07: DigitalOcean and Vultr charge $0.01 per GB, Hetzner charges €1 per extra TB, OVHcloud throttles instead of billing, and one provider's "no meters" marketing contradicts its own terms. Plus our 2026-10-08 snapshot of 214 live offers, where not one pricing card mentions an overage rate.
+gap: question-vps-bandwidth-overage-fees
+
+<h1>What Happens When Your VPS Exceeds Its Bandwidth Limit? A Q&A on Overage Fees and Throttling</h1>
+<img src="/articles/what-happens-when-vps-exceeds-bandwidth.png" alt="Comparison chart showing what five VPS providers do when you exceed your bandwidth limit: billed per gigabyte versus throttled speed">
+<p>
+  <strong>Short answer: you either get billed per gigabyte or get your port
+  slowed to a crawl — and your pricing page won't warn you.</strong> We read
+  five providers' actual terms pages on 2026-10-07, and the range is wide:
+  Vultr and DigitalOcean charge about <strong>$10 per extra
+  terabyte</strong>, Hetzner charges about <strong>€1 per extra
+  terabyte</strong>, and OVHcloud <strong>doesn't bill you at all</strong> in
+  most regions — it just throttles. Meanwhile, in our 2026-10-08 snapshot of
+  214 live offers across 31 providers, <strong>not one pricing card mentions
+  an overage rate</strong>.
+</p>
+
+<table>
+  <thead>
+    <tr><th>Provider</th><th>What happens past the limit</th><th>The rate</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>DigitalOcean (Droplets)</td><td>Billed; outbound only, inbound free, pooled per team</td><td>$0.01/GiB</td></tr>
+    <tr><td>Vultr (Cloud Compute)</td><td>Billed</td><td>$0.01/GB ≈ $10/TB</td></tr>
+    <tr><td>Hetzner (Cloud)</td><td>Billed in 100&nbsp;MB blocks (EU); notified, not shut off</td><td>€1.00/TB</td></tr>
+    <tr><td>OVHcloud (VPS)</td><td>Unlimited in EU/US; APAC (Mumbai, Singapore, Sydney) capped, then throttled to 10&nbsp;Mbps — no charge</td><td>$0</td></tr>
+    <tr><td>AlphaVPS</td><td>Billed past the monthly quota — despite "NO METERS / FLAT PRICING" marketing</td><td>€3.00/TB</td></tr>
+  </tbody>
+</table>
+<p>
+  <small>
+    Every rate above was read from the provider's own billing/terms page on
+    2026-10-07 (DigitalOcean docs: bandwidth billing; Vultr pricing FAQ;
+    OVHcloud VPS page; Hetzner Cloud billing FAQ; AlphaVPS terms, section 02
+    Traffic Usage, updated 2025-01-28). The "not one pricing card mentions an
+    overage rate" claim comes from our own 2026-10-08 snapshot: 214 live offers
+    from 31 providers, scraped from official pricing pages — only 2 providers
+    (IONOS, ScalaHosting) use the words "unlimited"/"unmetered" at all, and
+    none print a per-unit overage figure.
+  </small>
+</p>
+
+<h2>Q1: What actually happens when you exceed the bandwidth limit?</h2>
+<p>
+  One of three things, and which one depends entirely on the provider:
+</p>
+<ol>
+  <li><strong>You get billed per unit.</strong> The most common outcome.
+  DigitalOcean charges $0.01 per GiB of outbound transfer past your quota
+  (inbound is free, and quotas are shared across your team); Vultr charges
+  $0.01 per GB; Hetzner charges €1.00 per extra terabyte in the EU, in 100 MB
+  increments.</li>
+  <li><strong>You get throttled.</strong> Your speed drops but the bill
+  doesn't move. OVHcloud does this in its Asia-Pacific regions: past the
+  monthly quota, your port is limited to 10 Mbps until the cycle resets.</li>
+  <li><strong>Nothing happens.</strong> Some plans genuinely include unlimited
+  traffic. OVHcloud's EU/US VPS plans and Contabo's cloud VPS line advertise
+  unlimited traffic — though "unlimited" can still come with a slower port
+  speed, which is the plan's real bottleneck.</li>
+</ol>
+<p>
+  <em>Our take: this is the question you should ask support before you buy —
+  "throttle or charge?" It takes one email and it tells you more about your
+  worst-case bill than the plan's headline price does.</em>
+</p>
+
+<h2>Q2: How much does overage cost in real money?</h2>
+<p>
+  Take the most common rate, $0.01 per GB (DigitalOcean, Vultr): one extra
+  terabyte costs about <strong>$10</strong>. To put that in context, our
+  2026-10-08 snapshot found DigitalOcean's own entry plan at <strong>$4 a
+  month</strong> — so a single terabyte of overage costs 2.5x the price of the
+  server itself. On Hetzner, that same terabyte costs about €1; on AlphaVPS,
+  €3. The provider you picked for its cheap base price can be the expensive
+  one the month your traffic spikes.
+</p>
+<p>
+  As one self-hosting user put it: a bandwidth cap is "the kind of cheap
+  feature that only becomes expensive when you actually need it" — for
+  something like n8n plus Postgres, the cap you ignored on day one is the
+  bill you argue about in month three.
+</p>
+
+<h2>Q3: What's the difference between "unmetered" and "unlimited"?</h2>
+<p>
+  They're not synonyms. <strong>Unmetered</strong> means the provider doesn't
+  count your gigabytes — but it usually guarantees a <em>speed</em> instead,
+  like 100 Mbps. Transfer as much as you want, but only that fast. A 200–600
+  Mbps port on an "unlimited traffic" plan is the same idea: no per-gigabyte
+  bill, but physics does the throttling for them.
+  <strong>Unlimited</strong> means no meter and no stated speed cap — though
+  fair-use terms still apply, and a provider can act if your usage is
+  genuinely abusive.
+</p>
+<p>
+  In our 214-offer snapshot, the word "unlimited" or "unmetered" appears in
+  exactly <strong>3 rows from 2 providers</strong> — it's marketing language,
+  not an industry standard. If your job involves sustained throughput (video,
+  backups, file sync), the port speed in the fine print matters more than the
+  word "unlimited" in the headline.
+</p>
+
+<h2>Q4: Can a provider shut down my server over bandwidth?</h2>
+<p>
+  Most mainstream providers don't shut you off for going over — DigitalOcean
+  and Vultr bill you, Hetzner explicitly says it notifies you rather than
+  suspending, and OVHcloud throttles in the capped regions. Suspension is
+  usually reserved for abuse or unpaid bills, not overage. But watch for
+  marketing that contradicts the terms: AlphaVPS's homepage says "NO METERS /
+  FLAT PRICING", while its terms (updated 2025-01-28) charge €3.00 per
+  terabyte past quota. When the ad and the contract disagree, the contract
+  wins — that's drip pricing in a different costume.
+</p>
+
+<h2>Q5: How do I avoid a surprise bandwidth bill?</h2>
+<p>
+  A five-step checklist, in order of how much money each step saves you:
+</p>
+<ol>
+  <li><strong>Before buying:</strong> ask whether the plan throttles or bills
+  past the limit, and at what rate. Get it in writing from support.</li>
+  <li><strong>Read the region rules:</strong> unlimited in one region can mean
+  capped-and-throttled in another (OVHcloud's APAC rule is the example).</li>
+  <li><strong>Do the worst-case math:</strong> if your app could push an
+  extra terabyte in a spike month, add $10 (Vultr/DO-class pricing) to the
+  plan's price and compare <em>that</em> number against a plan with unlimited
+  traffic.</li>
+  <li><strong>Watch the port speed:</strong> on "unlimited traffic" plans, the
+  Mbps figure is the real limit — 200 Mbps caps you at roughly 65 TB/month
+  even if nobody meters you.</li>
+  <li><strong>Monitor:</strong> most providers have a bandwidth graph in the
+  control panel; check it monthly, not at the invoice.</li>
+</ol>
+<p>
+  <em>Our take: the most dangerous plan isn't the expensive one — it's the
+  cheap one where your best month of traffic is also your most expensive
+  month. If bandwidth is the job, buy the plan whose overage rule fits in one
+  sentence.</em>
+</p>
+
+<h2>Data &amp; sources</h2>
+<ul>
+  <li>Price snapshot: 214 live offers from 31 providers, scraped from official
+  pricing pages, fetched 2026-10-08T22:37Z.</li>
+  <li>Overage rules: five providers' billing/terms pages, read 2026-10-07 —
+  full URLs in our <a href="https://www.vpsdealswire.com/articles/cheap-vps-drip-pricing-first-year-vs-renewal/">drip pricing Q&amp;A</a>
+  research notes. All rates are the providers' own published figures.</li>
+  <li>Community questions: r/Hosting "Cheapest VPS I found has a bandwidth cap
+  nobody warns you about" (2026-08-28); lowendbox commenters asking why deal
+  posts carry no bandwidth terms — the complaint that started this article.</li>
+</ul>
