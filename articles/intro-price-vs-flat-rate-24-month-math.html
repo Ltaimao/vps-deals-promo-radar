@@ -1,0 +1,144 @@
+title: Intro Price vs Flat Rate: The 24-Month Math Behind Cheap VPS Deals
+date: 2026-10-11
+description: We ran the 24-month math on real intro-discount and flat-rate VPS plans from our 2026-10-08 price snapshot: Hostinger's $6.49 KVM 1 costs $155.76 for its first 24 months and $287.76 for the next 24 at the $11.99 renewal rate, while DreamHost's $5.99 two-year intro jumps 2.5x to $14.99 on renewal. A step-by-step method for pricing any plan at its true long-run cost.
+gap: guide-intro-vs-flatrate-24mo
+
+<h1>Intro Price vs Flat Rate: The 24-Month Math Behind Cheap VPS Deals</h1>
+<img src="/articles/intro-price-vs-flat-rate-24-month-math.png" alt="Bar chart comparing first-24-month and next-24-month total costs for intro-discount VPS plans versus a flat-rate plan">
+<p>
+  <strong>Short answer: the headline monthly price is only half the deal —
+  the other half is the renewal price, and on intro-discount plans the
+  second two years routinely cost 1.8x to 2.6x the first.</strong> Here is
+  the 24-month math on real plans from our 2026-10-08 price snapshot (214
+  live offers across 31 providers, scraped from official pricing pages):
+</p>
+
+<table>
+  <thead>
+    <tr><th>Plan</th><th>Intro price</th><th>Intro term</th><th>Renewal price</th><th>First 24 months</th><th>Next 24 months</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Hostinger KVM 1</td><td>$6.49/mo</td><td>24 months</td><td>$11.99/mo</td><td>$155.76</td><td>$287.76</td></tr>
+    <tr><td>DreamHost Stack 4</td><td>$5.99/mo</td><td>First 2 years</td><td>$14.99/mo</td><td>$143.76</td><td>$359.76</td></tr>
+    <tr><td>IONOS VPS (M+ class)</td><td>$5/mo × 3 mo</td><td>Intro period</td><td>≈$14/mo after</td><td>$141.00 (year one = $11.75/mo effective)</td><td>—</td></tr>
+    <tr><td>DigitalOcean entry Droplet</td><td colspan="2">$4/mo, flat — no intro discount</td><td>$4/mo</td><td>$96.00</td><td>$96.00</td></tr>
+  </tbody>
+</table>
+<p>
+  <small>
+    Hostinger and DreamHost figures are paired intro/renewal rows from our
+    own 2026-10-08 snapshot (Hostinger: "Choose VPS KVM" $6.49 next to
+    "Renews at" $11.99; DreamHost: "First 2 years at" $5.99 next to
+    "Auto-renews at" $14.99). The IONOS row quotes a 2026 dev.to pricing
+    analysis: $5 for three months and $14 for nine months, $141 in year
+    one. The DigitalOcean row is our snapshot's $4 "Droplets Starting at"
+    line — a flat-rate plan with per-second billing underneath.
+  </small>
+</p>
+
+<h2>The two pricing camps</h2>
+<p>
+  Almost every cheap VPS plan falls into one of two camps. <strong>Camp
+  one: intro-discount plans.</strong> A big headline number for the first
+  term — 12 or 24 months — and a smaller "renews at" number somewhere
+  below it. Hostinger, DreamHost, IONOS, and InMotion (whose 2026-10-08
+  rows show "Renews at" $16.99–$56.99) all play here.
+  <strong>Camp two: flat-rate plans.</strong> One number, same every month,
+  no discount clock ticking. DigitalOcean's $4 entry Droplet is the
+  classic example: it bills per second with a 60-second minimum, but the
+  monthly starting price never changes.
+</p>
+<p>
+  Telling the camps apart should be easy, but often isn't. In our
+  2026-10-08 audit of pricing pages, <strong>23 of 26 providers printed no
+  renewal figure at all</strong> — no number to pair with the intro price,
+  just "renews at standard rates" language or nothing. A plan with no
+  visible renewal price is camp one by default; treat it as one.
+</p>
+
+<h2>The 24-month math (do this before you buy)</h2>
+<p>
+  The formula is simple, and it is the whole method:
+</p>
+<p>
+  <strong>Total over your horizon = (intro price × intro months) + (renewal
+  price × remaining months).</strong>
+</p>
+<p>
+  Work it through on Hostinger KVM 1. Intro: $6.49 × 24 = $155.76 for the
+  first two years. Then the renewal clock starts: $11.99 × 24 = $287.76 for
+  the next two years. Over four years you pay $443.52 — an effective
+  $9.24/month for a plan advertised at $6.49. The renewal price, not the
+  intro price, is what the plan actually costs you long-term.
+</p>
+<p>
+  DreamHost Stack 4 is steeper: $5.99 × 24 = $143.76 for the first two
+  years, then $14.99 × 24 = $359.76 for the two after — a 2.5x jump, $216
+  more for the same server. And IONOS shows how the first year itself can
+  mislead: "$5 three times and $14 nine times" is $141 in year one, which
+  is $11.75 a month effective — more than double the $5 headline.
+</p>
+<p>
+  Intro prices move, too. Hostinger's KVM 1 intro rose from $4.99 to $6.49
+  on 2026-03-03, and its renewal rate rose from $9.99 to $11.99 a few days
+  earlier (2026-02-27), per a 2026 dev.to nightly price-tracking project.
+  Both numbers in the pairing can change — the math only holds if you
+  recheck both.
+</p>
+
+<h2>When the flat plan wins — and when the intro still wins</h2>
+<p>
+  As one dev.to commenter put it, <strong>"flat-rate plans look expensive
+  in month one and cheap in month 30."</strong> Run the horizon math and
+  you see why: DigitalOcean's $4 entry costs $96 for 24 months and $192
+  for 48. Hostinger KVM 1 costs $155.76 then $287.76 — $443.52 over the
+  same 48 months. (Specs differ between the two, so treat this as the
+  method demonstrated, not a buy recommendation: run the same arithmetic
+  on the tier you would actually buy.)
+</p>
+<p>
+  But intro pricing is not a scam — it is a tool with a use case. It wins
+  when your horizon is shorter than the intro term: a 6-month project, a
+  migration you plan to revisit, or a server you fully expect to move
+  when the discount ends. The trap is only buying the intro price for a
+  server you will keep for years. As another dev.to writer warned: "a
+  $1.99 intro that renews at $25.99 is a much more expensive site."
+</p>
+
+<h2>How to find the renewal price (three checks)</h2>
+<ol>
+  <li><strong>Read the small print under the price</strong> — the "renews
+  at" line is usually there, in gray, two font sizes down. Hostinger and
+  DreamHost both print it on their pricing pages (that is where our
+  pairings came from).</li>
+  <li><strong>Search the page for "renew"</strong> — InMotion's rows
+  literally say "Renews at" with the dollar figure. If your browser finds
+  nothing, see check three.</li>
+  <li><strong>Assume camp one and budget the worst case.</strong> With 23
+  of 26 providers printing no renewal number at all (our 2026-10-08
+  audit), the honest move is to treat a missing renewal price as "at
+  least 2x the intro" — the measured range on real pairings is 1.85x to
+  2.58x — or pick a flat-rate plan where the number is the number.</li>
+</ol>
+
+<h2>Our take</h2>
+<p>
+  I now price every VPS plan at its renewal rate and treat the intro
+  discount as a rebate, not a price. A $6.49 plan that renews at $11.99 is
+  an $11.99 plan with a two-year coupon — and once you read it that way,
+  the flat $4 or $8 plan stops looking expensive. The cheapest plan over
+  the time you will actually run the server is the cheapest plan. Do the
+  24-month math; it takes ninety seconds and it has never once told me
+  the headline was the truth.
+</p>
+<p>
+  <small>
+    All snapshot figures are from our 2026-10-08 scrape of official
+    provider pricing pages (214 offers, 31 providers, 190 USD-denominated
+    rows). Intro/renewal pairings for Hostinger and DreamHost were verified
+    as adjacent rows in that snapshot; the IONOS year-one figure and the
+    2026-03 Hostinger price moves are from public 2026 dev.to pricing
+    analyses quoted above. Prices change — treat these as dated evidence,
+    not a quote.
+  </small>
+</p>
