@@ -580,12 +580,138 @@ export default {
     if (url.pathname === "/api/x/me" && request.method === "GET") {
       return handleXMe(request, env);
     }
+    if (url.pathname === "/api/deals-snapshot" && request.method === "GET") {
+      return handleDealsSnapshot();
+    }
+    if (url.pathname === "/api/ga4/query" && request.method === "GET") {
+      return handleGa4Query(request, env);
+    }
     return json({ ok: false, error: "not_found" }, 404);
   },
   async scheduled(event, env, ctx) {
     ctx.waitUntil(handleScheduled(env));
   },
 };
+
+// ---------- GA4 Data API ----------
+const GA4_PROPERTY_ID = "556451114"; // VPS Deals Wire
+
+async function ga4AccessToken(env) {
+  const cid = env.GSC_CLIENT_ID, csec = env.GSC_CLIENT_SECRET, rt = env.GA4_REFRESH_TOKEN;
+  if (!cid || !csec || !rt) throw new Error("ga4_not_configured");
+  const r = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "refresh_token",
+      client_id: cid,
+      client_secret: csec,
+      refresh_token: rt,
+    }),
+  });
+  if (!r.ok) throw new Error("ga4_token_refresh_failed:" + r.status);
+  const j = await r.json();
+  if (!j.access_token) throw new Error("ga4_token_no_access_token");
+  return j.access_token;
+}
+
+async function handleGa4Query(request, env) {
+  if (!ytApiAuth(request, env)) return json({ ok: false, error: "unauthorized" }, 401);
+  const q = new URL(request.url).searchParams;
+  const days = Math.min(Math.max(parseInt(q.get("days") || "28", 10) || 28, 1), 90);
+  const dim = (q.get("dimension") || "date").toLowerCase();
+  const dimension = ["date", "page", "country"].includes(dim) ? dim : "date";
+  const end = new Date();
+  end.setDate(end.getDate() - 1); // GA4 data lags ~1 day
+  const start = new Date(end);
+  start.setDate(start.getDate() - (days - 1));
+  const fmt = (d) => d.toISOString().slice(0, 10);
+
+  let access;
+  try {
+    access = await ga4AccessToken(env);
+  } catch (e) {
+    return json({ ok: false, error: String((e && e.message) || e) }, 502);
+  }
+
+  const dimMap = { date: "date", page: "pagePath", country: "country" };
+  const body = {
+    property: "properties/" + GA4_PROPERTY_ID,
+    dateRanges: [{ startDate: fmt(start), endDate: fmt(end) }],
+    dimensions: [{ name: dimMap[dimension] }],
+    metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
+    orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+    limit: 1000,
+  };
+  const r = await fetch("https://analyticsdata.googleapis.com/v1beta/properties/" + GA4_PROPERTY_ID + ":runReport", {
+    method: "POST",
+    headers: { Authorization: "Bearer " + access, "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!r.ok) {
+    const t = await r.text();
+    return json({ ok: false, error: "ga4_api_error:" + r.status, detail: t.slice(0, 300) }, 502);
+  }
+  const j = await r.json();
+  const rows = j.rows || [];
+  let users = 0, sessions = 0, views = 0;
+  const top_rows = rows.slice(0, 20).map((row) => {
+    const vals = row.metricValues || [];
+    const u = parseInt(vals[0]?.value || "0", 10);
+    const s = parseInt(vals[1]?.value || "0", 10);
+    const v = parseInt(vals[2]?.value || "0", 10);
+    users += u; sessions += s; views += v;
+    return { key: row.dimensionValues?.[0]?.value || "", users: u, sessions: s, views: v };
+  });
+  // totals need full sum, not just top 20
+  for (const row of rows.slice(20)) {
+    const vals = row.metricValues || [];
+    users += parseInt(vals[0]?.value || "0", 10);
+    sessions += parseInt(vals[1]?.value || "0", 10);
+    views += parseInt(vals[2]?.value || "0", 10);
+  }
+  return json({
+    ok: true, property: GA4_PROPERTY_ID,
+    startDate: fmt(start), endDate: fmt(end), dimension,
+    total_users: users, total_sessions: sessions, total_views: views,
+    top_rows,
+  });
+}
+
+// ---------- Deals snapshot (for Chrome extension) ----------
+// Public, read-only. Returns a compact list of cheapest deals per provider.
+// Data is fetched from the public GitHub repo (same source as the site).
+// CORS is open for chrome-extension:// origins; the extension also caches for 6h.
+async function handleDealsSnapshot() {
+  try {
+    const res = await fetch(OFFERS_URL, { cf: { cacheTtl: 3600 } });
+    if (!res.ok) return json({ ok: false, error: "upstream_failed" }, 502);
+    const data = await res.json();
+    const deals = (data.deals || [])
+      .filter((d) => typeof d.price === "number")
+      .map((d) => ({
+        provider_name: d.provider_name,
+        provider_slug: d.provider_slug,
+        title: d.title,
+        price: d.price,
+        currency: d.currency || "USD",
+        offer_url: d.offer_url,
+      }));
+    return new Response(
+      JSON.stringify({ ok: true, generated_at: data.generated_at, deals }),
+      {
+        headers: {
+          "content-type": "application/json",
+          "access-control-allow-origin": "*",
+          "access-control-allow-methods": "GET, OPTIONS",
+          "cache-control": "public, max-age=3600",
+        },
+      }
+    );
+  } catch (e) {
+    return json({ ok: false, error: "failed" }, 500);
+  }
+}
 
 // ---------- YouTube publish (server-side, no browser session) ----------
 // The daily cron renders the mp4, commits it to static/videos/<slug>.mp4,
