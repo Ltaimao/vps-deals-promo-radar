@@ -289,13 +289,41 @@ def render_index(ctx, data, cfg, base_url):
     hero_title = "VPS Hosting Deals & Public Promotions"
     hero_sub = ("Live pricing pulled straight from " + str(len(providers))
                 + " hosting providers' own public pages. "
-                  "Nothing here is invented.")
+                  "Nothing here is invented; sponsored placements are labeled as such.")
 
-    # Sponsored 首页广告位已按用户规则删除（2026-10-13）。
-    # 用户规则：联盟给的是追踪链不是广告位；一页一处出口链就够；
-    # 首页首屏四张卡不是这个形状。联盟链接只出现在各 provider 页面的
-    # "Official site" 按钮上（一家一处），带披露句。
-    sponsored_html = ""
+    # Sponsored 首页区（2026-10-13 恢复）：只渲染 CJ Affiliate 和 MaxBounty 的条目
+    # （4 家直连：Cherry Servers / CloudCone / Hostwinds / RackNerd 只出现在各自
+    # provider 页面的 "Official site" 按钮上，不进首页 Sponsored 区）。
+    # 渲染带 rel="sponsored nofollow noopener"，卡片上标 Sponsored，不许混进普通内容。
+    # 有 logo 字段时渲染品牌 logo（/sponsored/<file>），无则回退纯文字卡。
+    _HOMEPAGE_NETWORKS = ("CJ Affiliate", "MaxBounty")
+    _aff = [a for a in (cfg.get("AFFILIATE") or [])
+            if a.get("network") in _HOMEPAGE_NETWORKS]
+    _aff_cards = []
+    for a in _aff:
+        _logo = a.get("logo")
+        _logo_html = (
+            '<img class="sponsored-logo" src="/sponsored/' + e(_logo) + '" '
+            'alt="' + e(a["name"]) + ' logo" loading="lazy">' if _logo else ""
+        )
+        _aff_cards.append(
+            '<a class="sponsored-card" href="' + e(a["url"]) + '" '
+            'rel="sponsored nofollow noopener" target="_blank">'
+            '<span class="sponsored-badge">Sponsored</span>'
+            + _logo_html +
+            '<strong class="sponsored-name">' + e(a["name"]) + "</strong>"
+            '<span class="sponsored-desc">' + e(a["blurb"]) + "</span>"
+            '<span class="sponsored-cta">Visit site \u2192</span></a>'
+        )
+    if _aff_cards:
+        sponsored_html = (
+            '<div class="section-heading"><h2>Sponsored</h2></div>\n'
+            '<div class="sponsored-grid">\n' + "\n".join(_aff_cards) + "\n</div>\n"
+            '<p class="sponsored-note">Affiliate links: if you buy through one, '
+            "we may earn a commission at no extra cost to you.</p>"
+        )
+    else:
+        sponsored_html = ""
 
     # 厂商卡：圆形头像位 + 名称 + 最低价（照参考站 site-mini-card + site-avatar）
     prov_cards = []
@@ -522,15 +550,19 @@ def render_provider(ctx, data, cfg, base_url, provider):
 
     # ---- 联盟出口链（2026-10-13 用户规则）----
     # 联盟给的是追踪链不是广告位；一页一处出口链就够。
-    # 只有已批准的 4 家在 "Official site" 按钮上用 affiliate 链接，
-    # 紧贴按钮下方加披露句。其他 provider 保持 bare URL，无披露。
-    # 正文出处链接一律不带参数。
-    _AFFILIATE_BY_SLUG = {
-        "cherry-servers": "https://www.cherryservers.com/?affiliate=5OS71DHE",
-        "cloudcone": "https://app.cloudcone.com/?ref=14666",
-        "hostwinds": "https://clients.hostwinds.com/aff.php?aff=10535",
-        "racknerd": "https://my.racknerd.com/aff.php?aff=21490",
-    }
+    # provider 页面的 "Official site" 按钮：凡在 .ilang ::MODULE{AFFILIATE} 中有
+    # 条目且能匹配到本 provider slug 的，用 affiliate 链接 + 紧贴按钮下方加披露句。
+    # 未匹配的 provider 保持 bare URL，无披露。正文出处链接一律不带参数。
+    # （注：Liquid Web 的 MaxBounty 链接同时出现在首页 Sponsored 区和本页按钮上，
+    # 用户确认"最多两处"可以。）
+    def _aff_slug(name):
+        import re
+        s = name.lower().strip()
+        s = re.sub(r"[^a-z0-9]+", "-", s)
+        return s.strip("-")
+    _AFFILIATE_BY_SLUG = {}
+    for _a in (cfg.get("AFFILIATE") or []):
+        _AFFILIATE_BY_SLUG[_aff_slug(_a.get("name", ""))] = _a.get("url", "")
     _aff_url = _AFFILIATE_BY_SLUG.get(slug)
     if _aff_url:
         _provider_url = _aff_url
