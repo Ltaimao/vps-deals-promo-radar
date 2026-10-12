@@ -289,37 +289,13 @@ def render_index(ctx, data, cfg, base_url):
     hero_title = "VPS Hosting Deals & Public Promotions"
     hero_sub = ("Live pricing pulled straight from " + str(len(providers))
                 + " hosting providers' own public pages. "
-                  "Nothing here is invented; sponsored placements are labeled as such.")
+                  "Nothing here is invented.")
 
-    # Sponsored 联盟广告位：链接只从 .ilang ::MODULE{AFFILIATE} 读（前 5 条），
-    # 渲染带 rel="sponsored nofollow noopener"，卡片上标 Sponsored，不许混进普通内容。
-    # 有 logo 字段时渲染品牌 logo（/sponsored/<file>），无则回退纯文字卡。
-    _aff = cfg.get("AFFILIATE") or []
-    _aff_cards = []
-    for a in _aff:
-        _logo = a.get("logo")
-        _logo_html = (
-            '<img class="sponsored-logo" src="/sponsored/' + e(_logo) + '" '
-            'alt="' + e(a["name"]) + ' logo" loading="lazy">' if _logo else ""
-        )
-        _aff_cards.append(
-            '<a class="sponsored-card" href="' + e(a["url"]) + '" '
-            'rel="sponsored nofollow noopener" target="_blank">'
-            '<span class="sponsored-badge">Sponsored</span>'
-            + _logo_html +
-            '<strong class="sponsored-name">' + e(a["name"]) + "</strong>"
-            '<span class="sponsored-desc">' + e(a["blurb"]) + "</span>"
-            '<span class="sponsored-cta">Visit site \u2192</span></a>'
-        )
-    if _aff_cards:
-        sponsored_html = (
-            '<div class="section-heading"><h2>Sponsored</h2></div>\n'
-            '<div class="sponsored-grid">\n' + "\n".join(_aff_cards) + "\n</div>\n"
-            '<p class="sponsored-note">Affiliate links: if you buy through one, '
-            "we may earn a commission at no extra cost to you.</p>"
-        )
-    else:
-        sponsored_html = ""
+    # Sponsored 首页广告位已按用户规则删除（2026-10-13）。
+    # 用户规则：联盟给的是追踪链不是广告位；一页一处出口链就够；
+    # 首页首屏四张卡不是这个形状。联盟链接只出现在各 provider 页面的
+    # "Official site" 按钮上（一家一处），带披露句。
+    sponsored_html = ""
 
     # 厂商卡：圆形头像位 + 名称 + 最低价（照参考站 site-mini-card + site-avatar）
     prov_cards = []
@@ -544,11 +520,37 @@ def render_provider(ctx, data, cfg, base_url, provider):
     # 以后想重新展示时把下面这行改回原来的构建逻辑即可。----
     price_history_html = ""
 
+    # ---- 联盟出口链（2026-10-13 用户规则）----
+    # 联盟给的是追踪链不是广告位；一页一处出口链就够。
+    # 只有已批准的 4 家在 "Official site" 按钮上用 affiliate 链接，
+    # 紧贴按钮下方加披露句。其他 provider 保持 bare URL，无披露。
+    # 正文出处链接一律不带参数。
+    _AFFILIATE_BY_SLUG = {
+        "cherry-servers": "https://www.cherryservers.com/?affiliate=5OS71DHE",
+        "cloudcone": "https://app.cloudcone.com/?ref=14666",
+        "hostwinds": "https://clients.hostwinds.com/aff.php?aff=10535",
+        "racknerd": "https://my.racknerd.com/aff.php?aff=21490",
+    }
+    _aff_url = _AFFILIATE_BY_SLUG.get(slug)
+    if _aff_url:
+        _provider_url = _aff_url
+        _provider_rel = "sponsored nofollow noopener"
+        _affiliate_note = (
+            '<p class="affiliate-note">Affiliate link: if you buy through this link, '
+            "we may earn a commission at no extra cost to you.</p>"
+        )
+    else:
+        _provider_url = provider["url"]
+        _provider_rel = "noopener nofollow"
+        _affiliate_note = ""
+
     content = fill(load_template("provider.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", e(provider["name"]))]),
         "{{PROVIDER_LOGO}}": logo_html(provider, logos, "avatar p-logo"),
         "{{PROVIDER_NAME}}": e(provider["name"]),
-        "{{PROVIDER_URL}}": e(provider["url"]),
+        "{{PROVIDER_URL}}": e(_provider_url),
+        "{{PROVIDER_REL}}": _provider_rel,
+        "{{AFFILIATE_NOTE}}": _affiliate_note,
         "{{SOURCE_URL}}": e(provider["source_url"]),
         "{{DEAL_COUNT}}": n_label,
         "{{STAT_GRID}}": stat_grid,

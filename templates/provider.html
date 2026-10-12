@@ -3,9 +3,10 @@
 <div class="content-card">
   <div class="provider-head">{{PROVIDER_LOGO}}<h2>{{PROVIDER_NAME}}</h2></div>
   <p>
-    <a class="btn btn-primary" href="{{PROVIDER_URL}}" rel="noopener nofollow" target="_blank">Official site ↗</a>
+    <a class="btn btn-primary" href="{{PROVIDER_URL}}" rel="{{PROVIDER_REL}}" target="_blank">Official site ↗</a>
     <a class="btn btn-outline" href="{{SOURCE_URL}}" rel="noopener nofollow" target="_blank">Source page</a>
   </p>
+  {{AFFILIATE_NOTE}}
   <p style="margin-top:14px;">Pulled from <a href="{{SOURCE_URL}}" rel="noopener nofollow" target="_blank">{{SOURCE_URL}}</a> on <strong>{{LAST_FETCHED_AT}}</strong>.</p>
 </div>
 
