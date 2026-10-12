@@ -1,0 +1,130 @@
+title: Can a Cheap VPS Hit You With a Surprise Bill? A Q&A on Fixed Prices, Hourly Billing, and Hard Spend Limits
+date: 2026-10-12
+description: Our 2026-10-11 snapshot of 191 live VPS offers across 32 providers shows where surprise bills can come from: 17 sub-dollar metered/hourly rows from 6 providers (DigitalOcean per-second, Kamatera and Liquid Web hourly), plus metered extras like backups and snapshots. Fixed monthly plans can't surprise you — the clock-based rows can. A Q&A with the numbers.
+gap: question-vps-surprise-bill
+
+<h1>Can a Cheap VPS Hit You With a Surprise Bill? A Q&A on Fixed Prices, Hourly Billing, and Hard Spend Limits</h1>
+<img src="/articles/can-cheap-vps-surprise-bill.png" alt="Diagram comparing three VPS billing surfaces: fixed monthly with a hard ceiling, hourly billing that accumulates by the clock, and metered extras billed on top">
+<p>
+  <strong>Short answer: on a fixed monthly plan, no — the number on the
+  pricing card is your bill.</strong> Surprise bills come from exactly three
+  places: hourly/metered billing (the clock keeps running after you forget
+  the server exists), metered extras (storage add-ons, snapshots, backups),
+  and bandwidth overage where the provider charges per gigabyte. In our
+  2026-10-11 snapshot of 191 live offers across 32 providers, scraped from
+  official pricing pages, 17 rows are sub-dollar metered/hourly lines —
+  that is the entire surface where a bill can move. The other 174 are flat
+  monthly figures.
+</p>
+
+<table>
+  <thead>
+    <tr><th>Billing surface</th><th>Can the bill exceed the headline?</th><th>Seen in our 2026-10-11 snapshot</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Fixed monthly plan</td><td><strong>No</strong> — the plan charge is fixed</td><td>174 of 191 rows (median $14.55/mo across 182 USD rows)</td></tr>
+    <tr><td>Hourly / per-second</td><td><strong>Yes</strong> — up to the plan's monthly cap</td><td>Kamatera $0.01/hr, Liquid Web hourly rows, CloudCone hourly rows, DigitalOcean per-second rows</td></tr>
+    <tr><td>Metered extras (storage, snapshots, backups)</td><td><strong>Yes</strong> — excluded from the headline</td><td>DigitalOcean "Backups … Starting" $15/mo row, Cherry Servers storage add-on $0.07, DreamHost "AWS Lightsail Metered" rows</td></tr>
+  </tbody>
+</table>
+<p>
+  <small>
+    Snapshot: 2026-10-11, 191 offers / 32 providers, prices as listed on
+    official pricing pages. "Sub-dollar metered lines" = the 17 rows under
+    $1 that price by the hour, second, or gigabyte rather than by the month.
+  </small>
+</p>
+
+<h2>Q: What is the difference between fixed monthly and hourly billing?</h2>
+<p>
+  A fixed monthly plan rents you a slice of server for the calendar month.
+  You pay the number on the card whether you use the server for one hour or
+  730. Hourly billing prices the server's <em>existence</em>: each hour (or
+  second) the instance is alive adds a line to the invoice. The industry
+  convention is hourly rate = monthly price ÷ 730, with hourly accumulation
+  capped at the plan's monthly price — Vultr's public FAQ documents exactly
+  this (monthly ÷ 730, capped at 672 hours). Hourly is cheaper for a test
+  you run for a day; it is never cheaper for a server that stays up.
+</p>
+<p>
+  Our snapshot caught hourly or per-second rows from six providers:
+  DigitalOcean (per-second billing rows), Kamatera ($0.01/hr), CloudCone
+  (hourly rows from $0.01), Liquid Web (hourly compute rows), Cherry Servers
+  (storage add-on rows), and DreamHost ("AWS Lightsail Metered" rows). If
+  your plan's pricing page shows a per-hour figure, you are on the
+  clock-based surface — read the cap, not just the rate.
+</p>
+
+<h2>Q: If I stop or power off my server, does it still bill?</h2>
+<p>
+  On a flat monthly plan, the month is already paid — stopping changes
+  nothing. On hourly or metered plans, a stopped instance still
+  <em>exists</em>, and independent pricing analyses phrase the trap
+  bluntly: power-off does not mean free. The only certain way to stop the
+  clock on a metered plan is to destroy the instance. This is the classic
+  forgotten-test-server story: a $0.01/hr row nobody deleted accumulates
+  for months and arrives as a line item you did not budget for.
+</p>
+
+<h2>Q: Can a traffic spike or a DDoS attack inflate my VPS bill?</h2>
+<p>
+  On a flat monthly VPS: no. A VPS has a fixed amount of capacity, and when
+  traffic exceeds it the server slows down instead of scaling your bill. A
+  widely-shared analysis of a real incident makes the contrast concrete: a
+  190&nbsp;TB DDoS flood produced a $104,500 bill on metered serverless
+  infrastructure, while the same traffic against a $5 VPS would have stayed
+  $5 — as the author put it, "it's impossible to get a surprise bill." The
+  separate case is bandwidth <em>overage</em>: some providers charge per
+  gigabyte past your allowance rather than throttling you — we covered which
+  providers do which in our
+  <a href="/articles/what-happens-when-vps-exceeds-bandwidth/">2026-10-10
+  Q&A on bandwidth overage fees</a>.
+</p>
+
+<h2>Q: Do backups and snapshots cost extra?</h2>
+<p>
+  Sometimes they are in the plan, sometimes they are a second bill — and our
+  snapshot shows both side by side. One OVHcloud $4.54/mo row advertises
+  "Daily backup included" right on the pricing card. CloudCone's rows list
+  "Enable Auto-backups / Enable Snapshots" as opt-in features — the word
+  "enable" is the tell that they are paid extras. DigitalOcean prices
+  backups as their own line ("Backups … Starting" $15/mo in our snapshot).
+  The rule: if the plan card says "included," it is in the number; if it
+  says "enable" or "starting at," budget a second line.
+</p>
+
+<h2>Q: Is there a hard spend limit — can I cap what I pay, ever?</h2>
+<p>
+  A fixed monthly plan <em>is</em> the hard spend limit buyers keep asking
+  for — forum threads literally request a way to "fund the account
+  $20/month and never spend a cent over that." With flat monthly pricing,
+  your ceiling is plan price × number of servers, and there is no mechanism
+  for the bill to drift. Hourly plans usually cap hourly accumulation at
+  the monthly price, so the worst case is still a known number. And on free
+  tiers, providers physically cannot bill you: Oracle's free tier, for
+  example, requires a deliberate multi-step upgrade to a paid account before
+  any real money can move — a design that makes accidental spending
+  impossible.
+</p>
+
+<h2>Our take: the no-surprise-bill setup</h2>
+<p>
+  We would buy like this. Fixed monthly for anything that stays up —
+  that is the billing model where the headline number is the whole story.
+  Hourly only for tests we plan to destroy the same day, with a calendar
+  reminder to destroy them. Count the add-ons (backups, snapshots, extra
+  storage) <em>before</em> picking the plan, not after the first invoice.
+  And keep the bandwidth policy in mind: a flat monthly plan with per-GB
+  overage is still flat until you blow past the allowance. A cheap VPS is
+  one of the few products in cloud computing where the advertised price can
+  genuinely be the final price — pick the billing model that keeps it that
+  way.
+</p>
+<p>
+  <small>
+    Data: vpsdealswire.com price snapshot 2026-10-11 (191 offers, 32
+    providers, official pricing pages). Hourly-cap and per-second conventions
+    per providers' public FAQs; the DDoS billing contrast per the cited
+    incident analysis; "power-off ≠ free" per independent pricing analyses.
+  </small>
+</p>
