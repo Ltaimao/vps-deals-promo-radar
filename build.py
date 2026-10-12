@@ -291,14 +291,16 @@ def render_index(ctx, data, cfg, base_url):
                 + " hosting providers' own public pages. "
                   "Nothing here is invented; sponsored placements are labeled as such.")
 
-    # Sponsored 首页区（2026-10-13 恢复）：只渲染 CJ Affiliate 和 MaxBounty 的条目
-    # （4 家直连：Cherry Servers / CloudCone / Hostwinds / RackNerd 只出现在各自
-    # provider 页面的 "Official site" 按钮上，不进首页 Sponsored 区）。
+    # Sponsored 首页区（2026-10-13）：用户规则一页最多两处。
+    # 只渲染 Contabo VPS 和 Namecheap VPS（与本站 cheap vps 受众最相关的 VPS 落地页）。
+    # 其余 CJ/MaxBounty 条目保留在 .ilang 配置中，首页不渲染。
+    # 4 家直连（Cherry Servers / CloudCone / Hostwinds / RackNerd）只出现在各自
+    # provider 页面的 "Official site" 按钮上，不进首页 Sponsored 区。
     # 渲染带 rel="sponsored nofollow noopener"，卡片上标 Sponsored，不许混进普通内容。
     # 有 logo 字段时渲染品牌 logo（/sponsored/<file>），无则回退纯文字卡。
-    _HOMEPAGE_NETWORKS = ("CJ Affiliate", "MaxBounty")
+    _HOMEPAGE_SPONSORED_NAMES = ("Contabo VPS", "Namecheap VPS")
     _aff = [a for a in (cfg.get("AFFILIATE") or [])
-            if a.get("network") in _HOMEPAGE_NETWORKS]
+            if a.get("name") in _HOMEPAGE_SPONSORED_NAMES]
     _aff_cards = []
     for a in _aff:
         _logo = a.get("logo")
