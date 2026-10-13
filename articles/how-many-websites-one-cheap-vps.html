@@ -1,0 +1,123 @@
+title: How Many Websites Can One Cheap VPS Host? Real Prices, Per-Site Math
+date: 2026-10-13
+description: Our 2026-10-12 snapshot of 214 live VPS offers across 26 providers puts the median cheapest entry plan at $4.54/month — and no provider limits domains per server. Three sites on one entry VPS costs about $1.51 per site per month; five sites costs about $0.91. A guide to consolidation, its limits, and when not to do it.
+gap: guide-multiple-websites-one-vps
+
+<h1>How Many Websites Can One Cheap VPS Host? Real Prices, Per-Site Math</h1>
+<img src="/articles/how-many-websites-one-cheap-vps.png" alt="Diagram of one VPS server hosting several website icons, with a per-site cost calculation">
+<p>
+  <strong>Short answer: as many as its RAM and CPU allow — no provider we
+  track caps the number of domains per server.</strong> The practical ceiling
+  is memory, not policy: a 2&nbsp;GB VPS comfortably handles three to six
+  small WordPress sites with caching. And the money math is what makes
+  consolidation attractive. In our 2026-10-12 snapshot of 214 live offers
+  across 26 providers, scraped from official pricing pages, the median
+  cheapest entry plan costs $4.54/month. Put three sites on it and you pay
+  about $1.51 per site per month; put five sites on it and you pay about
+  $0.91 — instead of $22.70 for five separate entry servers.
+</p>
+
+<table>
+  <thead>
+    <tr><th>Sites sharing one $4.54/mo entry VPS</th><th>Cost per site per month</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>$4.54</td></tr>
+    <tr><td>3</td><td>≈ $1.51</td></tr>
+    <tr><td>5</td><td>≈ $0.91</td></tr>
+    <tr><td>10</td><td>≈ $0.45</td></tr>
+  </tbody>
+</table>
+<p>
+  Five separate entry servers at the median entry price would cost 5 × $4.54
+  = $22.70/month. The same five sites on one entry server cost $4.54.
+</p>
+<p>
+  <small>
+    Snapshot: 2026-10-12, 214 offers / 26 providers, prices as listed on
+    official pricing pages. "Median cheapest entry" = the median of each
+    provider's lowest USD monthly row (23 providers with a monthly USD row;
+    190 USD rows total). Per-site figures divide the median entry price by
+    the site count — the arithmetic is exact, the feasibility question is
+    answered in the sections below.
+  </small>
+</p>
+
+<h2>The real limit is RAM, not domains</h2>
+<p>
+  This is the part pricing pages never spell out. A provider's own public
+  documentation states there is no restriction on the number of domains that
+  can point at a single instance — the limit is the CPU and RAM you bought.
+  So the question is never "am I allowed to," it is "can the box take it."
+</p>
+<p>
+  The community's rule of thumb is consistent across sources: a 2&nbsp;GB VPS
+  handles three to six active WordPress sites with caching, and a
+  2&nbsp;vCPU / 4&nbsp;GB box handles three to five small sites at moderate
+  traffic. Those are not our measurements — they are widely repeated
+  operator estimates — but they line up with what our price data makes
+  possible: seven providers in our snapshot sell a monthly entry plan at or
+  under $3 (Hostens from $1.00, IONOS from $2.00, RackNerd from $2.24), and
+  fifteen providers have an entry plan at or under $5. The consolidation
+  server itself is cheap; the scarce resource is memory.
+</p>
+
+<h2>The per-site math, from real prices</h2>
+<p>
+  Start from the median: $4.54/month is the middle of what 23 providers
+  charge for their cheapest monthly plan. At that price, every additional
+  site you move onto the same box cuts the per-site cost without adding a
+  cent to the bill — the server is already paid for. The second site halves
+  your per-site cost; the fifth takes it under a dollar.
+</p>
+<p>
+  The honest version of the same table uses your own number instead of the
+  median: take the entry price of the provider you actually buy
+  (Hostens $1.00, IONOS $2.00, DigitalOcean $4.00 in our snapshot) and divide
+  by the number of sites the box can comfortably run. A $2.00 IONOS box
+  holding four small sites is $0.50 per site per month — cheaper than any
+  per-site hosting product we have seen, because per-site products charge
+  you for management, not for the server.
+</p>
+
+<h2>When one server stops being enough</h2>
+<p>
+  Consolidation has a failure mode, and it is shared fate: one site's
+  traffic spike slows every site on the box. A widely reused buyer's
+  checklist phrases it as a question — is your traffic predictable? Steady,
+  low-traffic sites consolidate beautifully; one spiky site argues for its
+  own box, because a shared server has no way to contain a neighbor's bad
+  day. The same logic applies to maintenance: one server means one update
+  run, one backup to verify, one incident that takes everything down at
+  once. Separate servers cost more precisely because they fail separately.
+</p>
+<p>
+  There is also a skills cost. Per-site managed hosting exists because
+  someone has to do the sysadmin work: updates, SSL renewals, backups,
+  watching the disk fill up. One published price comparison lists managed
+  WordPress at $55.30/month for five sites — about $11 per site — against
+  our $0.91 per site on a self-managed entry VPS. That $10-per-site gap is
+  not a scam; it is the price of never touching a terminal. If you cannot
+  or will not do the maintenance, the cheap math does not apply to you.
+</p>
+
+<h2>Our take: consolidate, but count the memory first</h2>
+<p>
+  We would buy like this. For a handful of low-traffic sites — a blog, a
+  portfolio, two client brochure sites — one $4-to-$5 entry VPS is the
+  rational buy, and the per-site cost under a dollar is real as long as the
+  sites stay small. The moment any single site can spike, give it its own
+  box: shared fate is the tax consolidation charges, and it is collected
+  exactly when you can least afford it. And if the words "SSH into the
+  server and check the logs" sound like a chore rather than a Tuesday, pay
+  for managed hosting instead — the $10-per-site premium is cheaper than
+  the weekend you will spend learning server administration under pressure.
+</p>
+<p>
+  <small>
+    Data: vpsdealswire.com price snapshot 2026-10-12 (214 offers, 26
+    providers, official pricing pages). Domain-limit and per-RAM site-count
+    estimates per providers' public docs and community guides; managed
+    WordPress pricing per a published 2026 comparison.
+  </small>
+</p>
