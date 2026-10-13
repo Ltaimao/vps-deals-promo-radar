@@ -888,7 +888,7 @@ def render_legal(ctx, data, cfg, base_url, tpl_name, crumb_label):
     return render_base(ctx, content, jsonld)
 
 
-def render_article(ctx, data, cfg, base_url, article):
+def render_article(ctx, data, cfg, base_url, article, all_articles=None):
     """单篇内容页。正文 HTML 由作者手写，build 只做转义安全的字段替换；
     价格/日期类断言的真实性由 I-Lang ::MODULE{ARTICLES} 约束，build 不校验内容真伪。"""
     _date_line = ""
@@ -898,6 +898,15 @@ def render_article(ctx, data, cfg, base_url, article):
             _date_line += " · Updated " + e(article["updated"])
         _date_line += "</p>"
     _body = article["body"]
+    # 相关文章内链：取同站其他文章（按日期倒序取 4 篇，排除自己），
+    # 解决文章页内链过少导致的索引缓慢问题。
+    _related = ""
+    if all_articles:
+        _others = [a for a in all_articles if a["slug"] != article["slug"]]
+        _others.sort(key=lambda x: x["date"], reverse=True)
+        for a in _others[:4]:
+            _related += ('    <li><a href="/articles/' + a["slug"] + '/">'
+                         + e(a["title"]) + '</a></li>\n')
     # 移动端防溢出：正文里的 <table> 统一包进 .table-wrap（CSS 在 ≤720px 给它
     # overflow-x:auto），避免宽表把 375px 页面撑破。body 是手写源文件，
     # 不是上次构建产物，不会重复包裹；已包过的跳过。
@@ -917,6 +926,7 @@ def render_article(ctx, data, cfg, base_url, article):
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("/articles/", "Articles"), ("", article["title"])]),
         "{{ARTICLE_DATE_LINE}}": _date_line,
         "{{ARTICLE_BODY}}": _body,
+        "{{RELATED_ARTICLES}}": _related,
     })
     jsonld = json.dumps({
         "@context": "https://schema.org",
@@ -1560,7 +1570,7 @@ def main():
         c["og_type"] = "article"
         c["nav"] = nav_html("")
         write(SITE / "articles" / a["slug"] / "index.html",
-              render_article(c, data, cfg, base_url, a))
+              render_article(c, data, cfg, base_url, a, articles))
         all_paths.append({"path": "articles/" + a["slug"] + "/",
                           "lastmod": a["date"]})
     if articles:
