@@ -164,6 +164,8 @@ LANG zh
   CloudCone|https://app.cloudcone.com/?ref=14666|Cloud servers on CloudCone's official site|CloudCone Affiliate
   Hostwinds|https://clients.hostwinds.com/aff.php?aff=10535|VPS hosting plans on Hostwinds' official site|Hostwinds Affiliate
   RackNerd|https://my.racknerd.com/aff.php?aff=21490|VPS hosting plans on RackNerd's official site|RackNerd Affiliate
+  DreamHost|https://click.dreamhost.com/aff_c?offer_id=8&aff_id=23837&url_id=68|VPS hosting plans on DreamHost's official site|DreamHost Affiliate
+  AccuWebHosting|https://www.accuwebhosting.com/ref/5477.html|VPS hosting plans on AccuWeb Hosting's official site|AccuWeb Hosting Affiliate
 
 ::RULE{联盟链接只从 .ilang ::MODULE{AFFILIATE} 读 build.py 渲染 不许在模板或代码里写死链接}
 ::RULE{联盟链接渲染必须带 rel="sponsored nofollow noopener" 必须标 Sponsored 不许混进普通内容}
