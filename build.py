@@ -298,7 +298,7 @@ def render_index(ctx, data, cfg, base_url):
     # provider 页面的 "Official site" 按钮上，不进首页 Sponsored 区。
     # 渲染带 rel="sponsored nofollow noopener"，卡片上标 Sponsored，不许混进普通内容。
     # 有 logo 字段时渲染品牌 logo（/sponsored/<file>），无则回退纯文字卡。
-    _HOMEPAGE_SPONSORED_NAMES = ("Contabo VPS", "Namecheap VPS")
+    _HOMEPAGE_SPONSORED_NAMES = ("Contabo VPS", "Namecheap VPS", "Bitlaunch")
     _aff = [a for a in (cfg.get("AFFILIATE") or [])
             if a.get("name") in _HOMEPAGE_SPONSORED_NAMES]
     _aff_cards = []
