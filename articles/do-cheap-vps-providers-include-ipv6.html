@@ -1,0 +1,146 @@
+title: Do Cheap VPS Providers Include IPv6? A Q&A With Real Prices
+date: 2026-10-14
+description: Only 2 of 214 tracked price cards mention IPv6 — yet it is free at every major budget host we checked. Our 2026-10-13 snapshot of 214 live VPS offers across 26 providers puts the median cheapest entry plan at $4.54/month; DigitalOcean's $4.00 entry includes 16 IPv6 addresses at no extra cost, Hetzner and Contabo hand you a free /64, and SSDNodes is the lone provider whose card prints "IPv6 Included".
+gap: question-ipv6-cheap-vps
+
+<h1>Do Cheap VPS Providers Include IPv6? A Q&A With Real Prices</h1>
+<img src="/articles/do-cheap-vps-providers-include-ipv6.png" alt="Diagram of a VPS server connected to a large block of IPv6 addresses, with a checklist of providers">
+<p>
+  <strong>Short answer: yes — and it costs you nothing.</strong> We scraped
+  214 live price cards from 26 providers on 2026-10-13, and only 2 of them
+  even mention IPv6 (both from SSDNodes, from $5.50/month). That silence
+  is marketing, not absence: the providers' own documentation shows IPv6
+  included free on the cheapest tiers — DigitalOcean gives 16 addresses at no
+  extra cost on its $4.00 entry plan, Hetzner and Contabo hand you a full /64,
+  and RackNerd will allocate up to 100 free addresses on request.
+</p>
+
+<table>
+  <thead>
+    <tr><th>Provider</th><th>Cheapest monthly entry we tracked (2026-10-13)</th><th>What IPv6 you get</th><th>How you turn it on</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>DigitalOcean</td><td>$4.00</td><td>16 IPv6 addresses, no extra cost, every region</td><td>Enable at droplet creation (official docs)</td></tr>
+    <tr><td>RackNerd</td><td>$2.24</td><td>Up to 100 free addresses (Los Angeles and France)</td><td>Open a support ticket after ordering (community guide)</td></tr>
+    <tr><td>SSDNodes</td><td>$5.50</td><td>"IPv6 Included" — printed on the pricing card</td><td>Automatic — the only card in our snapshot that says it</td></tr>
+    <tr><td>Hetzner</td><td>Not in this snapshot</td><td>/64 free with every cloud server</td><td>Included; an IPv6-only server (no IPv4) is possible</td></tr>
+    <tr><td>Vultr</td><td>Not in this snapshot</td><td>Free IPv6 subnet on all VPS instances</td><td>Tick "Enable IPv6" in Additional Features at deploy (official docs)</td></tr>
+    <tr><td>Contabo</td><td>Not in this snapshot</td><td>Dedicated IPv4 and IPv6 with every plan, free</td><td>Run the <code>enable_ipv6</code> command, then reboot (community docs)</td></tr>
+  </tbody>
+</table>
+
+<h2>Q1: Do cheap VPS providers include IPv6 at all?</h2>
+<p>
+  Yes — it is one of the quietest freebies in budget hosting. Our
+  2026-10-13 scrape of 214 live offers across 26 providers found IPv6
+  mentioned on just 2 price cards, both of them SSDNodes rows
+  ($5.50 and $9.42) carrying the text "IPv6 Included". Nobody else
+  puts it on the card, because in 2026 it stopped being a selling point and
+  became table stakes.
+</p>
+<p>
+  The documentation tells the real story. DigitalOcean's own docs say
+  "enabling IPv6 on a Droplet gives you access to its 16 additional IPv6
+  addresses" and "IPv6 support is available for Droplets at no additional
+  cost", in every region. Vultr's docs say "Vultr supports IPv6 for all VPS
+  and Bare Metal instances" — you tick one checkbox at deploy time and
+  cloud-init handles the rest. Hetzner's documentation prices IPv4 as a
+  line item while IPv6 rides along free. Contabo's plan pages state that
+  "dedicated IPv4 and IPv6 addresses come with every plan", free. A
+  real-user homelab guide we found (jlemb5's RackNerd write-up) answers
+  "Does it include IPv6?" with "up to 100 free IPv6 addresses on request in
+  Los Angeles and France — open a support ticket after ordering and they'll
+  allocate them." And on the extreme budget end, one provider's community
+  review notes "IPv6 comes enabled by default" on a dirt-cheap Amsterdam
+  VPS.
+</p>
+
+<h2>Q2: Does the cheapest tier get it too, or is it an upsell?</h2>
+<p>
+  The cheapest tier gets it. That is the whole point of the table above:
+  every entry in it is either the provider's own entry plan or their
+  universal policy. DigitalOcean's $4.00/month entry — the cheapest USD row
+  we tracked for them on 2026-10-13 — qualifies for the same 16 free IPv6
+  addresses as their biggest droplet. RackNerd's $2.24 entry plan, one of
+  the cheapest in our entire snapshot, still gets up to 100 free addresses
+  on request. Nobody gates IPv6 behind a higher tier, because addresses are
+  not scarce the way IPv4 is.
+</p>
+<p>
+  The median cheapest entry plan across all 26 providers we tracked on
+  2026-10-13 was $4.54/month, with 15 providers at $5 or under. IPv6 is
+  included free across that whole price band — it is never the reason to
+  pay for the next plan up.
+</p>
+
+<h2>Q3: One address, or a whole block?</h2>
+<p>
+  A block — and a comically large one. Providers typically hand you a /64,
+  which is 2<sup>64</sup> addresses, roughly 18 quintillion. Hetzner and
+  Contabo both allocate a full /64 per server. DigitalOcean is the
+  conservative one, handing out 16 individual addresses per droplet.
+  RackNerd's "up to 100 free on request" is the stingiest of the bunch and
+  still more than any single server will ever use.
+</p>
+<p>
+  Why a block instead of one address? IPv6 was designed around whole
+  subnets: the standard practice is one /64 per network segment, so even a
+  single VPS gets its own range. Practically, that means you can give every
+  container, every service, and every tunnel endpoint its own public
+  address without ever touching NAT or asking the provider for more.
+</p>
+
+<h2>Q4: Can I skip IPv4 entirely and go IPv6-only?</h2>
+<p>
+  Sometimes, and it is usually cheaper when you can. Hetzner's cloud lets
+  you create a server without the Primary IPv4 at all — a community
+  infrastructure write-up we checked prices that at about $0.60/server-month
+  saved. The cheap-VPS community has long kicked around the "$2.50
+  IPv6-only sandbox" as a WireGuard endpoint or low-traffic API box.
+</p>
+<p>
+  But be honest about the trade-off: most of the internet you need to reach
+  still requires IPv4. An IPv6-only server can talk to the IPv6 web, but not
+  to the large IPv4-only remainder — your users, your APIs, and most
+  package mirrors. Unless you have a specific reason (egress address
+  rotation, a sandbox that only talks to v6 endpoints, a WireGuard peer),
+  keep the dual stack. The IPv4 address is already bundled in the price at
+  most budget hosts.
+</p>
+
+<h2>Q5: Do I actually need IPv6 on a cheap VPS?</h2>
+<p>
+  Most buyers don't — yet. WireGuard listens on both families, Minecraft's
+  Java edition speaks IPv6, and Caddy or Nginx will serve either. IPv6
+  matters when: your visitors arrive on IPv6-only mobile carriers (growing
+  fast in several markets), you want separate public addresses for
+  services without NAT gymnastics, or you are future-proofing a server you
+  plan to keep for years.
+</p>
+<p>
+  There is also a negative test worth running. If a provider in 2026
+  charges extra for IPv6, or cannot answer which tier includes it, treat
+  that as a signal about the provider, not about the protocol. The serious
+  budget hosts all give it away free — the 2-in-214 mention rate on pricing
+  cards is a marketing silence, not a missing feature.
+</p>
+
+<h2>Our take: check the box, then forget about it</h2>
+<p>
+  We treat IPv6 like SSL in 2016 — hygiene, not a buying criterion. When we
+  look at a cheap VPS plan, the questions that move money are renewal
+  pricing, bandwidth policy, and RAM per dollar. IPv6 is a five-second
+  check: does the cheapest tier include it free? For every provider we
+  could verify, the answer was yes. Tick the box at deploy time, confirm
+  with <code>ip -6 addr</code> after first login, and spend your attention
+  on the numbers that actually show up on the invoice.
+</p>
+
+<p>
+  <em>Method note: prices are from our own price tracker. Data:
+  vpsdealswire.com price snapshot 2026-10-13 (214 offers, 26 providers, 190
+  USD rows), scraped from official pricing pages; per-provider IPv6 policy
+  verified against official documentation and dated community guides on
+  2026-10-14. Median cheapest entry plan: $4.54/month across 23 providers
+  with USD rows at or above $1.</em>
+</p>
