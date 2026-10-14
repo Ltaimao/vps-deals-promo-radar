@@ -1,4 +1,4 @@
-# vps-deals — VPS hosting deals, auto-updating
+# VPS Deals Wire — VPS hosting deals, auto-updating
 
 This repo builds and keeps fresh a small VPS hosting deals site.
 It pulls from the public pricing/promotion pages listed in `.ilang/site.ilang`,
