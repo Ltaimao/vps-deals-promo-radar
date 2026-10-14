@@ -171,7 +171,7 @@ def logo_html(provider, logos, cls="avatar"):
     # 不用 loading="lazy"：logo 全是几百字节到十几 KB 的小图，而懒加载会让
     # 首屏以下的那批（compare 表里十几行）一直不渲染 —— 页面看着就是图没了。
     return ('<span class="{cls}">'
-            '<img src="/assets/logos/{f}" alt="{name} logo" decoding="async">'
+            '<img src="/assets/logos/{f}" alt="{name} logo" decoding="async" loading="lazy">'
             '</span>').format(cls=e(cls), f=e(rec["file"]), name=e(provider.get("name", "")))
 
 
@@ -1584,7 +1584,7 @@ def main():
             "slug": "index", "title": "Articles", "date": "",
             "description": "Hands-on VPS buying guides with live-checked prices.",
             "gap": "index",
-            "body": "\n".join(_idx_rows),
+            "body": "<h1>Articles</h1>\n" + "\n".join(_idx_rows),
         }
         c = dict(ctx_index)
         c["title"] = "Articles — " + ctx_index["brand"]
