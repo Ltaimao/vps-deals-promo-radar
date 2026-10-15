@@ -167,6 +167,7 @@ LANG zh
   DreamHost|https://click.dreamhost.com/aff_c?offer_id=8&aff_id=23837&url_id=68|VPS hosting plans on DreamHost's official site|DreamHost Affiliate
   AccuWebHosting|https://www.accuwebhosting.com/ref/5477.html|VPS hosting plans on AccuWeb Hosting's official site|AccuWeb Hosting Affiliate
   Bitlaunch|https://afflat3c1.com/trk/lnk/CAF13121-040C-4717-9E50-A975CC73D567/?o=26434&c=918277&a=806486&k=E734|Bitcoin VPS hosting on Bitlaunch's official site|MaxBounty
+  InterServer|https://www.interserver.net/r/1210301|VPS hosting plans on InterServer's official site|InterServer Affiliate
 
 ::RULE{联盟链接只从 .ilang ::MODULE{AFFILIATE} 读 build.py 渲染 不许在模板或代码里写死链接}
 ::RULE{联盟链接渲染必须带 rel="sponsored nofollow noopener" 必须标 Sponsored 不许混进普通内容}
