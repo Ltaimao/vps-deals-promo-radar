@@ -213,6 +213,28 @@ def crumbs_html(parts):
     return "".join(bits)
 
 
+def jsonld_breadcrumb(parts, base_url):
+    # 与 crumbs_html 共用同一套 (href, name) 元组 —— 但 name 必须传未转义原文，
+    # json.dumps 会自己处理 JSON 转义。href 为 None/"" 时是当前页，不写 item。
+    items = []
+    for i, (href, name) in enumerate(parts, start=1):
+        el = {"@type": "ListItem", "position": i, "name": name}
+        if href:
+            el["item"] = base_url + href
+        items.append(el)
+    return {"@type": "BreadcrumbList", "itemListElement": items}
+
+
+def jsonld_with_crumbs(main_json_str, parts, base_url):
+    # 主结构化数据 + BreadcrumbList 合成 @graph。main 为空串时原样返回。
+    if not main_json_str:
+        return main_json_str
+    return json.dumps({
+        "@context": "https://schema.org",
+        "@graph": [json.loads(main_json_str), jsonld_breadcrumb(parts, base_url)],
+    }, ensure_ascii=False)
+
+
 def hreflang_html(per_lang_urls, lang):
     # per_lang_urls: dict lang -> url; x-default points to lang
     tags = ['<link rel="alternate" hreflang="x-default" href="' + e(per_lang_urls.get(lang, "")) + '">']
@@ -579,7 +601,7 @@ def render_provider(ctx, data, cfg, base_url, provider):
         _affiliate_note = ""
 
     content = fill(load_template("provider.html"), {
-        "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", e(provider["name"]))]),
+        "{{CRUMBS}}": crumbs_html([("/", "Home"), ("", provider["name"])]),
         "{{PROVIDER_LOGO}}": logo_html(provider, logos, "avatar p-logo"),
         "{{PROVIDER_NAME}}": e(provider["name"]),
         "{{PROVIDER_URL}}": e(_provider_url),
@@ -607,6 +629,7 @@ def render_provider(ctx, data, cfg, base_url, provider):
                     for q, a in faqs
                 ],
             },
+            jsonld_breadcrumb([("/", "Home"), ("", provider["name"])], base_url),
         ],
     }, ensure_ascii=False)
 
@@ -623,8 +646,8 @@ def render_deal(ctx, data, cfg, base_url, deal):
 
     content = fill(load_template("deal.html"), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"),
-                                   ("/providers/" + deal.get("provider_slug", "") + "/", e(deal.get("provider_name", ""))),
-                                   ("", e(deal["title"]))]),
+                                   ("/providers/" + deal.get("provider_slug", "") + "/", deal.get("provider_name", "")),
+                                   ("", deal["title"])]),
         "{{DEAL_TITLE}}": e(deal["title"]),
         "{{PRICE_LABEL}}": ("$" + "{:.2f}".format(deal["price"]) + " " + deal.get("currency", "")) if deal.get("price") else "—",
         "{{PROVIDER_NAME}}": e(deal.get("provider_name", "")),
@@ -641,7 +664,11 @@ def render_deal(ctx, data, cfg, base_url, deal):
         "{{FAQ_BLOCK}}": faq_block,
     })
 
-    jsonld = jsonld_offer(deal, base_url)
+    jsonld = jsonld_with_crumbs(jsonld_offer(deal, base_url), [
+        ("/", "Home"),
+        ("/providers/" + deal.get("provider_slug", "") + "/", deal.get("provider_name", "")),
+        ("", deal["title"]),
+    ], base_url)
     return render_base(ctx, content, jsonld)
 
 
@@ -682,7 +709,7 @@ def render_compare(ctx, data, cfg, base_url):
             "url": base_url + "/providers/" + p["slug"] + "/",
             "name": p["name"],
         })
-    jsonld = jsonld_itemlist(itemlist, base_url)
+    jsonld = jsonld_with_crumbs(jsonld_itemlist(itemlist, base_url), [("/", "Home"), ("", "Compare")], base_url)
     return render_base(ctx, content, jsonld)
 
 
@@ -766,7 +793,9 @@ def render_black_friday(ctx, data, cfg, base_url):
             "url": base_url + "/providers/" + d.get("provider_slug", "") + "/",
             "name": d.get("provider_name", "") + " — " + (money(d.get("price"), d.get("currency")) or ""),
         })
-    jsonld = jsonld_itemlist(itemlist, base_url) if itemlist else ""
+    jsonld = jsonld_with_crumbs(
+        jsonld_itemlist(itemlist, base_url) if itemlist else "",
+        [("/", "Home"), ("", "Black Friday 2026")], base_url)
     return render_base(ctx, content, jsonld)
 
 
@@ -877,14 +906,14 @@ def render_legal(ctx, data, cfg, base_url, tpl_name, crumb_label):
         "{{BRAND_DISPLAY}}": e(ctx.get("brand_display", ctx["brand"])),
         "{{PROVIDER_COUNT}}": str(len(data["providers"])),
     })
-    jsonld = json.dumps({
+    jsonld = jsonld_with_crumbs(json.dumps({
         "@context": "https://schema.org",
         "@type": "ContactPage" if tpl_name == "contact.html" else "WebPage",
         "url": ctx["canonical_url"],
         "name": ctx["title"],
         "inLanguage": ctx["lang"],
         "isPartOf": {"@type": "WebSite", "url": base_url + "/"},
-    }, ensure_ascii=False)
+    }, ensure_ascii=False), [("/", "Home"), ("", crumb_label)], base_url)
     return render_base(ctx, content, jsonld)
 
 
@@ -928,7 +957,7 @@ def render_article(ctx, data, cfg, base_url, article, all_articles=None):
         "{{ARTICLE_BODY}}": _body,
         "{{RELATED_ARTICLES}}": _related,
     })
-    jsonld = json.dumps({
+    jsonld = jsonld_with_crumbs(json.dumps({
         "@context": "https://schema.org",
         "@type": "Article",
         "url": ctx["canonical_url"],
@@ -938,7 +967,7 @@ def render_article(ctx, data, cfg, base_url, article, all_articles=None):
         **({"dateModified": article["updated"]} if article.get("updated") else {}),
         "inLanguage": ctx["lang"],
         "isPartOf": {"@type": "WebSite", "url": base_url + "/"},
-    }, ensure_ascii=False)
+    }, ensure_ascii=False), [("/", "Home"), ("/articles/", "Articles"), ("", article["title"])], base_url)
     return render_base(ctx, content, jsonld)
 
 
