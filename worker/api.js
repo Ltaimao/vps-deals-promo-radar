@@ -1020,6 +1020,11 @@ const GSC_SITE_CANDIDATES = [
   "https://vpsdealswire.com/",
   "sc-domain:vpsdealswire.com",
 ];
+const GSC_SITE_CANDIDATES_TATTOO = [
+  "https://www.tattoodoodle.com/",
+  "https://tattoodoodle.com/",
+  "sc-domain:tattoodoodle.com",
+];
 
 async function gscAccessToken(env) {
   if (!env.GSC_CLIENT_ID || !env.GSC_CLIENT_SECRET || !env.GSC_REFRESH_TOKEN)
@@ -1077,6 +1082,8 @@ async function handleGscQuery(request, env) {
   const days = Math.min(Math.max(parseInt(q.get("days") || "28", 10) || 28, 1), 90);
   const dim = (q.get("dimension") || "date").toLowerCase();
   const dimension = ["date", "query", "page"].includes(dim) ? dim : "date";
+  const siteParam = (q.get("site") || "vps").toLowerCase();
+  const siteCandidates = siteParam === "tattoo" ? GSC_SITE_CANDIDATES_TATTOO : GSC_SITE_CANDIDATES;
   const end = new Date();
   end.setDate(end.getDate() - 3); // GSC data lags ~2-3 days
   const start = new Date(end);
@@ -1092,7 +1099,7 @@ async function handleGscQuery(request, env) {
 
   let siteUrl = null;
   let lastErr = null;
-  for (const cand of GSC_SITE_CANDIDATES) {
+  for (const cand of siteCandidates) {
     const res = await gscFetch(access, "/sites/" + encodeURIComponent(cand) + "/searchAnalytics/query", {
       startDate: fmt(start),
       endDate: fmt(end),
@@ -1107,7 +1114,7 @@ async function handleGscQuery(request, env) {
     lastErr = "gsc_api_error:" + res.status;
   }
   if (!siteUrl)
-    return json({ ok: false, error: lastErr || "gsc_no_site", detail: "tried: " + GSC_SITE_CANDIDATES.join(", ") }, 502);
+    return json({ ok: false, error: lastErr || "gsc_no_site", detail: "tried: " + siteCandidates.join(", ") }, 502);
 
   let clicks = 0;
   let impressions = 0;
