@@ -727,12 +727,19 @@ async function handleDealsSnapshot() {
 // YouTube API quota.
 
 const YT_VIDEO_PREFIX = "https://www.vpsdealswire.com/videos/";
+// Second channel: Tattoo Doodle. Uses a separate refresh token
+// (YT_REFRESH_TOKEN_TATTOO) so the VPS channel binding is never disturbed.
+// See 2026-10-08 wrong-channel accident; two-token fix designed 2026-10-10,
+// deployed 2026-10-11, re-applied 2026-10-16 after a clean-repo redeploy
+// on 2026-10-15 wiped it (patch had never been committed).
+const YT_VIDEO_PREFIX_TATTOO = "https://www.tattoodoodle.com/assets/videos/";
 const YT_SLUG_RE = /^[a-z0-9-]{1,80}$/;
 const YT_MAX_UPLOADS_PER_DAY = 5;
 const YT_MAX_BYTES = 100 * 1024 * 1024;
 
-async function ytAccessToken(env) {
-  if (!env.YT_CLIENT_ID || !env.YT_CLIENT_SECRET || !env.YT_REFRESH_TOKEN)
+async function ytAccessToken(env, useTattoo) {
+  const refreshToken = useTattoo ? env.YT_REFRESH_TOKEN_TATTOO : env.YT_REFRESH_TOKEN;
+  if (!env.YT_CLIENT_ID || !env.YT_CLIENT_SECRET || !refreshToken)
     throw new Error("youtube_not_configured");
   const r = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
@@ -741,7 +748,7 @@ async function ytAccessToken(env) {
       grant_type: "refresh_token",
       client_id: env.YT_CLIENT_ID,
       client_secret: env.YT_CLIENT_SECRET,
-      refresh_token: env.YT_REFRESH_TOKEN,
+      refresh_token: refreshToken,
     }),
   });
   if (!r.ok) throw new Error("youtube_token_refresh_failed:" + r.status);
@@ -758,14 +765,16 @@ async function handleYouTubePublish(request, env) {
   } catch {
     return json({ ok: false, error: "invalid_json" }, 400);
   }
-  const { video_url, title, description, privacy, slug } = body || {};
+  const { video_url, title, description, privacy, slug, channel } = body || {};
+  const useTattoo = channel === "tattoo";
+  const videoPrefix = useTattoo ? YT_VIDEO_PREFIX_TATTOO : YT_VIDEO_PREFIX;
   if (
     typeof video_url !== "string" ||
-    !video_url.startsWith(YT_VIDEO_PREFIX) ||
+    !video_url.startsWith(videoPrefix) ||
     !video_url.endsWith(".mp4")
   )
     return json({ ok: false, error: "bad_video_url" }, 400);
-  const urlSlug = video_url.slice(YT_VIDEO_PREFIX.length, -4);
+  const urlSlug = video_url.slice(videoPrefix.length, -4);
   if (!YT_SLUG_RE.test(urlSlug) || (slug && slug !== urlSlug))
     return json({ ok: false, error: "bad_slug" }, 400);
   if (typeof title !== "string" || !title.trim() || title.length > 100)
@@ -783,7 +792,7 @@ async function handleYouTubePublish(request, env) {
 
   let access;
   try {
-    access = await ytAccessToken(env);
+    access = await ytAccessToken(env, useTattoo);
   } catch (e) {
     return json({ ok: false, error: String((e && e.message) || e) }, 502);
   }
@@ -799,7 +808,9 @@ async function handleYouTubePublish(request, env) {
       title: title.trim(),
       description: description,
       categoryId: "27",
-      tags: ["vps", "cheap vps", "vps hosting", "vpsdealswire"],
+      tags: useTattoo
+        ? ["tattoo", "tattoo ideas", "tattoo design", "tattoodoodle"]
+        : ["vps", "cheap vps", "vps hosting", "vpsdealswire"],
     },
     status: { privacyStatus: privacy, selfDeclaredMadeForKids: false },
   };

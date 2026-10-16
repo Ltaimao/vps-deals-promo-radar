@@ -3,7 +3,7 @@
 Uses the skill's surrogate credential mechanism — never touches the raw token."""
 import json, sys, urllib.request
 
-sys.path.insert(0, "/opt/hatch/skills/skill-creator/bin")
+sys.path.insert(0, "/opt/hatch/workflow-skills/custom-connector-setup/bin")
 from dynamic_credentials import add_surrogate_to_request, read_json_response
 
 ACCOUNT = "41adaf2bce076e1cefb1a8ad67b51856"
