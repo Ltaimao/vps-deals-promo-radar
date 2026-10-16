@@ -1,0 +1,122 @@
+title: Are Backups Included in Cheap VPS Plans? A Q&A on What Backup Really Costs
+date: 2026-10-16
+description: Our 2026-10-15 snapshot of 214 live VPS offers across 32 providers shows only 9 price cards mention backups at all — and only one says "included". The going rate for the add-on is 20% of the plan price (two independent public sources agree). A Q&A on what's included, what costs extra, and the free DIY route.
+gap: question-cheap-vps-backup-costs
+
+<h1>Are Backups Included in Cheap VPS Plans? A Q&A on What Backup Really Costs</h1>
+<img src="/articles/do-cheap-vps-plans-include-backups.png" alt="Diagram of a VPS server with three backup paths: included free, paid add-on at 20 percent of plan price, and DIY backup to object storage">
+<p>
+  <strong>Short answer: almost never — budget for it separately.</strong>
+  We scraped 214 live VPS offers across 32 providers on 2026-10-15. Only
+  <strong>9 of the 214 price cards mention backups at all</strong>, and only one of them —
+  OVHcloud's, at $4.54/month — says "daily backup included" outright. The going rate when it is a
+  paid add-on is <strong>about 20% of the plan price</strong>, confirmed by two independent public
+  sources. The questions and answers below are the whole story.
+</p>
+
+<h2>Q1: Do cheap VPS plans include backups?</h2>
+<p>
+  Assume no, and you will rarely be disappointed. Here is what the 9 backup-mentioning cards in our
+  2026-10-15 snapshot actually say:
+</p>
+<table>
+  <thead>
+    <tr><th>Provider</th><th>Plan price</th><th>What the card says</th><th>What that means</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>OVHcloud</td><td>$4.54/mo</td><td>"Daily backup included"</td><td>Included, free</td></tr>
+    <tr><td>ScalaHosting</td><td>$15.00/mo</td><td>"Backup for the last seven days"</td><td>Included, 7-day retention</td></tr>
+    <tr><td>CloudCone</td><td>$10.34–$63.09/mo</td><td>"Enable Auto-backups / Enable Snapshots"</td><td>Feature exists; card lists no price</td></tr>
+    <tr><td>Cherry Servers</td><td>from $3.50/mo</td><td>"Backup Storage … For a safe data store"</td><td>Paid storage add-on, price not fixed</td></tr>
+    <tr><td>DigitalOcean</td><td>$15.00</td><td>"Backups Databases Starting"</td><td>Managed-database backups product, not per-VPS backups</td></tr>
+  </tbody>
+</table>
+<p>
+  The other 205 cards say nothing at all — and silence means "not included". A community FAQ for
+  RackNerd, one of the budget providers Reddit recommends most, states it plainly: KVM VPS plans are
+  unmanaged products where <strong>"backups are your responsibility"</strong>. On the other side,
+  Hostinger's KVM VPS line includes free weekly backups, so inclusion is a feature of the plan, not of
+  the price tier.
+</p>
+
+<h2>Q2: How much does the backup add-on cost when it is paid?</h2>
+<p>
+  The market's going rate is <strong>20% of the plan price</strong>. Two independent public sources
+  land on the same number: a community Vultr deployment guide notes that enabling automatic backups
+  "adds 20% to the base price", and Arct Cloud's public pricing (October 2026) says "Backups add 20%
+  of the server's plan price". One provider charging by the rule looks like this on our snapshot's
+  median entry price:
+</p>
+<table>
+  <thead>
+    <tr><th>Plan price</th><th>Backup add-on (20%)</th><th>What it costs per year</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>$4.54/mo (median entry, 2026-10-15)</td><td>~$0.91/mo</td><td>~$10.92</td></tr>
+    <tr><td>$10.00/mo</td><td>$2.00/mo</td><td>$24.00</td></tr>
+    <tr><td>$15.00/mo</td><td>$3.00/mo</td><td>$36.00</td></tr>
+  </tbody>
+</table>
+<p>
+  One industry guide puts automatic backups at $2–$20/month across the market — the 20% rule sits
+  comfortably inside that band. Arct Cloud also prices snapshots separately at
+  <strong>$0.04/GB/month</strong>, kept until you delete them. On a $4.54/month box, the backup add-on
+  costs less than a dollar a month; skipping it saves you eleven dollars a year and risks everything on
+  the disk.
+</p>
+
+<h2>Q3: What is the difference between a backup and a snapshot?</h2>
+<p>
+  Providers list them as separate features — CloudCone's cards say "Enable Auto-backups / Enable
+  Snapshots" — because they solve different problems:
+</p>
+<ul>
+  <li><strong>Snapshot:</strong> a point-in-time copy of the whole disk, usually manual, usually stored
+  in the same datacenter. Great for "save before I break something", bad as your only copy — if the
+  datacenter has a bad day, your snapshot is in it too.</li>
+  <li><strong>Backup:</strong> a scheduled copy with retention (daily, 7 days, 30 days), ideally stored
+  off-site. RackNerd's JetBackup for shared/reseller plans, for example, is replicated to off-site
+  disaster-recovery datacenters and does not count against the plan's storage quota.</li>
+</ul>
+<p>
+  A snapshot is a parachute you packed this morning. A backup is a parachute packed by someone else and
+  kept in a different building. You want at least one of the second kind.
+</p>
+
+<h2>Q4: Can I back up a cheap VPS myself for free?</h2>
+<p>
+  Yes, and for hobby boxes this is the right answer. The community FAQ that calls backups "your
+  responsibility" on budget VPS recommends <strong>BorgBackup or Restic paired with object storage</strong> —
+  both are free, open-source tools that do encrypted, incremental backups. A weekly cron job pushing to
+  any S3-compatible object storage covers a personal blog or test box for pennies a month.
+</p>
+<p>
+  The one rule that matters: <strong>a backup you have never restored from is a rumor, not a
+  backup.</strong> Pick one unimportant weekend, delete a file, restore it, and time yourself. If the
+  restore works, your backup is real. If it does not, you just learned that before it mattered.
+</p>
+
+<h2>Q5: So what should I actually do?</h2>
+<p>
+  A three-way split that matches the price math above:
+</p>
+<ul>
+  <li><strong>The site earns money:</strong> pay the add-on. On the median $4.54/month entry plan that
+  is roughly $0.91/month — twenty cents a week to not lose the thing that pays you. This is not the
+  line to optimize.</li>
+  <li><strong>Hobby, learning, staging:</strong> DIY weekly with BorgBackup or Restic, plus one
+  restore drill so you know the backup is real.</li>
+  <li><strong>Budget unmanaged VPS (the RackNerd-type plan):</strong> assume nothing is included.
+  If the plan page does not say the word "backup", you do not have one.</li>
+</ul>
+<p>
+  <strong>Our take:</strong> we pay the backup add-on on anything that earns money and do it ourselves
+  for everything else. The median cheap VPS costs $4.54 a month and its backup costs about a dollar —
+  the invoice is never what hurts. The hurt is the Sunday morning you discover there was nothing to
+  restore.
+</p>
+<p>
+  Data: vpsdealswire.com price snapshot 2026-10-15 (214 offers, 32 providers). Prices are the cards as
+  scraped; backup add-on rates quoted from public provider pages and community guides linked in the
+  text.
+</p>
