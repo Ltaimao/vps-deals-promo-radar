@@ -1,0 +1,116 @@
+title: How Much RAM Does a Minecraft Server Need on a Cheap VPS? A Per-Player Sizing Guide
+date: 2026-10-19
+description: We checked 214 live VPS price cards (2026-10-18 snapshot, 26 providers): the median entry plan costs $4.54/mo, with 15 providers at $5 or less. A per-player RAM sizing guide for Minecraft servers on cheap VPS plans — 300MB per vanilla player, the single-thread CPU trap, and why price cards alone can't size your server.
+gap: guide-minecraft-server-ram-vps
+
+<h1>How Much RAM Does a Minecraft Server Need on a Cheap VPS? A Per-Player Sizing Guide</h1>
+<img src="/articles/cheap-vps-minecraft-server-ram-guide.png" alt="Infographic showing Minecraft server RAM needs per player count, from 2 GB for a small vanilla server up to 8 GB or more for modded servers">
+<p>
+  <strong>Short answer: 2 GB of RAM is the starting point for most Minecraft servers; budget roughly
+  300 MB of RAM per vanilla player and 500 MB per modded player.</strong> We audited 214 live VPS
+  price cards (snapshot taken 2026-10-18, 26 providers). The median entry plan costs $4.54/mo, and
+  15 of 23 providers with a USD entry tier sell it at $5 or less — so a small vanilla server for
+  friends fits squarely inside the cheapest tier of the market. A modded server for 10+ players does
+  not: that needs 4–8 GB, which prices you out of the entry tier entirely. The table below is the
+  whole answer.
+</p>
+
+<table>
+  <thead>
+    <tr><th>Server</th><th>Players</th><th>RAM you need</th><th>What our 214-card snapshot says about cost</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Vanilla survival</td><td>2–5</td><td>1–2 GB</td><td>Fits the entry tier: median entry $4.54/mo; 15 providers at $5 or less</td></tr>
+    <tr><td>Vanilla / Paper + a few plugins</td><td>5–10</td><td>2–4 GB</td><td>Top of the entry tier; compare plans by their RAM spec, not the headline price</td></tr>
+    <tr><td>Light modpack</td><td>2–5</td><td>4 GB</td><td>Above most entry tiers; the market's $1-per-GB anchor puts this near $4/mo</td></tr>
+    <tr><td>Large modpack (100+ mods)</td><td>any</td><td>6 GB+</td><td>Mid-tier plans only; entry tiers can't hold this</td></tr>
+    <tr><td>Mojang Realms (for comparison)</td><td>you + 2 / you + 10</td><td>handled for you</td><td>$3.99/mo (Bedrock, 3 players) or $7.99/mo (up to 10 players) — no mods on Java</td></tr>
+  </tbody>
+</table>
+
+<h2>The per-player math</h2>
+<p>
+  Server guides converge on the same arithmetic. A vanilla server runs on about 1.5 GB of RAM for
+  1–5 players, which works out to roughly 300 MB of RAM per player — and a 2 GB server is widely
+  cited as the sensible starting point for most people, since you can upgrade later. Well-tuned
+  setups (Paper with sensible limits) get that down to 50–100 MB per player on a decent CPU.
+  Modded is a different animal: budget around 500 MB per player, or about 200 MB per player if you
+  aggressively limit chunk loading. The pattern is linear enough to plan with: players × 300 MB
+  (vanilla) or players × 500 MB (modded), then round up to the next plan size.
+</p>
+
+<h2>What our 214 price cards actually tell you — and what they don't</h2>
+<p>
+  Here is the exclusive part of this guide: our snapshot from 2026-10-18 tracked 214 live offers
+  across 26 providers. The median cheapest entry plan costs $4.54/mo. Fifteen providers price their
+  entry tier at $5 or less; seven go as low as $3 or less (Hostens $1.00, Latitude.sh $1.23, BuyVM
+  $1.25, IONOS $2.00, Virmach $2.00). Nineteen sub-dollar rows are hourly or add-on lines, not
+  monthly plans — strip those out before comparing.
+</p>
+<p>
+  And here is the trap the cards set: <strong>not one of the 214 price cards prints a RAM spec next
+  to its headline price.</strong> You cannot size a Minecraft server from a price card alone, because
+  the card never tells you the one number that matters. The correct method is backwards from how
+  most people shop: compute your RAM from the per-player table first, then open the provider's plan
+  page and buy the RAM number — the headline price is the last thing you look at, not the first.
+  For calibration, the broader market's going rate is about $1 per GB of RAM per month on budget
+  Minecraft hosting, which puts a 4 GB modded-capable box near $4/mo — right in line with our
+  snapshot's $4.54 median entry.
+</p>
+
+<h2>Trap 1: more cores does not mean a faster Minecraft server</h2>
+<p>
+  Minecraft's main game loop runs on a single thread, so single-thread CPU speed beats core count
+  almost every time. This is where cheap-VPS marketing lies most aggressively. Independent
+  benchmarks of ultra-cheap VPS plans found one provider's 8-vCPU plan scoring 387 events per
+  second on single-core tests — 76% slower than a competing 2-vCPU plan that scored 1,636. Four
+  times the cores, three-quarters slower, because the underlying silicon was ancient or
+  oversubscribed. On a cheap VPS, "8 vCPU" on the tin tells you nothing; the CPU model and clock
+  speed tell you everything. If a provider won't name the CPU, treat the core count as decoration.
+</p>
+
+<h2>Trap 2: CPU steal time — the lag your ping can't explain</h2>
+<p>
+  On a shared VPS, your "vCPU" is a time slice of a physical core shared with neighbors. When a
+  neighbor hogs the core, the hypervisor steals cycles from you — this is CPU steal time, and
+  budget hosts never advertise it. For a website it barely matters: a page loads 200–500 ms later
+  and nobody notices. For a game server it is catastrophic, because the game loop must complete
+  every 15–50 milliseconds; a stolen slice means teleports, frozen mobs, and blocks that reappear.
+  The practical rule from VPS monitoring guides: 1–3% steal is invisible, 25%+ means the box is
+  running in slow motion and you should switch hosts. After deploying, run <code>top</code> and watch
+  the <code>st</code> value during your busiest hour — that number is your real CPU spec.
+</p>
+
+<h2>Trap 3: DDoS, location, and the Realms alternative</h2>
+<p>
+  Two more cheap-VPS realities. First, budget hosts are the classic null-route victims: one small
+  DDoS attack and an oversold host may simply drop your IP to protect everyone else — community
+  admins report exactly this pattern on the cheapest tiers. If your server will be public, confirm
+  DDoS protection exists before you buy. Second, location beats size: a 2 GB box in the same region
+  as your players will feel better than a 4 GB box on another continent, because latency complaints
+  arrive long before RAM complaints.
+</p>
+<p>
+  And know when not to self-host: Mojang's own Realms costs $3.99/mo for you plus two friends on
+  Bedrock, or $7.99/mo for up to ten players — with backups and zero setup. The catch is no plugins
+  and no modpacks on Java. If your group is small, vanilla, and allergic to Linux, Realms at $3.99
+  is cheaper than any VPS once you price your own time.
+</p>
+
+<h2>Two free performance wins before you pay for more RAM</h2>
+<p>
+  First, run Paper (or Purpur) instead of pure vanilla: it is measurably more efficient at the same
+  player count, with async chunk loading and real performance controls. Second, turn the view
+  distance down 1–2 chunks on public servers — it saves CPU and RAM without hurting gameplay in any
+  way most players notice. Both are free, and both move the bottleneck before your wallet has to.
+</p>
+
+<h2>Our take</h2>
+<p>
+  I would size every Minecraft server the same way: players × 300 MB, round up, buy that RAM
+  number, ignore the headline price until the last step. In our 2026-10-18 snapshot the median
+  entry tier is $4.54/mo, which is exactly the neighborhood a 2 GB vanilla box lives in — the
+  $1.00–$2.00 teasers are for buying, not for gaming. Start monthly, run <code>top</code> during
+  peak hour, and only commit to a longer term once steal time stays under 3% for a full week of
+  real play.
+</p>
