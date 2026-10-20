@@ -1,0 +1,117 @@
+title: KVM vs LXC on a Cheap VPS: Which Should You Buy? A Q&A With Real Prices
+date: 2026-10-20
+description: We audited 219 live VPS price cards (2026-10-19 snapshot, 32 providers): 14 print "KVM", zero mention LXC, OpenVZ, Xen, or Hyper-V. When the virtualization type decides whether your Docker, WireGuard, or custom kernel will even boot — and when it is just marketing. A Q&A with real prices.
+gap: question-kvm-vs-lxc-cheap-vps
+
+<h1>KVM vs LXC on a Cheap VPS: Which Should You Buy? A Q&A With Real Prices</h1>
+<img src="/articles/kvm-vs-lxc-which-to-buy.png" alt="Diagram comparing KVM full virtualization with its own kernel against LXC containers sharing the host kernel, with a decision rule for cheap VPS buyers">
+<p>
+  <strong>Short answer: if you will ever run Docker, WireGuard, a custom kernel module, or anything
+  that is not Linux — buy KVM.</strong> For a static site, a WordPress blog, or a test box, the
+  difference barely matters and you should buy on price. We audited 219 live VPS price cards (snapshot
+  taken 2026-10-19, 32 providers): <strong>14 cards print the word "KVM"</strong>, and
+  <strong>zero mention LXC, OpenVZ, Xen, or Hyper-V</strong>. Most of the market simply does not tell
+  you — so this Q&A tells you when that silence matters and when it does not.
+</p>
+
+<h2>Q1: What do KVM and LXC actually mean?</h2>
+<p>
+  They are two different ways of splitting one physical server into many virtual ones:
+</p>
+<ul>
+  <li><strong>KVM</strong> is full virtualization. Your VPS gets its own virtual hardware and its own
+  kernel. You can install any operating system the provider's template supports — including Windows
+  or BSD — and you can load your own kernel modules.</li>
+  <li><strong>LXC</strong> (and its cousins OpenVZ and Virtuozzo) is container virtualization. Your
+  VPS shares the host's kernel with every other container on the machine. You get your own filesystem,
+  processes, and network stack — but never your own kernel.</li>
+</ul>
+<p>
+  The one-sentence version: <strong>KVM is a whole computer that happens to be virtual; LXC is a
+  walled-off room inside someone else's computer.</strong> Everything else follows from that.
+</p>
+
+<h2>Q2: When does the difference actually matter?</h2>
+<p>
+  Only when your workload touches the kernel — which is exactly the workloads budget buyers run. A
+  community discussion that asks "KVM vs OpenVZ: does it matter for a cheap VPS?" lands on the same
+  split we use:
+</p>
+<table>
+  <thead>
+    <tr><th>Workload</th><th>Buy KVM</th><th>LXC/OpenVZ is fine</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Docker or containers</td><td><strong>Yes</strong> — Docker needs kernel features (cgroups, namespaces, modules) that containers cannot always provide; it works on KVM without asking the host for permission</td><td>Only if the provider explicitly enables nesting</td></tr>
+    <tr><td>WireGuard VPN</td><td><strong>Yes, safer</strong> — WireGuard lives in the kernel on modern distros; on a shared-kernel container you depend on the host having the module loaded</td><td>If the host documents WireGuard support</td></tr>
+    <tr><td>Custom kernel or modules (e.g. a special filesystem, a tuned scheduler)</td><td><strong>Yes</strong> — you cannot load a module into a kernel you do not own</td><td>No</td></tr>
+    <tr><td>Non-Linux OS (Windows, FreeBSD)</td><td><strong>Yes</strong> — containers only run the host's Linux</td><td>No</td></tr>
+    <tr><td>WordPress blog, static site, small API, learning Linux</td><td>Not required</td><td><strong>Yes</strong> — these never touch the kernel</td></tr>
+  </tbody>
+</table>
+<p>
+  Notice the pattern: the heavier and more "infrastructure-shaped" your plan gets, the more KVM pays
+  for itself. The pattern also repeats our earlier findings — the cheapest plans are exactly where
+  Docker, WireGuard, and VPN workloads land, which is why this question shows up on budget VPS deals
+  and not on $40/month managed plans.
+</p>
+
+<h2>Q3: How do I know which one a cheap plan uses?</h2>
+<p>
+  From the price card, you usually cannot. Here is what our 2026-10-19 snapshot actually says:
+</p>
+<table>
+  <thead>
+    <tr><th>What the card prints</th><th>Cards out of 219</th><th>What it tells you</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>"KVM"</td><td><strong>14</strong></td><td>Full virtualization, own kernel</td></tr>
+    <tr><td>"LXC", "OpenVZ", "Xen", "Hyper-V"</td><td><strong>0</strong></td><td>Not disclosed on any card</td></tr>
+    <tr><td>Nothing about virtualization</td><td><strong>205</strong></td><td>Silence — check the FAQ or ask support</td></tr>
+  </tbody>
+</table>
+<p>
+  The silence is the finding. Budget brands market on price and RAM, not on hypervisors, so the card
+  will not volunteer the answer. Two places that do answer: the provider's FAQ or knowledge base (one
+  budget provider's community FAQ, for example, explicitly labels its plans "KVM VPS"), and the plan
+  page's feature list. If neither says anything, <strong>ask support before you buy</strong> — "Is this
+  plan KVM or container-based?" is a one-line ticket, and the answer decides Q2 for you.
+</p>
+
+<h2>Q4: Is KVM worth paying more for?</h2>
+<p>
+  Only if Q2 says yes. Here is the price math from our snapshot. The median entry plan across 23
+  providers with a USD entry tier costs <strong>$4.99/month</strong>; 14 of those 23 sell their entry
+  tier at $5 or less, and 6 at $3 or less (Hostens $1.00, Latitude.sh $1.23, IONOS $2.00, Virmach $2.00,
+  RackNerd $2.24 — all from the 2026-10-19 snapshot).
+</p>
+<p>
+  A sub-$3 container plan that cannot run your Docker stack is not cheap — it is a placeholder you
+  will replace. The honest comparison is not "$2 container vs $5 KVM"; it is "$2 container + the
+  afternoon you spend migrating off it vs $5 KVM that just works". Buy the virtualization your
+  workload needs first, then optimize the price inside that set.
+</p>
+
+<h2>Q5: So what should I actually buy?</h2>
+<p>
+  A decision rule in two lines:
+</p>
+<ul>
+  <li><strong>Docker, WireGuard, custom kernel, or non-Linux anywhere in your future:</strong> buy KVM
+  on day one. Filter the plan page for the word "KVM" (14 of our 219 cards print it) or confirm with
+  support; then pick the cheapest KVM plan that fits your RAM math.</li>
+  <li><strong>Blog, static site, test box, learning SSH:</strong> buy on price and ignore the
+  hypervisor. The $4.99 median entry tier is plenty, and the workload never touches the kernel.</li>
+</ul>
+<p>
+  <strong>Our take:</strong> we buy KVM by default, because our workload list always grows into it —
+  the Docker experiment you were not planning is the most expensive surprise a cheap plan can hold.
+  The $2–$3 you "save" on a container plan evaporates the first weekend you rebuild somewhere else.
+  If your plan is honestly a blog and stays a blog, take the cheapest card and never think about this
+  again.
+</p>
+<p>
+  Data: vpsdealswire.com price snapshot 2026-10-19 (219 offers, 32 providers, 173 USD rows at $1 or
+  more). Virtualization mentions counted from the price cards as scraped; workload guidance is general
+  technical knowledge, not provider claims.
+</p>
