@@ -470,6 +470,210 @@ def render_index(ctx, data, cfg, base_url):
     return html_out
 
 
+_FX_USD = {"EUR": 1.16, "GBP": 1.34, "USD": 1.0}
+
+# 标题里一看就不是月付 VPS 套餐的抓取物（存储块、带宽、按天/小时、
+# 标题碎片）：只用于"入场价排名"，不影响页面展示的原始数据。
+_NON_PLAN_RE = None
+
+
+def _non_plan_re():
+    global _NON_PLAN_RE
+    if _NON_PLAN_RE is None:
+        import re
+        _NON_PLAN_RE = re.compile(
+            r"slab|bandwidth|gbps|locations|daily|weekly|hourly|"
+            r"per second|connectivity|features|transfer\b|floating ip|"
+            r"backup|\bsla\b",
+            re.IGNORECASE)
+    return _NON_PLAN_RE
+
+
+def _usd(price, cur):
+    if price is None:
+        return None
+    try:
+        return float(price) * _FX_USD.get(cur or "USD", 1.0)
+    except (TypeError, ValueError):
+        return None
+
+
+def _is_plan(deal):
+    """像个月付 VPS 套餐的 offer：有 >=1.0 的价格，且标题不像存储/带宽/碎片。"""
+    u = _usd(deal.get("price"), deal.get("currency"))
+    if u is None or u < 1.0:
+        return False
+    t = str(deal.get("title") or "")
+    return not _non_plan_re().search(t)
+
+
+def provider_editorial(ctx, data, provider, deals):
+    """2026-10-20 索引修复：厂商页独家数据段。
+
+    ::RULE{只写本站真实抓取数据算出的事实} —— 不写评分、不写优缺点、
+    不写性能/uptime 断言。每个厂商的数字都不同，让页面不再是模板复刻
+    （2026-10-20 审计：32 厂商页 Jaccard 0.85，独特词仅 3–18 个）。
+    历史最低价过滤 <1.0 的按秒/小时计费噪声；汇率只用于排序比较。
+    """
+    name = provider["name"]
+    slug = provider["slug"]
+    all_deals = data.get("deals", [])
+    providers = data.get("providers", [])
+    history = ctx.get("history") or {}
+    meta = (history.get("meta") or {})
+
+    # ---- 全站每家厂商的聚合（当前快照） ----
+    by_slug = {}
+    for d in all_deals:
+        by_slug.setdefault(d.get("provider_slug"), []).append(d)
+
+    def entry_deal(ds):
+        best = None
+        for d in ds:
+            if not _is_plan(d):
+                continue
+            u = _usd(d.get("price"), d.get("currency"))
+            if best is None or u < best[0]:
+                best = (u, d)
+        return best
+
+    entries = {s: entry_deal(ds) for s, ds in by_slug.items()}
+    ranked = sorted([s for s, v in entries.items() if v],
+                    key=lambda s: entries[s][0])
+    n_ranked = len(ranked)
+    total_p = len(providers)
+    count_ranked = sorted(by_slug.keys(), key=lambda s: -len(by_slug[s]))
+
+    my_deals = deals
+    my_entry = entry_deal(my_deals)
+
+    def fmt_date(ts):
+        try:
+            return ts[:10]
+        except (TypeError, IndexError):
+            return ts
+
+    # ---- 历史最低价（只看 >=1.0 的点；且必须与当前入场价同量级，
+    # 否则多半是页面碎片被当最低价记录的管线噪声 —— 如 IONOS/AccuWeb 的
+    # £1.00 系列 —— 不引用） ----
+    pm = (history.get("provider_min") or {}).get(slug) or {}
+    pts = [(t, p) for t, p in (pm.get("points") or [])
+           if isinstance(p, (int, float)) and p >= 1.0]
+    hist_low = None
+    if pts:
+        t_low, p_low = min(pts, key=lambda x: x[1])
+        cur = pm.get("currency", "USD")
+        hist_low = (money(p_low, cur) + "/mo", fmt_date(t_low),
+                    fmt_date(pts[0][0]), _usd(p_low, cur))
+
+    paras = []
+    if my_entry:
+        u_min, d_min = my_entry
+        rank = ranked.index(slug) + 1 if slug in ranked else None
+        native = money(d_min.get("price"), d_min.get("currency")) + "/mo"
+        my_n = len(my_deals)
+        crank = count_ranked.index(slug) + 1 if slug in count_ranked else None
+        under5 = sum(1 for d in my_deals
+                     if _is_plan(d) and
+                     _usd(d.get("price"), d.get("currency")) < 5)
+        if rank is not None and rank <= 5:
+            s1 = ("On price, " + name + " sits near the top of this tracker: "
+                  "its entry plan at " + native + " is the #" + str(rank) +
+                  " cheapest of the " + str(n_ranked) +
+                  " providers currently listed with a verified price.")
+        elif rank is not None and rank > n_ranked * 2 // 3:
+            s1 = ("Price-wise, " + name + " is at the premium end of this tracker: "
+                  "its cheapest verified plan is " + native + ", ranked #" +
+                  str(rank) + " of " + str(n_ranked) + " by entry price.")
+        elif rank is not None:
+            s1 = ("In this tracker, " + name + "'s entry plan at " + native +
+                  " ranks #" + str(rank) + " of " + str(n_ranked) +
+                  " providers by cheapest verified price.")
+        else:
+            s1 = ("This tracker lists " + name + "'s entry plan at " +
+                  native + ".")
+        if under5:
+            s2 = (name + " lists " + str(my_n) + " offers here, the #" +
+                  str(crank) + " largest catalogue of the " + str(total_p) +
+                  " providers tracked, and " +
+                  ("1 of them is" if under5 == 1 else
+                   str(under5) + " of them are") +
+                  " priced under $5/month.")
+        else:
+            s2 = (name + " lists " + str(my_n) + " offers here, the #" +
+                  str(crank) + " largest catalogue of the " + str(total_p) +
+                  " providers tracked, with none under $5/month in the "
+                  "current snapshot.")
+        paras.append("<p>" + e(s1) + " " + e(s2) + "</p>")
+    else:
+        paras.append("<p>" + e(
+            name + "'s pricing page is reachable, but our scraper could not "
+            "extract a structured plan from it in the current run — no price "
+            "is listed here rather than a guess. The page is re-checked "
+            "every 6 hours.") + "</p>")
+
+    snap_n = meta.get("snapshots")
+    snap_txt = (" across " + str(snap_n) + " site snapshots"
+                if snap_n else "")
+    if hist_low:
+        low_p, low_d, first_d, low_u = hist_low
+        show_low = False
+        if my_entry and low_u is not None:
+            # 历史最低与当前入场价差太多 → 管线噪声，不引用
+            show_low = low_u >= 0.75 * my_entry[0]
+        if show_low:
+            paras.append("<p>" + e(
+                "We have tracked " + name + " since " + first_d +
+                ". The lowest entry price recorded in that time" + snap_txt +
+                " is " + low_p + ", first seen on " + low_d +
+                ". Figures above come from the provider's own page, re-read "
+                "every 6 hours.") + "</p>")
+        else:
+            paras.append("<p>" + e(
+                "We have tracked " + name + " since " + first_d + snap_txt +
+                ". Figures above come from the provider's own page, re-read "
+                "every 6 hours.") + "</p>")
+    elif pts:
+        paras.append("<p>" + e(
+            "We have tracked " + name + " since " + fmt_date(pts[0][0]) +
+            snap_txt + ". Figures above come from the provider's own page, "
+            "re-read every 6 hours.") + "</p>")
+
+    if not paras:
+        return ""
+    return ('<div class="section-heading"><h2>Where ' + e(name) +
+            ' stands</h2></div>\n<div class="content-card">\n' +
+            "\n".join(paras) + "\n</div>")
+
+
+def _cheapest_faq(provider, deals):
+    """每页一条由真实数据生成的专属 FAQ（2026-10-20 索引修复）。"""
+    name = provider["name"]
+    best = None
+    for d in deals:
+        if not _is_plan(d):
+            continue
+        u = _usd(d.get("price"), d.get("currency"))
+        if best is None or u < best[0]:
+            best = (u, d)
+    checked = (provider.get("fetched_at") or "")[:10]
+    if best:
+        _, d = best
+        return ("What is the cheapest " + name + " plan right now?",
+                "As of the last check on " + checked + ", the cheapest " +
+                name + " plan in this tracker is " +
+                money(d.get("price"), d.get("currency")) + "/mo (" +
+                offer_label(d, 1) + "). Prices are re-read from the "
+                "provider's own page every 6 hours, so check the table "
+                "above for the current figure.")
+    return ("Does " + name + " have any VPS deals listed right now?",
+            "Not in the current run: " + name + "'s pricing page was "
+            "checked on " + checked + ", but no plan could be extracted "
+            "with a verifiable price, currency, and URL, so nothing is "
+            "listed rather than a guess. The page is re-checked every "
+            "6 hours.")
+
+
 def render_provider(ctx, data, cfg, base_url, provider):
     """厂商深评页。只写数据可验证的事实：状态、条数、价格区间、验证时间。
     ::RULE{厂商深评页只写数据可验证的事实} —— 不许星级评分，不许优缺点，
@@ -554,6 +758,7 @@ def render_provider(ctx, data, cfg, base_url, provider):
         ("How often is it updated?",
          "Every 6 hours, together with the rest of this site. Each deal card shows "
          "the exact time its entry was last verified."),
+        _cheapest_faq(provider, deals),
         ("Why do some offers show no price?",
          "An offer is published with a price only when price, currency, and URL can "
          "all be verified together. Otherwise it is listed without a price rather "
@@ -610,6 +815,7 @@ def render_provider(ctx, data, cfg, base_url, provider):
         "{{SOURCE_URL}}": e(provider["source_url"]),
         "{{DEAL_COUNT}}": n_label,
         "{{STAT_GRID}}": stat_grid,
+        "{{PROVIDER_EDITORIAL}}": provider_editorial(ctx, data, provider, deals),
         "{{DEAL_TABLE}}": deal_table,
         "{{TRACKING_INFO}}": tracking_info,
         "{{FAQ}}": faq_html,
