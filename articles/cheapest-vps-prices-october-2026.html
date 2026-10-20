@@ -1,0 +1,116 @@
+title: Cheapest VPS Prices in October 2026: What 214 Live Offers Across 32 Providers Actually Show
+date: 2026-10-20
+description: We scraped 214 live VPS offers from 32 providers and filtered them down to 84 real monthly plans. The cheapest starts at €1.67/mo, only one runs Windows, and 37% cost under $10. Every figure traced to our 2026-10-18 price snapshot, with the full filtering methodology published.
+gap: research-vps-price-landscape-october-2026
+
+<h1>Cheapest VPS Prices in October 2026: What 214 Live Offers Across 32 Providers Actually Show</h1>
+<p>
+  Every number below comes from this site's own scrape —
+  <strong>214 live offers across 32 providers, snapshot taken
+  2026-10-18</strong>. Raw scraper output is noisy (hourly billing, storage
+  add-ons, and price flips all look like "cheap VPS" to a dumb parser), so we
+  filtered it down to <strong>84 offers that are recognizable as monthly-billed
+  VPS plans</strong> before computing anything. The full methodology — including
+  all 130 excluded offers — is published at the bottom of this page.
+</p>
+
+<h2>The short answer</h2>
+<ul>
+  <li><strong>Cheapest verified monthly VPS: €1.67/mo (~$1.94)</strong> — AlphaVPS storage VPS. Five plans sit under $3/mo.</li>
+  <li><strong>Windows VPS is nearly extinct at the budget end:</strong> 1 of 214 offers mentions Windows (AccuWebHosting, $6.33/mo).</li>
+  <li><strong>36.9% of real monthly plans cost under $10/mo</strong> (31 of 84).</li>
+  <li><strong>6 of 32 providers returned zero usable offers</strong> in this snapshot — their pricing pages yielded nothing our scraper could parse as a plan.</li>
+</ul>
+
+<h2>The 5 cheapest monthly VPS plans we could verify</h2>
+<table>
+  <thead>
+    <tr><th>#</th><th>Provider</th><th>Plan (as listed)</th><th>Price</th><th>≈ USD</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>AlphaVPS</td><td>Storage VPS (AMD Ryzen)</td><td>€1.67/mo</td><td>~$1.94</td></tr>
+    <tr><td>2</td><td>IONOS</td><td>VPS, unlimited traffic</td><td>$2.00/mo</td><td>$2.00</td></tr>
+    <tr><td>3</td><td>VirMach</td><td>SSD/NVMe VPS</td><td>$2.00/mo</td><td>$2.00</td></tr>
+    <tr><td>4</td><td>RackNerd</td><td>VPS</td><td>$2.24/mo</td><td>$2.24</td></tr>
+    <tr><td>5</td><td>AlphaVPS</td><td>Cheap VPS (best value tier)</td><td>€2.54/mo</td><td>~$2.95</td></tr>
+  </tbody>
+</table>
+<p>
+  Sixth place goes to BuyVM at $3.50/mo (dedicated KVM slice, 1 GB RAM).
+  Note the #1 entry is a <em>storage</em> VPS — fine for backups and file
+  serving, not for CPU-heavy work. "Cheapest" and "best value" are different
+  questions; this table answers only the first.
+</p>
+
+<h2>Price distribution: where the market actually sits</h2>
+<table>
+  <thead>
+    <tr><th>Monthly price (USD equivalent)</th><th>Plans</th><th>Share</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Under $5</td><td>13</td><td>15.5%</td></tr>
+    <tr><td>$5 – $10</td><td>18</td><td>21.4%</td></tr>
+    <tr><td>$10 – $20</td><td>15</td><td>17.9%</td></tr>
+    <tr><td>$20 and up</td><td>38</td><td>45.2%</td></tr>
+  </tbody>
+</table>
+<p>
+  The sub-$10 segment (31 plans, 36.9%) is where the "cheap VPS" market
+  actually lives. Above $20 you are mostly looking at managed plans, larger
+  configurations, or providers whose entry tier simply isn't budget-oriented.
+</p>
+
+<h2>Windows VPS: one listing in the entire dataset</h2>
+<p>
+  Of 214 offers, exactly <strong>one</strong> is explicitly a Windows VPS:
+  AccuWebHosting's Windows VPS SSD plan at <strong>$6.33/mo</strong>. If you
+  need Windows, the budget market is effectively a single-vendor market in this
+  snapshot — a useful thing to know before you start comparing.
+</p>
+
+<h2>Providers with no usable offers this round</h2>
+<p>
+  Six providers returned zero parseable offers: Hetzner Cloud, InterServer,
+  ServerMania, HostHatch, A2 Hosting, and Bitlaunch. Two more were excluded
+  entirely after filtering — Cherry Servers (5 offers, all add-ons like floating
+  IPs and backup storage, no VPS plan) and Latitude.sh (12 offers, all title
+  fragments or hourly-billed). "No offers" means our scraper couldn't parse a
+  plan from their pricing page this round — not that they sell nothing.
+</p>
+
+<h2>Why we filtered out 130 of 214 offers</h2>
+<p>
+  A scraper sees numbers; it doesn't know what they mean. Left unfiltered, the
+  "cheapest VPS" in our data would be $0.01 — per-second billing noise from
+  DigitalOcean and Kamatera. The 130 exclusions fall into six buckets:
+</p>
+<ul>
+  <li><strong>Sub-$1.00 noise (19):</strong> per-second/hourly billing and storage add-ons priced per GB.</li>
+  <li><strong>Known price flips (6):</strong> offers our history file shows bouncing between two prices every snapshot (DreamHost $39.99↔$59.99, SSDNodes $9.42↔$11.08, three UpCloud tiers) — scraper artifacts, not real prices.</li>
+  <li><strong>Non-monthly billing (8):</strong> annual-only or hourly-only listings.</li>
+  <li><strong>Not a VPS (18):</strong> block storage, dedicated servers, domains, GPUs, managed Kubernetes, web hosting.</li>
+  <li><strong>Title fragments (26):</strong> scraped text too broken to map to any real plan (e.g. "Gbps Locations Starting").</li>
+  <li><strong>Unattributable (53):</strong> the current price doesn't appear anywhere in that offer's own price history — usually several plans sharing one scraped title. We excluded rather than guessed.</li>
+</ul>
+<p>
+  Currency conversion (EUR→USD 1.16, GBP→USD 1.34) was used only for sorting
+  and bucketing; original prices and currencies are listed as scraped.
+  We deliberately publish <strong>no trend claims</strong> (no "prices rose
+  X%"): our price history only goes back to 2026-09-23, and 76 of 214 offers
+  can't be stably matched across snapshots yet. A trend computed on that would
+  be fiction.
+</p>
+
+<h2>What this means if you're buying</h2>
+<ul>
+  <li>Under $3/mo is real, but read what you're getting: the cheapest plans are storage-oriented or single-core.</li>
+  <li>If you need Windows, start with AccuWebHosting — comparison shopping barely exists at this price.</li>
+  <li>Headline prices are usually intro/first-term prices; renewal rates are often higher. We track the listed price, not the renewal fine print.</li>
+  <li>Compare on our <a href="/compare/">compare page</a>, which rebuilds from the same scrape every 6 hours.</li>
+</ul>
+<p>
+  <em>Methodology: 214 offers scraped from 32 provider pricing pages,
+  snapshot 2026-10-18 19:49 UTC. Figures above use the 84-offer filtered set
+  unless noted. Re-scraped every 6 hours; this report is a point-in-time
+  analysis, not a live tracker.</em>
+</p>
