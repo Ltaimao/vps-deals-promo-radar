@@ -1,0 +1,182 @@
+title: Is an ARM VPS Slower Than x86? A Q&A With Real Prices
+date: 2026-10-22
+description: We audited 216 live VPS price cards (2026-10-21 snapshot, 32 providers): zero mention ARM. Independent 2026 numbers put one Ampere Altra core within 7-10% of an x86 core, and reported ARM plans list 13-25% below their x86 twins. Seven questions answered with real prices.
+gap: question-arm-vps-slower-than-x86
+
+<h1>Is an ARM VPS Slower Than x86? A Q&A With Real Prices</h1>
+<img src="/articles/is-arm-vps-slower-than-x86.png" alt="ARM vs x86 VPS comparison graphic: two server CPU chips with a price-performance bar chart">
+<p>
+  <strong>Short answer: barely — and for the money, often faster.</strong> Independent 2026 tests put
+  one Ampere Altra ARM core within 7–10% of an x86 core in throughput, and ARM plans pack more cores
+  per dollar, so total performance frequently comes out ahead. The real questions are not about speed
+  at all — they are about what runs on ARM, what does not, and whether the discount is real. Here
+  is the 60-second version:
+</p>
+<table>
+  <thead>
+    <tr><th>Question</th><th>60-second answer</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Is ARM slower?</strong></td><td>Single core: 7–10% behind. Total box: often faster, because you get more cores for the money.</td></tr>
+    <tr><td><strong>How much cheaper?</strong></td><td>Reported September 2026 numbers: ~13% below the x86 twin at Hetzner, ~25% at netcup.</td></tr>
+    <tr><td><strong>WordPress on ARM?</strong></td><td>Yes — Nginx, PHP, and MySQL all ship ARM builds; the gap vanishes behind a cache.</td></tr>
+    <tr><td><strong>Game servers on ARM?</strong></td><td>No — single-threaded game loops want peak single-core speed: x86.</td></tr>
+    <tr><td><strong>Windows on ARM?</strong></td><td>Effectively not an option at the budget tier: x86 required.</td></tr>
+    <tr><td><strong>Switch x86 → ARM later?</strong></td><td>Not in place — budget for a rebuild, not a reboot.</td></tr>
+  </tbody>
+</table>
+<p>
+  The data behind this Q&A: a snapshot of <strong>216 live VPS price cards across 32 providers,
+  taken 2026-10-21</strong>, in which we audited every card title for architecture mentions, plus
+  independently reported 2026 ARM-vs-x86 numbers from provider pages and benchmarks. Every number
+  below comes from one of those two sources — nothing is guessed.
+</p>
+
+<h2>Q1: Is an ARM VPS slower than x86?</h2>
+<p>
+  Barely, and the honest version has two halves. The first half: yes, per-core, ARM trails. An
+  independent 2026 test found roughly a <strong>7–10% throughput gap</strong> against x86, larger
+  on single-thread benchmarks. The second half: that gap rarely decides anything, because ARM plans
+  are built to give you <strong>more cores for the same money</strong> — a single ARM core on
+  Ampere Altra is comparable to an x86 core for most tasks, and total performance is often higher
+  at the same price point. One hosting guide's rule of thumb: most WordPress setups behind a cache
+  layer will not feel the difference at all.
+</p>
+<p>
+  <strong>The rule:</strong> do not buy or reject ARM on "slower." Buy or reject it on the workload
+  table in Q3–Q5. Speed is the least interesting difference.
+</p>
+
+<h2>Q2: How much cheaper is ARM, really?</h2>
+<p>
+  Reported September 2026 numbers from two European budget providers, same-spec comparisons:
+</p>
+<table>
+  <thead>
+    <tr><th>Provider</th><th>ARM plan</th><th>x86 twin</th><th>ARM discount</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Hetzner</td><td>CAX11 (2 vCPU Ampere Altra, 4 GB RAM): €3.29</td><td>CX22 (x86): €3.79</td><td><strong>~13%</strong></td></tr>
+    <tr><td>netcup</td><td>VPS 1000 ARM (6 vCPU, 8 GB RAM, 256 GB NVMe): €7.77</td><td>VPS 1000 x86: €10.37</td><td><strong>~25%</strong></td></tr>
+  </tbody>
+</table>
+<p>
+  Two caveats, both from the same reporting. First, these are provider list prices from September
+  2026 — verify the current page before buying. Second, <strong>supply is the catch</strong>: as
+  of late September 2026, netcup's ARM line was sold out and Hetzner had pulled its CAX plans from
+  the price list. The discount is real; the inventory is not always there. An ARM plan you cannot
+  buy is not cheaper than anything.
+</p>
+<p>
+  <strong>The rule:</strong> treat the 13–25% as the discount band to expect. If an ARM plan costs
+  the same as its x86 twin, the architecture is not buying you anything — buy on the rest of the
+  spec sheet instead.
+</p>
+
+<h2>Q3: Can I run WordPress on an ARM VPS?</h2>
+<p>
+  Yes. The standard web stack — Nginx, PHP, MySQL — all ship native ARM builds, so a normal
+  WordPress install runs on ARM exactly the way it runs on x86. The one condition: your plugins
+  and any compiled extensions must be ARM-compatible too. In practice, the PHP/WordPress world is
+  overwhelmingly fine; the exotic breakage lives in niche binary plugins. This is also the
+  workload where the 7–10% gap matters least — a page served from cache never touches the CPU
+  difference.
+</p>
+<p>
+  <strong>The rule:</strong> WordPress is ARM's safest budget workload. If your whole stack is
+  PHP + MySQL + Nginx, ARM is a discount with no asterisk.
+</p>
+
+<h2>Q4: Is ARM good for game servers?</h2>
+<p>
+  No — this is ARM's clearest "stay away" at the budget tier. Game servers run their main loop on
+  a single thread, so peak single-core speed beats core count, and that is exactly where ARM trails
+  x86 most. One 2026 benchmark of ultra-cheap VPS plans makes the point brutally: an 8-vCPU plan
+  delivered 76% less single-core throughput than a 2-vCPU plan from a different provider — for
+  gaming, the architecture of the <em>fastest single core</em> is the whole decision. Community
+  guidance agrees: gaming servers want high single-thread CPU performance and low latency, which
+  is better handled by x86-based VPS.
+</p>
+<p>
+  <strong>The rule:</strong> game server → x86, no debate. ARM's extra cores are cores your game
+  loop will never use.
+</p>
+
+<h2>Q5: Can I run Windows on an ARM VPS?</h2>
+<p>
+  Effectively no. Windows Server support on ARM VPS is limited — providers that sell ARM sell it
+  as a Linux product. If your workload needs Windows (RDP apps, .NET Framework legacy, MT4/MT5
+  trading terminals), you need x86, full stop. The Windows question is settled one layer below the
+  ARM question: our 2026-10-18 audit found exactly one Windows mention in 214 price cards, and
+  the cheapest Windows plan started at $6.33 — the budget Windows market is thin enough without
+  adding architecture constraints.
+</p>
+<p>
+  <strong>The rule:</strong> Windows → x86. ARM is a Linux-only aisle.
+</p>
+
+<h2>Q6: Can I switch from x86 to ARM later?</h2>
+<p>
+  Not in place. Moving an existing server from x86 to ARM means rebuilding: applications may need
+  reconfiguration or recompiling, container images need ARM variants, and anything with a
+  hardcoded x86 binary breaks. Treat the architecture choice as load-bearing at purchase time —
+  the same way you would treat the operating system. The cheap move is deciding before you
+  deploy, not migrating after.
+</p>
+<p>
+  <strong>The rule:</strong> pick the architecture on day one. There is no "try x86, flip to ARM
+  later" button.
+</p>
+
+<h2>Q7: What does our own price data say about ARM?</h2>
+<p>
+  Here is the finding that surprised us: <strong>zero of our 216 tracked price cards mention
+  ARM</strong>. We searched every card title in the 2026-10-21 snapshot — 14 print "KVM", 27
+  mention storage, 8 mention backups, 3 mention IPv6, and precisely none mention ARM, Ampere,
+  LXC, OpenVZ, or Xen. At the headline tier of the budget market, ARM is invisible. The
+  architecture conversation happens one layer deeper, on plan pages and docs — never in the
+  price card.
+</p>
+<p>
+  The same snapshot's x86 floor, for context: the median entry plan across 23 providers with a
+  USD monthly tier is <strong>$4.99/month</strong>; 14 providers start at $5 or less, 7 at $3 or
+  less, and 3 under $2 — Hostens at $1.00, Latitude.sh at $1.23, BuyVM at $1.25. ARM's reported
+  13–25% discount applies against mid-tier x86 plans, not against these $1–$3 floor plans — which
+  is why the cheapest ARM plan you can actually buy is rarely the cheapest plan on the page.
+  Independent 2026 benchmarking advice agrees with the frame: benchmark the actual plan, not the
+  instruction set — the best value at some clouds is ARM and at others is still AMD.
+</p>
+<p>
+  <strong>The rule:</strong> if a provider's ARM plan is not visibly cheaper than its own x86 twin,
+  the architecture label is marketing. Compare plans, not acronyms.
+</p>
+
+<h2>Our take: buy x86 by default, buy ARM on purpose</h2>
+<p>
+  We would buy x86 by default at the budget tier — not because ARM is worse, but because the ARM
+  discount is real only where it is <em>priced</em> real, and the plans that carry it sit one tier
+  above the $1–$3 floor and can go out of stock. Our decision rule is simple: <strong>choose ARM
+  when your workload runs natively on it</strong> (WordPress, containers, batch jobs) <strong>and
+  the plan is at least 13% below its x86 twin</strong>; choose x86 for game servers, anything
+  Windows, and any stack with a binary you did not compile yourself. Architecture is a discount
+  mechanism, not a quality tier — treat it like a coupon: verify the number, check the exclusions,
+  and never let it decide the purchase by itself.
+</p>
+
+<h2>Data notes</h2>
+<ul>
+  <li>Price snapshot: 216 live price cards, 32 providers, taken 2026-10-21 (offers.json
+  generated_at 2026-10-21T20:59:48Z). Median entry price $4.99/month across the 23 providers with
+  a USD monthly tier (14 at $5 or less, 7 at $3 or less, 3 under $2). Architecture audit: 0 cards
+  mention ARM/Ampere, 14 mention KVM, 0 mention LXC/OpenVZ/Xen/Hyper-V, 27 mention storage,
+  3 mention IPv6, 1 mentions Windows.</li>
+  <li>ARM-vs-x86 numbers: Hetzner CAX11 €3.29 (2 vCPU Ampere Altra, 4 GB RAM) vs CX22 €3.79, and
+  netcup VPS 1000 ARM €7.77 (6 vCPU, 8 GB RAM, 256 GB NVMe) vs x86 €10.37, as reported in a
+  September 2026 independent ARM hosting guide; same source notes netcup ARM sold out as of
+  2026-09-21 and Hetzner CAX removed from the price list. Single-core gap of 7–10% from an
+  independent 2026 benchmark; "benchmark the plan, not the ISA" from a 2026 VPS benchmarking
+  roundup.</li>
+  <li>Workload guidance (WordPress compatibility, gaming single-thread preference, x86→ARM rebuild
+  requirement, Windows-on-ARM limits) paraphrased from public provider docs and community FAQs
+  collected in our research notes; we quote the question wording, not full posts.</li>
+</ul>
