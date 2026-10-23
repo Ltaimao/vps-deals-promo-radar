@@ -50,6 +50,13 @@ class EditorialTests(unittest.TestCase):
         self.assertEqual(editorial.release(self.root, self.at('2026-10-24T08:00:00+08:00'), True)['status'], 'dry_run')
         self.assertEqual(list((self.root / 'articles').glob('*')), [])
 
+    def test_check_of_an_existing_article_cannot_trigger_deployment(self):
+        at = self.at('2026-10-24T08:00:00+08:00')
+        editorial.release(self.root, at)
+        before = {p.name:p.read_bytes() for p in (self.root/'articles').glob('*')}
+        self.assertEqual(editorial.release(self.root, at, True)['status'], 'dry_run')
+        self.assertEqual(before, {p.name:p.read_bytes() for p in (self.root/'articles').glob('*')})
+
     def test_changed_copy_is_not_overwritten(self):
         source = self.root / 'content/queue' / (self.first['slug']+'.html')
         target = self.root / 'articles' / source.name

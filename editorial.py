@@ -119,7 +119,7 @@ def release(root=ROOT, at=None, dry_run=False):
     target = root / 'articles' / (entry['slug']+'.html')
     if target.exists():
         checked_source(entry, root)
-        return {'status':'already_published','date':day,'slug':entry['slug']}
+        return {'status':'dry_run' if dry_run else 'already_published','date':day,'slug':entry['slug']}
     for path in (root / 'articles').glob('*.html'):
         meta, _ = article(path)
         if meta['date'] == day:
