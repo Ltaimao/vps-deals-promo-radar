@@ -19,12 +19,15 @@ async function withFetch(mock,body){const original=globalThis.fetch;globalThis.f
 test('new and existing pending requests have TTL on email record and token',async()=>{
  for(const existing of [false,true]){
   const SUBS=new KV();
-  if(existing)SUBS.map.set('sub:'+hash,JSON.stringify({status:'pending',email:'test@example.com',token:crypto.randomUUID(),created_at:'2026-10-01'}));
+  if(existing)SUBS.map.set('sub:'+hash,JSON.stringify({status:'pending',email:'test@example.com',token:crypto.randomUUID(),created_at:'2020-01-01'}));
   await withFetch(async()=>new Response('{}'),async()=>{
    const response=await worker.fetch(request(),{SUBS,RESEND_API_KEY:'test-placeholder'},{});
    assert.equal((await response.json()).ok,true);
    assert.equal(SUBS.writes.find(w=>w.key==='sub:'+hash).options.expirationTtl,ttl);
    assert.equal(SUBS.writes.find(w=>w.key.startsWith('pending:')).options.expirationTtl,ttl);
+   assert.ok(Date.parse(JSON.parse(SUBS.map.get('sub:'+hash)).requested_at)>Date.now()-10000);
+   await scheduled(SUBS,[],{},'resubmission-retention-check');
+   assert.ok(SUBS.map.has('sub:'+hash));
   });
  }
 });

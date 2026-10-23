@@ -162,6 +162,7 @@ async function handleSubscribe(request, env) {
     JSON.stringify({
       status: "pending", email, token,
       created_at: existing && existing.created_at || new Date().toISOString(),
+      requested_at: new Date().toISOString(),
     }),
     { expirationTtl: SUB_TTL }
   );
@@ -331,7 +332,7 @@ async function handleScheduled(env) {
       if (sub && sub.status === "pending") {
         // Old releases did not put a TTL on sub:<hash>. Remove only provably
         // expired pending records; active or undated records are never guessed.
-        const created = Date.parse(sub.created_at);
+        const created = Date.parse(sub.requested_at || sub.created_at);
         if (Number.isFinite(created) && Date.now() - created > SUB_TTL * 1000) {
           await env.SUBS.delete(k.name);
           if (sub.token) await env.SUBS.delete("pending:" + sub.token);
