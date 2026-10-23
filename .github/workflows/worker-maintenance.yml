@@ -1,0 +1,37 @@
+name: reviewed-worker-maintenance
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Inspect first; deploy only after live source matches reviewed predecessor
+        type: choice
+        options: [inspect, deploy]
+        default: inspect
+permissions:
+  contents: read
+concurrency:
+  group: reviewed-worker-maintenance
+  cancel-in-progress: false
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Regression tests (no real emails)
+        run: |
+          python3 -m unittest discover -s tests -v
+          node --test tests/test_worker.mjs
+      - name: Inspect or release the reviewed Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WORKER_OPERATION: ${{ inputs.operation }}
+        run: python3 worker/publish.py --mode "$WORKER_OPERATION" --expected-ref 7d9e4bf
