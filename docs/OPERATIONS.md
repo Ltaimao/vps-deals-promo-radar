@@ -8,7 +8,7 @@
 - Python 3.12 + 标准库构建，无 LLM API。配置事实源为 `.ilang/site.ilang`，文章源为 `articles/*.html`。
 - 2026-10-23 全站改版提交 `7d9e4bf` 已部署并逐页验证。不要把该记录理解为以后每次修改都已部署。
 - 当前提交的数据快照：2026-10-23T02:25:28Z，32 家厂商、222 条原始提取记录、28 篇文章。这是历史快照，不是实时在线套餐数。用 `data/offers.json` 的时间戳和实际结果更新数字。
-- GitHub Actions `update.yml` 每 6 小时计划抓取、构建并提交数据；`deploy.yml` 在 main 推送时构建并部署 Pages。两条流程均应先运行回归测试。
+- 日更使用 `daily-article.yml`，北京时间每日 08:00 触发；首批日期和补跑流程见 [日更说明](DAILY_EDITORIAL.md)。GitHub Actions `update.yml` 每 6 小时（北京时间 02:20/08:20/14:20/20:20）计划抓取、构建并提交数据；`deploy.yml` 在 main 推送时构建并部署 Pages。两条流程均应先运行回归测试。
 - 本环境使用平台注入的 HTTPS Git 认证，普通 `git fetch` / `git push origin HEAD:main` 已实测可用；旧 `ghpush` 和 `/opt/hatch/...` 依赖在本环境不存在。
 - 主站订阅由独立 Worker 提供；仓库代码发信走 Resend，秘密绑定名 `RESEND_API_KEY`。Pages 部署不等于 Worker 部署，也不证明发信成功。
 - GA4 衡量 ID 只从 I-Lang ANALYTICS 读取。`affiliate_click` 表示联盟出口点击；`alert_request_accepted` 表示 API 接受请求，不能当作确认订阅、订单或收入。

@@ -1,0 +1,130 @@
+name: daily-reviewed-article
+
+on:
+  schedule:
+    # 00:00 UTC = 08:00 Asia/Shanghai. GitHub may queue scheduled runs.
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Check only, or publish today's reviewed article after 08:00 Shanghai
+        type: choice
+        options: [check, publish]
+        default: check
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vps-pages-production
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate reviewed queue and run tests
+        run: |
+          python3 editorial.py validate
+          python3 -m unittest discover -s tests -v
+          node --test tests/test_worker.mjs
+      - name: Select today's article (or check without publishing)
+        id: release
+        env:
+          EDITORIAL_MODE: ${{ github.event_name == 'schedule' && 'publish' || inputs.mode }}
+        run: |
+          set -euo pipefail
+          if [ "$EDITORIAL_MODE" = publish ]; then
+            python3 editorial.py release > "$RUNNER_TEMP/editorial-release.json"
+          else
+            python3 editorial.py release --dry-run > "$RUNNER_TEMP/editorial-release.json"
+          fi
+          cat "$RUNNER_TEMP/editorial-release.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'editorial-release.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write('status=' + result['status'] + '\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as out:
+              out.write('## Daily reviewed article\n\n' + json.dumps(result, ensure_ascii=False) + '\n')
+          PY
+      - name: Build-only verification
+        if: steps.release.outputs.status != 'published' && steps.release.outputs.status != 'already_published'
+        run: python3 build.py --preserve-history
+      - name: Commit the article; preserve concurrent price updates
+        if: steps.release.outputs.status == 'published'
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -v
+          python3 build.py --preserve-history
+          git config user.name vps-editorial-bot
+          git config user.email vps-editorial-bot@users.noreply.github.com
+          git add -- articles/
+          git commit -m 'content: publish reviewed daily VPS guide'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              break
+            fi
+            if [ "$attempt" = 3 ]; then
+              exit 1
+            fi
+          done
+      - name: Build the current main branch for publication
+        if: steps.release.outputs.status == 'published' || steps.release.outputs.status == 'already_published'
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git merge --ff-only origin/main
+          python3 editorial.py validate
+          python3 build.py --preserve-history
+          test -f site/.well-known/api-catalog
+          test -f site/.well-known/mcp/server-card.json
+          test -f functions/_middleware.js
+      - name: Deploy reviewed article to Cloudflare Pages
+        if: steps.release.outputs.status == 'published' || steps.release.outputs.status == 'already_published'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npm exec --yes --package=wrangler@4.152.0 -- wrangler pages deploy ./site \
+            --project-name vps-deals --commit-dirty \
+            --commit-message 'Daily reviewed VPS guide'
+      - name: Verify the public article and sitemap
+        if: steps.release.outputs.status == 'published' || steps.release.outputs.status == 'already_published'
+        run: |
+          python3 - <<'PY'
+          import json, os, time, urllib.request, urllib.error
+          from pathlib import Path
+          result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'editorial-release.json').read_text())
+          url = 'https://www.vpsdealswire.com/articles/' + result['slug'] + '/'
+          last = None
+          for attempt in range(6):
+              try:
+                  headers = {'User-Agent': 'VPS-Deals-Wire-publication-check', 'Cache-Control': 'no-cache'}
+                  with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=20) as response:
+                      page = response.read().decode()
+                      assert response.status == 200 and '<h1>' in page and url in page
+                  with urllib.request.urlopen(urllib.request.Request('https://www.vpsdealswire.com/sitemap.xml', headers=headers), timeout=20) as response:
+                      assert url in response.read().decode()
+                  print('Verified live article and sitemap:', url)
+                  break
+              except (urllib.error.URLError, AssertionError) as error:
+                  last = error
+                  if attempt == 5:
+                      raise
+                  time.sleep(5)
+          PY

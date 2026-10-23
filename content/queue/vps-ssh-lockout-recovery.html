@@ -1,0 +1,20 @@
+title: Locked Out of Your VPS? Use a Safe SSH Recovery Plan
+date: 2026-11-02
+description: Recover access to your own VPS using provider-console checks, SSH diagnostics, and configuration validation without disabling security blindly.
+gap: vps-ssh-lockout-console-recovery
+
+<h1>Locked Out of Your VPS? Use a Safe SSH Recovery Plan</h1>
+<p><strong>If you lose SSH access to a VPS you own, keep any working session open and use the provider's documented console or rescue process to diagnose the failure.</strong> Do not start by disabling every firewall rule or replacing authentication settings you do not understand.</p>
+<p>A connection failure can occur at different stages: reaching the address, establishing a connection, negotiating SSH, or authenticating. Identifying the stage narrows the investigation and helps avoid changes that create a second problem.</p>
+<h2>Check the destination and available recovery path</h2>
+<p>Confirm the current server address, SSH port, username, and expected key. Make sure the instance is running and inspect the provider dashboard for an incident or suspension notice. If a hostname is involved, verify that it points where you intend.</p>
+<p>Find the official browser console, serial console, or rescue instructions for the product. Access to the account dashboard may be critical when guest networking is broken. Keep that account secure and do not share passwords or private keys in public troubleshooting posts.</p>
+<h2>Use client diagnostics carefully</h2>
+<p>On an appropriate SSH client, verbose output can help identify whether the connection reaches authentication. Logs may contain usernames, addresses, and local paths, so redact them before sharing. A host-key warning needs verification through a trusted route; do not dismiss it automatically.</p>
+<p>Check that you are offering the intended key rather than repeatedly guessing passwords. If an access policy includes lockout or rate limiting, respect it. This guide covers recovery of your own server, not access to someone else's machine.</p>
+<h2>Inspect server state from the recovery console</h2>
+<p>Check whether the SSH service is running, whether it listens on the intended interface and port, and whether guest and provider-level firewalls permit the connection. Review the relevant service logs using your distribution's documentation. Different firewall layers can produce similar symptoms.</p>
+<p>Before applying an SSH configuration change, use the server's documented validation method, such as <code>sshd -t</code> where supported. Confirm that the command validates the actual configuration file in use. Avoid closing the working console until a separate new connection succeeds.</p>
+<h2>Restore access with the smallest necessary change</h2>
+<p>Keep a copy of the previous configuration and change one relevant setting at a time. Do not enable unrestricted root password access as a general troubleshooting shortcut. If a rescue environment is necessary, follow the provider's mount and recovery instructions and preserve the existing filesystem.</p>
+<p>After recovery, test normal access, update your records, and investigate why the lockout happened. Maintain independent backups and a rehearsed recovery route. The <a href="/articles/cheap-vps-first-buy-and-setup/">first setup guide</a> and <a href="/articles/managed-vs-unmanaged-vps-decision-guide/">support-responsibility guide</a> help clarify which recovery tasks belong to you and which assistance your plan actually includes.</p>

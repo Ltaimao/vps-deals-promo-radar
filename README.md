@@ -49,3 +49,7 @@ To build a fresh validation snapshot separately: `python3 build.py --data /tmp/v
 Default builds keep using committed data; validation scraping does not overwrite production data.
 Amounts without an explicit billing period are not advertised as monthly VPS prices.
 Currency is never converted with a hardcoded exchange rate.
+
+## Daily editorial publishing
+
+A reviewed queue publishes one article each day at a scheduled 08:00 Asia/Shanghai trigger (00:00 UTC), subject to GitHub runner/deployment delay. The first 14 complete guides cover October 24–November 6, 2026. See [the calendar and operating instructions](docs/DAILY_EDITORIAL.md). No runtime AI service or new credential is required. An empty or invalid queue fails visibly instead of publishing filler. Validate with `python3 editorial.py validate`.

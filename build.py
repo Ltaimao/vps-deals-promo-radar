@@ -8,6 +8,7 @@
 import argparse
 import tempfile
 import html
+import editorial
 import hashlib
 import json
 import os
@@ -83,6 +84,8 @@ def load_articles():
         _updated = meta.get("updated", "").strip()
         if _updated and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", _updated):
             raise ValueError("article %s updated must be YYYY-MM-DD" % f.name)
+        if not editorial.visible(f, meta, ROOT):
+            continue
         arts.append({
             "slug": slug,
             "title": meta["title"],
@@ -1714,7 +1717,7 @@ def main():
         for a in sorted(articles, key=lambda x: x["date"], reverse=True):
             image_path = ROOT / "static" / "articles" / (a["slug"] + ".png")
             image = ('<img src="/articles/' + e(a["slug"]) + '.png" alt="" loading="lazy" width="1200" height="630">'
-                     if image_path.is_file() else '<div class="guide-placeholder" aria-hidden="true">VPS / FIELD NOTES</div>')
+                     if image_path.is_file() else '')
             _idx_rows.append(
                 '<a class="guide-card" href="/articles/' + e(a["slug"]) + '/">' + image
                 + '<div class="guide-card-body"><span class="article-date">' + e(a["date"]) + '</span>'

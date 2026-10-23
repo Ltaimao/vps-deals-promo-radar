@@ -79,3 +79,7 @@
 在无关工作完成前不反复索取权限：先完成代码修复、构建和已有公开页面验证。需要继续运营时，用原平台授权或只读导出核对 GSC、GA4、联盟及 cron；不要在聊天发送密码或 token。需要真实邮件测试时由用户指定并授权收件地址。
 
 可参考的官方原则：[有帮助的内容](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)、[链接最佳实践](https://developers.google.com/search/docs/crawling-indexing/links-crawlable)、[sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview)。这些原则不能替代站点本身的实际数据和测试。
+
+## 日更执行更新（2026-10-23）
+
+按用户最新指令，新文章改为北京时间每日 08:00 计划发布，已准备首批 14 篇完整稿件；[排期与执行说明](DAILY_EDITORIAL.md)。这替代“新稿每周 2–3 篇”的默认频率，旧文章优化仍需按真实 GSC/GA4 证据安排。日更数量不替代内容质量与实际转化；队列耗尽时告警，不运行时调用 AI 凑稿。

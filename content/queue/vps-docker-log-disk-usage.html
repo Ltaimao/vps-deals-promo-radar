@@ -1,0 +1,21 @@
+title: Docker Logs Filling a VPS? Set Retention Deliberately
+date: 2026-11-05
+description: Investigate Docker log growth on a VPS, verify the active logging driver, and plan rotation without deleting application volumes.
+gap: vps-docker-log-retention-disk-growth
+
+<h1>Docker Logs Filling a VPS? Set Retention Deliberately</h1>
+<p><strong>When Docker logs consume VPS storage, identify the active logging driver and the containers producing the data before changing retention.</strong> Container logs, images, writable layers, and volumes are different resources. Removing the wrong one can turn a disk-space problem into data loss.</p>
+<p>This guide describes a diagnostic and planning approach. It does not provide a cleanup command to run blindly on production or claim that a particular Docker version uses your intended defaults. Consult the <a href="https://docs.docker.com/engine/logging/" rel="noopener nofollow">official logging documentation</a> for the installed version.</p>
+<h2>Confirm where the space is going</h2>
+<p>Start with filesystem and inode usage, then inspect Docker's documented storage information. Check the data directory and the affected containers. Do not assume the largest directory is disposable: a volume may contain a database or uploaded files.</p>
+<p>Ask whether an application has become unusually verbose or is repeating an error. Rotation can limit retained logs, but it does not fix a failing job producing continuous output. Preserve the evidence needed to diagnose the underlying problem.</p>
+<h2>Read the actual logging configuration</h2>
+<p>Determine the daemon default and each relevant container's logging driver and options. A setting in a configuration file is not proof that an already running container inherited it. Options and their effect depend on the selected driver and the way the container was created.</p>
+<p>If the driver supports size and file-count limits, choose them from your incident-response needs and storage budget. Retaining too little can erase the only evidence of a failure; retaining without a bound can consume capacity needed by the application.</p>
+<h2>Plan the rollout before changing the daemon</h2>
+<p>Check the documentation for how changed settings apply to existing and newly created containers. A daemon restart or container recreation may affect availability. Save deployment configuration and confirm where persistent application data lives before scheduling any restart.</p>
+<p>Avoid editing Docker-managed log files or deleting data directories as a routine substitute for supported rotation. Do not use broad pruning commands until you understand exactly which objects they select and whether recovery is possible.</p>
+<h2>Verify the result over time</h2>
+<p>After an authorized change, confirm the effective container configuration and check that logging still works. Observe disk growth during ordinary application activity. Set space and inode alerts with enough time to investigate rather than waiting for writes to fail.</p>
+<p>If external logging is used, check its access controls, retention, network requirements, and costs. Logs can contain personal information or secrets; sending them elsewhere changes the data handling picture.</p>
+<p>Use the <a href="/articles/cheap-vps-sizing-guide/">VPS sizing guide</a> to revisit capacity and the <a href="/articles/do-cheap-vps-plans-include-backups/">backup guide</a> to protect application data. A sustainable logging policy is part of running the server, not evidence that every cheap plan is unsuitable.</p>

@@ -1,0 +1,20 @@
+title: VPS Storage Persistence: Stop, Rebuild, or Delete?
+date: 2026-11-04
+description: Check what happens to VPS data during stops, rebuilds, deletion, host failure, and volume detachment before relying on storage persistence.
+gap: vps-storage-lifecycle-persistence
+
+<h1>VPS Storage Persistence: Stop, Rebuild, or Delete?</h1>
+<p><strong>Before storing important data on a VPS, verify what survives each lifecycle action: stopping, restarting, rebuilding, deleting, and host failure.</strong> Persistent storage does not automatically mean backed up, and a snapshot does not automatically survive deletion of its associated resources.</p>
+<p>These details vary by product. This guide does not claim that any named provider preserves or destroys data in a particular action. Its purpose is to help you build a product-specific recovery map from official documentation.</p>
+<h2>List each storage resource separately</h2>
+<p>Identify the boot disk, attached volumes, temporary storage, snapshots, backups, and external object storage. Record where the application actually writes its database, uploads, configuration, and logs. A server can contain several storage types with different behavior.</p>
+<p>Check whether the operating-system image mounts a resource automatically and whether a mount failure could cause the application to write somewhere unintended. A name such as “cloud storage” or “SSD disk” is not sufficient evidence about lifecycle behavior.</p>
+<h2>Build a lifecycle checklist before using the buttons</h2>
+<p>For each resource, document what the official terms say about a normal reboot, a stopped instance, an operating-system rebuild, and deletion. Add any separate volume-detachment or snapshot-deletion actions. If the documentation is silent, ask support and leave the answer unknown until verified.</p>
+<p>Do not test a destructive action on your only copy of production data. If an evaluation is needed, use a disposable environment and data you can afford to lose. Read the confirmation screen carefully; similarly named controls do not have identical effects across providers.</p>
+<h2>Separate host failure from user action</h2>
+<p>Replication or storage redundancy may address a particular infrastructure failure without protecting against accidental deletion, compromised credentials, or an application corrupting its data. Understand which failures a product describes and which ones your own backups must cover.</p>
+<p>The <a href="/articles/do-cheap-vps-plans-include-backups/">backup guide</a> explains why a recoverable independent copy matters. Check whether you control the backup account and whether recovery depends on the same provider dashboard as the failed server.</p>
+<h2>Make the recovery procedure practical</h2>
+<p>Record how to obtain a fresh instance, attach or restore data, apply configuration, and verify the service before changing DNS. Store recovery instructions where they remain accessible during an outage. Test restoration under conditions that resemble the failures you want to handle.</p>
+<p>When moving hosts, preserve the source until the replacement and backups are verified. The <a href="/articles/migrate-wordpress-to-cheap-vps-checklist/">website migration checklist</a> gives a sequencing example. Use the <a href="/compare/">provider directory</a> to find official storage and cancellation terms, then compare the full recovery requirements rather than disk capacity alone.</p>
