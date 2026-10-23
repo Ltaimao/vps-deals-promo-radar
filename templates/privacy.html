@@ -42,9 +42,11 @@
     <li>
       You receive a confirmation email (<strong>double opt-in</strong>). Until
       you click the link in it, nothing else is ever sent to you, and the
-      confirmation token expires after 30 days. Unconfirmed email requests may
-      remain stored until removed; to request removal, contact
-      {{CONTACT_EMAIL}}. No alerts are sent before confirmation.
+      confirmation token expires after 30 days. New or resubmitted pending
+      email records also expire after 30 days. Older pending records with a known
+      creation date are removed by the next successful scheduled cleanup after
+      that period. Records without a usable date require review; to request
+      removal, contact {{CONTACT_EMAIL}}. No alerts are sent before confirmation.
     </li>
     <li>
       Emails are sent from <strong>alerts@vpsdealswire.com</strong> and

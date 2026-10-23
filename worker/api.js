@@ -322,11 +322,23 @@ async function handleScheduled(env) {
 
   // collect active subscribers (KV list, paginated)
   const subs = [];
+  let expiredPending = 0;
   let cursor;
   do {
     const list = await env.SUBS.list({ prefix: "sub:", cursor });
     for (const k of list.keys) {
       const sub = await env.SUBS.get(k.name, "json");
+      if (sub && sub.status === "pending") {
+        // Old releases did not put a TTL on sub:<hash>. Remove only provably
+        // expired pending records; active or undated records are never guessed.
+        const created = Date.parse(sub.created_at);
+        if (Number.isFinite(created) && Date.now() - created > SUB_TTL * 1000) {
+          await env.SUBS.delete(k.name);
+          if (sub.token) await env.SUBS.delete("pending:" + sub.token);
+          expiredPending++;
+        }
+        continue;
+      }
       if (sub && sub.status === "active" && EMAIL_RE.test(sub.email))
         subs.push({ kv: k.name, ...sub });
     }
@@ -384,7 +396,7 @@ async function handleScheduled(env) {
   await env.SUBS.put(
     "meta:last_cron",
     now + " confirmed=" + confirmed.length + " watching=" + watching +
-      " sent=" + sent + " failed=" + failed
+      " sent=" + sent + " failed=" + failed + " expired_pending=" + expiredPending
   );
 }
 

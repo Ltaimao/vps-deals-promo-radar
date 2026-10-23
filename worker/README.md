@@ -14,11 +14,12 @@ Deployed as a standalone Worker (Pages Functions can't run cron triggers).
 
 Not part of the Pages build — deploy explicitly:
 
-    # Use the deployment instructions in docs/OPERATIONS.md; the old surrogate
-    # credential helper is not available in the current cloud environment.
+    gh workflow run worker-maintenance.yml --ref main -f operation=inspect
+    # After a successful inspection and authorized release:
+    gh workflow run worker-maintenance.yml --ref main -f operation=deploy
 
 Cron schedule is set separately via the API (currently `30 */6 * * *`).
 
 Additional routes in api.js include MCP and authenticated operations integrations. Never replace a live Worker from an older file or omit its existing bindings. A successful Pages deployment does not deploy this Worker or prove email delivery.
 
-Pending fixes in the repository require a separate Worker release: email + confirmation records share a 30-day TTL for new/resubmitted pending requests; confirmed subscriptions have no pending TTL. Alerts compare only explicit monthly history in the same currency and require distinct snapshot IDs. Existing legacy pending records need a separate retention review. See tests/test_worker.mjs.
+Worker fixes require a separate verified release: email + confirmation records share a 30-day TTL for new/resubmitted pending requests; confirmed subscriptions have no pending TTL. Alerts compare only explicit monthly history in the same currency and require distinct snapshot IDs. Scheduled cleanup removes provably expired legacy pending records; undated records require review. See tests/test_worker.mjs.

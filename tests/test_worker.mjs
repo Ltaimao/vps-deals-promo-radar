@@ -64,3 +64,19 @@ test('monthly alerts require different snapshot ids and verified same-currency m
  const other=new KV();deal.currency='EUR';
  assert.match(await scheduled(other,[deal],history,'snapshot-B'),/confirmed=0/);
 });
+
+test('scheduled retention removes only provably expired legacy pending records',async()=>{
+ const SUBS=new KV();
+ const expiredToken=crypto.randomUUID();
+ SUBS.map.set('sub:expired',JSON.stringify({status:'pending',created_at:'2020-01-01',token:expiredToken}));
+ SUBS.map.set('pending:'+expiredToken,'{}');
+ SUBS.map.set('sub:recent',JSON.stringify({status:'pending',created_at:new Date().toISOString()}));
+ SUBS.map.set('sub:undated',JSON.stringify({status:'pending'}));
+ SUBS.map.set('sub:active',JSON.stringify({status:'active',email:'test@example.com',created_at:'2020-01-01'}));
+ assert.match(await scheduled(SUBS,[],{},'retention-test'),/expired_pending=1/);
+ assert.ok(!SUBS.map.has('sub:expired'));
+ assert.ok(!SUBS.map.has('pending:'+expiredToken));
+ assert.ok(SUBS.map.has('sub:recent'));
+ assert.ok(SUBS.map.has('sub:undated'));
+ assert.ok(SUBS.map.has('sub:active'));
+});

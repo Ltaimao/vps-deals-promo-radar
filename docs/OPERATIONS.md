@@ -64,4 +64,20 @@ python3 preview_server.py 8788
 | 旧审计、Secure Vault 与 `~/.x-oauth/` 路径 | 原平台资产；本环境未验证存在或可用，不复制、索取或输出秘密值 |
 | 推广帖、YouTube 上传、外联回音 | 公开链接与对应后台记录；不可仅根据交接宣称成功 |
 
-当前 Worker 的确认 token 有 30 天 TTL，但旧代码的 pending 邮箱主记录没有同样的 TTL。网站政策已按实际代码说明，不再承诺整个未确认邮箱记录自动过期。本次已在 Worker 源码补上新请求/重发的双记录 TTL，并用 5 项 Node 模拟测试验证；同时让提醒仅比较同币种、明确月付的历史，并要求不同快照确认。该独立 Worker 补丁尚未发布，不能把源码修复写成线上已生效。旧无 TTL 记录不会因未来发布自动被清理，需要先做只读盘点，再按既定留存政策处理。当前环境无可用 Cloudflare Worker 凭据，GitHub 拒绝了 secrets 元数据读取（403）；应通过已授权的 Cloudflare 发布通道核对线上源码后发布，保留所有现有绑定、路由和触发器。
+## Worker 修复与发布
+
+Worker 补丁为新请求/重发的 pending 邮箱和 token 添加同样的 30 天 TTL；确认后的有效订阅不继承 pending TTL。成功读取数据后的定时任务会清理可证实超过 30 天的旧 pending 记录及对应 token，不删除 active 或缺失日期的记录。缺失日期记录需要留存复核，不能猜日期或批量删除。
+
+提醒只比较同币种且明确月付的历史，并要求不同快照确认。未标周期的历史不冒充月付价格基线。使用 Node 模拟测试验证，不向真实用户发送测试邮件。
+
+当前聊天未暴露 Cloudflare 连接器工具，但仓库既有 CI Cloudflare 凭据已通过只读核对，可以复用而无需读取或复制秘密值。受保护发布流程仅在手动触发时执行：
+
+```bash
+gh workflow run worker-maintenance.yml --ref main -f operation=inspect
+# 只读核对成功后，已获授权的发布可执行：
+gh workflow run worker-maintenance.yml --ref main -f operation=deploy
+```
+
+worker/publish.py 要求线上单模块源码匹配明确的上一版或目标版，未知源码拒绝覆盖。使用与 Wrangler 相同的 keep_bindings 元数据保留所有绑定类型，不复制或输出秘密值。只写脚本端点，不修改路由或定时触发器；发布后重读并核对源码、绑定元数据和 schedules。后续 Worker 改动必须把 workflow 的 --expected-ref 更新为已核实的线上前置版本，不能跳过 guard。旧 worker/deploy.py 已停用。
+
+RESEND_API_KEY、OAuth、YouTube/X 等原有绑定必须在发布前后保留。发布或健康检查不证明邮件送达、GA4 事件入库或联盟订单成立。
