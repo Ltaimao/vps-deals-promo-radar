@@ -1,0 +1,142 @@
+title: How to Move Your Site to a Cheap VPS Without Downtime: A Checklist Guide
+date: 2026-10-23
+description: We audited 222 live VPS price cards (2026-10-22 snapshot, 28 providers): only one mentions migration — a $43.25 managed plan. The rest is DIY. Here is the migration checklist we would follow, with the TTL math, the overlap math, and the one step everyone skips.
+gap: guide-wordpress-migration-to-vps
+
+<h1>How to Move Your Site to a Cheap VPS Without Downtime: A Checklist Guide</h1>
+<img src="/articles/migrate-wordpress-to-cheap-vps-checklist.png" alt="Checklist graphic for moving a website to a cheap VPS without downtime">
+<p>
+  <strong>Short answer: lower your DNS TTL 48 hours before, copy everything to the new VPS,
+  test the site on the new IP, switch email first, flip DNS, then keep the old host for a
+  week.</strong> Nothing on that list costs money. The one thing that costs money is the
+  overlap — one extra month of hosting — and at the budget tier that is roughly the price of
+  a coffee. Here is the checklist in order:
+</p>
+<table>
+  <thead>
+    <tr><th>Step</th><th>What to do</th><th>Why it matters</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>1. Size the destination</strong></td><td>Match the new VPS to the old host's RAM and disk — not the CPU cores</td><td>Memory, not CPU, is what kills budget moves; 2 GB runs 3–6 WordPress sites with caching</td></tr>
+    <tr><td><strong>2. Take a backup you can restore</strong></td><td>Files + database, and verify it restores somewhere</td><td>A backup you have never restored is a rumor, not a backup</td></tr>
+    <tr><td><strong>3. Lower DNS TTL to 600 seconds, 48 hours early</strong></td><td>Drop the TTL before the move, not during</td><td>Cuts worst-case propagation from 24 hours to ~10 minutes</td></tr>
+    <tr><td><strong>4. Copy, then test on the new IP</strong></td><td>rsync or a snapshot, then load the site from the new address</td><td>DNS is the last thing you flip, never the first</td></tr>
+    <tr><td><strong>5. Move email before the DNS flip</strong></td><td>Point MX to the new mailbox setup first</td><td>A raw VPS has no mailbox — miss this and you lose mail silently</td></tr>
+    <tr><td><strong>6. Flip DNS, then keep the old host for 7 days</strong></td><td>Do not cancel anything on moving day</td><td>The overlap month is the cheapest insurance on the page</td></tr>
+  </tbody>
+</table>
+<p>
+  The data behind this guide: a snapshot of <strong>222 live VPS price cards across 28
+  providers, taken 2026-10-22</strong>. Every price below comes from that snapshot; every
+  step comes from publicly documented migration practice. Nothing is guessed.
+</p>
+
+<h2>The one number that decides everything: 222 price cards, 1 mentions migration</h2>
+<p>
+  We searched all 222 card titles for migration mentions. The result: <strong>exactly one
+  card</strong> — "Free migrations with supported control panel Starting at" <strong>$43.25
+  per month</strong> (KnownHost, 2026-10-22 snapshot). That is a managed plan priced at
+  <strong>8.65× the median entry price</strong> of $5.00/month across the 24 providers in our
+  snapshot that have a USD monthly tier.
+</p>
+<p>
+  Read that finding as the market telling you its price: at the budget tier, <strong>migration
+  is a DIY job</strong>. The cheapest managed migration costs more than most people pay for
+  eight months of hosting. The budget alternative is not a worse migration — it is the six
+  steps above, done in order. Meanwhile the only card mentioning WordPress is an enterprise
+  cloud plan at $6.99/month — the budget tier does not sell you a migration service, so buy
+  the checklist instead.
+</p>
+
+<h2>The math of the overlap month</h2>
+<p>
+  The fear that drives bad moves is paying twice. So here is the actual number. The median
+  entry plan in our snapshot is <strong>$5.00/month</strong>; 14 of 24 providers start at $5
+  or less, 7 at $3 or less, and 3 under $2 (Hostens $1.00, Latitude.sh $1.23, BuyVM $1.25).
+  Running the old host and the new VPS side by side for one month therefore costs roughly
+  <strong>$5 to $10 total</strong> — less than a single hour of paid migration help.
+</p>
+<p>
+  Compare that to the cost of skipping the overlap: cancelling the old host on moving day,
+  finding out at 2 a.m. that the database import truncated a table, and having no source
+  left to re-copy from. The overlap month is not waste; it is a <strong>$5 insurance policy
+  with a 100% payout rate</strong> on the only failure mode that cannot be undone.
+</p>
+
+<h2>TTL: the one DNS number worth knowing</h2>
+<p>
+  DNS propagation is not a mystery; it is one number — the TTL (time to live) on your
+  records. A typical host sets TTL to 86,400 seconds (24 hours). If you flip DNS with that
+  TTL, some visitors keep landing on the old server for a full day.
+</p>
+<table>
+  <thead>
+    <tr><th>TTL</th><th>What it means</th><th>Worst-case propagation</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>86,400 s (default)</td><td>Cached for 24 hours</td><td>Up to 24 hours</td></tr>
+    <tr><td>600 s (lowered)</td><td>Cached for 10 minutes</td><td>~10 minutes</td></tr>
+  </tbody>
+</table>
+<p>
+  Lower the TTL to 600 at least <strong>48 hours before</strong> the move — two full days
+  lets the old 86,400-second value expire everywhere. Then flip DNS and raise the TTL back
+  afterwards. Skipping this step is the single most common cause of "it works for me but not
+  for my customers."
+</p>
+
+<h2>Email moves first, DNS moves last</h2>
+<p>
+  A raw budget VPS has no mailbox. That is worth saying twice, because "Does a VPS include
+  email for WordPress?" is one of the most common real questions people ask — and the answer
+  is usually no on unmanaged plans. If you flip DNS before mail is working, messages sent to
+  your domain quietly die in transit.
+</p>
+<p>
+  Move the mailboxes first — Google Workspace, Fastmail, or a dedicated mail provider —
+  and confirm you can send <em>and</em> receive from the new setup before the DNS flip. Mail
+  is the part of the move with no undo button.
+</p>
+
+<h2>Should you just stay on managed WordPress instead?</h2>
+<p>
+  That is the honest alternative, and it deserves a number. Publicly reported 2026 pricing
+  puts a managed layer at roughly <strong>$54/month</strong> for a 4 GB equivalent versus
+  <strong>$24/month</strong> for a raw 4 GB VPS on the same infrastructure — a $30/month
+  premium for staging, support, and not touching a terminal. Our snapshot's whole budget
+  floor sits far below either number: 14 providers start at $5 or less.
+</p>
+<p>
+  Buy the premium if the site earns money and your time is billable — a managed plan with
+  free migration and support is the right trade. Buy the raw VPS if the site is a hobby, a
+  test, or a learning box — and run the checklist above. The wrong choice is the middle one:
+  a raw VPS with no checklist and no overlap month.
+</p>
+
+<h2>Our take: the move is six steps, and step 6 is the whole thing</h2>
+<p>
+  If we were moving a site tomorrow we would do all six steps, but if we could only afford
+  one piece of advice it would be step 6: <strong>keep the old server for a week</strong>.
+  Everything else — TTL, test copies, email order — reduces risk. The overlap eliminates the
+  one risk that money cannot fix after the fact: having nowhere to go back to. At a median
+  entry price of $5.00/month, a week of overlap costs about a dollar. There is no cheaper
+  insurance in hosting.
+</p>
+
+<h2>Data notes</h2>
+<ul>
+  <li>Price snapshot: 222 live price cards, 28 providers, taken 2026-10-22 (offers.json
+  generated_at 2026-10-22T20:57:38Z). 176 USD rows at $1 or above. Median entry price
+  $5.00/month across 24 providers with a USD monthly tier (14 at $5 or less, 7 at $3 or
+  less, 3 under $2: Hostens $1.00, Latitude.sh $1.23, BuyVM $1.25). Card-title audit: 1
+  mentions migration ("Free migrations with supported control panel Starting at" $43.25,
+  KnownHost), 1 mentions WordPress ($6.99 Enterprise WordPress Cloud, AccuWebHosting),
+  8 mention backup, 14 mention KVM, 14 mention NVMe, 3 mention IPv6.</li>
+  <li>Migration steps (size the destination, restorable backup, 48-hour TTL lowering, test on
+  the new IP, email before DNS, keep the old host a week) are standard public migration
+  practice documented across host knowledge bases and community guides; we quote question
+  wording, not full posts. The 8.65× figure is $43.25 ÷ $5.00 from our snapshot.</li>
+  <li>The managed-vs-raw price comparison ($54 managed layer vs $24 raw 4 GB) is publicly
+  reported 2026 community pricing, not our snapshot data. DNS TTL defaults (86,400 s) are
+  standard public DNS behavior.</li>
+</ul>
