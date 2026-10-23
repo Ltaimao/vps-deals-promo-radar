@@ -11,13 +11,21 @@
 
   function modelContext() {
     try {
-      if (document.modelContext && typeof document.modelContext.registerTool === "function") {
+      if (
+        document.modelContext &&
+        typeof document.modelContext.registerTool === "function"
+      ) {
         return document.modelContext;
       }
-      if (navigator.modelContext && typeof navigator.modelContext.registerTool === "function") {
+      if (
+        navigator.modelContext &&
+        typeof navigator.modelContext.registerTool === "function"
+      ) {
         return navigator.modelContext;
       }
-    } catch (e) { /* no-op */ }
+    } catch (e) {
+      /* no-op */
+    }
     return null;
   }
 
@@ -39,7 +47,12 @@
       out.push({
         title: textOf(a.querySelector(".title")),
         price: textOf(a.querySelector(".price")),
-        price_usd: priceAttr === null ? null : parseFloat(priceAttr),
+        price_usd:
+          priceAttr === null || a.getAttribute("data-currency") !== "USD"
+            ? null
+            : parseFloat(priceAttr),
+        currency: a.getAttribute("data-currency"),
+        billing_period: a.getAttribute("data-billing-period"),
         provider: a.getAttribute("data-provider"),
         url: a.href,
       });
@@ -52,7 +65,8 @@
     var maxEl = document.getElementById("f-maxprice");
     var provEl = document.getElementById("f-provider");
     if (maxEl) {
-      maxEl.value = maxPrice === undefined || maxPrice === null ? "" : String(maxPrice);
+      maxEl.value =
+        maxPrice === undefined || maxPrice === null ? "" : String(maxPrice);
       maxEl.dispatchEvent(new Event("input", { bubbles: true }));
     }
     if (provEl && provider !== undefined) {
@@ -68,19 +82,27 @@
     try {
       var p = mc.registerTool(tool, opts);
       if (p && typeof p.catch === "function") p.catch(function () {});
-    } catch (e) { /* scanner or browser without support */ }
+    } catch (e) {
+      /* scanner or browser without support */
+    }
   }
 
   register({
     name: "search_deals",
     description:
-      "Filter the live VPS deal list on this page by maximum monthly USD price " +
+      "Filter the live VPS deal list on this page by maximum listed USD amount " +
       "and/or provider slug, then return the matching deals as structured data.",
     inputSchema: {
       type: "object",
       properties: {
-        max_price_usd: { type: "number", description: "Maximum monthly price in USD" },
-        provider: { type: "string", description: "Provider slug, e.g. digitalocean" },
+        max_price_usd: {
+          type: "number",
+          description: "Maximum listed amount in USD; billing periods vary",
+        },
+        provider: {
+          type: "string",
+          description: "Provider slug, e.g. digitalocean",
+        },
       },
       additionalProperties: false,
     },
@@ -100,7 +122,11 @@
     inputSchema: {
       type: "object",
       properties: {
-        limit: { type: "number", description: "Max deals to return", default: 25 },
+        limit: {
+          type: "number",
+          description: "Max deals to return",
+          default: 25,
+        },
       },
       additionalProperties: false,
     },

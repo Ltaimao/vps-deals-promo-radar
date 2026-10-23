@@ -8,20 +8,19 @@ and redeploys to Cloudflare Pages on a schedule.
 
 ## How it works
 
-1. `scraper.py` reads `.ilang/site.ilang`, fetches each provider's public page, extracts
+1. `scraper.py` checks robots.txt for its declared bot identity, including redirect targets, then reads `.ilang/site.ilang`, fetches each provider's public page, extracts
    what it can verify (title / price / currency / URL / valid_until), writes `data/offers.json`.
 2. `build.py` reads the same config plus the data, renders `templates/*` into `site/`,
    and emits `sitemap.xml`, `robots.txt`, and JSON-LD structured data.
-3. `.github/workflows/update.yml` runs both every 6 hours, commits the fresh data and site.
+3. `.github/workflows/update.yml` runs both every 6 hours, commits fresh data and deploys the generated site.
 
-No runtime inference, no paid APIs, no server. After the first commit, it lives on
-GitHub Actions minutes + Cloudflare Pages free tier.
+The static build uses no runtime inference or paid API. Production subscriptions use an independent Cloudflare Worker, KV, and Resend; deploying Pages does not deploy or test that service.
 
 ## Local run
 
 ```bash
-python scraper.py
-python build.py
+# Build the committed snapshot without modifying tracked history.
+python build.py --preserve-history
 python -m http.server -d site  # preview at http://localhost:8000
 ```
 
@@ -39,3 +38,14 @@ Then re-run `python scraper.py && python build.py` and confirm the site changed.
   the provider list in `scraper.py` or `build.py` — read it from the file.
 
 站点规则用 I-Lang 协议描述，见 `.ilang/site.ilang`。协议说明 [ilang.ai](https://ilang.ai)。
+## Current operations and growth plan
+
+- [Current environment, verification commands, deployment, and unverified handover claims](docs/OPERATIONS.md)
+- [90-day SEO, marketing, and affiliate revenue plan](docs/GROWTH_PLAN.md)
+
+Use `python3 -m unittest discover -s tests -v` for offline regression tests.
+Local builds can preserve tracked history with `python3 build.py --preserve-history`.
+To build a fresh validation snapshot separately: `python3 build.py --data /tmp/vps-offers-check.json --output /tmp/vps-fresh-site --preserve-history`.
+Default builds keep using committed data; validation scraping does not overwrite production data.
+Amounts without an explicit billing period are not advertised as monthly VPS prices.
+Currency is never converted with a hardcoded exchange rate.

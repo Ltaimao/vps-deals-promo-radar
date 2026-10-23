@@ -23,6 +23,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Run regression tests
+        run: python3 -m unittest discover -s tests -v
+
       - name: Fetch offers
         run: python scraper.py
 

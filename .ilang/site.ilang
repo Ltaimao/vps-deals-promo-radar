@@ -12,7 +12,7 @@ LANG zh
 
 # 隐私政策/关于/联系三页的修订日期。由人手动改，不跟数据刷新走 ——
 # 页面内容没变就不该动这个日期。
-::STATE{@LEGAL, legal_updated:2026-10-11}
+::STATE{@LEGAL, legal_updated:2026-10-23}
 
 ::MODULE{PROVIDERS|title:抓哪几家 这里改了 scraper 重启时 抓的可信公开源就变}
 # 格式: 名称 | 官网 | 优惠页或定价页或sitemap或feed | 联盟链接(可空)
@@ -63,7 +63,7 @@ LANG zh
 # GreenGeeks | https://www.greengeeks.com/vps | HTTP 404
 
 ::MODULE{FIELDS|title:每条优惠提取什么 字段名是契约 改这里 scraper 和 build 一起跟}
-  title price currency offer_url valid_until source_url fetched_at
+  title price currency billing_period price_evidence offer_url valid_until source_url fetched_at
 
 ::MODULE{LOCALE|title:目标语言地区 改了 scraper 抓那个地区的优惠页 模板换语种 货币换当地货币}
   lang:en-US
@@ -71,6 +71,7 @@ LANG zh
   date_format:%b %d, %Y
 
 ::MODULE{RENDER|title:页面渲染规则}
+  homepage_sponsored:Contabo VPS,Namecheap VPS,Bitlaunch
   pages_per_index:50
   canonical_per_page:true
   hreflang_enabled:false
@@ -150,7 +151,7 @@ LANG zh
 ::BOUNDARY{never:绕过反爬 伪造 UA 抓登录后内容 违反目标站 robots.txt|scope:permanent}
 ::MODULE{AFFILIATE|title:联盟推广链接 每条必须是联盟后台真实生成的追踪链接 不许编 不许拼参数}
   # 格式: 名称 | 追踪链接原文 | 一句话描述(不许编价格/佣金) | 联盟网络 | logo(可选 static/sponsored/ 下文件名)
-  # 首页 Sponsored 区按此顺序渲染全部条目（与本站 cheap vps 受众最相关的落地页排前面）
+  # 首页仅渲染 RENDER.homepage_sponsored 指定条目，顺序仍由此列表决定。
   Contabo VPS|https://www.dpbolvw.net/click-8084695-17165311|VPS hosting plans on Contabo's official site|CJ Affiliate|contabo.svg
   Namecheap VPS|https://www.dpbolvw.net/click-8084695-11429085|VPS hosting plans on Namecheap's official site|CJ Affiliate|namecheap.svg
   Domain.com|https://afflat3c1.com/trk/lnk/CAF13121-040C-4717-9E50-A975CC73D567/?o=31453&c=918277&a=806486&k=618D|Domains, hosting and website builder on Domain.com's official site|MaxBounty|domain.svg
@@ -187,3 +188,6 @@ LANG zh
 ::RULE{不编造联盟链接；不抄对手原文一个字；结构和角度可以学}
 ::RULE{文章 slug 用英文小写短横线；date 用文章发布当天日期 YYYY-MM-DD}
 ::BOUNDARY{never:为凑字数编价格 编日期 编厂商承诺|scope:permanent}
+
+::RULE{robots.txt 按真实机器人 UA 检查 每次跨路径或域名重定向都重新检查 规则不可用不抓取}
+::RULE{无 billing_period 的历史金额不许称作月付价格 跨币种不排名 不使用写死汇率}

@@ -24,6 +24,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Run regression tests
+        run: python3 -m unittest discover -s tests -v
+
       - name: Build site from committed data
         run: python build.py
 
@@ -31,6 +34,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      - name: Test independent Worker logic (mocked services)
+        run: node --test tests/test_worker.mjs
 
       - name: Install wrangler
         run: npm install --no-save wrangler

@@ -219,6 +219,27 @@
             if (!event.target.closest(".site-header")) closeMenu();
           });
         }
+        function track(name, fields) {
+          if (typeof window.gtag === "function") {
+            window.gtag(
+              "event",
+              name,
+              Object.assign({ page_path: window.location.pathname }, fields),
+            );
+          }
+        }
+        document.addEventListener("click", function (event) {
+          var link =
+            event.target.closest && event.target.closest('a[rel~="sponsored"]');
+          if (!link) return;
+          track("affiliate_click", {
+            provider_slug:
+              link.getAttribute("data-affiliate-provider") || "unknown",
+            placement: link.classList.contains("sponsored-card")
+              ? "homepage_sponsored"
+              : "provider_official",
+          });
+        });
         var form = document.getElementById("subscribe-form");
         if (!form) return;
         form.addEventListener("submit", function (e) {
@@ -238,6 +259,7 @@
             })
             .then(function (d) {
               if (d.ok) {
+                track("alert_request_accepted", { placement: "footer" });
                 msg.textContent =
                   "Check your inbox to confirm — the confirmation link expires in 30 days.";
                 form.querySelector("button").disabled = true;

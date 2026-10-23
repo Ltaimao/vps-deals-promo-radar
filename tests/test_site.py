@@ -104,6 +104,79 @@ class GeneratedSiteTest(unittest.TestCase):
                 if link.startswith('#guide-section-'):
                     self.assertIn(link[1:], doc.ids)
 
+    def test_disclosures_follow_current_configuration(self):
+        text = (self.site / 'privacy/index.html').read_text()
+        cfg = build.load_cfg()
+        for p in build.load_data()['providers']:
+            if build.provider_affiliate(p, cfg):
+                self.assertIn(p['name'], text)
+        self.assertIn('Bitlaunch', text)
+        self.assertIn('Hostinger', text)
+        self.assertIn('InterServer', text)
+        self.assertNotIn('seven provider', text)
+        self.assertNotIn('no affiliate tracking', (self.site / 'methodology/index.html').read_text())
+
+    def test_non_usd_machine_data_is_not_labeled_dollars(self):
+        data = json.loads((self.site / 'data/deals.json').read_text())
+        for offer in data['offers']:
+            if offer['currency'] != 'USD' or offer['billing_period'] != 'month':
+                self.assertIsNone(offer['price_usd'])
+        self.assertEqual(build.price_ranges([{'price': 5, 'currency': 'EUR'}, {'price': 10, 'currency': 'USD'}]),
+                         '€5.00 – €5.00 EUR; $10.00 – $10.00 USD')
+
+    def test_directory_schema_and_updated_sitemap(self):
+        text = (self.site / 'articles/index.html').read_text()
+        self.assertIn('"@type": "CollectionPage"', text)
+        import xml.etree.ElementTree as ET
+        root = ET.fromstring((self.site / 'sitemap.xml').read_text())
+        ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+        mods = {row.find('s:loc', ns).text: row.find('s:lastmod', ns).text for row in root}
+        self.assertEqual(mods['https://www.vpsdealswire.com/articles/cheap-vps-sizing-guide/'], '2026-09-29')
+
+    def test_article_metadata_is_concise(self):
+        for a in build.load_articles():
+            with self.subTest(article=a['slug']):
+                self.assertLessEqual(len(a['title']), 60)
+                self.assertLessEqual(len(a['description']), 160)
+
+    def test_empty_listing_still_has_valid_schema(self):
+        graph = json.loads(build.jsonld_with_crumbs('', [('/', 'Home')], 'https://host.test'))
+        self.assertEqual(graph['@graph'][0]['@type'], 'BreadcrumbList')
+
+    def test_expired_offers_excluded_from_service_schema(self):
+        data = json.loads(build.jsonld_service({'name': 'Host', 'url': 'https://host.test'},
+            [{'price': 5, 'currency': 'USD', 'valid_until': '2000-01-01'}], 'https://host.test'))
+        self.assertEqual(data['offers'], [])
+
+    def test_ilang_provider_change_affects_rendered_page(self):
+        cfg = build.load_cfg()
+        cfg['PROVIDERS'][0]['url'] = 'https://www.hetzner.com/?configuration-check=1'
+        variant = Path(self.temp.name) / 'variant'
+        history = Path(self.temp.name) / 'variant-history.json'
+        shutil.copy2(build.HISTORY_JSON, history)
+        with patch.object(build, 'SITE', variant), patch.object(build, 'HISTORY_JSON', history), patch.object(build, 'load_cfg', return_value=cfg):
+            with contextlib.redirect_stdout(io.StringIO()):
+                build.main()
+        self.assertIn('https://www.hetzner.com/?configuration-check=1', (variant / 'providers/hetzner-cloud/index.html').read_text())
+
+    def test_unknown_and_hourly_prices_not_advertised_as_monthly_offers(self):
+        priced = [{'price': 0.01, 'currency': 'USD', 'billing_period': 'hour'},
+                  {'price': 5, 'currency': 'EUR'},
+                  {'price': 8, 'currency': 'EUR', 'billing_period': 'month'}]
+        data = json.loads(build.jsonld_service({'name': 'Host', 'url': 'https://host.test'}, priced, 'https://host.test'))
+        self.assertEqual([(d['price'], d['priceCurrency']) for d in data['offers']], [(8, 'EUR')])
+
+    def test_monthly_history_keeps_legacy_points_and_currency_separate(self):
+        history = {'deal_series': {}, 'provider_min': {}}
+        legacy = {'price': 3, 'currency': 'USD', 'provider_slug': 'host'}
+        build._append_points(history, {'id': ('one', 3, legacy)}, 'one')
+        self.assertNotIn('monthly_points_by_currency', history['deal_series']['id'])
+        monthly = dict(legacy, billing_period='month')
+        build._append_points(history, {'id': ('two', 5, monthly)}, 'two')
+        build._append_points(history, {'id': ('two', 5, monthly)}, 'two')
+        self.assertEqual(history['deal_series']['id']['monthly_points_by_currency']['USD'], [['two', 5]])
+        self.assertEqual(history['deal_series']['id']['points'], [['one', 3], ['two', 5]])
+
 
 if __name__ == '__main__':
     unittest.main()

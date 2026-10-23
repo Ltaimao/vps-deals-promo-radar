@@ -106,6 +106,10 @@
       <code>valid_until</code> is marked <em>expired</em>, not silently kept.
     </li>
     <li>
+      <strong>Respect source access rules.</strong> robots.txt is checked using
+      our declared bot identity, including before following a pricing-page
+      redirect. Missing robots files (404/410) permit access; denied or
+      unavailable rules stop the fetch.
       <strong>Unreachable is unreachable.</strong> Providers whose pages cannot
       be fetched are marked as such on the comparison table. No proxy tricks, no
       spoofed user agents, no login-walled content.
@@ -130,16 +134,20 @@
 <div class="content-card">
   <ul>
     <li>
-      No paid placements: no provider can pay to be listed, ranked, or kept.
+      No payment for inclusion or ranking in the provider directory. Separate
+      homepage affiliate placements are explicitly labeled Sponsored.
     </li>
     <li>
-      Provider-page outbound links carry no affiliate tracking as of the review
-      date above. The homepage <em>Sponsored</em> section uses affiliate links
-      (via CJ Affiliate and MaxBounty), each marked as Sponsored.
+      Some provider-page “Official site” buttons are affiliate links; they have
+      a nearby disclosure. Source links are untagged. The homepage Sponsored
+      section also contains affiliate links. Current providers and networks are
+      listed in the <a href="/privacy/">privacy policy</a>.
     </li>
     <li>
-      No exchange-rate conversion: a figure here is the figure the provider
-      wrote.
+      No exchange-rate conversion or cross-currency ranking. Amounts retain
+      their source currency. A monthly price is identified only when the source
+      explicitly states the billing period; older snapshots without that field
+      are marked unverified.
     </li>
     <li>
       No invented offers, prices, discounts, commissions, companies, or user

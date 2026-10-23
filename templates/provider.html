@@ -9,6 +9,7 @@
   <p>
     <a
       class="btn btn-primary"
+      data-affiliate-provider="{{AFFILIATE_PROVIDER}}"
       href="{{PROVIDER_URL}}"
       rel="{{PROVIDER_REL}}"
       target="_blank"
@@ -40,7 +41,8 @@
 {{PROVIDER_EDITORIAL}}
 
 <div class="section-heading">
-  <h2>Current deals ({{DEAL_COUNT}})</h2>
+  <h2>Extracted offers ({{DEAL_COUNT}})</h2>
+  <p class="section-note">Billing periods vary; verify terms at the source.</p>
 </div>
 {{DEAL_TABLE}} {{PRICE_HISTORY}}
 

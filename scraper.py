@@ -6,6 +6,7 @@
 #       写到 data/offers.json 任何抓不到的字段都留空或跳过 不许拿估的填
 # BOUNDARY never:编优惠 编价格 编佣金 编汇率 编折扣|scope:permanent
 # BOUNDARY never:绕过反爬 伪造 UA 抓登录后内容 违反 robots.txt|scope:permanent
+import argparse
 import hashlib
 import json
 import os
@@ -14,6 +15,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+import urllib.parse
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -108,19 +110,185 @@ def parse_ilang(path):
     return cfg
 
 
-# ---------- fetch ----------
-def fetch(url, timeout=20):
-    req = urllib.request.Request(url, headers={
-        "User-Agent": UA,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    })
+# ---------- fetch: robots policy applies to every destination ----------
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def read_http(url, timeout):
+    """Return one HTTP response; redirects are handled explicitly by the caller."""
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,text/plain;q=0.9,*/*;q=0.8"})
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            return r.getcode(), r.read()
-    except urllib.error.HTTPError as e:
-        return e.code, None
-    except Exception:
+        with urllib.request.build_opener(NoRedirect).open(req, timeout=timeout) as response:
+            return response.status, response.read(), response.headers
+    except urllib.error.HTTPError as error:
+        return error.code, None, error.headers
+    except (OSError, ValueError, urllib.error.URLError):
+        return 0, None, {}
+
+
+def valid_public_url(url):
+    parts = urllib.parse.urlsplit(url)
+    return parts.scheme in ("http", "https") and bool(parts.hostname) and not parts.username and not parts.password
+
+
+class RobotsRules:
+    """Select the most specific agent group and longest matching path (RFC 9309).
+
+    urllib.robotparser is not used for authorization because it uses first-match
+    paths and does not implement wildcard/end-anchor rules.
+    """
+    def __init__(self, text):
+        groups, group = [], None
+        directives = False
+        for line in text.splitlines():
+            line = line.split('#', 1)[0].strip()
+            if not line or ':' not in line:
+                continue
+            field, value = (part.strip() for part in line.split(':', 1))
+            field = field.lower()
+            if field == 'user-agent':
+                if group is None or directives:
+                    group = {'agents': [], 'rules': [], 'delay': 0}
+                    groups.append(group)
+                    directives = False
+                group['agents'].append(value.lower())
+            elif group is not None:
+                directives = True
+                if field in ('allow', 'disallow') and value:
+                    group['rules'].append((value, field == 'allow'))
+                elif field == 'crawl-delay':
+                    try:
+                        group['delay'] = max(group['delay'], float(value))
+                    except ValueError:
+                        pass
+                elif field == 'request-rate':
+                    match = re.fullmatch(r'(\d+)\s*/\s*(\d+)', value)
+                    if match and int(match[1]):
+                        group['delay'] = max(group['delay'], int(match[2]) / int(match[1]))
+        product = UA.split('/', 1)[0].lower()
+        selected, specificity = [], -1
+        for group in groups:
+            score = max((0 if agent == '*' else len(agent)
+                         for agent in group['agents'] if agent == '*' or (agent and agent in product)), default=-1)
+            if score > specificity:
+                selected, specificity = [group], score
+            elif score == specificity and score >= 0:
+                selected.append(group)
+        self.rules = [rule for group in selected for rule in group['rules']]
+        self.delay = max((group['delay'] for group in selected), default=0)
+
+    @staticmethod
+    def normalized(path):
+        # Decode only unreserved ASCII octets; encoded slashes remain encoded.
+        def octet(match):
+            char = chr(int(match[0][1:], 16))
+            return char if char.isascii() and (char.isalnum() or char in '-._~') else match[0].upper()
+        return re.sub(r'%[0-9a-fA-F]{2}', octet,
+                      urllib.parse.quote(path, safe="/%?=&;:+,@!$'()*-._~"))
+
+    def allows(self, url):
+        parts = urllib.parse.urlsplit(url)
+        path = self.normalized(parts.path or '/')
+        if parts.query:
+            path += '?' + self.normalized(parts.query)
+        matches = []
+        for pattern, allow in self.rules:
+            pattern = self.normalized(pattern)
+            end = pattern.endswith('$')
+            if end:
+                pattern = pattern[:-1]
+            regex = '^' + re.escape(pattern).replace(r'\*', '.*') + ('$' if end else '')
+            if re.search(regex, path):
+                matches.append((len(pattern.replace('*', '').encode('utf-8')), allow))
+        return max(matches)[1] if matches else True
+
+
+class RobotsClient:
+    """Fail closed on unavailable rules; never fetch a disallowed redirect target.
+
+    A missing robots file (404/410) permits access. 401/403, 429, server errors,
+    invalid URLs and network errors do not. Rules are cached only for this run.
+    """
+    def __init__(self):
+        self.rules = {}
+        self.last_request = {}
+        self.last_reason = None
+
+    def policy(self, url, timeout=10):
+        if not valid_public_url(url):
+            return False, "invalid_url", 0
+        parts = urllib.parse.urlsplit(url)
+        origin = urllib.parse.urlunsplit((parts.scheme, parts.netloc, "", "", ""))
+        if origin not in self.rules:
+            robots_url = origin + "/robots.txt"
+            parser, failure = None, "robots_unavailable"
+            for _ in range(6):
+                code, body, headers = read_http(robots_url, timeout)
+                if code in (301, 302, 303, 307, 308):
+                    target = urllib.parse.urljoin(robots_url, headers.get("Location", ""))
+                    if not headers.get("Location") or not valid_public_url(target):
+                        break
+                    robots_url = target
+                    continue
+                if code in (404, 410):
+                    parser = RobotsRules("")
+                elif code == 200 and body is not None:
+                    text = body.decode("utf-8-sig", "replace")
+                    # A challenge/login HTML response is not a usable robots policy.
+                    if "<html" not in text.lower() and "<!doctype html" not in text.lower():
+                        significant = [line.split("#", 1)[0].strip() for line in text.splitlines()]
+                        if not any(significant) or re.search(r"(?im)^\s*(user-agent|sitemap)\s*:", text):
+                            parser = RobotsRules(text)
+                elif code in (401, 403):
+                    failure = "robots_denied"
+                break
+            self.rules[origin] = parser, failure
+        parser, failure = self.rules[origin]
+        if parser is None:
+            return False, failure, 0
+        if not parser.allows(url):
+            return False, "robots_disallowed", 0
+        return True, None, parser.delay
+
+    def fetch(self, url, timeout=20):
+        self.last_reason = None
+        for _ in range(6):
+            allowed, reason, delay = self.policy(url, min(timeout, 10))
+            if not allowed:
+                self.last_reason = reason
+                return 0, None
+            parts = urllib.parse.urlsplit(url)
+            origin = (parts.scheme, parts.netloc)
+            wait = delay - (time.monotonic() - self.last_request.get(origin, float("-inf")))
+            if wait > timeout:
+                self.last_reason = "crawl_delay_exceeds_budget"
+                return 0, None
+            if wait > 0:
+                time.sleep(wait)
+            self.last_request[origin] = time.monotonic()
+            code, body, headers = read_http(url, timeout)
+            if code in (301, 302, 303, 307, 308):
+                location = headers.get("Location")
+                if not location:
+                    self.last_reason = "invalid_redirect"
+                    return code, None
+                url = urllib.parse.urljoin(url, location)
+                continue
+            if code != 200 or not body:
+                self.last_reason = "http_" + str(code) if code else "network_error"
+                return code, None
+            return code, body
+        self.last_reason = "redirect_limit"
         return 0, None
+
+
+_CLIENT = RobotsClient()
+
+
+def fetch(url, timeout=20):
+    return _CLIENT.fetch(url, timeout)
 
 
 # ---------- extraction ----------
@@ -168,6 +336,18 @@ def extract_offers(html, source_url, provider_name):
                 or "save " in snippet.lower()
                 or "first year" in snippet.lower()):
             continue
+        # Require a billing period immediately attached to this amount. Nearby
+        # promotional text or an unrelated monthly price is not enough evidence.
+        suffix = text[m.end():m.end() + 55]
+        period_match = re.match(
+            r"\s*(?:USD|EUR|GBP|JPY|CNY|CAD|AUD)?\s*(?:/\s*|per\s+)(months?|mo\b|years?|yr\b|annual\b|hours?|hr\b|days?|day\b)",
+            suffix, re.I)
+        if not period_match:
+            continue
+        unit = period_match.group(1).lower()
+        billing_period = ("month" if unit.startswith("mo") else
+                          "year" if unit.startswith(("y", "annual")) else
+                          "hour" if unit.startswith("h") else "day")
         raw = m.group(0).strip()
         if raw in seen:
             continue
@@ -207,6 +387,8 @@ def extract_offers(html, source_url, provider_name):
             "provider_name": provider_name,
             "price": price_val,
             "currency": currency,
+            "billing_period": billing_period,
+            "price_evidence": m.group(0) + period_match.group(0),
             "offer_url": source_url,
             "source_url": source_url,
             "valid_until": None,
@@ -234,7 +416,8 @@ def slugify(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
-def main():
+def main(output_file=None):
+    output_file = output_file or OUT_FILE
     cfg = parse_ilang(ILANG_FILE)
     providers = cfg["PROVIDERS"]
     if not providers:
@@ -257,6 +440,7 @@ def main():
             "affiliate_url": p.get("affiliate_url"),
             "fetch_status": "ok" if (code == 200 and body) else "unreachable",
             "http_code": code,
+            "fetch_reason": _CLIENT.last_reason,
             "fetched_at": now,
             "deals_capped": False,
         }
@@ -282,15 +466,17 @@ def main():
         "providers": providers_out,
         "deals": deals_out,
     }
-    os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
-    with open(OUT_FILE, "w", encoding="utf-8") as f:
+    os.makedirs(os.path.dirname(os.path.abspath(output_file)), exist_ok=True)
+    with open(output_file, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
     ok = sum(1 for x in providers_out if x["fetch_status"] == "ok")
-    print(f"\nwrote {OUT_FILE}")
+    print(f"\nwrote {output_file}")
     print(f"providers={len(providers_out)} ok={ok} unreachable={len(providers_out)-ok}")
     print(f"deals={len(deals_out)}")
     return 0 if ok > 0 else 1
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    parser = argparse.ArgumentParser(description="Fetch public provider pages with robots.txt checks.")
+    parser.add_argument("--output", default=OUT_FILE, help="Output path (use a temporary path for validation).")
+    sys.exit(main(parser.parse_args().output))

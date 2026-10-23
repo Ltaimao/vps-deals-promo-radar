@@ -82,7 +82,7 @@ Tracks {len(providers)} providers and {len(deals)} live offers; prices refreshed
 every 6 hours from each provider's own page (snapshot: {gen}).
 
 ## Key pages
-- {base_url}/ — homepage: provider comparison, cheapest plans first
+- {base_url}/ — homepage: provider and offer directory
 - {base_url}/compare/ — side-by-side plan comparison
 - {base_url}/articles/ — buying guides (English)
 - {base_url}/methodology/ — how prices are collected
@@ -93,7 +93,7 @@ every 6 hours from each provider's own page (snapshot: {gen}).
 - OpenAPI: {base_url}/openapi.json
 - Agent skill: {base_url}/ai/skills/site-lookup/SKILL.md
 - ARD manifest: {base_url}/.well-known/ai-catalog.json
-- Send `Accept: text/markdown` to any page for a Markdown representation.
+- Send `Accept: text/markdown` to the homepage for a Markdown representation.
 
 ## Notes
 - Some outbound links are affiliate links (labeled `rel="sponsored nofollow"`).
@@ -352,7 +352,7 @@ description: Look up live cheap-VPS deal data on vpsdealswire.com — providers,
     lines = [f"# VPS Deals Wire", "",
              f"Independent cheap-VPS deal aggregation: {len(providers)} providers, "
              f"{len(deals)} live offers, prices refreshed every 6 hours (snapshot {gen}).", "",
-             "## Providers (cheapest plan first)", ""]
+             "## Providers (alphabetical)", ""]
     for name, slug, cheapest in prov_rows:
         price = f" from {cheapest}" if cheapest else ""
         lines.append(f"- [{name}]({base_url}/providers/{slug}/){price}")
@@ -383,7 +383,8 @@ description: Look up live cheap-VPS deal data on vpsdealswire.com — providers,
     for name, slug, _ in prov_rows:
         pdeals = prov_deals.get(slug, [])
         prices = [d.get("price") for d in pdeals
-                  if isinstance(d.get("price"), (int, float))]
+                  if isinstance(d.get("price"), (int, float))
+                  and d.get("currency") == "USD" and d.get("billing_period") == "month"]
         _prov_out.append({
             "name": name,
             "slug": slug,
@@ -399,7 +400,9 @@ description: Look up live cheap-VPS deal data on vpsdealswire.com — providers,
             "provider_name": d.get("provider_name", ""),
             "provider_slug": slug,
             "title": (d.get("title") or "")[:140],
-            "price_usd": price if isinstance(price, (int, float)) else None,
+            "price_usd": price if isinstance(price, (int, float)) and d.get("currency") == "USD" and d.get("billing_period") == "month" else None,
+            "price": price,
+            "billing_period": d.get("billing_period"),
             "currency": d.get("currency", "USD"),
             "offer_url": d.get("offer_url", ""),
             "fetched_at": d.get("fetched_at", ""),

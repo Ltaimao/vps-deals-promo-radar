@@ -33,14 +33,18 @@
     <li>
       Your address is stored in a Cloudflare KV store (on Cloudflare's
       infrastructure, in the same account that hosts this site), together with a
-      random confirmation token and timestamps. Nothing else about you is stored
-      — no name, no IP address, no browsing history.
+      random confirmation token and timestamps. We do not ask for your name or
+      attach browsing history to your subscription. To limit abuse, the
+      subscription endpoint stores a truncated hash derived from the request IP
+      address with a one-hour expiry; the raw IP is not stored in that
+      rate-limit record.
     </li>
     <li>
-      You receive <strong>one</strong> confirmation email (<strong
-        >double opt-in</strong
-      >). Until you click the link in it, nothing else is ever sent to you, and
-      the pending record expires after 30 days.
+      You receive a confirmation email (<strong>double opt-in</strong>). Until
+      you click the link in it, nothing else is ever sent to you, and the
+      confirmation token expires after 30 days. Unconfirmed email requests may
+      remain stored until removed; to request removal, contact
+      {{CONTACT_EMAIL}}. No alerts are sent before confirmation.
     </li>
     <li>
       Emails are sent from <strong>alerts@vpsdealswire.com</strong> and
@@ -55,7 +59,8 @@
     <li>
       Every email carries a <strong>one-click unsubscribe link</strong>.
       Clicking it deletes all records for your address immediately — no
-      retention, no "are you sure" flow.
+      confirmation screen. The independent one-hour anti-abuse counter expires
+      separately.
     </li>
   </ul>
   <p>
@@ -86,9 +91,9 @@
   <p>
     As of 2026-09-29 this site runs
     <strong>Google Analytics 4</strong> (measurement ID
-    <code>G-X9HXH2TNH7</code>). Every page loads Google's measurement script
-    from <code>www.googletagmanager.com</code>, which reports to Google: pages
-    you visit, how long you stay, your approximate location (country/city
+    <code>{{GA4_MEASUREMENT_ID}}</code>). Every page loads Google's measurement
+    script from <code>www.googletagmanager.com</code>, which reports to Google:
+    pages you visit, how long you stay, your approximate location (country/city
     derived from your IP address), device, browser, and operating system, and
     the site that referred you here.
   </p>
@@ -123,20 +128,16 @@
     tab.
   </p>
   <p>
-    On provider pages where we hold an affiliate relationship, the "Official
-    site" button is an affiliate link, followed by a disclosure note on the same
-    page. As of {{LAST_UPDATED}} these are: Cherry Servers, CloudCone,
-    Hostwinds, RackNerd, DreamHost, and AccuWeb Hosting (direct relationships),
-    plus Liquid Web (via the MaxBounty network). Every other outbound link on
-    provider pages goes directly to the provider's own public page with nothing
-    added — no referral parameter, no tracking code. You can check this by
-    hovering any link and reading the URL.
+    On {{AFFILIATE_PROVIDER_COUNT}} provider pages, the “Official site” button
+    is an affiliate link with a disclosure beside it. The current providers and
+    networks are:
   </p>
+  {{AFFILIATE_PROVIDERS}}
   <p>
-    The <em>Sponsored</em> section on the homepage is also affiliate links (via
-    CJ Affiliate: Contabo VPS and Namecheap VPS), each clearly marked as
-    Sponsored.
+    Other provider-page source links are untagged references to public pages.
+    Homepage Sponsored placements currently use:
   </p>
+  {{HOMEPAGE_AFFILIATES}}
   <p>
     If you buy through an affiliate link, we may earn a commission at no extra
     cost to you — the commission is paid by the provider, never by you. It does
@@ -165,13 +166,10 @@
       plain links, not display ads, and no advertising script runs on any
       page.</strong
     >
-    The sponsored links are: the <em>Sponsored</em> section on the homepage
-    (served through the CJ Affiliate network — currently Contabo VPS and
-    Namecheap VPS offers) and the "Official site" buttons on seven provider
-    pages (Cherry Servers, CloudCone, Hostwinds, RackNerd, DreamHost, and
-    AccuWeb Hosting through direct affiliate relationships; Liquid Web through
-    the MaxBounty network). Each is labeled — "Sponsored" on the homepage, with
-    a disclosure note next to the button on provider pages.
+    Homepage placements are labeled “Sponsored”. Provider-page affiliate buttons
+    have a nearby disclosure and a sponsored link attribute. The current
+    placements and networks are listed above and generated from the same
+    configuration as the links.
   </p>
   <p>
     Clicking a sponsored link takes you off this site — either straight to the

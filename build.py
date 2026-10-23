@@ -5,6 +5,8 @@
 # ROLE 把 scraper 的输出 + .ilang/site.ilang 渲染成静态站
 #       同时生成 sitemap.xml robots.txt 和每页 JSON-LD
 # BOUNDARY never:编优惠 编价格 编佣金 编汇率 编折扣|scope:permanent
+import argparse
+import tempfile
 import html
 import hashlib
 import json
@@ -110,6 +112,8 @@ def load_refetch(data):
         return [], set(), "no refetch.json (run refetch_empty.py) — 不下线"
     with open(REFETCH_JSON, "r", encoding="utf-8") as f:
         doc = json.load(f)
+    if doc.get("fetch_policy") != "robots-v1" or doc.get("source_generated_at") != data.get("generated_at"):
+        return [], set(), "legacy/stale refetch ignored; primary snapshot retained"
     res = doc.get("results") or {}
     examined = set(res)
     if examined != empty_now:
@@ -142,6 +146,54 @@ def nav_html(active):
         cls = ' class="active" aria-current="page"' if active == href else ""
         parts.append('<a href="' + href + '"' + cls + ">" + e(label) + "</a>")
     return "\n".join(parts)
+
+
+def homepage_affiliates(cfg):
+    names = {n.strip() for n in cfg.get("RENDER", {}).get("homepage_sponsored", "").split(",") if n.strip()}
+    return [a for a in cfg.get("AFFILIATE", []) if a["name"] in names]
+
+
+def provider_affiliate(provider, cfg):
+    return next((a for a in cfg.get("AFFILIATE", [])
+                 if slugify(a["name"]) == provider["slug"]), None)
+
+
+def affiliate_disclosure(data, cfg):
+    providers = []
+    for provider in data["providers"]:
+        affiliate = provider_affiliate(provider, cfg)
+        if affiliate:
+            providers.append('<li><a href="/providers/' + e(provider["slug"]) + '/">'
+                             + e(provider["name"]) + '</a> — ' + e(affiliate["network"]) + '</li>')
+    home = ['<li>' + e(a["name"]) + ' — ' + e(a["network"]) + '</li>' for a in homepage_affiliates(cfg)]
+    return {"{{AFFILIATE_PROVIDERS}}": '<ul>' + ''.join(providers) + '</ul>',
+            "{{HOMEPAGE_AFFILIATES}}": '<ul>' + ''.join(home) + '</ul>',
+            "{{AFFILIATE_PROVIDER_COUNT}}": str(len(providers))}
+
+
+def price_groups(deals):
+    groups = {}
+    for deal in deals:
+        if isinstance(deal.get("price"), (int, float)) and deal.get("currency"):
+            groups.setdefault(deal["currency"], []).append(deal["price"])
+    return groups
+
+
+def price_ranges(deals):
+    return "; ".join(money(min(values), currency) + " – " + money(max(values), currency)
+                     + " " + currency for currency, values in sorted(price_groups(deals).items())) or "—"
+
+
+def expired_offer(deal):
+    if not deal.get("valid_until"):
+        return False
+    try:
+        date = datetime.fromisoformat(deal["valid_until"].replace("Z", "+00:00"))
+        if date.tzinfo is None:
+            date = date.replace(tzinfo=timezone.utc)
+        return date < datetime.now(timezone.utc)
+    except (TypeError, ValueError):
+        return False
 
 
 def load_logos():
@@ -226,12 +278,10 @@ def jsonld_breadcrumb(parts, base_url):
 
 
 def jsonld_with_crumbs(main_json_str, parts, base_url):
-    # 主结构化数据 + BreadcrumbList 合成 @graph。main 为空串时原样返回。
-    if not main_json_str:
-        return main_json_str
+    # Even an empty listing still has a valid breadcrumb graph.
     return json.dumps({
         "@context": "https://schema.org",
-        "@graph": [json.loads(main_json_str), jsonld_breadcrumb(parts, base_url)],
+        "@graph": ([json.loads(main_json_str)] if main_json_str else []) + [jsonld_breadcrumb(parts, base_url)],
     }, ensure_ascii=False)
 
 
@@ -271,7 +321,7 @@ def jsonld_itemlist(items, base_url):
 def jsonld_service(provider, deals, base_url):
     offers = []
     for i, d in enumerate(deals):
-        if not d.get("price"):
+        if not d.get("price") or expired_offer(d) or d.get("billing_period") != "month":
             continue
         offers.append({
             "@type": "Offer",
@@ -321,9 +371,7 @@ def render_index(ctx, data, cfg, base_url):
     # provider 页面的 "Official site" 按钮上，不进首页 Sponsored 区。
     # 渲染带 rel="sponsored nofollow noopener"，卡片上标 Sponsored，不许混进普通内容。
     # 有 logo 字段时渲染品牌 logo（/sponsored/<file>），无则回退纯文字卡。
-    _HOMEPAGE_SPONSORED_NAMES = ("Contabo VPS", "Namecheap VPS", "Bitlaunch")
-    _aff = [a for a in (cfg.get("AFFILIATE") or [])
-            if a.get("name") in _HOMEPAGE_SPONSORED_NAMES]
+    _aff = homepage_affiliates(cfg)
     _aff_cards = []
     for a in _aff:
         _logo = a.get("logo")
@@ -332,7 +380,7 @@ def render_index(ctx, data, cfg, base_url):
             'alt="' + e(a["name"]) + ' logo" loading="lazy">' if _logo else ""
         )
         _aff_cards.append(
-            '<a class="sponsored-card" href="' + e(a["url"]) + '" '
+            '<a class="sponsored-card" data-affiliate-provider="' + e(slugify(a["name"])) + '" href="' + e(a["url"]) + '" '
             'rel="sponsored nofollow noopener" target="_blank">'
             '<span class="sponsored-badge">Sponsored</span>'
             + _logo_html +
@@ -358,7 +406,7 @@ def render_index(ctx, data, cfg, base_url):
         p_cur = next((d.get("currency") for d in p_deals if d.get("currency")), "USD")
         p_n = count_label(len(p_deals), is_capped(p, len(p_deals)))
         if p_prices:
-            sub = "from " + money(min(p_prices), p_cur) + "/mo · " + p_n + " offers"
+            sub = p_n + " offers · " + ", ".join(sorted(price_groups(p_deals)))
         elif p["fetch_status"] == "ok":
             sub = p_n + " offers listed"
         else:
@@ -398,7 +446,7 @@ def render_index(ctx, data, cfg, base_url):
         data_price = (' data-price="' + e("{:.2f}".format(float(d["price"]))) + '"'
                       if d.get("price") is not None else "")
         card = (
-            '<a class="deal-card" href="{purl}" data-provider="{pslug}" data-currency="{cur}"{dprice}>'
+            '<a class="deal-card" href="{purl}" data-provider="{pslug}" data-currency="{cur}" data-billing-period="{period}"{dprice}>'
             '<span class="left">'
             '<span class="title">{label}{badge}</span>'
             '<span class="meta">Go to {pname} deals ›</span>'
@@ -415,6 +463,7 @@ def render_index(ctx, data, cfg, base_url):
             verified=verified_html,
             price=e(price_main),
             cur=e(d.get("currency", "")),
+            period=e(d.get("billing_period") or "unknown"),
             pname=e(d.get("provider_name", "")),
         )
         deal_cards.append(card)
@@ -471,208 +520,41 @@ def render_index(ctx, data, cfg, base_url):
     return html_out
 
 
-_FX_USD = {"EUR": 1.16, "GBP": 1.34, "USD": 1.0}
-
-# 标题里一看就不是月付 VPS 套餐的抓取物（存储块、带宽、按天/小时、
-# 标题碎片）：只用于"入场价排名"，不影响页面展示的原始数据。
-_NON_PLAN_RE = None
-
-
-def _non_plan_re():
-    global _NON_PLAN_RE
-    if _NON_PLAN_RE is None:
-        import re
-        _NON_PLAN_RE = re.compile(
-            r"slab|bandwidth|gbps|locations|daily|weekly|hourly|"
-            r"per second|connectivity|features|transfer\b|floating ip|"
-            r"backup|\bsla\b",
-            re.IGNORECASE)
-    return _NON_PLAN_RE
-
-
-def _usd(price, cur):
-    if price is None:
-        return None
-    try:
-        return float(price) * _FX_USD.get(cur or "USD", 1.0)
-    except (TypeError, ValueError):
-        return None
-
-
-def _is_plan(deal):
-    """像个月付 VPS 套餐的 offer：有 >=1.0 的价格，且标题不像存储/带宽/碎片。"""
-    u = _usd(deal.get("price"), deal.get("currency"))
-    if u is None or u < 1.0:
-        return False
-    t = str(deal.get("title") or "")
-    return not _non_plan_re().search(t)
-
-
 def provider_editorial(ctx, data, provider, deals):
-    """2026-10-20 索引修复：厂商页独家数据段。
-
-    ::RULE{只写本站真实抓取数据算出的事实} —— 不写评分、不写优缺点、
-    不写性能/uptime 断言。每个厂商的数字都不同，让页面不再是模板复刻
-    （2026-10-20 审计：32 厂商页 Jaccard 0.85，独特词仅 3–18 个）。
-    历史最低价过滤 <1.0 的按秒/小时计费噪声；汇率只用于排序比较。
-    """
     name = provider["name"]
-    slug = provider["slug"]
-    all_deals = data.get("deals", [])
-    providers = data.get("providers", [])
-    history = ctx.get("history") or {}
-    meta = (history.get("meta") or {})
-
-    # ---- 全站每家厂商的聚合（当前快照） ----
-    by_slug = {}
-    for d in all_deals:
-        by_slug.setdefault(d.get("provider_slug"), []).append(d)
-
-    def entry_deal(ds):
-        best = None
-        for d in ds:
-            if not _is_plan(d):
-                continue
-            u = _usd(d.get("price"), d.get("currency"))
-            if best is None or u < best[0]:
-                best = (u, d)
-        return best
-
-    entries = {s: entry_deal(ds) for s, ds in by_slug.items()}
-    ranked = sorted([s for s, v in entries.items() if v],
-                    key=lambda s: entries[s][0])
-    n_ranked = len(ranked)
-    total_p = len(providers)
-    count_ranked = sorted(by_slug.keys(), key=lambda s: -len(by_slug[s]))
-
-    my_deals = deals
-    my_entry = entry_deal(my_deals)
-
-    def fmt_date(ts):
-        try:
-            return ts[:10]
-        except (TypeError, IndexError):
-            return ts
-
-    # ---- 历史最低价（只看 >=1.0 的点；且必须与当前入场价同量级，
-    # 否则多半是页面碎片被当最低价记录的管线噪声 —— 如 IONOS/AccuWeb 的
-    # £1.00 系列 —— 不引用） ----
-    pm = (history.get("provider_min") or {}).get(slug) or {}
-    pts = [(t, p) for t, p in (pm.get("points") or [])
-           if isinstance(p, (int, float)) and p >= 1.0]
-    hist_low = None
-    if pts:
-        t_low, p_low = min(pts, key=lambda x: x[1])
-        cur = pm.get("currency", "USD")
-        hist_low = (money(p_low, cur) + "/mo", fmt_date(t_low),
-                    fmt_date(pts[0][0]), _usd(p_low, cur))
-
-    paras = []
-    if my_entry:
-        u_min, d_min = my_entry
-        rank = ranked.index(slug) + 1 if slug in ranked else None
-        native = money(d_min.get("price"), d_min.get("currency")) + "/mo"
-        my_n = len(my_deals)
-        crank = count_ranked.index(slug) + 1 if slug in count_ranked else None
-        under5 = sum(1 for d in my_deals
-                     if _is_plan(d) and
-                     _usd(d.get("price"), d.get("currency")) < 5)
-        if rank is not None and rank <= 5:
-            s1 = ("On price, " + name + " sits near the top of this tracker: "
-                  "its entry plan at " + native + " is the #" + str(rank) +
-                  " cheapest of the " + str(n_ranked) +
-                  " providers currently listed with a verified price.")
-        elif rank is not None and rank > n_ranked * 2 // 3:
-            s1 = ("Price-wise, " + name + " is at the premium end of this tracker: "
-                  "its cheapest verified plan is " + native + ", ranked #" +
-                  str(rank) + " of " + str(n_ranked) + " by entry price.")
-        elif rank is not None:
-            s1 = ("In this tracker, " + name + "'s entry plan at " + native +
-                  " ranks #" + str(rank) + " of " + str(n_ranked) +
-                  " providers by cheapest verified price.")
-        else:
-            s1 = ("This tracker lists " + name + "'s entry plan at " +
-                  native + ".")
-        if under5:
-            s2 = (name + " lists " + str(my_n) + " offers here, the #" +
-                  str(crank) + " largest catalogue of the " + str(total_p) +
-                  " providers tracked, and " +
-                  ("1 of them is" if under5 == 1 else
-                   str(under5) + " of them are") +
-                  " priced under $5/month.")
-        else:
-            s2 = (name + " lists " + str(my_n) + " offers here, the #" +
-                  str(crank) + " largest catalogue of the " + str(total_p) +
-                  " providers tracked, with none under $5/month in the "
-                  "current snapshot.")
-        paras.append("<p>" + e(s1) + " " + e(s2) + "</p>")
+    if provider["fetch_status"] != "ok":
+        text = (name + " could not be fetched in the current snapshot. No current price "
+                "is inferred from that failure. Check the source directly before buying.")
+    elif not deals:
+        text = (name + "'s source page responded, but no qualifying offer was extracted. "
+                "This does not establish that the provider has no plans.")
     else:
-        paras.append("<p>" + e(
-            name + "'s pricing page is reachable, but our scraper could not "
-            "extract a structured plan from it in the current run — no price "
-            "is listed here rather than a guess. The page is re-checked "
-            "every 6 hours.") + "</p>")
-
-    snap_n = meta.get("snapshots")
-    snap_txt = (" across " + str(snap_n) + " site snapshots"
-                if snap_n else "")
-    if hist_low:
-        low_p, low_d, first_d, low_u = hist_low
-        show_low = False
-        if my_entry and low_u is not None:
-            # 历史最低与当前入场价差太多 → 管线噪声，不引用
-            show_low = low_u >= 0.75 * my_entry[0]
-        if show_low:
-            paras.append("<p>" + e(
-                "We have tracked " + name + " since " + first_d +
-                ". The lowest entry price recorded in that time" + snap_txt +
-                " is " + low_p + ", first seen on " + low_d +
-                ". Figures above come from the provider's own page, re-read "
-                "every 6 hours.") + "</p>")
-        else:
-            paras.append("<p>" + e(
-                "We have tracked " + name + " since " + first_d + snap_txt +
-                ". Figures above come from the provider's own page, re-read "
-                "every 6 hours.") + "</p>")
-    elif pts:
-        paras.append("<p>" + e(
-            "We have tracked " + name + " since " + fmt_date(pts[0][0]) +
-            snap_txt + ". Figures above come from the provider's own page, "
-            "re-read every 6 hours.") + "</p>")
-
-    if not paras:
-        return ""
-    return ('<div class="section-heading"><h2>Where ' + e(name) +
-            ' stands</h2></div>\n<div class="content-card">\n' +
-            "\n".join(paras) + "\n</div>")
+        groups = price_groups(deals)
+        text = ("This snapshot contains " + str(len(deals)) + " extracted amounts from "
+                + name + " in " + ", ".join(sorted(groups)) + ". Observed ranges: "
+                + price_ranges(deals) + ". Amounts are not converted or ranked across currencies. "
+                "They may cover different products and billing periods; this is not a tested performance review.")
+    return ('<div class="section-heading"><h2>Reading ' + e(name)
+            + ' pricing</h2></div><div class="content-card"><p>' + e(text) + '</p></div>')
 
 
 def _cheapest_faq(provider, deals):
-    """每页一条由真实数据生成的专属 FAQ（2026-10-20 索引修复）。"""
-    name = provider["name"]
-    best = None
-    for d in deals:
-        if not _is_plan(d):
-            continue
-        u = _usd(d.get("price"), d.get("currency"))
-        if best is None or u < best[0]:
-            best = (u, d)
-    checked = (provider.get("fetched_at") or "")[:10]
-    if best:
-        _, d = best
-        return ("What is the cheapest " + name + " plan right now?",
-                "As of the last check on " + checked + ", the cheapest " +
-                name + " plan in this tracker is " +
-                money(d.get("price"), d.get("currency")) + "/mo (" +
-                offer_label(d, 1) + "). Prices are re-read from the "
-                "provider's own page every 6 hours, so check the table "
-                "above for the current figure.")
-    return ("Does " + name + " have any VPS deals listed right now?",
-            "Not in the current run: " + name + "'s pricing page was "
-            "checked on " + checked + ", but no plan could be extracted "
-            "with a verifiable price, currency, and URL, so nothing is "
-            "listed rather than a guess. The page is re-checked every "
-            "6 hours.")
+    if deals:
+        return ("How should I compare " + provider["name"] + " prices here?",
+                "The observed ranges are " + price_ranges(deals) + ". These are source-page "
+                "amounts, not a cross-currency ranking or a guarantee of the cheapest VPS plan. "
+                "Confirm the product, billing period, tax, renewal price, and availability at the source.")
+    return ("Are there prices for " + provider["name"] + " in this snapshot?",
+            "No qualifying offers were extracted in this snapshot. A missing price is not "
+            "evidence that the provider has no service or no available plan.")
+
+
+def fetch_note(provider):
+    reason = provider.get("fetch_reason")
+    if reason:
+        return reason.replace("_", " ")
+    code = provider.get("http_code")
+    return "HTTP " + str(code) if code else "no response"
 
 
 def render_provider(ctx, data, cfg, base_url, provider):
@@ -685,15 +567,15 @@ def render_provider(ctx, data, cfg, base_url, provider):
 
     # ---- At a glance：全部由真实数据算出 ----
     prices = [d.get("price") for d in deals if d.get("price") is not None]
-    cur = next((d.get("currency") for d in deals if d.get("currency")), "USD")
+    cur = ", ".join(sorted(price_groups(deals))) or "—"
     n_label = count_label(len(deals), is_capped(provider, len(deals)))
     if provider["fetch_status"] == "ok":
         status_html = '<span class="badge">reachable</span> <span class="num">HTTP 200</span>'
     else:
         status_html = ('<span class="badge unreachable">unreachable</span> '
-                       '<span class="num">HTTP ' + e(provider["http_code"]) + "</span>")
+                       '<span class="num">' + e(fetch_note(provider)) + "</span>")
     if prices:
-        price_range = money(min(prices), cur) + "/mo – " + money(max(prices), cur) + "/mo"
+        price_range = price_ranges(deals)
         with_price = str(len(prices)) + " of " + str(len(deals))
     else:
         price_range = "—"
@@ -714,13 +596,15 @@ def render_provider(ctx, data, cfg, base_url, provider):
 
     if deals:
         rows = ['<div class="table-wrap"><table><thead><tr>'
-                '<th>Offer</th><th>Price</th><th>Currency</th><th>Source</th>'
+                '<th>Offer</th><th>Listed amount</th><th>Currency / period</th><th>Source</th>'
                 '</tr></thead><tbody>']
         for i, d in enumerate(deals, 1):
             url = d.get("offer_url") or d.get("source_url") or "#"
             # ::RULE{抓坏的字段一律不许留} — 行标签由真实字段生成(厂商名+价格)，
             # 不显示 scraper 抓出来的半截原文（如 'Search Multiple Transfer'）。
             label = offer_label(d, i)
+            if expired_offer(d):
+                label += " (expired)"
             price_label = money(d.get("price"), d.get("currency")) or "—"
             rows.append(
                 '<tr><td><a href="{offer}" rel="noopener nofollow">{label}</a></td>'
@@ -728,7 +612,7 @@ def render_provider(ctx, data, cfg, base_url, provider):
                 '<td>{cur}</td>'
                 '<td><a href="{src}" rel="noopener nofollow">source</a></td></tr>'.format(
                     offer=e(url), label=e(label), price=e(price_label),
-                    cur=e(d.get("currency", "")), src=e(d.get("source_url", ""))
+                    cur=e(d.get("currency", "") + " / " + (d.get("billing_period") or "period unverified")), src=e(d.get("source_url", ""))
                 )
             )
         rows.append("</tbody></table></div>")
@@ -785,15 +669,8 @@ def render_provider(ctx, data, cfg, base_url, provider):
     # 未匹配的 provider 保持 bare URL，无披露。正文出处链接一律不带参数。
     # （注：Liquid Web 的 MaxBounty 链接同时出现在首页 Sponsored 区和本页按钮上，
     # 用户确认"最多两处"可以。）
-    def _aff_slug(name):
-        import re
-        s = name.lower().strip()
-        s = re.sub(r"[^a-z0-9]+", "-", s)
-        return s.strip("-")
-    _AFFILIATE_BY_SLUG = {}
-    for _a in (cfg.get("AFFILIATE") or []):
-        _AFFILIATE_BY_SLUG[_aff_slug(_a.get("name", ""))] = _a.get("url", "")
-    _aff_url = _AFFILIATE_BY_SLUG.get(slug)
+    affiliate = provider_affiliate(provider, cfg)
+    _aff_url = affiliate["url"] if affiliate else None
     if _aff_url:
         _provider_url = _aff_url
         _provider_rel = "sponsored nofollow noopener"
@@ -813,6 +690,7 @@ def render_provider(ctx, data, cfg, base_url, provider):
         "{{PROVIDER_URL}}": e(_provider_url),
         "{{PROVIDER_REL}}": _provider_rel,
         "{{AFFILIATE_NOTE}}": _affiliate_note,
+        "{{AFFILIATE_PROVIDER}}": e(slug) if affiliate else "",
         "{{SOURCE_URL}}": e(provider["source_url"]),
         "{{DEAL_COUNT}}": n_label,
         "{{STAT_GRID}}": stat_grid,
@@ -856,7 +734,7 @@ def render_deal(ctx, data, cfg, base_url, deal):
                                    ("/providers/" + deal.get("provider_slug", "") + "/", deal.get("provider_name", "")),
                                    ("", deal["title"])]),
         "{{DEAL_TITLE}}": e(deal["title"]),
-        "{{PRICE_LABEL}}": ("$" + "{:.2f}".format(deal["price"]) + " " + deal.get("currency", "")) if deal.get("price") else "—",
+        "{{PRICE_LABEL}}": e(money(deal.get("price"), deal.get("currency")) or "—"),
         "{{PROVIDER_NAME}}": e(deal.get("provider_name", "")),
         "{{PROVIDER_SLUG}}": e(deal.get("provider_slug", "")),
         "{{CURRENCY}}": e(deal.get("currency", "")),
@@ -890,13 +768,13 @@ def render_compare(ctx, data, cfg, base_url):
         rows.append(
             '<tr><td><a class="cell-provider" href="/providers/{slug}/">'
             '{logo}<span>{name}</span></a></td>'
-            '<td><span class="badge {bcls}">{status}</span> <span class="num">HTTP {code}</span></td>'
+            '<td><span class="badge {bcls}">{status}</span> <span class="num">{code}</span></td>'
             '<td class="num">{n}</td>'
             '<td><a href="{src}" rel="noopener nofollow">source</a></td></tr>'.format(
                 slug=e(p["slug"]), name=e(p["name"]), bcls=badge_cls,
                 logo=logo_html(p, logos, "avatar t-logo"),
                 status="reachable" if p["fetch_status"] == "ok" else "unreachable",
-                code=e(p["http_code"]),
+                code=e(fetch_note(p)),
                 n=count_label(len(deals_for_p), is_capped(p, len(deals_for_p))),
                 src=e(p["source_url"])
             )
@@ -945,7 +823,9 @@ def render_black_friday(ctx, data, cfg, base_url):
 
     # 当前全站最低价 top 15（真实价格排序）
     priced = sorted(
-        [d for d in data["deals"] if d.get("price") is not None],
+        [d for d in data["deals"] if d.get("price") is not None
+         and d.get("currency") == "USD" and d.get("billing_period") == "month"
+         and not expired_offer(d)],
         key=lambda d: float(d["price"]),
     )[:15]
     rows = []
@@ -1022,7 +902,7 @@ def money(value, currency):
     if value is None:
         return None
     sym = {"USD": "$", "EUR": "€", "GBP": "£", "JPY": "¥", "CAD": "C$",
-           "AUD": "A$", "CNY": "¥"}.get(currency, "$")
+           "AUD": "A$", "CNY": "¥"}.get(currency, (str(currency) + " ") if currency else "")
     return "{}{:.2f}".format(sym, float(value))
 
 
@@ -1067,25 +947,11 @@ def provider_page_copy(provider, deals):
         except Exception:
             month = None
 
-    prices = [d.get("price") for d in deals if d.get("price")]
-    cur = next((d.get("currency") for d in deals if d.get("currency")), "USD")
-
-    title = name + " VPS Deals"
-    if prices:
-        title += " — from " + money(min(prices), cur) + "/mo"
+    title = name + " VPS Pricing & Offers"
     if month:
         title += " (" + month + ")"
-
-    n_label = count_label(len(deals), is_capped(provider, len(deals)))
-    desc = name + " VPS hosting deals and public pricing, updated"
-    if month:
-        desc += " " + month
-    desc += "."
-    if prices:
-        desc += " " + n_label + " live offers from " + money(min(prices), cur) + "/mo."
-    else:
-        desc += " " + n_label + " live offers listed."
-    desc += " Nothing here is invented — every figure comes from " + name + "'s own public page."
+    desc = ("Explore " + name + " VPS pricing, source links, and snapshot status. "
+            "Check original currencies, billing terms, and availability before buying.")
 
     return title, desc
 
@@ -1112,6 +978,8 @@ def render_legal(ctx, data, cfg, base_url, tpl_name, crumb_label):
         "{{CONTACT_EMAIL}}": e(ctx.get("contact_email", "")),
         "{{BRAND_DISPLAY}}": e(ctx.get("brand_display", ctx["brand"])),
         "{{PROVIDER_COUNT}}": str(len(data["providers"])),
+        "{{GA4_MEASUREMENT_ID}}": e(cfg.get("ANALYTICS", {}).get("ga4_measurement_id", "")),
+        **affiliate_disclosure(data, cfg),
     })
     jsonld = jsonld_with_crumbs(json.dumps({
         "@context": "https://schema.org",
@@ -1194,7 +1062,7 @@ def render_article(ctx, data, cfg, base_url, article, all_articles=None):
     })
     jsonld = jsonld_with_crumbs(json.dumps({
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": "CollectionPage" if article.get("gap") == "index" else "Article",
         "url": ctx["canonical_url"],
         "headline": article["title"],
         "description": article["description"],
@@ -1223,7 +1091,7 @@ def render_base(ctx, content_html, jsonld_text):
         "{{LANG}}": e(ctx["lang"]),
         "{{LAST_FETCHED_AT}}": e(ctx["last_fetched_at"]),
         "{{REPO_FULL}}": e(ctx["repo_full"]),
-        "{{JSONLD}}": jsonld_text,
+        "{{JSONLD}}": jsonld_text or "{}",
         "{{GA4_TAG}}": ctx.get("ga4_tag", ""),
         "{{CSS_VER}}": ctx.get("css_ver", ""),
     }
@@ -1451,6 +1319,14 @@ def _append_points(history, pts, gen_at, provider_delta=True):
                 "first_seen": ts,
                 "points": [],
             }
+        if d.get("billing_period") == "month" and d.get("currency"):
+            monthly = s.setdefault("monthly_points_by_currency", {}).setdefault(d["currency"], [])
+            if not monthly or monthly[-1][0] != ts:
+                monthly.append([ts, price])
+                changed = True
+            elif monthly[-1][1] != price:
+                monthly[-1][1] = price
+                changed = True
         points = s["points"]
         if points and points[-1][0] == ts:
             if points[-1][1] != price:
@@ -1547,6 +1423,14 @@ def main():
         print("missing data/offers.json — run scraper.py first", file=sys.stderr)
         sys.exit(1)
 
+    configured = {slugify(p["name"]): p for p in cfg["PROVIDERS"]}
+    data["providers"] = [dict(p, name=configured[p["slug"]]["name"],
+                              url=configured[p["slug"]]["url"],
+                              source_url=configured[p["slug"]]["source_url"])
+                         for p in data["providers"] if p["slug"] in configured]
+    active_slugs = {p["slug"] for p in data["providers"]}
+    data["deals"] = [d for d in data["deals"] if d.get("provider_slug") in active_slugs]
+
     site_cfg = cfg["SITE"]
     brand = site_cfg.get("brand", "vps-deals")
     lang = site_cfg.get("locale", "en-US")
@@ -1641,17 +1525,11 @@ def main():
         except Exception:
             _month = None
     _idx_title = "VPS Hosting Deals — " + str(len(data["providers"])) + " Providers Compared"
-    if _all_prices:
-        _idx_title += " from " + money(min(_all_prices), _cur) + "/mo"
     if _month:
         _idx_title += " (" + _month + ")"
-    _idx_desc = ("Live public pricing and promotions from " + str(len(data["providers"]))
-                 + " VPS hosting providers")
-    if _all_prices:
-        _idx_desc += ", " + str(len(_all_prices)) + " live offers from " + money(min(_all_prices), _cur) + "/mo"
-    if _month:
-        _idx_desc += ", updated " + _month
-    _idx_desc += ". Refreshed every 6 hours from each provider's own page. Nothing is invented."
+    _idx_desc = ("Compare " + str(len(data["providers"])) + " VPS providers and explore public pricing snapshots. "
+                 "Check original currencies, billing periods, sources, and buying guides.")
+
     # 样式表缓存击穿：site.css 内容哈希拼在 URL 上（?v=），以后改 CSS
     # 用户浏览器/中间缓存会立即取新版，不用等 max-age 过期。哈希取自
     # templates/site.css —— 第 5 步拷到站点的就是这个文件。
@@ -1746,8 +1624,6 @@ def main():
 
     # 4. Compare
     _cmp_title = "Compare " + str(len(data["providers"])) + " VPS Providers"
-    if _all_prices:
-        _cmp_title += " — from " + money(min(_all_prices), _cur) + "/mo"
     if _month:
         _cmp_title += " (" + _month + ")"
     _cmp_desc = "Side-by-side comparison of " + str(len(data["providers"])) + " VPS providers"
@@ -1769,8 +1645,6 @@ def main():
     # 4c. Black Friday 2026 专题页 —— 日期是 I-Lang 里声明的真实日历事实，
     #     内容全部来自真实数据；暂无 BF 专项优惠时如实写暂无。
     _bf_title = "Black Friday VPS Deals 2026 — " + str(len(data["providers"])) + " Providers"
-    if _all_prices:
-        _bf_title += " from " + money(min(_all_prices), _cur) + "/mo"
     _bf_desc = ("Black Friday 2026 VPS deals (" +
                 (cfg.get("RENDER") or {}).get("black_friday_date", "2026-11-27").strip() +
                 "), verified from each provider's own page and refreshed every 6 hours.")
@@ -1791,9 +1665,7 @@ def main():
     legal_pages = (
         ("privacy.html", "privacy", "Privacy",
          "Privacy policy — what this site does with data",
-         "What this site collects (nothing that identifies you), why it sets no cookies, "
-         "how affiliate links would work if we add them, and how third-party ads "
-         "will be disclosed before the first one goes live."),
+         "How VPS Deals Wire handles alert subscriptions, anti-abuse data, analytics, cookies, and affiliate links. Read your privacy choices."),
         ("about.html", "about", "About",
          "About this site — who runs it and how the numbers are made",
          "An independent VPS price tracker run by a single publisher. How a provider gets "
@@ -1836,7 +1708,7 @@ def main():
         write(SITE / "articles" / a["slug"] / "index.html",
               render_article(c, data, cfg, base_url, a, articles))
         all_paths.append({"path": "articles/" + a["slug"] + "/",
-                          "lastmod": a["date"]})
+                          "lastmod": a.get("updated") or a["date"]})
     if articles:
         _idx_rows = []
         for a in sorted(articles, key=lambda x: x["date"], reverse=True):
@@ -1865,7 +1737,7 @@ def main():
         write(SITE / "articles" / "index.html",
               render_article(c, data, cfg, base_url, _idx_article))
         all_paths.append({"path": "articles/",
-                          "lastmod": max(a["date"] for a in articles)})
+                          "lastmod": max(a.get("updated") or a["date"] for a in articles)})
     # 4e. 文章配图 —— static/articles/<slug>.png 拷到 site/articles/<slug>.png
     #     （正文引用 /articles/<slug>.png；5c 的 static/ 根拷贝不进子目录，这里单独处理；
     #     见 .ilang ::MODULE{ARTICLES} 配图规则）
@@ -1934,4 +1806,19 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    parser = argparse.ArgumentParser(description="Build the site from a pricing snapshot and I-Lang.")
+    parser.add_argument("--data", type=Path, default=DATA, help="Input pricing snapshot.")
+    parser.add_argument("--output", type=Path, default=SITE, help="Generated site directory.")
+    parser.add_argument("--preserve-history", action="store_true", help="Write derived history to a temporary copy, preserving tracked data.")
+    args = parser.parse_args()
+    DATA, SITE = args.data, args.output
+    if args.preserve_history:
+        with tempfile.TemporaryDirectory(prefix="vps-build-history-") as temp:
+            destination = Path(temp) / "history.json"
+            if HISTORY_JSON.exists():
+                shutil.copy2(HISTORY_JSON, destination)
+            HISTORY_JSON = destination
+            result = main()
+    else:
+        result = main()
+    sys.exit(result)

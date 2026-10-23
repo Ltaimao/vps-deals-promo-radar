@@ -154,20 +154,17 @@ async function handleSubscribe(request, env) {
       "<p>This address is already subscribed. If you didn't get a confirmation " +
       "before, check your spam folder.</p>");
   }
-  if (existing && existing.status === "pending" && existing.token) {
-    token = existing.token;
-  } else {
-    token = crypto.randomUUID();
-    await env.SUBS.put(
-      "sub:" + ehash,
-      JSON.stringify({
-        status: "pending",
-        email,
-        token,
-        created_at: new Date().toISOString(),
-      })
-    );
-  }
+  token = existing && existing.status === "pending" && existing.token
+    ? existing.token : crypto.randomUUID();
+  // Keep both pending records on the same TTL, including resends of legacy records.
+  await env.SUBS.put(
+    "sub:" + ehash,
+    JSON.stringify({
+      status: "pending", email, token,
+      created_at: existing && existing.created_at || new Date().toISOString(),
+    }),
+    { expirationTtl: SUB_TTL }
+  );
   await env.SUBS.put(
     "pending:" + token,
     JSON.stringify({ ehash, email, created_at: new Date().toISOString() }),
@@ -279,7 +276,8 @@ async function handleScheduled(env) {
   const confirmed = [];
   let watching = 0;
   for (const d of offers.deals || []) {
-    if (d.price == null) continue;
+    if (d.price == null || d.billing_period !== "month") continue;
+    if (d.valid_until && Date.parse(d.valid_until) < Date.now()) continue;
     const key =
       d.offer_id ||
       (await sha256(
@@ -289,12 +287,16 @@ async function handleScheduled(env) {
             .join("\x00")
       )).slice(0, 16);
     const s = series[key];
-    if (!s || !s.points || s.points.length < 2) continue;
-    const prices = s.points.map((p) => p[1]);
+    // Legacy points have unknown units. Only compare explicit monthly history
+    // in the same currency; never infer a monthly baseline from old amounts.
+    const points = s && s.monthly_points_by_currency && s.monthly_points_by_currency[d.currency];
+    if (!points || points.length < 2) continue;
+    const prices = points.map((p) => p[1]);
     const prevLow = Math.min(...prices.slice(0, -1));
     const cur = prices[prices.length - 1];
+    if (Number(d.price) !== cur) continue;
     const watch = await env.SUBS.get("dropwatch:" + key, "json");
-    if (watch && watch.price === cur) {
+    if (watch && watch.price === cur && watch.snapshot && watch.snapshot !== offers.generated_at) {
       // confirmed: the new low survived a full snapshot cycle
       confirmed.push({
         key,
@@ -309,10 +311,10 @@ async function handleScheduled(env) {
       // first sighting of a new (or deeper) low: watch it, do not alert yet
       await env.SUBS.put(
         "dropwatch:" + key,
-        JSON.stringify({ price: cur, prev: prevLow })
+        JSON.stringify({ price: cur, prev: prevLow, snapshot: offers.generated_at })
       );
       watching++;
-    } else if (watch) {
+    } else if (watch && watch.price !== cur) {
       // price moved away from the watched low: void the watch
       await env.SUBS.delete("dropwatch:" + key);
     }
