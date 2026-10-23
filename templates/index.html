@@ -1,74 +1,156 @@
-<section class="hero">
-  <h1>{{HERO_TITLE}}</h1>
-  <p>{{HERO_SUB}}</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><span class="n">{{PROVIDER_COUNT}}</span><span class="l">Providers</span></div>
-    <div class="hero-stat"><span class="n">{{DEAL_COUNT}}</span><span class="l">Offers listed</span></div>
-    <div class="hero-stat"><span class="n">{{FROM_PRICE}}</span><span class="l">From / mo</span></div>
-    <div class="hero-stat"><span class="n">{{UPDATED}}</span><span class="l">Updated</span></div>
+<section class="hero home-hero">
+  <div class="hero-copy">
+    <span class="eyebrow">THE VPS PRICING RADAR</span>
+    <h1>Find your next server.<br /><em>Know the price.</em></h1>
+    <p>
+      Explore cheap VPS prices in one place. Compare providers, follow the
+      sources, and find a plan that fits.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#latest-deals"
+        >Explore offers <span aria-hidden="true">↗︎</span></a
+      ><a class="hero-secondary" href="/compare/"
+        >Compare providers <span aria-hidden="true">→</span></a
+      >
+    </div>
+    <div class="hero-source">
+      <span class="status-dot" aria-hidden="true"></span>Public sources.
+      Original currencies. No estimated prices.
+    </div>
+  </div>
+  <div class="radar-panel">
+    <div class="radar-art" aria-hidden="true">
+      <div class="radar-ring ring-one"></div>
+      <div class="radar-ring ring-two"></div>
+      <div class="radar-ring ring-three"></div>
+      <div class="radar-cross"></div>
+      <div class="radar-sweep"></div>
+      <i class="radar-point point-one"></i><i class="radar-point point-two"></i
+      ><i class="radar-point point-three"></i><span class="radar-center"></span>
+    </div>
+    <div class="radar-label">
+      <span class="status-dot" aria-hidden="true"></span> THE PRICE LANDSCAPE
+    </div>
+    <div class="radar-price">
+      <small>Public pricing across</small
+      ><strong>{{PROVIDER_COUNT}}<span> providers</span></strong>
+    </div>
+    <a href="/methodology/" class="radar-caption"
+      >See how we track prices <span aria-hidden="true">↗︎</span></a
+    >
   </div>
 </section>
-
-<div class="section-heading">
-  <h2>Providers</h2>
-  <a class="more" href="/compare/">Compare all ›</a>
+<div class="metrics-strip" aria-label="Dataset overview">
+  <div><strong>{{PROVIDER_COUNT}}</strong><span>Providers tracked</span></div>
+  <div><strong>{{DEAL_COUNT}}</strong><span>Offers listed</span></div>
+  <div><strong>6 hours</strong><span>Refresh schedule</span></div>
+  <div class="metric-date">
+    <strong>{{UPDATED}}</strong><span>Last data update</span>
+  </div>
 </div>
-<ul class="card-grid" style="list-style:none;padding:0;margin:0;">
-{{PROVIDER_LIST}}
+<div class="section-heading" id="providers">
+  <div>
+    <span class="eyebrow">EXPLORE THE MARKET</span>
+    <h2>One place. Every provider.</h2>
+  </div>
+  <a class="more" href="/compare/"
+    >Compare all <span aria-hidden="true">↗︎</span></a
+  >
+</div>
+<ul class="card-grid provider-grid">
+  {{PROVIDER_LIST}}
 </ul>
 
-{{SPONSORED}}
-
-<div class="section-heading">
-  <h2>Latest deals ({{DEAL_COUNT}})</h2>
+<div class="section-heading" id="latest-deals">
+  <div>
+    <span class="eyebrow">THE OFFER EXPLORER</span>
+    <h2>Find your price point.</h2>
+  </div>
+  <span class="section-note">{{DEAL_COUNT}} offers · original currencies</span>
 </div>
 <div class="filter-bar" id="deal-filters">
-  <label class="filter-field">Max $/mo
-    <input type="number" id="f-maxprice" min="0" step="1" inputmode="decimal" placeholder="e.g. 10">
+  <label class="filter-field"
+    >Max price / month (USD)
+    <input
+      type="number"
+      id="f-maxprice"
+      min="0"
+      step="1"
+      inputmode="decimal"
+      placeholder="e.g. 10"
+    />
   </label>
-  <label class="filter-field">Provider
+  <label class="filter-field"
+    >Provider
     <select id="f-provider">
-{{PROVIDER_OPTIONS}}
+      {{PROVIDER_OPTIONS}}
     </select>
   </label>
+  <button class="filter-reset btn btn-outline" id="f-reset" type="button">
+    Reset filters
+  </button>
   <span class="filter-count" id="f-count" aria-live="polite"></span>
 </div>
-<div class="deal-list" id="deal-list">
-{{DEAL_CARDS}}
-</div>
+<p class="filter-hint">
+  A budget filter shows USD offers only; other currencies are not converted.
+</p>
+<div class="deal-list" id="deal-list">{{DEAL_CARDS}}</div>
+<p class="filter-empty content-card" id="filter-empty" hidden>
+  No offers match these filters. Try a higher budget or another provider.
+</p>
 <script>
-(function () {
-  var cards = Array.prototype.slice.call(document.querySelectorAll('#deal-list .deal-card'));
-  var maxEl = document.getElementById('f-maxprice');
-  var provEl = document.getElementById('f-provider');
-  var countEl = document.getElementById('f-count');
-  if (!maxEl || !provEl || !countEl) return;
-  function apply() {
-    var max = parseFloat(maxEl.value);
-    var prov = provEl.value;
-    var shown = 0;
-    cards.forEach(function (c) {
-      var p = parseFloat(c.getAttribute('data-price'));
-      var ok = true;
-      if (!isNaN(max) && (isNaN(p) || p > max)) ok = false;
-      if (prov && c.getAttribute('data-provider') !== prov) ok = false;
-      c.style.display = ok ? '' : 'none';
-      if (ok) shown++;
+  (function () {
+    var cards = Array.prototype.slice.call(
+      document.querySelectorAll("#deal-list .deal-card"),
+    );
+    var maxEl = document.getElementById("f-maxprice");
+    var provEl = document.getElementById("f-provider");
+    var countEl = document.getElementById("f-count");
+    if (!maxEl || !provEl || !countEl) return;
+    function apply() {
+      var max = parseFloat(maxEl.value);
+      var prov = provEl.value;
+      var shown = 0;
+      cards.forEach(function (c) {
+        var p = parseFloat(c.getAttribute("data-price"));
+        var ok = true;
+        if (
+          !isNaN(max) &&
+          (c.getAttribute("data-currency") !== "USD" || isNaN(p) || p > max)
+        )
+          ok = false;
+        if (prov && c.getAttribute("data-provider") !== prov) ok = false;
+        c.style.display = ok ? "" : "none";
+        if (ok) shown++;
+      });
+      countEl.textContent = shown + " of " + cards.length + " shown";
+      document.getElementById("filter-empty").hidden = shown !== 0;
+    }
+    document.getElementById("f-reset").addEventListener("click", function () {
+      maxEl.value = "";
+      provEl.value = "";
+      apply();
     });
-    countEl.textContent = shown + ' of ' + cards.length + ' shown';
-  }
-  maxEl.addEventListener('input', apply);
-  provEl.addEventListener('change', apply);
-  apply();
-})();
+    maxEl.addEventListener("input", apply);
+    provEl.addEventListener("change", apply);
+    apply();
+  })();
 </script>
 
 <div class="section-heading">
   <h2>About this data</h2>
 </div>
 <div class="content-card">
-  <p>{{BRAND_DISPLAY}} tracks current public pricing and promotions from <strong>{{PROVIDER_COUNT}}</strong> VPS hosting providers. The data refreshes every 6 hours from each provider's own public page.</p>
-  <p>Sponsored placements are labeled as such; nothing else here is a paid placement and nothing is invented. Grab the source: <a href="https://github.com/{{REPO_FULL}}">github.com/{{REPO_FULL}}</a>.</p>
+  <p>
+    {{BRAND_DISPLAY}} tracks current public pricing and promotions from
+    <strong>{{PROVIDER_COUNT}}</strong> VPS hosting providers. The data
+    refreshes every 6 hours from each provider's own public page.
+  </p>
+  <p>
+    Sponsored placements are labeled as such; nothing else here is a paid
+    placement and nothing is invented. Grab the source:
+    <a href="https://github.com/{{REPO_FULL}}">github.com/{{REPO_FULL}}</a>.
+  </p>
 </div>
 
 <div class="section-heading">
@@ -76,11 +158,36 @@
   <a class="more" href="/articles/">All guides ›</a>
 </div>
 <div class="content-card">
-  <ul style="margin:0;padding-left:20px;line-height:1.9;">
-    <li><a href="/articles/why-are-some-vps-so-cheap/">Why Are Some VPS Plans So Cheap? A Q&A on the Catch Behind Ultra-Cheap Prices</a></li>
-    <li><a href="/articles/how-much-does-a-vps-cost-per-month/">How Much Does a VPS Cost Per Month? Real Numbers From 225 Live Prices</a></li>
-    <li><a href="/articles/cheap-vps-sizing-guide/">What 1 vCPU and 2 GB RAM Actually Run: A Cheap VPS Sizing Guide</a></li>
-    <li><a href="/articles/cheap-vps-renewal-prices/">Do Cheap VPS Prices Jump on Renewal? A Q&A on Renewals and Hidden Fees</a></li>
-    <li><a href="/articles/cheap-vps-use-case-picks/">Which Cheap VPS for Which Job: A Scenario-First Pick Guide</a></li>
+  <ul style="margin: 0; padding-left: 20px; line-height: 1.9">
+    <li>
+      <a href="/articles/why-are-some-vps-so-cheap/"
+        >Why Are Some VPS Plans So Cheap? A Q&A on the Catch Behind Ultra-Cheap
+        Prices</a
+      >
+    </li>
+    <li>
+      <a href="/articles/how-much-does-a-vps-cost-per-month/"
+        >How Much Does a VPS Cost Per Month? Real Numbers From 225 Live
+        Prices</a
+      >
+    </li>
+    <li>
+      <a href="/articles/cheap-vps-sizing-guide/"
+        >What 1 vCPU and 2 GB RAM Actually Run: A Cheap VPS Sizing Guide</a
+      >
+    </li>
+    <li>
+      <a href="/articles/cheap-vps-renewal-prices/"
+        >Do Cheap VPS Prices Jump on Renewal? A Q&A on Renewals and Hidden
+        Fees</a
+      >
+    </li>
+    <li>
+      <a href="/articles/cheap-vps-use-case-picks/"
+        >Which Cheap VPS for Which Job: A Scenario-First Pick Guide</a
+      >
+    </li>
   </ul>
 </div>
+
+{{SPONSORED}}

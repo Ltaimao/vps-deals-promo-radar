@@ -1,111 +1,259 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{LANG}}">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{TITLE}}</title>
-<meta name="description" content="{{META_DESCRIPTION}}">
-<link rel="canonical" href="{{CANONICAL_URL}}">
-{{ROBOTS_META}}
-{{HREFLANG_TAGS}}
-<meta property="og:title" content="{{OG_TITLE}}">
-<meta property="og:description" content="{{OG_DESC}}">
-<meta property="og:type" content="{{OG_TYPE}}">
-<meta property="og:url" content="{{CANONICAL_URL}}">
-<meta property="og:site_name" content="{{BRAND_NAME}}">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="{{OG_TITLE}}">
-<meta name="twitter:description" content="{{OG_DESC}}">
-<link rel="stylesheet" href="/site.css?v={{CSS_VER}}">
-<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<!-- Admitad/Mitgo ad-space ownership verification (keep while ad space active) -->
-<meta name="mitgo-verification" content="39772e87-c17f-4c64-ae9c-4fb01782bacd">
-<meta name="commission-factory-verification" content="3acd2696c57b47e0ba13b9b5544eed73">
-<meta name="verification" content="5b4574ed970b9f882799d57ff72efa06" />
-<script type="application/ld+json">
-{{JSONLD}}
-</script>
-{{GA4_TAG}}
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{META_DESCRIPTION}}" />
+    <link rel="canonical" href="{{CANONICAL_URL}}" />
+    {{ROBOTS_META}} {{HREFLANG_TAGS}}
+    <meta property="og:title" content="{{OG_TITLE}}" />
+    <meta property="og:description" content="{{OG_DESC}}" />
+    <meta property="og:type" content="{{OG_TYPE}}" />
+    <meta property="og:url" content="{{CANONICAL_URL}}" />
+    <meta property="og:site_name" content="{{BRAND_NAME}}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{OG_TITLE}}" />
+    <meta name="twitter:description" content="{{OG_DESC}}" />
+    <link rel="stylesheet" href="/site.css?v={{CSS_VER}}" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Admitad/Mitgo ad-space ownership verification (keep while ad space active) -->
+    <meta
+      name="mitgo-verification"
+      content="39772e87-c17f-4c64-ae9c-4fb01782bacd"
+    />
+    <meta
+      name="commission-factory-verification"
+      content="3acd2696c57b47e0ba13b9b5544eed73"
+    />
+    <meta name="verification" content="5b4574ed970b9f882799d57ff72efa06" />
+    <script type="application/ld+json">
+      {{JSONLD}}
+    </script>
+    {{GA4_TAG}}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="14" fill="#172033"/><circle cx="32" cy="32" r="20" fill="none" stroke="#47639e" stroke-width="2.5"/><circle cx="32" cy="32" r="12" fill="none" stroke="#2e4a82" stroke-width="2"/><g stroke="#2e4a82" stroke-width="2" stroke-linecap="round"><line x1="32" y1="10" x2="32" y2="18"/><line x1="32" y1="46" x2="32" y2="54"/><line x1="10" y1="32" x2="18" y2="32"/><line x1="46" y1="32" x2="54" y2="32"/></g><path d="M32 32 L32 12 A20 20 0 0 1 49.32 22 Z" fill="#1677ff" opacity="0.9"/><circle cx="39" cy="20" r="6.5" fill="#2fc963" opacity="0.28"/><circle cx="39" cy="20" r="3.2" fill="#2fc963"/><circle cx="32" cy="32" r="2.6" fill="#9db9f2"/></svg>{{BRAND_NAME}}</a>
-    <nav class="site-nav">{{NAV}}</nav>
-  </div>
-</header>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/"
+          ><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="2" y="2" width="60" height="60" rx="14" fill="#172033" />
+            <circle
+              cx="32"
+              cy="32"
+              r="20"
+              fill="none"
+              stroke="#47639e"
+              stroke-width="2.5"
+            />
+            <circle
+              cx="32"
+              cy="32"
+              r="12"
+              fill="none"
+              stroke="#2e4a82"
+              stroke-width="2"
+            />
+            <g stroke="#2e4a82" stroke-width="2" stroke-linecap="round">
+              <line x1="32" y1="10" x2="32" y2="18" />
+              <line x1="32" y1="46" x2="32" y2="54" />
+              <line x1="10" y1="32" x2="18" y2="32" />
+              <line x1="46" y1="32" x2="54" y2="32" />
+            </g>
+            <path
+              d="M32 32 L32 12 A20 20 0 0 1 49.32 22 Z"
+              fill="#1677ff"
+              opacity="0.9"
+            />
+            <circle cx="39" cy="20" r="6.5" fill="#2fc963" opacity="0.28" />
+            <circle cx="39" cy="20" r="3.2" fill="#2fc963" />
+            <circle cx="32" cy="32" r="2.6" fill="#9db9f2" /></svg
+          >{{BRAND_NAME}}</a
+        >
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          hidden
+        >
+          <span class="menu-icon" aria-hidden="true">☰</span> Menu
+        </button>
+        <nav
+          class="site-nav"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          {{NAV}}<a class="nav-alert" href="#price-alerts"
+            >Price alerts <span aria-hidden="true">↗︎</span></a
+          >
+        </nav>
+      </div>
+    </header>
 
-<main>
-  <div class="wrap">
-{{CONTENT}}
-  </div>
-</main>
+    <main id="main-content" tabindex="-1">
+      <div class="wrap">{{CONTENT}}</div>
+    </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="subscribe">
-      <form id="subscribe-form" action="/api/subscribe" method="post">
-        <label for="subscribe-email"><strong>Price-drop alerts</strong> — one email when a tracked deal hits a new lowest price. Double opt-in, unsubscribe anytime.</label>
-        <div class="subscribe-row">
-          <input id="subscribe-email" name="email" type="email" required maxlength="254" placeholder="you@example.com" autocomplete="email">
-          <button type="submit">Notify me</button>
+    <footer class="site-footer">
+      <div class="wrap">
+        <section
+          class="subscribe"
+          id="price-alerts"
+          aria-labelledby="alerts-title"
+        >
+          <div class="subscribe-copy">
+            <span class="eyebrow">LET THE PRICE COME TO YOU</span>
+            <h2 id="alerts-title">A lower price. An email. That's it.</h2>
+            <p>
+              Alerts when a tracked deal reaches a new lowest price. Confirm
+              your email to start; unsubscribe anytime.
+            </p>
+          </div>
+          <form id="subscribe-form" action="/api/subscribe" method="post">
+            <label for="subscribe-email">Your email address</label>
+            <div class="subscribe-row">
+              <input
+                id="subscribe-email"
+                name="email"
+                type="email"
+                required
+                maxlength="254"
+                placeholder="you@example.com"
+                autocomplete="email"
+              /><button type="submit">
+                Get price alerts <span aria-hidden="true">↗︎</span>
+              </button>
+            </div>
+            <p class="subscribe-msg" id="subscribe-msg" aria-live="polite"></p>
+            <p class="subscribe-privacy">
+              Double opt-in. See our <a href="/privacy/">privacy policy</a>.
+            </p>
+          </form>
+        </section>
+        <div class="footer-grid">
+          <div class="footer-intro">
+            <a class="footer-brand" href="/"
+              >{{BRAND_NAME}}<span aria-hidden="true">↗︎</span></a
+            >
+            <p>Public VPS prices.<br />Clear sources. Better decisions.</p>
+            <p class="footer-timestamp">
+              Data last fetched<br /><strong>{{LAST_FETCHED_AT}}</strong>
+            </p>
+          </div>
+          <nav aria-label="Explore">
+            <h2>Explore</h2>
+            <a href="/#providers">All providers</a
+            ><a href="/compare/">Compare providers</a
+            ><a href="/articles/">Buying guides</a
+            ><a href="/black-friday/">Black Friday 2026</a>
+          </nav>
+          <nav aria-label="About the site">
+            <h2>Behind the data</h2>
+            <a href="/methodology/">Our methodology</a
+            ><a href="/about/">About the site</a
+            ><a href="/contact/">Contact &amp; corrections</a
+            ><a href="/privacy/">Privacy policy</a>
+          </nav>
+          <div class="footer-source">
+            <h2>Open by design</h2>
+            <p>
+              Built from providers' public pages. Scheduled to refresh every 6
+              hours.
+            </p>
+            <a href="https://github.com/{{REPO_FULL}}" rel="noopener"
+              >View source on GitHub ↗︎</a
+            ><a href="https://ilang.ai" rel="noopener">I-Lang protocol ↗︎</a>
+          </div>
         </div>
-        <p class="subscribe-msg" id="subscribe-msg" aria-live="polite"></p>
-      </form>
-    </div>
-    <div class="flinks">
-      <a href="/">Home</a>
-      <a href="/compare/">Compare</a>
-      <a href="/black-friday/">Black Friday</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="/about/">About</a>
-      <a href="/methodology/">Methodology</a>
-      <a href="/contact/">Contact</a>
-      <a href="https://github.com/{{REPO_FULL}}">GitHub</a>
-      <a href="https://ilang.ai">I-Lang</a>
-    </div>
-    <p>Data refreshes every 6 hours from the public pages listed in the repo. Last fetched: <strong>{{LAST_FETCHED_AT}}</strong>.</p>
-    <p>This site never fabricates prices, offers or commissions. If a provider page is unreachable, it is marked as such.</p>
-    <p>Disclosure: links in the <em>Sponsored</em> section are affiliate links (via CJ Affiliate and MaxBounty). If you buy through one, we may earn a commission at no extra cost to you. On provider pages where a direct affiliate partnership exists, the "Official site" button is also an affiliate link.</p>
-    <p>Site rules are described with the I-Lang protocol · <a href="https://github.com/{{REPO_FULL}}">github.com/{{REPO_FULL}}</a> · protocol spec <a href="https://ilang.ai">ilang.ai</a></p>
-  </div>
-</footer>
+        <div class="footer-disclosure">
+          <p>
+            <strong>Affiliate disclosure.</strong> Sponsored placements and some
+            “Official site” links are affiliate links. We may earn a commission
+            if you buy through them, at no extra cost to you.
+            <a href="/privacy/">Read the disclosure.</a>
+          </p>
+          <p>
+            Prices are reported in their original currencies. Verify current
+            terms with the provider before purchasing.
+          </p>
+        </div>
+      </div>
+    </footer>
 
-<script>
-(function () {
-  var form = document.getElementById("subscribe-form");
-  if (!form) return;
-  form.addEventListener("submit", function (e) {
-    // Without JS the form posts normally and the API answers with a page.
-    if (!window.fetch) return;
-    e.preventDefault();
-    var msg = document.getElementById("subscribe-msg");
-    var email = document.getElementById("subscribe-email").value.trim();
-    msg.textContent = "Sending…";
-    fetch("/api/subscribe", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ email: email })
-    }).then(function (r) { return r.json(); }).then(function (d) {
-      if (d.ok) {
-        msg.textContent = "Check your inbox to confirm — the confirmation link expires in 30 days.";
-        form.querySelector("button").disabled = true;
-      } else if (d.error === "invalid_email") {
-        msg.textContent = "That email address doesn't look valid.";
-      } else if (d.error === "rate_limited") {
-        msg.textContent = "Too many attempts — try again later.";
-      } else {
-        msg.textContent = "Something went wrong — please try again.";
-      }
-    }).catch(function () {
-      msg.textContent = "Something went wrong — please try again.";
-    });
-  });
-})();
-</script>
-
-</body>
+    <script>
+      (function () {
+        var toggle = document.querySelector(".menu-toggle");
+        var nav = document.getElementById("primary-navigation");
+        if (toggle && nav) {
+          toggle.hidden = false;
+          document.documentElement.classList.add("nav-ready");
+          function closeMenu() {
+            toggle.setAttribute("aria-expanded", "false");
+          }
+          toggle.addEventListener("click", function () {
+            toggle.setAttribute(
+              "aria-expanded",
+              toggle.getAttribute("aria-expanded") === "true"
+                ? "false"
+                : "true",
+            );
+          });
+          nav.addEventListener("click", function (event) {
+            if (event.target.closest("a")) closeMenu();
+          });
+          document.addEventListener("keydown", function (event) {
+            if (
+              event.key === "Escape" &&
+              toggle.getAttribute("aria-expanded") === "true"
+            ) {
+              closeMenu();
+              toggle.focus();
+            }
+          });
+          document.addEventListener("click", function (event) {
+            if (!event.target.closest(".site-header")) closeMenu();
+          });
+        }
+        var form = document.getElementById("subscribe-form");
+        if (!form) return;
+        form.addEventListener("submit", function (e) {
+          // Without JS the form posts normally and the API answers with a page.
+          if (!window.fetch) return;
+          e.preventDefault();
+          var msg = document.getElementById("subscribe-msg");
+          var email = document.getElementById("subscribe-email").value.trim();
+          msg.textContent = "Sending…";
+          fetch("/api/subscribe", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ email: email }),
+          })
+            .then(function (r) {
+              return r.json();
+            })
+            .then(function (d) {
+              if (d.ok) {
+                msg.textContent =
+                  "Check your inbox to confirm — the confirmation link expires in 30 days.";
+                form.querySelector("button").disabled = true;
+              } else if (d.error === "invalid_email") {
+                msg.textContent = "That email address doesn't look valid.";
+              } else if (d.error === "rate_limited") {
+                msg.textContent = "Too many attempts — try again later.";
+              } else {
+                msg.textContent = "Something went wrong — please try again.";
+              }
+            })
+            .catch(function () {
+              msg.textContent = "Something went wrong — please try again.";
+            });
+        });
+      })();
+    </script>
+  </body>
 </html>

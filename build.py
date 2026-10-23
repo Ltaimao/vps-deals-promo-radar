@@ -136,10 +136,10 @@ def fill(template, mapping):
 
 
 def nav_html(active):
-    items = [("/", "Home"), ("/compare/", "Compare"), ("/articles/", "Articles")]
+    items = [("/", "Overview"), ("/compare/", "Compare"), ("/articles/", "Guides"), ("/black-friday/", "Black Friday"), ("/methodology/", "Methodology")]
     parts = []
     for href, label in items:
-        cls = ' class="active"' if active == href else ""
+        cls = ' class="active" aria-current="page"' if active == href else ""
         parts.append('<a href="' + href + '"' + cls + ">" + e(label) + "</a>")
     return "\n".join(parts)
 
@@ -297,8 +297,9 @@ def render_index(ctx, data, cfg, base_url):
     logos = ctx.get("logos") or {}
 
     # Hero 的三个数字全部来自数据，不是写死的文案
-    _prices = [d.get("price") for d in deals if d.get("price")]
-    _cur = next((d.get("currency") for d in deals if d.get("currency")), "USD")
+    # Compare numbers only within USD; never imply a currency conversion.
+    _prices = [d["price"] for d in deals if d.get("price") and d.get("currency") == "USD"]
+    _cur = "USD"
     _month = None
     for d in deals:
         if d.get("fetched_at"):
@@ -397,7 +398,7 @@ def render_index(ctx, data, cfg, base_url):
         data_price = (' data-price="' + e("{:.2f}".format(float(d["price"]))) + '"'
                       if d.get("price") is not None else "")
         card = (
-            '<a class="deal-card" href="{purl}" data-provider="{pslug}"{dprice}>'
+            '<a class="deal-card" href="{purl}" data-provider="{pslug}" data-currency="{cur}"{dprice}>'
             '<span class="left">'
             '<span class="title">{label}{badge}</span>'
             '<span class="meta">Go to {pname} deals ›</span>'
@@ -1133,6 +1134,33 @@ def render_article(ctx, data, cfg, base_url, article, all_articles=None):
             _date_line += " · Updated " + e(article["updated"])
         _date_line += "</p>"
     _body = article["body"]
+    # Server-render the outline so article navigation also works without JavaScript.
+    outline = []
+    used_ids = set(re.findall(r'\bid=["\']([^"\']+)', _body))
+
+    def outline_heading(match):
+        attrs, heading = match.groups()
+        existing = re.search(r'\bid=["\']([^"\']+)', attrs)
+        if existing:
+            anchor = existing.group(1)
+        else:
+            anchor = "guide-section-" + str(len(outline) + 1)
+            while anchor in used_ids:
+                anchor += "-section"
+            used_ids.add(anchor)
+            attrs += ' id="' + anchor + '"'
+        label = html.unescape(re.sub(r"<[^>]+>", "", heading)).strip()
+        outline.append('<li><a href="#' + e(anchor) + '">' + e(label) + '</a></li>')
+        return '<h2' + attrs + '>' + heading + '</h2>'
+
+    if article.get("gap") != "index":
+        _body = re.sub(r"<h2([^>]*)>(.*?)</h2>", outline_heading, _body, flags=re.S)
+    article_toc = ('<details class="article-toc"><summary>In this guide</summary><ol>'
+                   + "".join(outline) + '</ol></details>') if outline else ""
+    if article_toc:
+        # Let the title and opening answer lead; the outline follows the introduction.
+        _body = re.sub(r"</p>", lambda match: match.group(0) + article_toc,
+                       _body, count=1)
     # 相关文章内链：取同站其他文章（按日期倒序取 4 篇，排除自己），
     # 解决文章页内链过少导致的索引缓慢问题。
     _related = ""
@@ -1157,7 +1185,8 @@ def render_article(ctx, data, cfg, base_url, article, all_articles=None):
             "build failed: unbalanced <div> in article '%s' (opens=%d closes=%d)"
             % (article.get("slug", "?"),
                len(re.findall(r"<div(?=[\s>])", _body)), _body.count("</div>")))
-    content = fill(load_template("article.html"), {
+    article_template = "guides.html" if article.get("gap") == "index" else "article.html"
+    content = fill(load_template(article_template), {
         "{{CRUMBS}}": crumbs_html([("/", "Home"), ("/articles/", "Articles"), ("", article["title"])]),
         "{{ARTICLE_DATE_LINE}}": _date_line,
         "{{ARTICLE_BODY}}": _body,
@@ -1602,8 +1631,8 @@ def main():
     all_paths = []
 
     # 1. Index — title/description 由数据生成（厂商数 + 最低价 + 月份）
-    _all_prices = [d.get("price") for d in data["deals"] if d.get("price")]
-    _cur = next((d.get("currency") for d in data["deals"] if d.get("currency")), "USD")
+    _all_prices = [d["price"] for d in data["deals"] if d.get("price") and d.get("currency") == "USD"]
+    _cur = "USD"
     _month = None
     if data["deals"] and data["deals"][0].get("fetched_at"):
         try:
@@ -1752,7 +1781,7 @@ def main():
     c["og_title"] = "Black Friday VPS Deals 2026"
     c["og_description"] = _bf_desc
     c["og_type"] = "website"
-    c["nav"] = nav_html("")
+    c["nav"] = nav_html("/black-friday/")
     write(SITE / "black-friday" / "index.html",
           render_black_friday(c, data, cfg, base_url))
     all_paths.append({"path": "black-friday/", "lastmod": data["generated_at"]})
@@ -1786,7 +1815,7 @@ def main():
         c["og_title"] = title
         c["og_description"] = desc
         c["og_type"] = "website"
-        c["nav"] = nav_html("")   # 三页不进主导航，从页脚进
+        c["nav"] = nav_html("/" + slug + "/")
         write(SITE / slug / "index.html",
               render_legal(c, data, cfg, base_url, tpl_name, crumb))
         all_paths.append({"path": slug + "/",
@@ -1803,7 +1832,7 @@ def main():
         c["og_title"] = a["title"]
         c["og_description"] = a["description"]
         c["og_type"] = "article"
-        c["nav"] = nav_html("")
+        c["nav"] = nav_html("/articles/")
         write(SITE / "articles" / a["slug"] / "index.html",
               render_article(c, data, cfg, base_url, a, articles))
         all_paths.append({"path": "articles/" + a["slug"] + "/",
@@ -1811,15 +1840,19 @@ def main():
     if articles:
         _idx_rows = []
         for a in sorted(articles, key=lambda x: x["date"], reverse=True):
+            image_path = ROOT / "static" / "articles" / (a["slug"] + ".png")
+            image = ('<img src="/articles/' + e(a["slug"]) + '.png" alt="" loading="lazy" width="1200" height="630">'
+                     if image_path.is_file() else '<div class="guide-placeholder" aria-hidden="true">VPS / FIELD NOTES</div>')
             _idx_rows.append(
-                '<div class="content-card"><p class="article-date">Published ' + e(a["date"]) + '</p>'
-                + '<h2><a href="/articles/' + a["slug"] + '/">' + e(a["title"]) + '</a></h2>'
-                + '<p>' + e(a["description"]) + '</p></div>')
+                '<a class="guide-card" href="/articles/' + e(a["slug"]) + '/">' + image
+                + '<div class="guide-card-body"><span class="article-date">' + e(a["date"]) + '</span>'
+                + '<h2>' + e(a["title"]) + '</h2><p>' + e(a["description"])
+                + '</p><span class="guide-read">Read guide <span aria-hidden="true">↗</span></span></div></a>')
         _idx_article = {
-            "slug": "index", "title": "Articles", "date": "",
-            "description": "Hands-on VPS buying guides with live-checked prices.",
+            "slug": "index", "title": "Buying guides", "date": "",
+            "description": "VPS buying guides grounded in public provider data.",
             "gap": "index",
-            "body": "<h1>Articles</h1>\n" + "\n".join(_idx_rows),
+            "body": '<header class="page-heading"><span class="eyebrow">THE KNOWLEDGE BASE</span><h1>Choose with confidence.</h1><p>Practical guides to VPS pricing, trade-offs, and choosing a server that fits your workload.</p></header><div class="guide-grid">' + "\n".join(_idx_rows) + '</div>',
         }
         c = dict(ctx_index)
         c["title"] = "Articles — " + ctx_index["brand"]
@@ -1828,7 +1861,7 @@ def main():
         c["og_title"] = c["title"]
         c["og_description"] = c["meta_description"]
         c["og_type"] = "website"
-        c["nav"] = nav_html("")
+        c["nav"] = nav_html("/articles/")
         write(SITE / "articles" / "index.html",
               render_article(c, data, cfg, base_url, _idx_article))
         all_paths.append({"path": "articles/",
