@@ -37,13 +37,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Test independent Worker logic (mocked services)
         run: node --test tests/test_worker.mjs
 
       - name: Install wrangler
-        run: npm install --no-save wrangler
+        run: npm install --no-save wrangler@4.152.0
 
       - name: Deploy to Cloudflare Pages
         env:

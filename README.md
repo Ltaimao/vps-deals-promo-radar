@@ -52,4 +52,4 @@ Currency is never converted with a hardcoded exchange rate.
 
 ## Daily editorial publishing
 
-A reviewed queue publishes one article each day at a scheduled 08:00 Asia/Shanghai trigger (00:00 UTC), subject to GitHub runner/deployment delay. The first 14 complete guides cover October 24–November 6, 2026. See [the calendar and operating instructions](docs/DAILY_EDITORIAL.md). No runtime AI service or new credential is required. An empty or invalid queue fails visibly instead of publishing filler. Validate with `python3 editorial.py validate`.
+A reviewed queue publishes one article each day at a scheduled 08:00 Asia/Shanghai trigger (00:00 UTC), subject to GitHub runner/deployment delay. The first 14 complete guides cover October 24–November 6, 2026. See [the calendar and operating instructions](docs/DAILY_EDITORIAL.md). No runtime AI service or new credential is required. An empty or invalid queue fails visibly instead of publishing filler. Off-peak hourly recovery checks run from 08:17 through 23:17 Asia/Shanghai; verified live articles skip redeployment. Validate with `python3 editorial.py validate`.
