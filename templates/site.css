@@ -2057,3 +2057,13 @@ code {
 .article h2[id] {
   scroll-margin-top: 110px;
 }
+
+/* Reviewed editorial diagrams retain their aspect ratio on small screens. */
+.article .article-illustration { margin: 28px 0; }
+.article .article-illustration img { width: 100%; height: auto; margin: 0; }
+.article .article-illustration figcaption {
+  margin-top: 10px;
+  font-size: .8rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}

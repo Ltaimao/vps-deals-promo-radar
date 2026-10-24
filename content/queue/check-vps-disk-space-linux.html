@@ -5,6 +5,7 @@ gap: linux-vps-disk-space-inode-diagnosis
 
 <h1>VPS Disk Full? Check Space, Inodes, and Mounts First</h1>
 <p><strong>When a Linux VPS reports a full disk, check which filesystem is full, whether it has run out of inodes, and what is consuming it before deleting anything.</strong> A larger disk is not the only possible fix, and an unverified cleanup command can remove the data you were trying to save.</p>
+<figure class="article-illustration"><img src="/articles/check-vps-disk-space-linux.png" alt="Two different limits can stop writes. Check disk capacity / df -h shows space / Find the full filesystem; Check inode usage / df -i shows inodes / Small files can add up; Investigate safely / Inspect before deleting / Keep required backups." width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Two different limits can stop writes. Conceptual guide; check your provider's terms and your own setup.</figcaption></figure>
 <p>The examples here are diagnostic starting points for a server you administer. They are not a claim that we tested a provider's storage. Check your distribution's documentation, access rights, and backup state before making changes.</p>
 <h2>Identify the affected filesystem</h2>
 <p><code>df -h</code> shows mounted filesystem capacity in human-readable units. <code>df -i</code> shows inode usage. A system can have free data space while exhausting the number of files it can create. Check the row corresponding to the path where the application is failing rather than assuming the root filesystem is the cause.</p>

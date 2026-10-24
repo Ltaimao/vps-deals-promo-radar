@@ -1069,6 +1069,8 @@ def render_article(ctx, data, cfg, base_url, article, all_articles=None):
         "url": ctx["canonical_url"],
         "headline": article["title"],
         "description": article["description"],
+        **({"image": base_url + "/articles/" + article["slug"] + ".png"}
+           if (ROOT / "static/articles" / (article["slug"] + ".png")).is_file() else {}),
         **({"datePublished": article["date"]} if article.get("date") else {}),
         **({"dateModified": article["updated"]} if article.get("updated") else {}),
         "inLanguage": ctx["lang"],

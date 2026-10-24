@@ -5,6 +5,7 @@ gap: vps-storage-interface-vs-io-limits
 
 <h1>NVMe vs SSD VPS: What the Storage Label Leaves Out</h1>
 <p><strong>Choose VPS storage from capacity, documented I/O limits, persistence, and application needs—not the NVMe label alone.</strong> NVMe describes a storage interface and protocol. A virtual server's effective storage behavior also depends on how the provider shares and limits the underlying system.</p>
+<figure class="article-illustration"><img src="/articles/nvme-vs-ssd-vps-storage.png" alt="The drive label is only one layer. Storage interface / NVMe or SATA label / Not a speed guarantee; Plan-level limits / Check IOPS caps / Check throughput caps; Your application / Measure latency / Test with your workload." width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>The drive label is only one layer. Conceptual guide; check your provider's terms and your own setup.</figcaption></figure>
 <p>A plan can advertise modern storage while still having limits that matter to a database or busy application. Conversely, an application that rarely touches disk may gain little from changing the storage label while leaving its real bottleneck unchanged.</p>
 <h2>Write down the complete storage specification</h2>
 <p>Check the usable capacity, whether the disk is local or network-backed, and whether the advertised capacity includes the operating system. Ask whether snapshots, backups, and extra volumes consume separate quotas or incur separate charges. Verify the units rather than assuming two capacity figures mean the same usable space.</p>

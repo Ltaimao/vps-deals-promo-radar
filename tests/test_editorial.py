@@ -19,6 +19,7 @@ class EditorialTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         shutil.copytree(editorial.ROOT / '.ilang', self.root / '.ilang')
         shutil.copytree(editorial.ROOT / 'content', self.root / 'content')
+        shutil.copytree(editorial.ROOT / 'static/articles', self.root / 'static/articles')
         (self.root / 'articles').mkdir()
         self.first = editorial.calendar(self.root)[0][0]
 
@@ -30,6 +31,25 @@ class EditorialTests(unittest.TestCase):
         self.assertGreaterEqual(len(entries), 14)
         self.assertEqual(entries[0]['date'], '2026-10-24')
         self.assertGreaterEqual(entries[-1]['date'], '2026-11-06')
+
+    def test_missing_or_changed_image_blocks_release(self):
+        image = self.root / 'static/articles' / (self.first['slug'] + '.png')
+        original = image.read_bytes()
+        image.unlink()
+        with self.assertRaisesRegex(ValueError, 'Missing reviewed article image'):
+            editorial.validate(self.root)
+        image.write_bytes(original + b'changed')
+        with self.assertRaisesRegex(ValueError, 'Reviewed image changed'):
+            editorial.validate(self.root)
+        self.assertEqual(list((self.root / 'articles').glob('*')), [])
+
+    def test_image_requires_alt_and_dimensions(self):
+        source = self.root / 'content/queue' / (self.first['slug'] + '.html')
+        _, body = editorial.article(source)
+        import re
+        for changed in (re.sub(r'alt="[^"]*"', 'alt=""', body), body.replace('width="1200"', 'width="600"')):
+            with self.assertRaisesRegex(ValueError, 'alt|dimensions'):
+                editorial.checked_image(self.first, changed, self.root)
 
     def test_utc_midnight_is_shanghai_eight(self):
         before = editorial.release(self.root, self.at('2026-10-23T23:59:59+00:00'))
@@ -101,6 +121,11 @@ class EditorialTests(unittest.TestCase):
         self.assertIn(url, page)
         self.assertIn(url, (output/'sitemap.xml').read_text())
         self.assertEqual(page.count('<h1>'), 1)
+        image_name = self.first['slug'] + '.png'
+        self.assertIn('/articles/' + image_name, page)
+        self.assertIn('"image": "https://www.vpsdealswire.com/articles/' + image_name + '"', page)
+        self.assertEqual((output/'articles'/image_name).read_bytes(), (self.root/'static/articles'/image_name).read_bytes())
+        self.assertIn('/articles/' + image_name, (output/'articles/index.html').read_text())
         self.assertNotIn('2026-10-25', (output/'sitemap.xml').read_text())
 
     def test_new_unscheduled_old_platform_post_is_not_auto_published(self):

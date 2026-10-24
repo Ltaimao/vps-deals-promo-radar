@@ -5,6 +5,7 @@ gap: vps-storage-lifecycle-persistence
 
 <h1>VPS Storage Persistence: Stop, Rebuild, or Delete?</h1>
 <p><strong>Before storing important data on a VPS, verify what survives each lifecycle action: stopping, restarting, rebuilding, deleting, and host failure.</strong> Persistent storage does not automatically mean backed up, and a snapshot does not automatically survive deletion of its associated resources.</p>
+<figure class="article-illustration"><img src="/articles/persistent-vs-ephemeral-vps-storage.png" alt="Persistence depends on the event. Name the event / Reboot, rebuild or delete / Read product behavior; Identify the storage / Boot disk or volume / Local temporary disk; Protect the data / Independent backups / Test the restore path." width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Persistence depends on the event. Conceptual guide; check your provider's terms and your own setup.</figcaption></figure>
 <p>These details vary by product. This guide does not claim that any named provider preserves or destroys data in a particular action. Its purpose is to help you build a product-specific recovery map from official documentation.</p>
 <h2>List each storage resource separately</h2>
 <p>Identify the boot disk, attached volumes, temporary storage, snapshots, backups, and external object storage. Record where the application actually writes its database, uploads, configuration, and logs. A server can contain several storage types with different behavior.</p>

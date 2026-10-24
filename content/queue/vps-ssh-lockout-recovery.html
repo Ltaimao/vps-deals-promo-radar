@@ -5,6 +5,7 @@ gap: vps-ssh-lockout-console-recovery
 
 <h1>Locked Out of Your VPS? Use a Safe SSH Recovery Plan</h1>
 <p><strong>If you lose SSH access to a VPS you own, keep any working session open and use the provider's documented console or rescue process to diagnose the failure.</strong> Do not start by disabling every firewall rule or replacing authentication settings you do not understand.</p>
+<figure class="article-illustration"><img src="/articles/vps-ssh-lockout-recovery.png" alt="Recover access one layer at a time. Keep a recovery path / Preserve working sessions / Use provider console; Locate the failure / Address, port and key / Service and firewall; Validate and reconnect / Check with sshd -t / Test a separate session." width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Recover access one layer at a time. Conceptual guide; check your provider's terms and your own setup.</figcaption></figure>
 <p>A connection failure can occur at different stages: reaching the address, establishing a connection, negotiating SSH, or authenticating. Identifying the stage narrows the investigation and helps avoid changes that create a second problem.</p>
 <h2>Check the destination and available recovery path</h2>
 <p>Confirm the current server address, SSH port, username, and expected key. Make sure the instance is running and inspect the provider dashboard for an incident or suspension notice. If a hostname is involved, verify that it points where you intend.</p>

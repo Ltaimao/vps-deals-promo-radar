@@ -5,6 +5,7 @@ gap: vps-region-latency-selection
 
 <h1>How to Choose a VPS Location for Lower Latency</h1>
 <p><strong>Choose a VPS location by measuring the path between your users, the server, and its important dependencies.</strong> The geographically nearest city is a candidate, not a guarantee of the lowest application latency. Routing, peering, connection setup, and the application's own work also contribute.</p>
+<figure class="article-illustration"><img src="/articles/choose-vps-location-latency.png" alt="Choose a region by the user journey. Locate your users / Where requests begin / Include backend services; Test candidate regions / Compare real routes / Test at busy times; Choose and verify / Measure app response / Recheck after deployment." width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Choose a region by the user journey. Conceptual guide; check your provider's terms and your own setup.</figcaption></figure>
 <p>A region decision is easier to change before you attach production data and users to a server. Before ordering, check whether the provider can move an instance between regions or whether you would need to create a new server and migrate it yourself.</p>
 <h2>Map the requests that matter</h2>
 <p>Identify where the people using the service are located. Then identify its database, object storage, authentication service, and other backends. A web server close to a visitor can still be slow if each request makes several round trips to a distant database.</p>

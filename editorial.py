@@ -4,6 +4,8 @@ import argparse
 import hashlib
 import json
 import re
+import struct
+from html.parser import HTMLParser
 from datetime import datetime, time, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -55,6 +57,37 @@ def article(path):
     return meta, body
 
 
+class ArticleImages(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.images = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'img':
+            self.images.append(dict(attrs))
+
+
+def checked_image(entry, body, root=ROOT):
+    """Reviewed local PNG; no network or imaging dependency in publication jobs."""
+    slug = entry['slug']
+    path = root / 'static/articles' / (slug + '.png')
+    expected = entry.get('image_sha256', '')
+    if not re.fullmatch(r'[a-f0-9]{64}', expected) or not path.is_file():
+        raise ValueError('Missing reviewed article image: ' + slug)
+    raw = path.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != expected:
+        raise ValueError('Reviewed image changed; review and update checksum: ' + slug)
+    if len(raw) < 24 or raw[:16] != b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR' or struct.unpack('>II', raw[16:24]) != (1200, 630):
+        raise ValueError('Article image must be a 1200x630 PNG: ' + slug)
+    parser = ArticleImages()
+    parser.feed(body)
+    matches = [im for im in parser.images if im.get('src') == '/articles/' + slug + '.png']
+    if len(matches) != 1 or not matches[0].get('alt', '').strip():
+        raise ValueError('Article requires its reviewed image and descriptive alt: ' + slug)
+    if (matches[0].get('width'), matches[0].get('height')) != ('1200', '630'):
+        raise ValueError('Article image requires explicit dimensions: ' + slug)
+
+
 def checked_source(entry, root=ROOT):
     published = root / 'articles' / (entry['slug'] + '.html')
     queued = root / 'content/queue' / (entry['slug'] + '.html')
@@ -73,6 +106,7 @@ def checked_source(entry, root=ROOT):
         raise ValueError('Article requires a complete original guide and one H1: ' + entry['slug'])
     if len(re.findall(r'href="/(?:articles|providers|compare|methodology)[^\"]*"',body)) < 2:
         raise ValueError('Article lacks relevant site links: ' + entry['slug'])
+    checked_image(entry, body, root)
     return path
 
 

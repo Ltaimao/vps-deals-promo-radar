@@ -8,7 +8,8 @@
       "gap": "shared-cpu-fair-use-limits",
       "target_query": "shared vCPU VPS fair use",
       "status": "ready",
-      "sha256": "609c15f732218abb6b6f837c26addb02a13ef3433e181866bbcdebb7cede1687"
+      "sha256": "2d2dc752805028720e0a36dbead798b0e2f399bf6d7bc9825cf7e717870933ea",
+      "image_sha256": "6fb0263922c1ccc8b7449c3124508659ba11894e18441de91d3afd3c7aa486e4"
     },
     {
       "date": "2026-10-25",
@@ -16,7 +17,8 @@
       "gap": "vps-region-latency-selection",
       "target_query": "how to choose VPS server location",
       "status": "ready",
-      "sha256": "4be2428944d9b9f320422fd275cecb9ccb5f61812c183373f85488878a25c22c"
+      "sha256": "2b5ed3d2b3ce5ff40be0f4179a0d41e1ac92ff0100905c4b7e064094d0c413df",
+      "image_sha256": "60679b4f23a3d922fcb51ee2582f8dd90a15ffa2b8954d28f5fe7f6181aba2a0"
     },
     {
       "date": "2026-10-26",
@@ -24,7 +26,8 @@
       "gap": "vps-storage-interface-vs-io-limits",
       "target_query": "NVMe vs SSD VPS storage limits",
       "status": "ready",
-      "sha256": "439bf9cc001b069292aebb24519cc44229313ffb7cce4eef8d76839bbb8ba0a4"
+      "sha256": "9eb6ddbe4df1062f17fe1c74babc9d35fca645f4e8459fbddfa4cc72dbe4acef",
+      "image_sha256": "17808a40246e33dd6c0ada0ca898f6ed99c919266641132bbfc15964b4e112f5"
     },
     {
       "date": "2026-10-27",
@@ -32,7 +35,8 @@
       "gap": "vps-ddos-coverage-null-routing",
       "target_query": "VPS DDoS protection null route policy",
       "status": "ready",
-      "sha256": "8c749f166fa74412644323fefb03445c4438e9b3e4df2153013705e09923a5ba"
+      "sha256": "093f02aed3818b21c5dab1a0baccb8201e985a53a357e38b648fe31a5d2c82be",
+      "image_sha256": "a75b647777454932ed2a1035c3965780a6ba3240bbb59538a50a150fbd2f1b62"
     },
     {
       "date": "2026-10-28",
@@ -40,7 +44,8 @@
       "gap": "vps-smtp-outbound-email-eligibility",
       "target_query": "cheap VPS SMTP email restrictions",
       "status": "ready",
-      "sha256": "fe8cd71d1d42fd5055f3d0538eba1e3c2cfcc3d5fba88bfcedbd88bd27b23d5e"
+      "sha256": "4d4ed4a6270af284a6e7c24eeb7e8a9bec4e288bb519c1d8ea6afde99c6450bd",
+      "image_sha256": "fb1b19b19dbcd781d11340d64fb01e5207ca627c040efbde55c9f41e3ed79a54"
     },
     {
       "date": "2026-10-29",
@@ -48,7 +53,8 @@
       "gap": "vps-control-panel-license-choice",
       "target_query": "does VPS need paid control panel",
       "status": "ready",
-      "sha256": "ec35fa12e315debd8bd7a0515099250115cad6f5224254ca479b7a3578628874"
+      "sha256": "1de100b94dbfb4a2735a826cd2ba554bcd8307e07b542a502459df74e1b3150f",
+      "image_sha256": "248748c0a72410153c11ef11a46c435486ab557b74e36fcb41912e0c96f68041"
     },
     {
       "date": "2026-10-30",
@@ -56,7 +62,8 @@
       "gap": "vps-order-identity-verification-policy",
       "target_query": "VPS identity verification before purchase",
       "status": "ready",
-      "sha256": "cf6c007d040ea3f48180de656c9b725f64e8bdd68023b4c0eae0e9a13e293037"
+      "sha256": "e62c07d9b16c1df4794c7df65bd4f5b8c4801602ac3cd4460d796eeeaed08989",
+      "image_sha256": "15199d2b4e762706c615d69673aca3eda4b713fd203f042d4435a19aa61b5753"
     },
     {
       "date": "2026-10-31",
@@ -64,7 +71,8 @@
       "gap": "vps-sla-credit-claim-conditions",
       "target_query": "VPS SLA service credit terms",
       "status": "ready",
-      "sha256": "8ff01a7915b5f3dce2cd4b15181ecbd53e212c59623d2fa2e08d296d102403da"
+      "sha256": "1c46d20dca3cf13bf4ddf42df58f0667c7d921bc634a55a56c7397e0479fd251",
+      "image_sha256": "0cd7349c0ac2e226b64f96f1f39a8153606ab66c7f7834146008215c1df54154"
     },
     {
       "date": "2026-11-01",
@@ -72,7 +80,8 @@
       "gap": "linux-vps-disk-space-inode-diagnosis",
       "target_query": "Linux VPS disk full inodes",
       "status": "ready",
-      "sha256": "1debf4aea202e8908d998ed9b4be6977b3ee3fe3862cb9e6998a65bd47e42a51"
+      "sha256": "fe6883831a2788fa5ab76176fe381304d4912ed0b31e20e5e9df0b1119ca54e2",
+      "image_sha256": "da6fd47122cddb333341d5ba8ef762d46da0a40cf565279f4f3396fb3aee79bd"
     },
     {
       "date": "2026-11-02",
@@ -80,7 +89,8 @@
       "gap": "vps-ssh-lockout-console-recovery",
       "target_query": "locked out of VPS SSH recovery",
       "status": "ready",
-      "sha256": "d70bdce969685a252a82d7d4329c9ad3afeba7874850237842ede64f61a64cbc"
+      "sha256": "7d6383ac4f145ac8f67a2cc712324f5ca21f43220927397002858c8aee1fd8af",
+      "image_sha256": "94910f6d5161029f03343014148482afc9bdb2d49a8d1c7699899004b3b3e4f7"
     },
     {
       "date": "2026-11-03",
@@ -88,7 +98,8 @@
       "gap": "vps-cloud-init-first-boot-validation",
       "target_query": "VPS cloud init user data first boot",
       "status": "ready",
-      "sha256": "e37d877af96f88c69a4f55f99796ea24bc82da9be0e859d392711c86da5a1448"
+      "sha256": "04e7410f613d22dba2858a4bc3545ae42a2903f720128788752f7afed35c77ba",
+      "image_sha256": "7e68dd339ed47960455f535a0a6103fc60dd9e5fd042f7ff4d737570ec39d9d2"
     },
     {
       "date": "2026-11-04",
@@ -96,7 +107,8 @@
       "gap": "vps-storage-lifecycle-persistence",
       "target_query": "VPS persistent ephemeral storage rebuild delete",
       "status": "ready",
-      "sha256": "6b7f8e4789a2568da9efc020f85ae2a0e984e6f54cb19cff9ec48ec28cf516f1"
+      "sha256": "291508e9386da007cf56a59365bb5a7e92a855f803c016a50253d08f93d61b62",
+      "image_sha256": "3099891d123e6c4de406b2e77f1a4feb7573c93839dc5eebfe99e984833bea17"
     },
     {
       "date": "2026-11-05",
@@ -104,7 +116,8 @@
       "gap": "vps-docker-log-retention-disk-growth",
       "target_query": "Docker logs filling VPS disk retention",
       "status": "ready",
-      "sha256": "6337c84440df6da9d0bb6d1ec0ec4dfe6ffad2415df728a653c5aebe4d151334"
+      "sha256": "a536b2aab8df213a1e930db7342373f18c613dea1cf936c40ec994b3f3ae1cea",
+      "image_sha256": "071f8db5b8380b8629d92cc9a4ba11003e5a613558d0623934a3980df890f48d"
     },
     {
       "date": "2026-11-06",
@@ -112,7 +125,8 @@
       "gap": "vps-assigned-ip-reputation-remediation",
       "target_query": "VPS IP reputation assigned address checklist",
       "status": "ready",
-      "sha256": "1887379e43015362f989749cb003e95f7bc025d18b33a958b33d3ca3df17013b"
+      "sha256": "5ff72d334d0090eff265f87b3f94004f87a1b04f71e625e2828c58f4f69c8e1c",
+      "image_sha256": "6aabef95a5b702971d3ee8dbfa6f101e012d13eaf5e79a51c6d521803318125b"
     }
   ]
 }
