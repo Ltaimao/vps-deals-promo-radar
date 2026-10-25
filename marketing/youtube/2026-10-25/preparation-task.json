@@ -1,0 +1,14 @@
+{
+  "title": "YouTube 内容准备与引流复盘",
+  "enabled": true,
+  "scope": "content preparation and GA4 website-referral review only; no YouTube uploads",
+  "timezone": "Asia/Shanghai",
+  "days": [
+    "Monday",
+    "Thursday",
+    "Saturday"
+  ],
+  "approximateLocalTime": "15:00",
+  "publishingAutomationEnabled": false,
+  "publishingBlocker": "caller credential and authenticated channel/current upload verification pending"
+}

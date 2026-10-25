@@ -1,0 +1,27 @@
+{
+  "asOf": "2026-10-25",
+  "handoverFilesUsedAsReference": [
+    "youtube-handover-2026-10-25.md",
+    "youtube-handover-2026-10-25 (1).md"
+  ],
+  "serverDualTokenRoutingPresent": true,
+  "serverSecretNamesPresent": true,
+  "secretValidityVerified": false,
+  "localCallerCredentialPresent": false,
+  "metricoolYouTubeConnected": false,
+  "windsorYouTubeConnected": false,
+  "historicalUploadReceiptCountBothSites": 54,
+  "publicInventoryVerified": false,
+  "ga4Window": {
+    "from": "2026-09-25",
+    "to": "2026-10-22"
+  },
+  "ga4YouTubeMatchingRows": 0,
+  "ga4Limit": "Completed empty filtered report; no universal zero-traffic claim",
+  "newUploadsAttempted": 0,
+  "existingVideosDeleted": 0,
+  "publicationBlockedBy": [
+    "Missing caller credential or connected publisher",
+    "Authenticated channel identity and current upload inventory not yet verified"
+  ]
+}

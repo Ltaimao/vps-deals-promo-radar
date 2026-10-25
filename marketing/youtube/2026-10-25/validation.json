@@ -1,0 +1,20 @@
+{
+  "asOf": "2026-10-25",
+  "scriptPackages": 6,
+  "longScripts": 4,
+  "shortScripts": 2,
+  "checks": [
+    "Unique content IDs",
+    "Expected channel IDs consistent with provisional channel config",
+    "Narration and shot list present",
+    "UTM points to relevant site",
+    "Narration domain spelled for speech",
+    "Capture assets from actual website, visually reviewed",
+    "Source images are not finished videos"
+  ],
+  "finalVideosReady": 0,
+  "scheduledUploads": 0,
+  "uploadsAttempted": 0,
+  "noProductionCodeOrSecretsChanged": true,
+  "accessState": "awaiting secure caller credential migration or connected publisher and authenticated identity verification"
+}
