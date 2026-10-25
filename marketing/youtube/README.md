@@ -1,6 +1,6 @@
 # YouTube 网站推广运营
 
-> 当前交接：Muse 已回填 vw-y001 的实际视频 `QXW-Ty9ECZY` 与 2026-10-25 13:00:33 北京时间发布记录，禁止重复上传。其自定义缩略图/字幕尚未附加，见 [Muse 回执](records/muse-vw-y001.json)。vw-y002（10月30日）与 vw-y003（11月1日）为新成片，状态以 [发布交接](2026-10-25/PUBLISHER_HANDOFF.md) 和各 handoff 文件为准。日期为建议；本方不操作 VPS YouTube 发布。
+> 当前交接：Muse 已回填 vw-y001 的实际视频 `QXW-Ty9ECZY` 与 2026-10-25 13:00:33 北京时间发布记录，禁止重复上传。其自定义缩略图/字幕尚未附加，见 [Muse 回执](records/muse-vw-y001.json)。vw-y002（10月30日）与 vw-y003（11月1日）为已部署并完成公开 URL/哈希核验的新成片，两个交付包均可供 Muse 发布。状态以 [发布交接](2026-10-25/PUBLISHER_HANDOFF.md) 和各 handoff 文件为准。日期为建议；本方不操作 VPS YouTube 发布。
 
 
 > **站主最新分工 — 2026-10-25：VPS 的 YouTube 实际发布由 Muse 负责。** ChatGPT 负责内容制作与发布计划：选题、脚本、成片、缩略图、标题描述、引流链接、质检和交付包；不创建 VPS 的 YouTube/Metricool 排程、不上传/删除视频，也不因连接出现而自动启用发布。纹身站仍由本方完整运营。请优先阅读 [发布交接](2026-10-25/PUBLISHER_HANDOFF.md) 和 [建议发布计划](2026-10-25/publication-plan.json)。下方为接手时通用/历史方案，不能覆盖这项最新分工。

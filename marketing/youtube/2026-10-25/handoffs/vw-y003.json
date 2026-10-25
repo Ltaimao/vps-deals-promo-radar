@@ -1,8 +1,8 @@
 {
   "contentId": "vw-y003",
   "mediaVersion": "v1",
-  "ready_for_publisher": false,
-  "state": "media_qa_passed_awaiting_public_host_verification",
+  "ready_for_publisher": true,
+  "state": "ready_for_muse",
   "publishingOwner": "muse",
   "ourRole": "content_and_publication_plan",
   "ourYouTubePublishingEnabled": false,
@@ -41,7 +41,7 @@
     "mediaVersion": "v1",
     "targetChannelId": "UCfgVJrtBJSeViu95AnaQxyA",
     "title": "A vCPU Number Is Not a Sustained-Use Promise",
-    "description": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y003\n\nMore advertised virtual CPUs do not settle a continuous-use question. Check allocation, written usage limits and the response to a busy workload. The illustration is conceptual, not measured CPU data.\n\nFull checklist on this channel: Shared vCPU VPS: Check Fair Use Before Buying — https://youtu.be/QXW-Ty9ECZY . Open the full video description for the guide link. Related-video setup must be verified by the publisher; no configured button is claimed. Narration is synthesized. Some official-site links on VPS Deals Wire are affiliate links; we may earn a commission at no extra cost to you.",
+    "description": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y003\n\nMore advertised virtual CPUs do not settle a continuous-use question. Check allocation, written usage limits and the response to a busy workload. The illustration is conceptual, not measured CPU data.\n\nFull checklist on this channel: Shared vCPU VPS: Check Fair Use Before Buying \u2014 https://youtu.be/QXW-Ty9ECZY . Open the full video description for the guide link. Related-video setup must be verified by the publisher; no configured button is claimed. Narration is synthesized. Some official-site links on VPS Deals Wire are affiliate links; we may earn a commission at no extra cost to you.",
     "language": "en",
     "tags": [
       "VPS",
@@ -73,5 +73,8 @@
   "actualPublishedAt": null,
   "review7At": null,
   "review28At": null,
-  "instruction": "Muse verifies identity/current uploads/previous attempts before publication; preserve old videos. Attach the delivered thumbnail/captions where supported and report actual attachment status. Resolve related-video capability rather than claiming it configured."
+  "instruction": "Muse verifies identity/current uploads/previous attempts before publication; preserve old videos. Attach the delivered thumbnail/captions where supported and report actual attachment status. Resolve related-video capability rather than claiming it configured.",
+  "publicHostingVerified": true,
+  "publicHostingEvidence": "../production/vw-y003/live-hosting.json",
+  "handedOffAt": "2026-10-25T12:42:49.807Z"
 }

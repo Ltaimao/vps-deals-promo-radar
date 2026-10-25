@@ -41,7 +41,7 @@
       "title": "Choose a VPS Location: Distance Is Only the Starting Point",
       "landingPage": "https://www.vpsdealswire.com/articles/choose-vps-location-latency/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y002",
       "script": "scripts/vw-y002.md",
-      "mediaState": "media_qa_passed_awaiting_public_host_verification",
+      "mediaState": "ready_for_muse",
       "videoSourceUrl": "https://www.vpsdealswire.com/videos/vw-y002.mp4",
       "mediaSha256": "7b8c39fb7e8cc122b0f2f843b4438261c3270d6c95834970af421ae10460b9f7",
       "thumbnailUrl": "https://www.vpsdealswire.com/vw-y002-thumbnail.jpg",
@@ -50,7 +50,7 @@
       "youtubeVideoId": null,
       "youtubeUrl": null,
       "actualPublishedAt": null,
-      "readyForPublisher": false,
+      "readyForPublisher": true,
       "handoff": "handoffs/vw-y002.json"
     },
     {
@@ -63,7 +63,7 @@
       "title": "A vCPU Number Is Not a Sustained-Use Promise",
       "landingPage": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y003",
       "script": "scripts/vw-y003.md",
-      "mediaState": "media_qa_passed_awaiting_public_host_verification",
+      "mediaState": "ready_for_muse",
       "videoSourceUrl": "https://www.vpsdealswire.com/videos/vw-y003.mp4",
       "mediaSha256": "1f04bc0903d4a03b6c0060a6c38a7b02604edc120df5f1670e1170ba2e942c08",
       "thumbnailUrl": "https://www.vpsdealswire.com/vw-y003-thumbnail.jpg",
@@ -72,7 +72,7 @@
       "youtubeVideoId": null,
       "youtubeUrl": null,
       "actualPublishedAt": null,
-      "readyForPublisher": false,
+      "readyForPublisher": true,
       "handoff": "handoffs/vw-y003.json"
     },
     {
