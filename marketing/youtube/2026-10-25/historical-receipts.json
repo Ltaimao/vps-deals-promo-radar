@@ -1,0 +1,502 @@
+{
+  "readAt": "2026-10-25",
+  "source": "Existing Cloudflare KV yt:last: receipts (read-only)",
+  "note": "Both sites combined. Not a current public-video list; channel, privacy and deletion state unknown. Preserve all records and reconcile before uploads.",
+  "records": [
+    {
+      "videoId": "-xJTl9ehC6c",
+      "slug": "how-much-does-a-vps-cost-per-month",
+      "title": "How Much Does a VPS Cost Per Month? Real Numbers From 225 Live Prices",
+      "uploadReceiptAt": "2026-10-06T01:07:08.355Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "1176l55rA4k",
+      "slug": "can-you-run-vpn-on-cheapest-vps",
+      "title": "Can You Run a VPN on the Cheapest VPS Plan? A Q&A With Real Prices",
+      "uploadReceiptAt": "2026-10-07T01:04:51.407Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "1In1Czez9_0",
+      "slug": "5-cover-up-mistakes",
+      "title": "5 Cover-Up Mistakes That Make Bad Tattoos Worse",
+      "uploadReceiptAt": "2026-10-12T12:16:33.281Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "1YpNo6ghJxg",
+      "slug": "cheap-vps-hourly-vs-monthly-pricing",
+      "title": "Why Some \"Cheap VPS\" Lists Show $0.01 Plans: Hourly vs Monthly Pricing, With Real Numbers",
+      "uploadReceiptAt": "2026-10-04T00:58:45.906Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "2nbMe4g9VZs",
+      "slug": "why-are-some-vps-so-cheap",
+      "title": "Why Are Some VPS Plans So Cheap? A Q&A on the Catch Behind Ultra-Cheap Prices",
+      "uploadReceiptAt": "2026-10-08T09:02:41.669Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "2oLUWaGNKUE",
+      "slug": "tattoo-templates-guide",
+      "title": "5 Tattoo Template Mistakes That Ruin Your Ink by Year 10 (2026 Guide)",
+      "uploadReceiptAt": "2026-10-20T01:22:57.863Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "3JHToo8SyLA",
+      "slug": "which-vps-providers-raised-prices-2026",
+      "title": "Which VPS Providers Raised Prices in 2026? 6 Confirmed Hikes (and 273 Plans That Didn't Move)",
+      "uploadReceiptAt": "2026-10-08T09:02:35.706Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "5XeYHAWvX3M",
+      "slug": "intro-price-vs-flat-rate-24-month-math",
+      "title": "Intro Price vs Flat Rate: The 24-Month Math Behind Cheap VPS Deals",
+      "uploadReceiptAt": "2026-10-11T01:17:12.323Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "91VEYh-XZDM",
+      "slug": "tattoo-stencil-guide",
+      "title": "Tattoo Stencils Explained: How Artists Transfer Your Design",
+      "uploadReceiptAt": "2026-10-11T04:01:57.850Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "9nex7NINvPI",
+      "slug": "what-happens-when-vps-exceeds-bandwidth",
+      "title": "What Happens When Your VPS Exceeds Its Bandwidth Limit? Overage Fees vs Throttling",
+      "uploadReceiptAt": "2026-10-10T01:16:35.867Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "AAMewRiZ0Mo",
+      "slug": "tattoo-templates-shorts",
+      "title": "Stop Wasting Hours on Tattoo Templates — 1 Free AI Generator (2026)",
+      "uploadReceiptAt": "2026-10-20T01:22:05.313Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "C0YBJ22CSis",
+      "slug": "cheap-vps-drip-pricing-first-year-vs-renewal",
+      "title": "$6.49 First, $11.99 on Renewal: A Q&A on Drip Pricing in Cheap VPS Ads",
+      "uploadReceiptAt": "2026-10-08T01:06:10.491Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "DMxuEsToVMk",
+      "slug": "vps-price-landscape-shorts",
+      "title": "€1.67/Month: We Ranked 214 Cheap VPS Deals (2026)",
+      "uploadReceiptAt": "2026-10-20T01:22:14.155Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "DxqGfJSQw6k",
+      "slug": "downgrade-80-dollar-vps-guide",
+      "title": "Paying $80/Month for a VPS? Here's What $5, $10, and $20 Actually Buy",
+      "uploadReceiptAt": "2026-10-09T01:06:42.264Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "FZhw9Dk5adM",
+      "slug": "5-cheap-vps-2026-tested-ranked-v2",
+      "title": "5 Cheap VPS 2026: From $2/mo — Tested & Ranked",
+      "uploadReceiptAt": "2026-10-15T08:37:35.627Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "GPoATpC8hi4",
+      "slug": "printable-outline-tattoo-stencil-designs",
+      "title": "7 Printable Outline Tattoo Stencil Mistakes That Ruin Your Transfer (2026)",
+      "uploadReceiptAt": "2026-10-16T01:15:09.238Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "IM_o7qhtNtw",
+      "slug": "tattoo-cover-up-guide",
+      "title": "3 Tattoo Cover-Up Rules That Decide Success — or a Bigger Regret (2026)",
+      "uploadReceiptAt": "2026-10-13T01:10:34.587Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "I_0r7L5PCek",
+      "slug": "tattoo-sleeve-ideas",
+      "title": "7 Tattoo Sleeve Ideas That Won't Waste 20 Hours in the Chair (2026 Guide)",
+      "uploadReceiptAt": "2026-10-14T01:09:11.285Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "ImMIofyEuPA",
+      "slug": "yt-api-test",
+      "title": "API upload test — will be deleted",
+      "uploadReceiptAt": "2026-10-01T09:15:24.031Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "J1MXSDQjRZU",
+      "slug": "cheap-vps-renewal-prices",
+      "title": "Do Cheap VPS Prices Jump on Renewal? A Q&A on Renewals and Hidden Fees",
+      "uploadReceiptAt": "2026-10-03T01:04:50.334Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "L9ZruSivs3k",
+      "slug": "cheap-vps-money-back-guarantee-guide",
+      "title": "10 Verified Refund Windows: Why Cheap VPS Annual Deals Have No Refund (2026)",
+      "uploadReceiptAt": "2026-10-17T01:08:53.981Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "LfOsi8cGqHk",
+      "slug": "do-cheap-vps-plans-include-backups",
+      "title": "Are Backups Included in Cheap VPS Plans? The 9-of-214 Truth (2026)",
+      "uploadReceiptAt": "2026-10-16T01:00:48.573Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "MecGEC2Iuqg",
+      "slug": "how-many-websites-one-cheap-vps",
+      "title": "How Many Websites Can One Cheap VPS Host? Real Prices, Per-Site Math",
+      "uploadReceiptAt": "2026-10-13T01:08:45.400Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "OKk3yqd1W3w",
+      "slug": "5-cheap-vps-2026-tested-ranked",
+      "title": "5 Cheap VPS 2026: From $2/mo — Tested & Ranked",
+      "uploadReceiptAt": "2026-10-12T12:16:38.912Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "OW9bIEJB86A",
+      "slug": "tattoo-cover-up-guide",
+      "title": "Tattoo Cover Up: What Actually Works (and What Artists Wish You Knew)",
+      "uploadReceiptAt": "2026-10-12T08:51:12.624Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "P2b74AEDPqg",
+      "slug": "cheap-vps-hourly-vs-monthly-pricing",
+      "title": "Why Some \"Cheap VPS\" Lists Show $0.01 Plans: Hourly vs Monthly Pricing, With Real Numbers",
+      "uploadReceiptAt": "2026-10-08T09:02:44.663Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "RW7-CXPL0bM",
+      "slug": "printable-outline-tattoo-stencil-designs",
+      "title": "7 Printable Outline Tattoo Stencil Mistakes That Ruin Your Transfer (2026)",
+      "uploadReceiptAt": "2026-10-16T01:13:50.575Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "UGbeEOrgQRA",
+      "slug": "tattoo-templates-shorts",
+      "title": "Stop Wasting Hours on Tattoo Templates — 1 Free AI Generator (2026)",
+      "uploadReceiptAt": "2026-10-20T01:21:58.127Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "UyVReSaH1Uo",
+      "slug": "kvm-vs-lxc-which-to-buy",
+      "title": "KVM vs LXC on a Cheap VPS: Which Should You Buy? A Q&A With Real Prices (2026)",
+      "uploadReceiptAt": "2026-10-20T01:04:01.628Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "VcAKHX4XtZU",
+      "slug": "is-arm-vps-slower-than-x86",
+      "title": "Is an ARM VPS Slower Than x86? A Q&A With Real Prices (2026)",
+      "uploadReceiptAt": "2026-10-22T01:03:27.662Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "Vy0iPH7cshw",
+      "slug": "is-there-a-cheap-windows-vps-under-5",
+      "title": "Is There a Cheap Windows VPS Under $5? A Q&A With Real Prices (2026)",
+      "uploadReceiptAt": "2026-10-18T01:04:59.973Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "WRpcCV_JZ2w",
+      "slug": "do-cheap-vps-providers-include-ipv6",
+      "title": "Do Cheap VPS Providers Include IPv6? A Q&A With Real Prices",
+      "uploadReceiptAt": "2026-10-14T01:11:43.791Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "X-QMpGE1hbw",
+      "slug": "can-cheap-vps-surprise-bill",
+      "title": "Can a Cheap VPS Hit You With a Surprise Bill? A Fixed-vs-Hourly Q&A",
+      "uploadReceiptAt": "2026-10-12T01:07:40.242Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "ZQV3w7wTOOg",
+      "slug": "tattoo-ideas-for-women",
+      "title": "40 Tattoo Ideas for Women: Delicate, Bold, and Everything Between",
+      "uploadReceiptAt": "2026-10-11T04:01:17.054Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "ZW6aVM7_PHY",
+      "slug": "migrate-wordpress-to-cheap-vps-checklist",
+      "title": "How to Move Your Site to a Cheap VPS Without Downtime: A Checklist Guide (2026)",
+      "uploadReceiptAt": "2026-10-23T01:00:53.528Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "ZqntVv23Ong",
+      "slug": "cheap-vps-minecraft-server-ram-guide",
+      "title": "How Much RAM Does a Minecraft Server Need on a Cheap VPS? A Per-Player Sizing Guide (2026)",
+      "uploadReceiptAt": "2026-10-19T01:12:35.769Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "_PDEGzWUwyc",
+      "slug": "tattoo-design-guide",
+      "title": "Tattoo Design: 7 Questions Your Design Must Answer Before You Book",
+      "uploadReceiptAt": "2026-10-11T04:02:03.407Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "aYrBnumKlzc",
+      "slug": "cheap-vps-use-case-picks",
+      "title": "Which Cheap VPS for Which Job: A Scenario-First Pick Guide",
+      "uploadReceiptAt": "2026-10-08T09:02:51.416Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "azSXtBwZQY4",
+      "slug": "managed-vs-unmanaged-vps-decision-guide",
+      "title": "Managed vs Unmanaged VPS: The $4.54/mo Truth and the 3 Questions That Decide It (2026)",
+      "uploadReceiptAt": "2026-10-15T01:03:43.101Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "cWkFDPyFlKE",
+      "slug": "why-are-some-vps-so-cheap",
+      "title": "Why Are Some VPS Plans So Cheap? A Q&A on the Catch Behind Ultra-Cheap Prices",
+      "uploadReceiptAt": "2026-10-05T00:58:49.534Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "di5piXsNYFM",
+      "slug": "design-tattoo-stencil-guide",
+      "title": "How to Design a Tattoo Stencil at Home: The 5-Step Workflow (2026 Guide)",
+      "uploadReceiptAt": "2026-10-15T01:14:51.780Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "eQaWpCZBDcc",
+      "slug": "black-and-white-tattoo-stencil-designs",
+      "title": "3 Black and White Stencil Mistakes That Destroy Your Tattoo (2026 Guide)",
+      "uploadReceiptAt": "2026-10-18T01:12:31.734Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "fCTyfOBATSA",
+      "slug": "is-cheap-vps-deal-legit-or-scam",
+      "title": "Is That $1/Month VPS Deal Legit or a Scam? A 5-Check Vetting Guide (2026)",
+      "uploadReceiptAt": "2026-10-21T01:19:15.963Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "hjpT84Gipyg",
+      "slug": "tattoo-design-guide",
+      "title": "test dual token",
+      "uploadReceiptAt": "2026-10-12T03:06:51.769Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "id3grVuGIeQ",
+      "slug": "can-you-run-vpn-on-cheapest-vps",
+      "title": "Can You Run a VPN on the Cheapest VPS Plan? A Q&A With Real Prices",
+      "uploadReceiptAt": "2026-10-08T09:02:32.898Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "jXJ8L2lFa_k",
+      "slug": "cheap-vps-use-case-picks",
+      "title": "Which Cheap VPS for Which Job: A Scenario-First Pick Guide",
+      "uploadReceiptAt": "2026-10-02T00:59:11.456Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "jsDPIkyl-Fc",
+      "slug": "cheap-vps-drip-pricing-first-year-vs-renewal",
+      "title": "$6.49 First, $11.99 on Renewal: A Q&A on Drip Pricing in Cheap VPS Ads",
+      "uploadReceiptAt": "2026-10-08T09:02:55.918Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "kQRTsI2Fh0g",
+      "slug": "cheap-vps-renewal-prices",
+      "title": "Do Cheap VPS Prices Jump on Renewal? A Q&A on Renewals and Hidden Fees",
+      "uploadReceiptAt": "2026-10-08T09:02:47.709Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "qubOf9V-Drs",
+      "slug": "which-vps-providers-raised-prices-2026",
+      "title": "Which VPS Providers Raised Prices in 2026? (6 Hikes, 273 Plans Unchanged)",
+      "uploadReceiptAt": "2026-10-06T08:26:38.522Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "tT7ujubsisk",
+      "slug": "how-much-does-a-vps-cost-per-month",
+      "title": "How Much Does a VPS Cost Per Month? Real Numbers From 225 Live Prices",
+      "uploadReceiptAt": "2026-10-08T09:02:38.837Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "twx2NDeLjoA",
+      "slug": "half-sleeve-tattoo-stencil",
+      "title": "3 Mistakes That Ruin Half Sleeve Tattoo Stencils (2026 Guide)",
+      "uploadReceiptAt": "2026-10-19T01:10:55.405Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "tyJCQi7gC30",
+      "slug": "flower-tattoo-stencil-guide",
+      "title": "5 Flower Tattoo Stencil Mistakes That Ruin Your Floral Ink (2026 Guide)",
+      "uploadReceiptAt": "2026-10-21T01:27:32.745Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "uLAUM1j2OuY",
+      "slug": "forearm-tattoo-stencils",
+      "title": "7 Forearm Stencil Mistakes That Ruin a Visible Tattoo (2026 Guide)",
+      "uploadReceiptAt": "2026-10-17T01:09:03.075Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "v3SUN7wzZWQ",
+      "slug": "flower-sleeve-tattoo-stencil",
+      "title": "7 Reasons Your Flower Sleeve Stencil Will Fail on the Arm (2026)",
+      "uploadReceiptAt": "2026-10-22T01:38:30.493Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    },
+    {
+      "videoId": "w5Pjd7xwoNI",
+      "slug": "tattoo-styles-guide",
+      "title": "6 Tattoo Styles: Pick the Wrong One and Regret It for 10 Years (2026 Guide)",
+      "uploadReceiptAt": "2026-10-13T01:09:58.158Z",
+      "actualChannelId": null,
+      "currentPrivacy": null,
+      "state": "historical_upload_receipt_unverified"
+    }
+  ]
+}
