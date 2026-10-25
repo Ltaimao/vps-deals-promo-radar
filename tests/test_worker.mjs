@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-const source=readFileSync(new URL('../worker/api.js',import.meta.url));
+const source=Buffer.from(readFileSync(new URL('../worker/api.js',import.meta.url),'utf8').replace('import { DurableObject } from "cloudflare:workers";', 'class DurableObject { constructor(ctx, env) { this.ctx = ctx; this.env = env; } }'));
 const {default:worker}=await import('data:text/javascript;base64,'+source.toString('base64'));
 class KV {
  constructor(){this.map=new Map();this.writes=[];}

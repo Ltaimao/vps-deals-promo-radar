@@ -40,7 +40,7 @@ jobs:
           node-version: "22"
 
       - name: Test independent Worker logic (mocked services)
-        run: node --test tests/test_worker.mjs
+        run: node --test tests/test_*.mjs
 
       - name: Install wrangler
         run: npm install --no-save wrangler@4.152.0

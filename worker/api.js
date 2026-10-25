@@ -1,3 +1,5 @@
+import { DurableObject } from "cloudflare:workers";
+
 /**
  * vpsdealswire-api — subscription + price-drop alerts for vpsdealswire.com
  *
@@ -576,6 +578,9 @@ export default {
     }
     if (url.pathname === "/api/health") {
       return json({ ok: true, version: "phase4-2" });
+    }
+    if (url.pathname.startsWith("/api/youtube/jobs/")) {
+      return handleYouTubeJob(request, env);
     }
     if (url.pathname === "/api/youtube/publish" && request.method === "POST") {
       return handleYouTubePublish(request, env);
@@ -1177,4 +1182,255 @@ async function handleGscQuery(request, env) {
     }));
   }
   return json(out);
+}
+// Management-created capability jobs. Tokens and OAuth secrets never leave the server.
+const YTP_CHANNELS = Object.freeze({
+  tattoo: { id: "UCQ8j4vfF-Oosb0PVlaXdvmA", site: "https://www.tattoodoodle.com", prefix: YT_VIDEO_PREFIX_TATTOO },
+  vps: { id: "UCfgVJrtBJSeViu95AnaQxyA", site: SITE, prefix: YT_VIDEO_PREFIX },
+});
+const YTP_MAX_BYTES = 24 * 1024 * 1024;
+const YTP_ID = /^[a-z0-9][a-z0-9-]{1,79}$/;
+const YTP_UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/;
+
+function ytpError(code) { throw new Error(code); }
+async function ytpBytes(response, limit) {
+  const declared = Number(response.headers.get("content-length") || 0);
+  if (declared > limit) ytpError("response_too_large");
+  const reader = response.body?.getReader();
+  if (!reader) ytpError("empty_response");
+  const chunks = []; let size = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > limit) ytpError("response_too_large");
+      chunks.push(value);
+    }
+  } catch (error) { await reader.cancel().catch(() => {}); throw error; }
+  const bytes = new Uint8Array(size); let offset = 0;
+  for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
+  return bytes;
+}
+async function ytpJson(response) {
+  const raw = await ytpBytes(response, 1024 * 1024);
+  const parsed = JSON.parse(new TextDecoder().decode(raw));
+  if (!response.ok) {
+    const reason = parsed.error?.errors?.[0]?.reason;
+    ytpError("youtube_read_" + response.status + (typeof reason === "string" && /^[A-Za-z0-9_-]+$/.test(reason) ? ":" + reason : ""));
+  }
+  return parsed;
+}
+async function ytpApi(access, path) {
+  return ytpJson(await fetch("https://www.googleapis.com/youtube/v3/" + path, {
+    headers: { Authorization: "Bearer " + access }, signal: AbortSignal.timeout(30000),
+  }));
+}
+async function ytpGrant(env, channel) {
+  const refresh = channel === "tattoo" ? env.YT_REFRESH_TOKEN_TATTOO : env.YT_REFRESH_TOKEN;
+  if (!env.YT_CLIENT_ID || !env.YT_CLIENT_SECRET || !refresh) ytpError("youtube_not_configured");
+  const response = await fetch("https://oauth2.googleapis.com/token", { method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ grant_type: "refresh_token", client_id: env.YT_CLIENT_ID, client_secret: env.YT_CLIENT_SECRET, refresh_token: refresh }), signal: AbortSignal.timeout(30000) });
+  if (!response.ok) { await response.body?.cancel(); ytpError("youtube_token_refresh_failed_" + response.status); }
+  const data = await ytpJson(response);
+  if (!data.access_token) ytpError("youtube_token_missing");
+  let scope = data.scope;
+  if (typeof scope !== "string") {
+    // Google is the token issuer. Never log or return this URL or token.
+    const info = await fetch("https://oauth2.googleapis.com/tokeninfo?access_token=" + encodeURIComponent(data.access_token), { signal: AbortSignal.timeout(30000) });
+    if (!info.ok) { await info.body?.cancel(); ytpError("youtube_scope_unverified"); }
+    scope = (await ytpJson(info)).scope;
+  }
+  const upload = ["youtube.upload", "youtube", "youtube.force-ssl", "youtubepartner"].map(s => "https://www.googleapis.com/auth/" + s);
+  return { access: data.access_token, uploadScopeGranted: typeof scope === "string" && scope.split(/\s+/).some(s => upload.includes(s)) };
+}
+function ytpValidate(job) {
+  if (!job || !YTP_UUID.test(job.id) || !Object.hasOwn(YTP_CHANNELS, job.channel)) ytpError("bad_job");
+  if (!["inspect", "upload", "verify"].includes(job.operation)) ytpError("bad_operation");
+  if (!Number.isFinite(Date.parse(job.expiresAt)) || Date.parse(job.expiresAt) <= Date.now()) ytpError("expired_job");
+  if (!/^[a-f0-9]{64}$/.test(job.tokenSha256 || "")) ytpError("bad_job_auth");
+  const config = YTP_CHANNELS[job.channel];
+  if (job.expectedChannelId !== config.id) ytpError("bad_expected_channel");
+  if (job.operation === "inspect") return config;
+  if (!YTP_ID.test(job.contentId || "")) ytpError("bad_content_id");
+  if (job.operation === "verify") return config;
+  if (typeof job.videoUrl !== "string" || !job.videoUrl.startsWith(config.prefix) || !job.videoUrl.endsWith(".mp4")) ytpError("bad_video_url");
+  if (!YT_SLUG_RE.test(job.videoUrl.slice(config.prefix.length, -4))) ytpError("bad_video_slug");
+  if (!/^[a-f0-9]{64}$/.test(job.mediaSha256 || "")) ytpError("bad_media_sha256");
+  if (typeof job.title !== "string" || !job.title.trim() || job.title.length > 100 || /[<>]/.test(job.title)) ytpError("bad_title");
+  if (typeof job.description !== "string" || !job.description.trim() || job.description.length > 5000) ytpError("bad_description");
+  const landing = new URL(job.description.split("\n")[0].trim());
+  if (landing.origin !== config.site || landing.searchParams.get("utm_source") !== "youtube" || landing.searchParams.get("utm_content") !== job.contentId) ytpError("bad_landing_utm");
+  if (!Number.isFinite(Date.parse(job.publishAt)) || Date.parse(job.publishAt) < Date.now() + 15 * 60000 || Date.parse(job.publishAt) > Date.now() + 31 * 86400000) ytpError("bad_publish_time");
+  if (job.reviewed !== true) ytpError("media_not_reviewed");
+  return config;
+}
+async function handleYouTubeJob(request, env) {
+  // The public caller cannot choose any payload. Only Cloudflare management access
+  // can create the immutable envelope in KV; the short-lived capability is private.
+  if (request.method !== "POST") return json({ ok: false, error: "method_not_allowed" }, 405);
+  const id = new URL(request.url).pathname.slice("/api/youtube/jobs/".length);
+  if (!YTP_UUID.test(id)) return json({ ok: false, error: "not_found" }, 404);
+  try {
+    const job = await env.SUBS.get("yt:job:" + id, "json");
+    if (!job || job.id !== id) return json({ ok: false, error: "not_found" }, 404);
+    ytpValidate(job);
+    const auth = request.headers.get("Authorization") || "";
+    if (!/^Bearer [a-f0-9]{64}$/.test(auth)) return json({ ok: false, error: "unauthorized" }, 401);
+    const actual = new TextEncoder().encode(await sha256(auth.slice(7)));
+    const expected = new TextEncoder().encode(job.tokenSha256);
+    if (!crypto.subtle.timingSafeEqual(actual, expected)) return json({ ok: false, error: "unauthorized" }, 401);
+    if (!env.YT_PUBLISHER) return json({ ok: false, error: "publisher_not_configured" }, 503);
+    const result = await env.YT_PUBLISHER.getByName(job.channel).execute(job);
+    await env.SUBS.put("yt:result:" + id, JSON.stringify(result), { expirationTtl: 90 * 86400 });
+    return json(result, result.ok ? 200 : 409);
+  } catch (error) {
+    const message = String(error?.message || "job_failed");
+    const safe = /^[a-z0-9_:]+$/i.test(message) ? message : "job_failed_check_server_record";
+    return json({ ok: false, error: safe }, safe === "expired_job" ? 410 : 400);
+  }
+}
+async function ytpInventory(access, config) {
+  const identity = await ytpApi(access, "channels?part=snippet,contentDetails&mine=true");
+  const channel = identity.items?.find(item => item.id === config.id);
+  if (identity.items?.length !== 1 || !channel) ytpError("channel_identity_mismatch");
+  const playlist = channel.contentDetails?.relatedPlaylists?.uploads;
+  if (!playlist) ytpError("missing_uploads_playlist");
+  const videos = []; let pageToken;
+  for (let page = 0; page < 10; page++) {
+    const list = await ytpApi(access, "playlistItems?part=contentDetails&maxResults=50&playlistId=" + encodeURIComponent(playlist) + (pageToken ? "&pageToken=" + encodeURIComponent(pageToken) : ""));
+    const ids = (list.items || []).map(item => item.contentDetails?.videoId).filter(Boolean);
+    if (ids.length) {
+      const details = await ytpApi(access, "videos?part=snippet,status,processingDetails&maxResults=50&id=" + ids.map(encodeURIComponent).join(","));
+      for (const video of details.items || []) {
+        if (video.snippet?.channelId !== config.id) ytpError("inventory_channel_mismatch");
+        videos.push({ id: video.id, channelId: video.snippet.channelId, title: video.snippet.title,
+          description: video.snippet.description || "", publishedAt: video.snippet.publishedAt,
+          privacy: video.status?.privacyStatus, publishAt: video.status?.publishAt,
+          processing: video.processingDetails?.processingStatus, uploadStatus: video.status?.uploadStatus });
+      }
+    }
+    pageToken = list.nextPageToken;
+    if (!pageToken) return { channelId: channel.id, channelTitle: channel.snippet?.title, inventoryComplete: true, videos };
+  }
+  ytpError("inventory_requires_more_pages");
+}
+function ytpHasContent(video, contentId, site) {
+  return (video.description || "").split(/\s+/).some(word => {
+    try { const u = new URL(word); return u.origin === site && u.searchParams.get("utm_source") === "youtube" && u.searchParams.get("utm_content") === contentId; }
+    catch { return false; }
+  });
+}
+export class YouTubePublisher extends DurableObject {
+  // One durable coordinator per channel. Sync SQLite-backed KV and an atomic
+  // reservation survive retries, concurrent requests and instance eviction.
+  async execute(job) {
+    const config = ytpValidate(job), kv = this.ctx.storage.kv;
+    const cached = kv.get("job:" + job.id);
+    if (cached && job.operation !== "verify") return cached;
+    const pending = { ok: false, jobId: job.id, channel: job.channel, state: "running", at: new Date().toISOString() };
+    kv.put("job:" + job.id, pending);
+    let attempt;
+    try {
+      const grant = await ytpGrant(this.env, job.channel), access = grant.access;
+      const inventory = await ytpInventory(access, config);
+      if (job.operation === "inspect") return this.finish(job, { ok: true, state: "channel_verified", uploadScopeGranted: grant.uploadScopeGranted, ...inventory });
+      const key = "asset:" + job.contentId;
+      const prior = kv.get(key);
+      const matches = inventory.videos.filter(video => ytpHasContent(video, job.contentId, config.site));
+      if (matches.length > 1) ytpError("duplicate_content_requires_review");
+      if (prior?.videoId || matches.length === 1) {
+        const videoId = prior?.videoId || matches[0].id;
+        if (matches.length && matches[0].id !== videoId) ytpError("content_id_conflict");
+        const stored = { ...(prior || { contentId: job.contentId, state: "adopted_existing", publishAt: matches[0].publishAt }), videoId };
+        kv.put(key, stored);
+        return await this.verify(job, stored, access, config);
+      }
+      if (prior) return this.finish(job, { ok: false, state: prior.state, error: "previous_attempt_requires_reconciliation", contentId: job.contentId });
+      if (job.operation === "verify") ytpError("no_upload_record");
+      if (!grant.uploadScopeGranted) ytpError("youtube_upload_scope_missing");
+      const slug = job.videoUrl.slice(config.prefix.length, -4);
+      // Legacy records have no channel field. Be conservative across both sites.
+      let cursor;
+      do {
+        const page = await this.env.SUBS.list({ prefix: "yt:last:", ...(cursor ? { cursor } : {}) });
+        for (const item of page.keys) {
+          const receipt = await this.env.SUBS.get(item.name, "json");
+          if (receipt?.slug === slug) ytpError("legacy_slug_already_uploaded");
+        }
+        if (!page.list_complete && !page.cursor) ytpError("legacy_inventory_incomplete");
+        cursor = page.list_complete ? undefined : page.cursor;
+      } while (cursor);
+      const landing = job.description.split("\n")[0].trim();
+      const page = await fetch(landing, { redirect: "error", signal: AbortSignal.timeout(30000) });
+      await page.body?.cancel();
+      if (page.status !== 200) ytpError("landing_not_live");
+      const media = await fetch(job.videoUrl, { redirect: "error", signal: AbortSignal.timeout(90000) });
+      if (!media.ok || !(media.headers.get("content-type") || "").toLowerCase().startsWith("video/mp4")) { await media.body?.cancel(); ytpError("media_not_available"); }
+      const bytes = await ytpBytes(media, YTP_MAX_BYTES);
+      if (bytes.byteLength < 16 || new TextDecoder().decode(bytes.slice(4, 8)) !== "ftyp") ytpError("invalid_mp4");
+      const hash = [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))].map(b => b.toString(16).padStart(2, "0")).join("");
+      if (hash !== job.mediaSha256) ytpError("media_hash_mismatch");
+      if (Date.parse(job.publishAt) < Date.now() + 5 * 60000) ytpError("publish_time_too_close");
+      attempt = { contentId: job.contentId, channelId: config.id, jobId: job.id, state: "upload_uncertain", videoUrl: job.videoUrl,
+        mediaSha256: hash, title: job.title, description: job.description, publishAt: job.publishAt, at: new Date().toISOString() };
+      this.ctx.storage.transactionSync(() => {
+        if (kv.get(key)) ytpError("concurrent_content_reservation");
+        if (kv.get("hash:" + hash) || kv.get("slug:" + slug)) ytpError("duplicate_media_or_slug");
+        const day = new Date().toISOString().slice(0, 10), count = kv.get("daily:" + day) || 0;
+        if (count >= 2) ytpError("daily_channel_limit");
+        kv.put(key, attempt); kv.put("hash:" + hash, job.contentId); kv.put("slug:" + slug, job.contentId); kv.put("daily:" + day, count + 1);
+      });
+      await this.ctx.storage.sync(); // Persist reservation before any YouTube write.
+      const init = await fetch("https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status", {
+        method: "POST", headers: { Authorization: "Bearer " + access, "Content-Type": "application/json; charset=UTF-8",
+          "X-Upload-Content-Length": String(bytes.byteLength), "X-Upload-Content-Type": "video/mp4" },
+        body: JSON.stringify({ snippet: { title: job.title.trim(), description: job.description, categoryId: "27" },
+          status: { privacyStatus: "private", publishAt: job.publishAt, selfDeclaredMadeForKids: false } }), signal: AbortSignal.timeout(30000),
+      });
+      if (!init.ok) { await init.body?.cancel(); ytpError("youtube_init_failed_" + init.status); }
+      const session = init.headers.get("location"); await init.body?.cancel();
+      if (!session || !/^https:\/\/(?:www\.)?googleapis\.com\//.test(session)) ytpError("invalid_upload_session");
+      const upload = await fetch(session, { method: "PUT", headers: { "Content-Type": "video/mp4", "Content-Length": String(bytes.byteLength) }, body: bytes, signal: AbortSignal.timeout(90000) });
+      const data = await ytpJson(upload);
+      if (!/^[A-Za-z0-9_-]{11}$/.test(data.id || "")) ytpError("upload_response_missing_id");
+      attempt = { ...attempt, videoId: data.id, state: "uploaded_unverified" }; kv.put(key, attempt);
+      await this.ctx.storage.sync();
+      return await this.verify(job, attempt, access, config);
+    } catch (error) {
+      const raw = String(error?.message || "publisher_error");
+      const safe = /^[a-z0-9_:]+$/i.test(raw) ? raw : "publisher_error_reconcile_before_retry";
+      const current = job.contentId ? kv.get("asset:" + job.contentId) : null;
+      return this.finish(job, { ok: false, state: current?.state || "preflight_failed", error: safe, ...(current?.videoId ? { videoId: current.videoId } : {}) });
+    }
+  }
+  async verify(job, asset, access, config) {
+    const data = await ytpApi(access, "videos?part=snippet,status,processingDetails&id=" + encodeURIComponent(asset.videoId));
+    const video = data.items?.[0];
+    if (!video || video.id !== asset.videoId || video.snippet?.channelId !== config.id) ytpError("video_identity_unverified");
+    if (!ytpHasContent({ description: video.snippet.description }, job.contentId, config.site)) ytpError("video_utm_unverified");
+    if (asset.title && (video.snippet.title !== asset.title.trim() || video.snippet.description !== asset.description)) ytpError("video_metadata_mismatch");
+    const privacy = video.status?.privacyStatus, publishAt = video.status?.publishAt;
+    const processing = video.processingDetails?.processingStatus;
+    let state = "uploaded_unverified";
+    if (["failed", "terminated"].includes(processing) || ["failed", "rejected", "deleted"].includes(video.status?.uploadStatus)) state = "processing_failed";
+    else if (privacy === "public" && (!asset.publishAt || Date.parse(asset.publishAt) <= Date.now())) state = "published";
+    else if (privacy === "private" && asset.publishAt && publishAt && Date.parse(publishAt) === Date.parse(asset.publishAt)) state = "scheduled";
+    const result = { ...asset, channelId: config.id, videoId: video.id, videoUrl: "https://www.youtube.com/watch?v=" + video.id,
+      state, privacy, processing, verifiedPublishAt: publishAt || null, verifiedAt: new Date().toISOString() };
+    if (state === "published") {
+      const time = Date.parse(video.snippet.publishedAt);
+      if (!Number.isFinite(time)) ytpError("publication_time_unverified");
+      result.actualPublishedAt = new Date(time).toISOString();
+      result.review7At = new Date(time + 7 * 86400000).toISOString(); result.review28At = new Date(time + 28 * 86400000).toISOString();
+    }
+    this.ctx.storage.kv.put("asset:" + job.contentId, result);
+    return this.finish(job, { ok: ["scheduled", "published"].includes(state), ...result });
+  }
+  finish(job, result) {
+    const safe = { jobId: job.id, channel: job.channel, ...result };
+    this.ctx.storage.kv.put("job:" + job.id, safe);
+    return safe;
+  }
 }
