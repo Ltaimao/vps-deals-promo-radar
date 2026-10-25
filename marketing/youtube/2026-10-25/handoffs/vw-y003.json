@@ -1,0 +1,77 @@
+{
+  "contentId": "vw-y003",
+  "mediaVersion": "v1",
+  "ready_for_publisher": false,
+  "state": "media_qa_passed_awaiting_public_host_verification",
+  "publishingOwner": "muse",
+  "ourRole": "content_and_publication_plan",
+  "ourYouTubePublishingEnabled": false,
+  "assets": {
+    "video": {
+      "url": "https://www.vpsdealswire.com/videos/vw-y003.mp4",
+      "repositoryPath": "static/videos/vw-y003.mp4",
+      "sha256": "1f04bc0903d4a03b6c0060a6c38a7b02604edc120df5f1670e1170ba2e942c08",
+      "bytes": 501209,
+      "width": 1080,
+      "height": 1920,
+      "durationSeconds": 24.833333,
+      "fps": 24,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "audioRate": 48000
+    },
+    "thumbnail": {
+      "url": "https://www.vpsdealswire.com/vw-y003-thumbnail.jpg",
+      "repositoryPath": "static/vw-y003-thumbnail.jpg",
+      "sha256": "3ec7c3289fa934dc5f2a92d9670b7e197a75d172b1cd235c5602b32e35d0d77d",
+      "bytes": 81222,
+      "width": 720,
+      "height": 1280
+    },
+    "captions": {
+      "url": "https://www.vpsdealswire.com/vw-y003.en.srt",
+      "repositoryPath": "static/vw-y003.en.srt",
+      "sha256": "e73638001ee9de9088af092572ac43be98b901842f97cf34f5f7521da2e3e919",
+      "bytes": 550,
+      "language": "en"
+    }
+  },
+  "metadata": {
+    "contentId": "vw-y003",
+    "mediaVersion": "v1",
+    "targetChannelId": "UCfgVJrtBJSeViu95AnaQxyA",
+    "title": "A vCPU Number Is Not a Sustained-Use Promise",
+    "description": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y003\n\nMore advertised virtual CPUs do not settle a continuous-use question. Check allocation, written usage limits and the response to a busy workload. The illustration is conceptual, not measured CPU data.\n\nFull checklist on this channel: Shared vCPU VPS: Check Fair Use Before Buying — https://youtu.be/QXW-Ty9ECZY . Open the full video description for the guide link. Related-video setup must be verified by the publisher; no configured button is claimed. Narration is synthesized. Some official-site links on VPS Deals Wire are affiliate links; we may earn a commission at no extra cost to you.",
+    "language": "en",
+    "tags": [
+      "VPS",
+      "VPS buying guide",
+      "VPS Deals Wire"
+    ],
+    "madeForKids": false,
+    "isAiGeneratedContent": true,
+    "format": "short",
+    "proposedLocalDate": "2026-11-01",
+    "proposedTime": null,
+    "timezone": "Asia/Shanghai",
+    "publishingOwner": "muse",
+    "captionsStatus": "Prepared SRT delivered; attachment through publisher not yet verified.",
+    "relatedVideoConfigured": false,
+    "shortsDescriptionLinksClickable": false,
+    "relatedVideoCandidate": {
+      "contentId": "vw-y001",
+      "youtubeVideoId": "QXW-Ty9ECZY",
+      "youtubeUrl": "https://youtu.be/QXW-Ty9ECZY",
+      "evidence": "Muse receipt"
+    },
+    "thumbnailNote": "Portrait artwork delivered. Do not claim a custom Shorts thumbnail has been applied; platform selection support is unverified."
+  },
+  "qaRecord": "../production/vw-y003/qa.json",
+  "expectedReceipt": "../../records/muse-vw-y003.json",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "actualPublishedAt": null,
+  "review7At": null,
+  "review28At": null,
+  "instruction": "Muse verifies identity/current uploads/previous attempts before publication; preserve old videos. Attach the delivered thumbnail/captions where supported and report actual attachment status. Resolve related-video capability rather than claiming it configured."
+}

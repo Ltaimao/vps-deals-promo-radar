@@ -1,0 +1,118 @@
+1
+00:00:00,000 --> 00:00:04,280
+The nearest VPS city is a reasonable
+starting point, but it
+
+2
+00:00:04,280 --> 00:00:06,860
+is not proof of the best connection for
+your users.
+
+3
+00:00:07,380 --> 00:00:10,360
+Network routes and the application itself
+also matter.
+
+4
+00:00:11,160 --> 00:00:14,140
+First, identify where the people using the
+service connect
+
+5
+00:00:14,140 --> 00:00:17,620
+from. Do not choose a region only because
+it is close
+
+6
+00:00:17,620 --> 00:00:19,240
+to the person paying the invoice.
+
+7
+00:00:20,300 --> 00:00:24,500
+Next, find the provider's documented test
+facility or looking glass
+
+8
+00:00:24,500 --> 00:00:26,760
+for the region, if one is available.
+
+9
+00:00:26,760 --> 00:00:30,280
+Follow its permitted use and compare from a
+connection representative
+
+10
+00:00:30,280 --> 00:00:34,280
+of your audience. A result from one network
+is an observation,
+
+11
+00:00:34,960 --> 00:00:36,820
+not a worldwide latency guarantee.
+
+12
+00:00:37,820 --> 00:00:40,820
+Record the region, test time, method and
+result.
+
+13
+00:00:41,340 --> 00:00:44,620
+If you have not run a test, label the
+choice as untested.
+
+14
+00:00:45,120 --> 00:00:48,660
+A polished map must not become evidence of
+a measurement that never
+
+15
+00:00:48,660 --> 00:00:51,640
+happened. Then consider the service.
+
+16
+00:00:52,160 --> 00:00:56,260
+Static content behind a suitable delivery
+layer behaves differently from an
+
+17
+00:00:56,260 --> 00:01:00,500
+application that makes repeated requests to
+a distant database.
+
+18
+00:01:01,020 --> 00:01:03,720
+Look at where the dependencies live as well
+as the VPS.
+
+19
+00:01:04,760 --> 00:01:08,740
+Our take: make a small shortlist and a test
+plan before making
+
+20
+00:01:08,740 --> 00:01:13,140
+a long commitment. A slightly different
+route or dependency can matter
+
+21
+00:01:13,140 --> 00:01:15,717
+more than the city name on a plan card.
+
+22
+00:01:15,840 --> 00:01:20,480
+The location guide at vpsdealswire.com has
+the full checklist.
+
+23
+00:01:21,240 --> 00:01:25,300
+Open the description link, compare your
+actual requirements, and verify
+
+24
+00:01:25,300 --> 00:01:27,280
+the candidate region with the provider.
+
+25
+00:01:27,780 --> 00:01:30,440
+This video does not claim a lowest-latency
+winner.

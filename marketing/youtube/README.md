@@ -1,6 +1,7 @@
 # YouTube 网站推广运营
 
-> **vw-y001 已于 2026-10-25 交片，可供 Muse 发布。** [完整素材与元数据包](2026-10-25/handoffs/vw-y001.json)：约 97 秒 1080p 成片、独立缩略图、英文字幕、描述/UTM 均齐备；生产部署与三个公开取片地址的 HTTP200/字节哈希已验证。建议 10 月 27 日，尚未上传或排程。其余五条仍是脚本库存，不能计为成片。
+> 当前交接：Muse 已回填 vw-y001 的实际视频 `QXW-Ty9ECZY` 与 2026-10-25 13:00:33 北京时间发布记录，禁止重复上传。其自定义缩略图/字幕尚未附加，见 [Muse 回执](records/muse-vw-y001.json)。vw-y002（10月30日）与 vw-y003（11月1日）为新成片，状态以 [发布交接](2026-10-25/PUBLISHER_HANDOFF.md) 和各 handoff 文件为准。日期为建议；本方不操作 VPS YouTube 发布。
+
 
 > **站主最新分工 — 2026-10-25：VPS 的 YouTube 实际发布由 Muse 负责。** ChatGPT 负责内容制作与发布计划：选题、脚本、成片、缩略图、标题描述、引流链接、质检和交付包；不创建 VPS 的 YouTube/Metricool 排程、不上传/删除视频，也不因连接出现而自动启用发布。纹身站仍由本方完整运营。请优先阅读 [发布交接](2026-10-25/PUBLISHER_HANDOFF.md) 和 [建议发布计划](2026-10-25/publication-plan.json)。下方为接手时通用/历史方案，不能覆盖这项最新分工。
 
@@ -49,3 +50,4 @@ Read GA4 source/medium and landing-page sessions/engaged sessions. Only report t
 `2026-10-25/queue.json` contains 12 fully written scripts across both sites (six for this site, four horizontal plus two Shorts), each with a title, thumbnail concept, storyboard, landing page and UTM. The proposed dates are editorial targets, **not actual scheduled posts**. State is script_reviewed/media_pending/access_unverified. Do not count these as finished video inventory or scheduled YouTube uploads. Prepare the first long video per site before scaling the full batch; retain at most one week's completed-media stock initially while testing the creative direction.
 
 Routine reporting: meaningful published results, failed publication, wrong channel, authorization changes or a depleted usable stock. Give a short weekly summary of published links, qualified traffic and the next creative decision. No daily vanity-metric report and no unsupported conversion promises.
+

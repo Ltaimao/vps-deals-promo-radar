@@ -2,9 +2,13 @@
 
 2026-10-25 站主指定：ChatGPT 负责内容与发布计划；Muse 负责 YouTube 查重、上传、排程、实际发布核验。站主已转述 Muse 正在等待 vw-y001 成片。禁止将 VPS 内容发到 TattooDoodle 的 Metricool 品牌 7620881。
 
-## 当前可取片
+## 已发布回执与补充事项
 
-**vw-y001：ready_for_publisher=true**。读取 [`handoffs/vw-y001.json`](handoffs/vw-y001.json) 获取全部元数据与 SHA256。成片 https://www.vpsdealswire.com/videos/vw-y001.mp4 ，约 97 秒 1080p；缩略图 https://www.vpsdealswire.com/vw-y001-thumbnail.jpg ；英文字幕 https://www.vpsdealswire.com/vw-y001.en.srt 。三个文件公开 HTTP200、字节哈希与源文件一致，浏览器也解码到 1920×1080 / 96.948667 秒。建议 2026-10-27，尚无实际 YouTube ID 或排程。其余五条素材未完成。
+Muse 已在 `../records/muse-vw-y001.json` 回填 vw-y001：视频 ID `QXW-Ty9ECZY`，链接 https://youtu.be/QXW-Ty9ECZY ，时间 2026-10-25T05:00:33Z（北京时间 13:00:33）；回执称站主另行要求当日发布，覆盖原建议日期。本方引用该回执及其公开 oEmbed 证据，不冒充本方的新认证查询。**不得再次上传 vw-y001。**
+
+Muse 回执同时注明独立缩略图和英文字幕尚未附加。素材仍在原交付包，请 Muse 在其发布权限内补充，或在回执中说明平台/接口限制；不要为补充素材删除重发。复查日按此实际时间计算为 11 月 1 日及 11 月 22 日。
+
+新的待发布包见 `handoffs/vw-y002.json` 与 `handoffs/vw-y003.json`，以各包 `ready_for_publisher` 和公开托管证据为准。
 
 ## 入口与分工
 
@@ -38,7 +42,7 @@
 
 ## 回填约定
 
-请在 `records/muse-<contentId>.json` 写入以下数据；不存在的值保持 null，不编造：
+请在 `../records/muse-<contentId>.json`（即仓库 `marketing/youtube/records/`） 写入以下数据；不存在的值保持 null，不编造：
 
 ```json
 {
@@ -62,3 +66,4 @@
 ```
 
 实际发布时间确定后再计算 7/28 天复查日。效果看网站相关会话和互动；未验证事件与跨工具归因时，不报告逐条视频的购买/下载转化。双方通过仓库交接，不要求站主反复转发素材。
+

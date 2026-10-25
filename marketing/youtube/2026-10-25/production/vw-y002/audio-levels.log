@@ -1,0 +1,48 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/workspace/work/youtube-ops-2026-10-25/production/vw-y002/vw-y002.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf61.7.103
+  Duration: 00:01:31.20, start: 0.000000, bitrate: 184 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080, 69 kb/s, 23.99 fps, 24 tbr, 12288 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.101 libx264
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 108 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+[Parsed_volumedetect_0 @ 0x55a6e970af40] n_samples: 0
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+  Stream #0:1 -> #0:1 (aac (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf61.7.103
+  Stream #0:0(und): Video: wrapped_avframe, yuv420p(progressive), 1920x1080, q=2-31, 200 kb/s, 24 fps, 24 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.101 wrapped_avframe
+  Stream #0:1(und): Audio: pcm_s16le, 48000 Hz, stereo, s16, 1536 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.101 pcm_s16le
+frame=  248 fps=0.0 q=-0.0 size=N/A time=00:00:10.37 bitrate=N/A speed=20.7x    [vf#0:0 @ 0x55a6e96f4f00] Reconfiguring filter graph because video parameters changed to yuv420p(tv, bt470bg), 1920x1080
+frame=  521 fps=521 q=-0.0 size=N/A time=00:00:21.75 bitrate=N/A speed=21.7x    frame=  781 fps=520 q=-0.0 size=N/A time=00:00:32.58 bitrate=N/A speed=21.7x    frame= 1057 fps=528 q=-0.0 size=N/A time=00:00:44.08 bitrate=N/A speed=  22x    frame= 1289 fps=515 q=-0.0 size=N/A time=00:00:53.75 bitrate=N/A speed=21.5x    frame= 1541 fps=513 q=-0.0 size=N/A time=00:01:04.25 bitrate=N/A speed=21.4x    frame= 1802 fps=515 q=-0.0 size=N/A time=00:01:15.12 bitrate=N/A speed=21.5x    frame= 2077 fps=519 q=-0.0 size=N/A time=00:01:26.58 bitrate=N/A speed=21.6x    [Parsed_volumedetect_0 @ 0x7f75ac001d40] n_samples: 8755200
+[Parsed_volumedetect_0 @ 0x7f75ac001d40] mean_volume: -19.8 dB
+[Parsed_volumedetect_0 @ 0x7f75ac001d40] max_volume: -1.0 dB
+[Parsed_volumedetect_0 @ 0x7f75ac001d40] histogram_0db: 2
+[Parsed_volumedetect_0 @ 0x7f75ac001d40] histogram_1db: 447
+[Parsed_volumedetect_0 @ 0x7f75ac001d40] histogram_2db: 2245
+[Parsed_volumedetect_0 @ 0x7f75ac001d40] histogram_3db: 4309
+[Parsed_volumedetect_0 @ 0x7f75ac001d40] histogram_4db: 7971
+[out#0/null @ 0x55a6e973ec00] video:940KiB audio:17100KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame= 2187 fps=524 q=-0.0 Lsize=N/A time=00:01:31.16 bitrate=N/A speed=21.8x    

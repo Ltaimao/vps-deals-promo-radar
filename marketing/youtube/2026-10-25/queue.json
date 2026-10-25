@@ -17,16 +17,16 @@
       "title": "Shared vCPU VPS: Check Fair Use Before Buying",
       "proposedLocalDate": "2026-10-27",
       "timezone": "Asia/Shanghai",
-      "state": "ready_for_muse",
+      "state": "published_reported_by_muse",
       "script": "scripts/vw-y001.md",
       "landingPage": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y001",
       "thumbnailConcept": "What Does Shared Mean?",
       "relatedContentId": null,
-      "videoId": null,
-      "videoUrl": null,
-      "actualPublishedAt": null,
-      "review7At": null,
-      "review28At": null,
+      "videoId": "QXW-Ty9ECZY",
+      "videoUrl": "https://youtu.be/QXW-Ty9ECZY",
+      "actualPublishedAt": "2026-10-25T05:00:33Z",
+      "review7At": "2026-11-01T05:00:33+00:00",
+      "review28At": "2026-11-22T05:00:33+00:00",
       "review": {
         "scriptFactsChecked": true,
         "mediaApproved": true,
@@ -72,7 +72,13 @@
         }
       },
       "publicHostingVerified": true,
-      "handedOffAt": "2026-10-25T04:42:17.872Z"
+      "handedOffAt": "2026-10-25T04:42:17.872Z",
+      "publicationEvidence": "../records/muse-vw-y001.json",
+      "publicationVerification": "Muse upload receipt + reported public oEmbed; not independently authenticated by ChatGPT.",
+      "publisherFollowup": {
+        "customThumbnail": "delivered_not_attached",
+        "englishCaptions": "delivered_not_attached"
+      }
     },
     {
       "contentId": "vw-y002",
@@ -83,7 +89,7 @@
       "title": "Choose a VPS Location: Distance Is Only the Starting Point",
       "proposedLocalDate": "2026-10-30",
       "timezone": "Asia/Shanghai",
-      "state": "script_reviewed_media_pending_external_publisher",
+      "state": "media_qa_passed_awaiting_public_host_verification",
       "script": "scripts/vw-y002.md",
       "landingPage": "https://www.vpsdealswire.com/articles/choose-vps-location-latency/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y002",
       "thumbnailConcept": "Closest Is a Hypothesis.",
@@ -95,7 +101,7 @@
       "review28At": null,
       "review": {
         "scriptFactsChecked": true,
-        "mediaApproved": false,
+        "mediaApproved": true,
         "channelIdentityVerified": false,
         "advancedFeaturesVerified": false,
         "uploadScheduled": false
@@ -103,8 +109,40 @@
       "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article",
       "contentOwner": "this_ai",
       "publishingOwner": "muse",
-      "handoffState": "script_ready_final_media_pending",
-      "ourPublishingEnabled": false
+      "handoffState": "media_qa_passed_awaiting_public_host_verification",
+      "ourPublishingEnabled": false,
+      "mediaVersion": "v1",
+      "assets": {
+        "video": {
+          "url": "https://www.vpsdealswire.com/videos/vw-y002.mp4",
+          "repositoryPath": "static/videos/vw-y002.mp4",
+          "sha256": "7b8c39fb7e8cc122b0f2f843b4438261c3270d6c95834970af421ae10460b9f7",
+          "bytes": 2098777,
+          "width": 1920,
+          "height": 1080,
+          "durationSeconds": 91.199333,
+          "fps": 24,
+          "videoCodec": "h264",
+          "audioCodec": "aac",
+          "audioRate": 48000
+        },
+        "thumbnail": {
+          "url": "https://www.vpsdealswire.com/vw-y002-thumbnail.jpg",
+          "repositoryPath": "static/vw-y002-thumbnail.jpg",
+          "sha256": "f87009eb19f48624800679ae2a0baab98221a2653e82f544e6c0b2411fa348f6",
+          "bytes": 67371,
+          "width": 1280,
+          "height": 720
+        },
+        "captions": {
+          "url": "https://www.vpsdealswire.com/vw-y002.en.srt",
+          "repositoryPath": "static/vw-y002.en.srt",
+          "sha256": "bf4416e50c99a53769b49a724beeea8fe749a43c1a61fa23ddd33b94ca81a1d1",
+          "bytes": 2235,
+          "language": "en"
+        }
+      },
+      "handoff": "handoffs/vw-y002.json"
     },
     {
       "contentId": "vw-y003",
@@ -115,7 +153,7 @@
       "title": "A vCPU Number Is Not a Sustained-Use Promise",
       "proposedLocalDate": "2026-11-01",
       "timezone": "Asia/Shanghai",
-      "state": "script_reviewed_media_pending_external_publisher",
+      "state": "media_qa_passed_awaiting_public_host_verification",
       "script": "scripts/vw-y003.md",
       "landingPage": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y003",
       "thumbnailConcept": "Check the Policy.",
@@ -127,7 +165,7 @@
       "review28At": null,
       "review": {
         "scriptFactsChecked": true,
-        "mediaApproved": false,
+        "mediaApproved": true,
         "channelIdentityVerified": false,
         "advancedFeaturesVerified": false,
         "uploadScheduled": false
@@ -135,8 +173,40 @@
       "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article",
       "contentOwner": "this_ai",
       "publishingOwner": "muse",
-      "handoffState": "script_ready_final_media_pending",
-      "ourPublishingEnabled": false
+      "handoffState": "media_qa_passed_awaiting_public_host_verification",
+      "ourPublishingEnabled": false,
+      "mediaVersion": "v1",
+      "assets": {
+        "video": {
+          "url": "https://www.vpsdealswire.com/videos/vw-y003.mp4",
+          "repositoryPath": "static/videos/vw-y003.mp4",
+          "sha256": "1f04bc0903d4a03b6c0060a6c38a7b02604edc120df5f1670e1170ba2e942c08",
+          "bytes": 501209,
+          "width": 1080,
+          "height": 1920,
+          "durationSeconds": 24.833333,
+          "fps": 24,
+          "videoCodec": "h264",
+          "audioCodec": "aac",
+          "audioRate": 48000
+        },
+        "thumbnail": {
+          "url": "https://www.vpsdealswire.com/vw-y003-thumbnail.jpg",
+          "repositoryPath": "static/vw-y003-thumbnail.jpg",
+          "sha256": "3ec7c3289fa934dc5f2a92d9670b7e197a75d172b1cd235c5602b32e35d0d77d",
+          "bytes": 81222,
+          "width": 720,
+          "height": 1280
+        },
+        "captions": {
+          "url": "https://www.vpsdealswire.com/vw-y003.en.srt",
+          "repositoryPath": "static/vw-y003.en.srt",
+          "sha256": "e73638001ee9de9088af092572ac43be98b901842f97cf34f5f7521da2e3e919",
+          "bytes": 550,
+          "language": "en"
+        }
+      },
+      "handoff": "handoffs/vw-y003.json"
     },
     {
       "contentId": "vw-y004",

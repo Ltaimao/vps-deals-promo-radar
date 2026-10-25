@@ -1,0 +1,75 @@
+{
+  "contentId": "vw-y002",
+  "mediaVersion": "v1",
+  "checkedAt": "2026-10-25T12:39:25.223480+00:00",
+  "mediaReady": true,
+  "publicHostingVerified": false,
+  "scheduled": false,
+  "published": false,
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "actualPublishedAt": null,
+  "assets": {
+    "video": {
+      "url": "https://www.vpsdealswire.com/videos/vw-y002.mp4",
+      "repositoryPath": "static/videos/vw-y002.mp4",
+      "sha256": "7b8c39fb7e8cc122b0f2f843b4438261c3270d6c95834970af421ae10460b9f7",
+      "bytes": 2098777,
+      "width": 1920,
+      "height": 1080,
+      "durationSeconds": 91.199333,
+      "fps": 24,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "audioRate": 48000
+    },
+    "thumbnail": {
+      "url": "https://www.vpsdealswire.com/vw-y002-thumbnail.jpg",
+      "repositoryPath": "static/vw-y002-thumbnail.jpg",
+      "sha256": "f87009eb19f48624800679ae2a0baab98221a2653e82f544e6c0b2411fa348f6",
+      "bytes": 67371,
+      "width": 1280,
+      "height": 720
+    },
+    "captions": {
+      "url": "https://www.vpsdealswire.com/vw-y002.en.srt",
+      "repositoryPath": "static/vw-y002.en.srt",
+      "sha256": "bf4416e50c99a53769b49a724beeea8fe749a43c1a61fa23ddd33b94ca81a1d1",
+      "bytes": 2235,
+      "language": "en"
+    }
+  },
+  "visualReview": {
+    "finalFrameContactSheetReviewed": true,
+    "fullSizeThumbnailReviewed": true,
+    "mobileLegibilityReviewed": true,
+    "hardRejectFound": false,
+    "score": {
+      "subject": 24,
+      "artOrDiagramQuality": 22,
+      "composition": 18,
+      "mobile": 13,
+      "brand": 9,
+      "technical": 5,
+      "total": 91
+    },
+    "scoreNote": "Internal editorial assessment, not CTR prediction."
+  },
+  "audioReview": {
+    "method": "Final encoded track ASR, source alignment, full decode and signal checks. No human audition claimed.",
+    "wordSequenceSimilarity": 0.9698275862068966,
+    "genericSynthesizedVoice": true,
+    "noClippingObserved": true,
+    "license": "LJ Speech public domain; model repository MIT",
+    "limitations": "ASR is imperfect; source wording is the caption authority. No measurement or personal testimonial claimed."
+  },
+  "rightsAndFacts": {
+    "originalArtworkOrActualOwnedSiteRecording": true,
+    "fabricatedUI": false,
+    "providerBenchmarkOrPriceClaim": false,
+    "physicalTattooGuarantee": false
+  },
+  "captionsAttached": false,
+  "relatedVideoConfigured": false,
+  "publisher": "muse"
+}
