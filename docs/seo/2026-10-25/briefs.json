@@ -1,0 +1,177 @@
+[
+  {
+    "date": "2026-11-07",
+    "slug": "cancel-vps-auto-renewal-checklist",
+    "primaryQuery": "how to cancel VPS auto renewal",
+    "secondaryQueries": [
+      "how to cancel VPS auto renewal checklist",
+      "how to cancel VPS auto renewal verify"
+    ],
+    "intent": "vps-cancellation-resource-billing-confirmation",
+    "uniqueValue": "Cancel with evidence; operational acceptance criteria and evidence record",
+    "visual": [
+      "Cancel with evidence",
+      "Export first",
+      "Confirm termination",
+      "Check remaining charges"
+    ],
+    "decision": "new: operational workflow, distinct from price/backup inclusion/general migration overview",
+    "sources": [
+      "https://www.eurovps.com/faq/how-can-i-cancel-my-services/",
+      "https://www.transip.eu/knowledgebase/386-how-do-i-cancel-service",
+      "https://docs.digitalocean.com/products/droplets/how-to/destroy/"
+    ],
+    "targetReader": "VPS operator preparing a documented service change or recovery test",
+    "outline": [
+      "Identify the service and the deadline",
+      "Export and verify before terminating",
+      "Inventory resources outside the server",
+      "Keep a short cancellation record",
+      "Use renewal information before the next purchase"
+    ],
+    "questions": [
+      "Identify the service and the deadline",
+      "Export and verify before terminating",
+      "Inventory resources outside the server",
+      "Keep a short cancellation record",
+      "Use renewal information before the next purchase"
+    ],
+    "internalLinks": [
+      "/articles/cheap-vps-renewal-prices/",
+      "/compare/"
+    ],
+    "factChecks": [
+      "No unverified prices, discounts or benchmark claims",
+      "Provider-specific behavior attributed to official source",
+      "No actual customer migration, cancellation or restore claimed"
+    ],
+    "review": {
+      "approved": true,
+      "factsChecked": true,
+      "rightsChecked": true,
+      "imageScore": 88,
+      "scheduledDate": "2026-11-07",
+      "actualPublicationTime": null,
+      "planned7DayReview": "2026-11-14",
+      "planned28DayReview": "2026-12-05",
+      "note": "Recompute review windows from actual public verification; planned dates are not proof of publication."
+    },
+    "sourceNote": "Source URLs actually opened or explicitly labeled in batch README; broad thematic comparison, not measured SERP dominance. Primary technical claims checked against official documentation."
+  },
+  {
+    "date": "2026-11-08",
+    "slug": "vps-snapshot-restore-test",
+    "primaryQuery": "VPS snapshot restore test checklist",
+    "secondaryQueries": [
+      "VPS snapshot restore test checklist checklist",
+      "VPS snapshot restore test checklist verify"
+    ],
+    "intent": "vps-snapshot-restoration-acceptance-test",
+    "uniqueValue": "A saved image is the start; operational acceptance criteria and evidence record",
+    "visual": [
+      "A saved image is the start",
+      "Isolated restore",
+      "Application checks",
+      "Record the outcome"
+    ],
+    "decision": "new: operational workflow, distinct from price/backup inclusion/general migration overview",
+    "sources": [
+      "https://restedbackups.com/blog/vps-backup-restore-test-checklist",
+      "https://agentxcloud.com/blog/can-you-test-a-vps-snapshot-before-restoring-production",
+      "https://docs.digitalocean.com/products/snapshots/how-to/create-and-restore-droplets/"
+    ],
+    "targetReader": "VPS operator preparing a documented service change or recovery test",
+    "outline": [
+      "Define what you need to recover",
+      "Restore without disturbing production",
+      "Check the service beyond booting",
+      "Record time, gaps and cleanup"
+    ],
+    "questions": [
+      "Define what you need to recover",
+      "Restore without disturbing production",
+      "Check the service beyond booting",
+      "Record time, gaps and cleanup"
+    ],
+    "internalLinks": [
+      "/articles/do-cheap-vps-plans-include-backups/",
+      "/articles/managed-vs-unmanaged-vps-decision-guide/"
+    ],
+    "factChecks": [
+      "No unverified prices, discounts or benchmark claims",
+      "Provider-specific behavior attributed to official source",
+      "No actual customer migration, cancellation or restore claimed"
+    ],
+    "review": {
+      "approved": true,
+      "factsChecked": true,
+      "rightsChecked": true,
+      "imageScore": 88,
+      "scheduledDate": "2026-11-08",
+      "actualPublicationTime": null,
+      "planned7DayReview": "2026-11-15",
+      "planned28DayReview": "2026-12-06",
+      "note": "Recompute review windows from actual public verification; planned dates are not proof of publication."
+    },
+    "sourceNote": "Source URLs actually opened or explicitly labeled in batch README; broad thematic comparison, not measured SERP dominance. Primary technical claims checked against official documentation."
+  },
+  {
+    "date": "2026-11-09",
+    "slug": "vps-dns-cutover-ttl-rollback",
+    "primaryQuery": "VPS DNS cutover TTL A AAAA rollback",
+    "secondaryQueries": [
+      "VPS DNS cutover TTL A AAAA rollback checklist",
+      "VPS DNS cutover TTL A AAAA rollback verify"
+    ],
+    "intent": "vps-dns-cutover-cache-write-rollback",
+    "uniqueValue": "DNS is one part of a move; operational acceptance criteria and evidence record",
+    "visual": [
+      "DNS is one part of a move",
+      "Check A and AAAA",
+      "Allow for cached answers",
+      "Plan for new writes"
+    ],
+    "decision": "new: operational workflow, distinct from price/backup inclusion/general migration overview",
+    "sources": [
+      "https://docs.dchost.com/en/docs/guides/server-migration/",
+      "https://virtarix.com/blog/technical-guides/dns-change-planning-checklist-vps/",
+      "https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/"
+    ],
+    "targetReader": "VPS operator preparing a documented service change or recovery test",
+    "outline": [
+      "Find the records that matter",
+      "Understand the cache window",
+      "Test the destination before switching",
+      "Make rollback a data decision",
+      "Verify from several layers"
+    ],
+    "questions": [
+      "Find the records that matter",
+      "Understand the cache window",
+      "Test the destination before switching",
+      "Make rollback a data decision",
+      "Verify from several layers"
+    ],
+    "internalLinks": [
+      "/articles/migrate-wordpress-to-cheap-vps-checklist/",
+      "/articles/choose-vps-location-latency/"
+    ],
+    "factChecks": [
+      "No unverified prices, discounts or benchmark claims",
+      "Provider-specific behavior attributed to official source",
+      "No actual customer migration, cancellation or restore claimed"
+    ],
+    "review": {
+      "approved": true,
+      "factsChecked": true,
+      "rightsChecked": true,
+      "imageScore": 88,
+      "scheduledDate": "2026-11-09",
+      "actualPublicationTime": null,
+      "planned7DayReview": "2026-11-16",
+      "planned28DayReview": "2026-12-07",
+      "note": "Recompute review windows from actual public verification; planned dates are not proof of publication."
+    },
+    "sourceNote": "Source URLs actually opened or explicitly labeled in batch README; broad thematic comparison, not measured SERP dominance. Primary technical claims checked against official documentation."
+  }
+]
