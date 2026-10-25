@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-10-25T12:43:36.389Z",
+  "brand": {
+    "id": 7620881,
+    "timezone": "Asia/Shanghai",
+    "verifiedYoutubeChannelId": "UCQ8j4vfF-Oosb0PVlaXdvmA"
+  },
+  "td_y001": {
+    "metricoolId": 405431049,
+    "uuid": "-1426969802312236672",
+    "scheduledAt": {
+      "dateTime": "2026-10-27T16:00:00",
+      "timezone": "Asia/Shanghai"
+    },
+    "state": "scheduled",
+    "actualYoutubeVideoId": null,
+    "publicUrl": null,
+    "notRecreated": true
+  },
+  "youtubeAnalytics": {
+    "window": [
+      "2026-09-25",
+      "2026-10-25"
+    ],
+    "fields": [
+      "YTVV02",
+      "YTVV04",
+      "YTVV05",
+      "YTVV17",
+      "YTVV06",
+      "YTVV07"
+    ],
+    "rows": 0,
+    "interpretation": "Completed empty Metricool report; not proof of empty historical channel or permanent zero performance."
+  },
+  "ga4": {
+    "window": [
+      "2026-10-12",
+      "2026-10-25"
+    ],
+    "filter": "session_source_medium contains youtube",
+    "fields": [
+      "date",
+      "session_source_medium",
+      "landing_page_plus_query_string",
+      "sessions",
+      "engaged_sessions"
+    ],
+    "properties": [
+      {
+        "id": "558374748",
+        "rows": 0,
+        "status": "done"
+      },
+      {
+        "id": "556451114",
+        "rows": 0,
+        "status": "done"
+      }
+    ],
+    "limitation": "Current day and recent publication may be incomplete. No download or purchase attribution claimed."
+  },
+  "vpsFirst": {
+    "videoId": "QXW-Ty9ECZY",
+    "url": "https://youtu.be/QXW-Ty9ECZY",
+    "publishedAtReportedByMuse": "2026-10-25T05:00:33Z",
+    "evidence": "marketing/youtube/records/muse-vw-y001.json",
+    "verificationScope": "Muse upload receipt and its public oEmbed report; not a new authenticated verification by ChatGPT.",
+    "review7At": "2026-11-01T05:00:33Z",
+    "review28At": "2026-11-22T05:00:33Z",
+    "publisherFollowup": [
+      "Custom thumbnail delivered but not attached per Muse",
+      "English captions delivered but not attached per Muse"
+    ],
+    "noVpsYoutubeWritesByUs": true
+  },
+  "preserved": {
+    "oldVideos": true,
+    "seoDaily": true,
+    "pinterestPosts": 8
+  },
+  "newMedia": {
+    "tattoo": [
+      "td-y002",
+      "td-y003"
+    ],
+    "vps": [
+      "vw-y002",
+      "vw-y003"
+    ],
+    "vpsPublishingOwner": "muse"
+  }
+}

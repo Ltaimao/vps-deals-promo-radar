@@ -8,7 +8,7 @@ Muse 已在 `../records/muse-vw-y001.json` 回填 vw-y001：视频 ID `QXW-Ty9EC
 
 Muse 回执同时注明独立缩略图和英文字幕尚未附加。素材仍在原交付包，请 Muse 在其发布权限内补充，或在回执中说明平台/接口限制；不要为补充素材删除重发。复查日按此实际时间计算为 11 月 1 日及 11 月 22 日。
 
-新的待发布包见 `handoffs/vw-y002.json` 与 `handoffs/vw-y003.json`，以各包 `ready_for_publisher` 和公开托管证据为准。
+新的待发布包 **vw-y002 / vw-y003 均已 ready_for_publisher=true**，视频、缩略图与英文字幕的公开 HTTP200/字节哈希全部核验通过。见 `handoffs/vw-y002.json` 与 `handoffs/vw-y003.json`；建议 10 月 30 日 / 11 月 1 日，具体时刻由 Muse 选择。请回填实际发布状态与素材附件状态，不把建议日期当排程。
 
 ## 入口与分工
 

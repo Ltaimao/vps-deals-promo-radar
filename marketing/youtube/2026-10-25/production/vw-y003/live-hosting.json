@@ -1,0 +1,48 @@
+{
+  "contentId": "vw-y003",
+  "checkedAt": "2026-10-25T12:42:49.807Z",
+  "qaAnalyticsBlocked": true,
+  "qaLandingNavigation": "internal_qa / validation; exact attribution URL fetched without executing it",
+  "assets": [
+    {
+      "kind": "video",
+      "url": "https://www.vpsdealswire.com/videos/vw-y003.mp4",
+      "httpStatus": 200,
+      "bytes": 501209,
+      "contentType": "video/mp4",
+      "sha256": "1f04bc0903d4a03b6c0060a6c38a7b02604edc120df5f1670e1170ba2e942c08",
+      "expectedSha256": "1f04bc0903d4a03b6c0060a6c38a7b02604edc120df5f1670e1170ba2e942c08",
+      "hashMatches": true
+    },
+    {
+      "kind": "thumbnail",
+      "url": "https://www.vpsdealswire.com/vw-y003-thumbnail.jpg",
+      "httpStatus": 200,
+      "bytes": 81222,
+      "contentType": "image/jpeg",
+      "sha256": "3ec7c3289fa934dc5f2a92d9670b7e197a75d172b1cd235c5602b32e35d0d77d",
+      "expectedSha256": "3ec7c3289fa934dc5f2a92d9670b7e197a75d172b1cd235c5602b32e35d0d77d",
+      "hashMatches": true
+    },
+    {
+      "kind": "captions",
+      "url": "https://www.vpsdealswire.com/vw-y003.en.srt",
+      "httpStatus": 200,
+      "bytes": 550,
+      "contentType": "application/x-subrip",
+      "sha256": "e73638001ee9de9088af092572ac43be98b901842f97cf34f5f7521da2e3e919",
+      "expectedSha256": "e73638001ee9de9088af092572ac43be98b901842f97cf34f5f7521da2e3e919",
+      "hashMatches": true
+    }
+  ],
+  "metadata": {
+    "width": 1080,
+    "height": 1920,
+    "duration": 24.833333
+  },
+  "landingPage": {
+    "url": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y003",
+    "httpStatus": 200
+  },
+  "allVerified": true
+}

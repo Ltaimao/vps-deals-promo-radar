@@ -3,7 +3,7 @@
   "mediaVersion": "v1",
   "checkedAt": "2026-10-25T12:39:25.223480+00:00",
   "mediaReady": true,
-  "publicHostingVerified": false,
+  "publicHostingVerified": true,
   "scheduled": false,
   "published": false,
   "youtubeVideoId": null,
@@ -71,5 +71,8 @@
   },
   "captionsAttached": false,
   "relatedVideoConfigured": false,
-  "publisher": "muse"
+  "publisher": "muse",
+  "readyForPublisher": true,
+  "publicHostingEvidence": "live-hosting.json",
+  "productionDeploy": "https://github.com/Ltaimao/vps-deals-promo-radar/actions/runs/40194221127"
 }

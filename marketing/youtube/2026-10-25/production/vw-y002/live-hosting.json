@@ -1,0 +1,48 @@
+{
+  "contentId": "vw-y002",
+  "checkedAt": "2026-10-25T12:42:48.804Z",
+  "qaAnalyticsBlocked": true,
+  "qaLandingNavigation": "internal_qa / validation; exact attribution URL fetched without executing it",
+  "assets": [
+    {
+      "kind": "video",
+      "url": "https://www.vpsdealswire.com/videos/vw-y002.mp4",
+      "httpStatus": 200,
+      "bytes": 2098777,
+      "contentType": "video/mp4",
+      "sha256": "7b8c39fb7e8cc122b0f2f843b4438261c3270d6c95834970af421ae10460b9f7",
+      "expectedSha256": "7b8c39fb7e8cc122b0f2f843b4438261c3270d6c95834970af421ae10460b9f7",
+      "hashMatches": true
+    },
+    {
+      "kind": "thumbnail",
+      "url": "https://www.vpsdealswire.com/vw-y002-thumbnail.jpg",
+      "httpStatus": 200,
+      "bytes": 67371,
+      "contentType": "image/jpeg",
+      "sha256": "f87009eb19f48624800679ae2a0baab98221a2653e82f544e6c0b2411fa348f6",
+      "expectedSha256": "f87009eb19f48624800679ae2a0baab98221a2653e82f544e6c0b2411fa348f6",
+      "hashMatches": true
+    },
+    {
+      "kind": "captions",
+      "url": "https://www.vpsdealswire.com/vw-y002.en.srt",
+      "httpStatus": 200,
+      "bytes": 2235,
+      "contentType": "application/x-subrip",
+      "sha256": "bf4416e50c99a53769b49a724beeea8fe749a43c1a61fa23ddd33b94ca81a1d1",
+      "expectedSha256": "bf4416e50c99a53769b49a724beeea8fe749a43c1a61fa23ddd33b94ca81a1d1",
+      "hashMatches": true
+    }
+  ],
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 91.199333
+  },
+  "landingPage": {
+    "url": "https://www.vpsdealswire.com/articles/choose-vps-location-latency/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y002",
+    "httpStatus": 200
+  },
+  "allVerified": true
+}
