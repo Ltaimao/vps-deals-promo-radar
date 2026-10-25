@@ -1,0 +1,78 @@
+{
+  "contentId": "vw-y001",
+  "mediaVersion": "v1",
+  "ready_for_publisher": false,
+  "state": "media_qa_passed_awaiting_public_host_verification",
+  "ourRole": "content_and_publication_plan",
+  "publishingOwner": "muse",
+  "ourYouTubePublishingEnabled": false,
+  "assets": {
+    "video": {
+      "url": "https://www.vpsdealswire.com/videos/vw-y001.mp4",
+      "repositoryPath": "static/videos/vw-y001.mp4",
+      "sha256": "3688fad085d2cf5fb96c7357b4b75e95f9670d2850a602742fa5628626340d99",
+      "bytes": 2300141,
+      "durationSeconds": 96.948667,
+      "width": 1920,
+      "height": 1080,
+      "fps": 24,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "audioRate": 48000
+    },
+    "thumbnail": {
+      "url": "https://www.vpsdealswire.com/vw-y001-thumbnail.jpg",
+      "repositoryPath": "static/vw-y001-thumbnail.jpg",
+      "sha256": "7c4fc0ffed3d668bf5b2ed87fd4db7a77c4c27e6508d0ce89f96fcf076a4b850",
+      "bytes": 76548,
+      "width": 1280,
+      "height": 720
+    },
+    "captions": {
+      "url": "https://www.vpsdealswire.com/vw-y001.en.srt",
+      "repositoryPath": "static/vw-y001.en.srt",
+      "sha256": "750732ef56f48357d6b8b346ccb81945ceb5d3aa59d8352d9541ae75828ddd5f",
+      "bytes": 2257,
+      "language": "en"
+    }
+  },
+  "metadata": {
+    "contentId": "vw-y001",
+    "mediaVersion": "v1",
+    "targetChannelId": "UCfgVJrtBJSeViu95AnaQxyA",
+    "title": "Shared vCPU VPS: Check Fair Use Before Buying",
+    "description": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y001\n\nA vCPU count does not tell you how much sustained CPU use a VPS plan permits. This short buying guide explains three checks: resource allocation, written usage limits, and what happens when a workload reaches them.\n\nUse the fair-use checklist at VPS Deals Wire to narrow your shortlist, then confirm the actual product terms on the provider’s official page. This video is an educational checklist, not a benchmark, provider ranking or performance guarantee. The workload bars and Candidate A sheet are conceptual examples, not measured results or a quoted offer.\n\nNarration is synthesized; diagrams are original and the guide recording shows our real public website. Some official-site links on VPS Deals Wire are affiliate links; we may earn a commission at no extra cost to you.",
+    "language": "en",
+    "tags": [
+      "VPS",
+      "shared vCPU",
+      "CPU fair use",
+      "VPS buying guide",
+      "VPS Deals Wire"
+    ],
+    "madeForKids": false,
+    "format": "horizontal_video",
+    "proposedLocalDate": "2026-10-27",
+    "proposedTime": null,
+    "timezone": "Asia/Shanghai",
+    "audienceNote": "Educational hosting buying guide, not specifically directed to children.",
+    "syntheticMediaNote": "Generic synthesized narration, original diagrams, actual website recording. Publisher must apply current YouTube disclosure guidance; do not claim real provider testing.",
+    "captionLanguage": "en",
+    "publishingOwner": "muse"
+  },
+  "qaRecord": "../production/vw-y001/qa.json",
+  "expectedReceipt": "../records/muse-vw-y001.json",
+  "deduplicationKeys": [
+    "contentId",
+    "mediaVersion",
+    "assets.video.sha256",
+    "targetChannelId",
+    "landing-page slug"
+  ],
+  "publishInstructions": "Verify channel, reconcile current uploads/attempts before upload. Preserve existing videos. Scheduled is not published; return actual public video ID/URL/time.",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "actualPublishedAt": null,
+  "review7At": null,
+  "review28At": null
+}

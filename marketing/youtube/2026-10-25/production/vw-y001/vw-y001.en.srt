@@ -1,0 +1,117 @@
+1
+00:00:00,000 --> 00:00:03,380
+A vCPU count does not tell you how much
+sustained compute
+
+2
+00:00:03,380 --> 00:00:08,680
+a VPS plan allows. Before buying a shared-
+CPU server, check
+
+3
+00:00:08,680 --> 00:00:12,720
+what the provider means by shared and what
+its written usage policy
+
+4
+00:00:12,720 --> 00:00:15,140
+permits. Start with the workload.
+
+5
+00:00:15,740 --> 00:00:19,180
+A small site with occasional bursts has
+different needs from a task
+
+6
+00:00:19,180 --> 00:00:22,160
+that keeps the CPU busy continuously.
+
+7
+00:00:22,600 --> 00:00:26,320
+Do not assume that a quiet test represents
+the way your service
+
+8
+00:00:26,320 --> 00:00:30,640
+will behave all day. Next, read the
+documented CPU limits.
+
+9
+00:00:31,060 --> 00:00:36,300
+Look for conditions for continuous CPU use,
+burst rules and the provider's
+
+10
+00:00:36,300 --> 00:00:38,320
+response when a workload exceeds them.
+
+11
+00:00:38,580 --> 00:00:42,960
+If the policy is unclear, ask support a
+concrete question about
+
+12
+00:00:42,960 --> 00:00:45,140
+your intended task before paying.
+
+13
+00:00:46,240 --> 00:00:49,000
+Then separate the plan label from a
+performance claim.
+
+14
+00:00:49,640 --> 00:00:54,740
+Shared resources, dedicated resources and
+the number of advertised virtual CPUs
+
+15
+00:00:54,740 --> 00:00:56,020
+are different pieces of information.
+
+16
+00:00:56,020 --> 00:01:00,360
+None of them, alone, proves your
+application's response time.
+
+17
+00:01:01,060 --> 00:01:05,620
+Our take: buying a suitable resource policy
+matters more than collecting
+
+18
+00:01:05,620 --> 00:01:07,920
+the largest headline CPU number.
+
+19
+00:01:08,140 --> 00:01:12,460
+Keep a small comparison sheet with the
+plan, policy source, workload
+
+20
+00:01:12,920 --> 00:01:17,320
+and unanswered question. This is a
+purchasing checklist, not a benchmark.
+
+21
+00:01:18,000 --> 00:01:20,980
+We have not run a performance test for this
+video
+
+22
+00:01:20,980 --> 00:01:24,180
+and do not rank providers from an untested
+claim.
+
+23
+00:01:24,760 --> 00:01:29,620
+The description links to the fair-use guide
+at vpsdealswire.com.
+
+24
+00:01:29,860 --> 00:01:34,080
+Use the site to narrow your shortlist, then
+confirm the actual plan
+
+25
+00:01:34,080 --> 00:01:36,020
+terms on the provider's official page.

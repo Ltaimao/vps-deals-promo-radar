@@ -20,12 +20,17 @@
   "ga4Limit": "Completed empty filtered report; no universal zero-traffic claim",
   "newUploadsAttempted": 0,
   "existingVideosDeleted": 0,
-  "publicationBlockedBy": [
+  "managedPublisherDeployed": true,
+  "legacyCallerCredentialRequired": false,
+  "authenticatedChannelIdentityVerified": false,
+  "ourRole": "content_and_publication_plan",
+  "publishingOwner": "muse",
+  "ourYouTubePublishingEnabled": false,
+  "publicationAccessNotRequiredForOurRole": true,
+  "historicalPublicationBlockedBy": [
     "Google channel/inventory read permission",
     "Authenticated current channel identity/current upload inventory unverified"
   ],
-  "managedPublisherDeployed": true,
-  "legacyCallerCredentialRequired": false,
-  "currentBlocker": "Google channel/inventory API 403 insufficientPermissions",
-  "authenticatedChannelIdentityVerified": false
+  "historicalPublisherError": "Google channel/inventory API 403 insufficientPermissions",
+  "currentContentProductionBlocker": null
 }

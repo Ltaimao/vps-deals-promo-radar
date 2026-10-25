@@ -1,0 +1,1341 @@
+{
+  "model": "base.en",
+  "device": "cpu/int8",
+  "language": "en",
+  "text": "A VCPU count does not tell you how much sustained compute a VPS plan allows. Before buying a shared CPU server, check what the provider means by shared and what its written usage policy permits. Start with a workload. A small site with occasional bursts has different needs from a task that keeps the CPU busy continuously. Do not assume that a quiet test represents the way your service will behave all day. Next, read the documented CPU limits. Look for conditions for continuous CPU use, burst rules, and the provider's response when a workload exceeds them. If the policy is unclear, ask support a concrete question about your intended task before paying. Then, separate the plan label from a performance claim. Shared resources, dedicated resources, and the number of advertised virtual CPU's are different pieces of information. None of them alone proves your application's response time. Our take, buying a suitable resource policy matters more than collecting the largest headline CPU number. Keep a small comparison sheet with the plan, policy source, workload, and unanswered question. This is a purchasing checklist, not a benchmark. We have not run a performance test for this video and do not rank providers from an untested claim. The description links to the Fair Use Guide at vpsdealswire.com. Use the site to narrow your short list, then confirm the actual plan terms on the provider's official page.",
+  "wordSequenceSimilarity": 0.9810526315789474,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 5.06,
+      "text": " A VCPU count does not tell you how much sustained compute a VPS plan allows.",
+      "words": [
+        {
+          "start": 0.0,
+          "end": 0.08,
+          "word": " A"
+        },
+        {
+          "start": 0.08,
+          "end": 0.86,
+          "word": " VCPU"
+        },
+        {
+          "start": 0.86,
+          "end": 1.22,
+          "word": " count"
+        },
+        {
+          "start": 1.22,
+          "end": 1.42,
+          "word": " does"
+        },
+        {
+          "start": 1.42,
+          "end": 1.62,
+          "word": " not"
+        },
+        {
+          "start": 1.62,
+          "end": 1.92,
+          "word": " tell"
+        },
+        {
+          "start": 1.92,
+          "end": 2.12,
+          "word": " you"
+        },
+        {
+          "start": 2.12,
+          "end": 2.3,
+          "word": " how"
+        },
+        {
+          "start": 2.3,
+          "end": 2.46,
+          "word": " much"
+        },
+        {
+          "start": 2.46,
+          "end": 2.92,
+          "word": " sustained"
+        },
+        {
+          "start": 2.92,
+          "end": 3.38,
+          "word": " compute"
+        },
+        {
+          "start": 3.38,
+          "end": 3.72,
+          "word": " a"
+        },
+        {
+          "start": 3.72,
+          "end": 4.2,
+          "word": " VPS"
+        },
+        {
+          "start": 4.2,
+          "end": 4.7,
+          "word": " plan"
+        },
+        {
+          "start": 4.7,
+          "end": 5.06,
+          "word": " allows."
+        }
+      ]
+    },
+    {
+      "start": 5.74,
+      "end": 11.84,
+      "text": " Before buying a shared CPU server, check what the provider means by shared and what its written",
+      "words": [
+        {
+          "start": 5.74,
+          "end": 5.76,
+          "word": " Before"
+        },
+        {
+          "start": 5.76,
+          "end": 6.38,
+          "word": " buying"
+        },
+        {
+          "start": 6.38,
+          "end": 6.52,
+          "word": " a"
+        },
+        {
+          "start": 6.52,
+          "end": 6.84,
+          "word": " shared"
+        },
+        {
+          "start": 6.84,
+          "end": 7.36,
+          "word": " CPU"
+        },
+        {
+          "start": 7.36,
+          "end": 7.9,
+          "word": " server,"
+        },
+        {
+          "start": 8.34,
+          "end": 8.68,
+          "word": " check"
+        },
+        {
+          "start": 8.68,
+          "end": 8.98,
+          "word": " what"
+        },
+        {
+          "start": 8.98,
+          "end": 9.08,
+          "word": " the"
+        },
+        {
+          "start": 9.08,
+          "end": 9.44,
+          "word": " provider"
+        },
+        {
+          "start": 9.44,
+          "end": 9.9,
+          "word": " means"
+        },
+        {
+          "start": 9.9,
+          "end": 10.22,
+          "word": " by"
+        },
+        {
+          "start": 10.22,
+          "end": 10.62,
+          "word": " shared"
+        },
+        {
+          "start": 10.62,
+          "end": 11.24,
+          "word": " and"
+        },
+        {
+          "start": 11.24,
+          "end": 11.4,
+          "word": " what"
+        },
+        {
+          "start": 11.4,
+          "end": 11.56,
+          "word": " its"
+        },
+        {
+          "start": 11.56,
+          "end": 11.84,
+          "word": " written"
+        }
+      ]
+    },
+    {
+      "start": 11.84,
+      "end": 13.3,
+      "text": " usage policy permits.",
+      "words": [
+        {
+          "start": 11.84,
+          "end": 12.24,
+          "word": " usage"
+        },
+        {
+          "start": 12.24,
+          "end": 12.72,
+          "word": " policy"
+        },
+        {
+          "start": 12.72,
+          "end": 13.3,
+          "word": " permits."
+        }
+      ]
+    },
+    {
+      "start": 14.24,
+      "end": 15.14,
+      "text": " Start with a workload.",
+      "words": [
+        {
+          "start": 14.24,
+          "end": 14.54,
+          "word": " Start"
+        },
+        {
+          "start": 14.54,
+          "end": 14.82,
+          "word": " with"
+        },
+        {
+          "start": 14.82,
+          "end": 14.92,
+          "word": " a"
+        },
+        {
+          "start": 14.92,
+          "end": 15.14,
+          "word": " workload."
+        }
+      ]
+    },
+    {
+      "start": 15.74,
+      "end": 22.16,
+      "text": " A small site with occasional bursts has different needs from a task that keeps the CPU busy continuously.",
+      "words": [
+        {
+          "start": 15.74,
+          "end": 15.74,
+          "word": " A"
+        },
+        {
+          "start": 15.74,
+          "end": 15.94,
+          "word": " small"
+        },
+        {
+          "start": 15.94,
+          "end": 16.38,
+          "word": " site"
+        },
+        {
+          "start": 16.38,
+          "end": 16.6,
+          "word": " with"
+        },
+        {
+          "start": 16.6,
+          "end": 16.86,
+          "word": " occasional"
+        },
+        {
+          "start": 16.86,
+          "end": 17.38,
+          "word": " bursts"
+        },
+        {
+          "start": 17.38,
+          "end": 17.76,
+          "word": " has"
+        },
+        {
+          "start": 17.76,
+          "end": 18.04,
+          "word": " different"
+        },
+        {
+          "start": 18.04,
+          "end": 18.46,
+          "word": " needs"
+        },
+        {
+          "start": 18.46,
+          "end": 18.8,
+          "word": " from"
+        },
+        {
+          "start": 18.8,
+          "end": 18.9,
+          "word": " a"
+        },
+        {
+          "start": 18.9,
+          "end": 19.18,
+          "word": " task"
+        },
+        {
+          "start": 19.18,
+          "end": 19.94,
+          "word": " that"
+        },
+        {
+          "start": 19.94,
+          "end": 20.18,
+          "word": " keeps"
+        },
+        {
+          "start": 20.18,
+          "end": 20.52,
+          "word": " the"
+        },
+        {
+          "start": 20.52,
+          "end": 20.86,
+          "word": " CPU"
+        },
+        {
+          "start": 20.86,
+          "end": 21.38,
+          "word": " busy"
+        },
+        {
+          "start": 21.38,
+          "end": 22.16,
+          "word": " continuously."
+        }
+      ]
+    },
+    {
+      "start": 22.6,
+      "end": 27.48,
+      "text": " Do not assume that a quiet test represents the way your service will behave all day.",
+      "words": [
+        {
+          "start": 22.6,
+          "end": 22.64,
+          "word": " Do"
+        },
+        {
+          "start": 22.64,
+          "end": 22.78,
+          "word": " not"
+        },
+        {
+          "start": 22.78,
+          "end": 23.18,
+          "word": " assume"
+        },
+        {
+          "start": 23.18,
+          "end": 23.68,
+          "word": " that"
+        },
+        {
+          "start": 23.68,
+          "end": 23.76,
+          "word": " a"
+        },
+        {
+          "start": 23.76,
+          "end": 24.06,
+          "word": " quiet"
+        },
+        {
+          "start": 24.06,
+          "end": 24.42,
+          "word": " test"
+        },
+        {
+          "start": 24.42,
+          "end": 24.86,
+          "word": " represents"
+        },
+        {
+          "start": 24.86,
+          "end": 25.6,
+          "word": " the"
+        },
+        {
+          "start": 25.6,
+          "end": 25.76,
+          "word": " way"
+        },
+        {
+          "start": 25.76,
+          "end": 25.94,
+          "word": " your"
+        },
+        {
+          "start": 25.94,
+          "end": 26.32,
+          "word": " service"
+        },
+        {
+          "start": 26.32,
+          "end": 26.56,
+          "word": " will"
+        },
+        {
+          "start": 26.56,
+          "end": 26.74,
+          "word": " behave"
+        },
+        {
+          "start": 26.74,
+          "end": 27.16,
+          "word": " all"
+        },
+        {
+          "start": 27.16,
+          "end": 27.48,
+          "word": " day."
+        }
+      ]
+    },
+    {
+      "start": 28.12,
+      "end": 30.64,
+      "text": " Next, read the documented CPU limits.",
+      "words": [
+        {
+          "start": 27.98,
+          "end": 28.36,
+          "word": " Next,"
+        },
+        {
+          "start": 28.76,
+          "end": 28.86,
+          "word": " read"
+        },
+        {
+          "start": 28.86,
+          "end": 29.04,
+          "word": " the"
+        },
+        {
+          "start": 29.04,
+          "end": 29.66,
+          "word": " documented"
+        },
+        {
+          "start": 29.66,
+          "end": 30.04,
+          "word": " CPU"
+        },
+        {
+          "start": 30.04,
+          "end": 30.64,
+          "word": " limits."
+        }
+      ]
+    },
+    {
+      "start": 31.06,
+      "end": 37.04,
+      "text": " Look for conditions for continuous CPU use, burst rules, and the provider's response when",
+      "words": [
+        {
+          "start": 31.06,
+          "end": 31.16,
+          "word": " Look"
+        },
+        {
+          "start": 31.16,
+          "end": 31.36,
+          "word": " for"
+        },
+        {
+          "start": 31.36,
+          "end": 31.76,
+          "word": " conditions"
+        },
+        {
+          "start": 31.76,
+          "end": 32.12,
+          "word": " for"
+        },
+        {
+          "start": 32.12,
+          "end": 32.48,
+          "word": " continuous"
+        },
+        {
+          "start": 32.48,
+          "end": 33.34,
+          "word": " CPU"
+        },
+        {
+          "start": 33.34,
+          "end": 33.94,
+          "word": " use,"
+        },
+        {
+          "start": 34.32,
+          "end": 34.58,
+          "word": " burst"
+        },
+        {
+          "start": 34.58,
+          "end": 34.9,
+          "word": " rules,"
+        },
+        {
+          "start": 35.6,
+          "end": 35.64,
+          "word": " and"
+        },
+        {
+          "start": 35.64,
+          "end": 35.74,
+          "word": " the"
+        },
+        {
+          "start": 35.74,
+          "end": 36.3,
+          "word": " provider's"
+        },
+        {
+          "start": 36.3,
+          "end": 36.64,
+          "word": " response"
+        },
+        {
+          "start": 36.64,
+          "end": 37.04,
+          "word": " when"
+        }
+      ]
+    },
+    {
+      "start": 37.04,
+      "end": 38.32,
+      "text": " a workload exceeds them.",
+      "words": [
+        {
+          "start": 37.04,
+          "end": 37.14,
+          "word": " a"
+        },
+        {
+          "start": 37.14,
+          "end": 37.46,
+          "word": " workload"
+        },
+        {
+          "start": 37.46,
+          "end": 37.9,
+          "word": " exceeds"
+        },
+        {
+          "start": 37.9,
+          "end": 38.32,
+          "word": " them."
+        }
+      ]
+    },
+    {
+      "start": 38.58,
+      "end": 45.14,
+      "text": " If the policy is unclear, ask support a concrete question about your intended task before paying.",
+      "words": [
+        {
+          "start": 38.58,
+          "end": 38.62,
+          "word": " If"
+        },
+        {
+          "start": 38.62,
+          "end": 38.74,
+          "word": " the"
+        },
+        {
+          "start": 38.74,
+          "end": 39.1,
+          "word": " policy"
+        },
+        {
+          "start": 39.1,
+          "end": 39.44,
+          "word": " is"
+        },
+        {
+          "start": 39.44,
+          "end": 39.84,
+          "word": " unclear,"
+        },
+        {
+          "start": 40.56,
+          "end": 40.8,
+          "word": " ask"
+        },
+        {
+          "start": 40.8,
+          "end": 41.32,
+          "word": " support"
+        },
+        {
+          "start": 41.32,
+          "end": 41.5,
+          "word": " a"
+        },
+        {
+          "start": 41.5,
+          "end": 41.78,
+          "word": " concrete"
+        },
+        {
+          "start": 41.78,
+          "end": 42.44,
+          "word": " question"
+        },
+        {
+          "start": 42.44,
+          "end": 42.96,
+          "word": " about"
+        },
+        {
+          "start": 42.96,
+          "end": 43.34,
+          "word": " your"
+        },
+        {
+          "start": 43.34,
+          "end": 43.8,
+          "word": " intended"
+        },
+        {
+          "start": 43.8,
+          "end": 44.32,
+          "word": " task"
+        },
+        {
+          "start": 44.32,
+          "end": 44.7,
+          "word": " before"
+        },
+        {
+          "start": 44.7,
+          "end": 45.14,
+          "word": " paying."
+        }
+      ]
+    },
+    {
+      "start": 46.24,
+      "end": 49.0,
+      "text": " Then, separate the plan label from a performance claim.",
+      "words": [
+        {
+          "start": 46.24,
+          "end": 46.24,
+          "word": " Then,"
+        },
+        {
+          "start": 46.46,
+          "end": 46.88,
+          "word": " separate"
+        },
+        {
+          "start": 46.88,
+          "end": 47.16,
+          "word": " the"
+        },
+        {
+          "start": 47.16,
+          "end": 47.4,
+          "word": " plan"
+        },
+        {
+          "start": 47.4,
+          "end": 47.6,
+          "word": " label"
+        },
+        {
+          "start": 47.6,
+          "end": 48.0,
+          "word": " from"
+        },
+        {
+          "start": 48.0,
+          "end": 48.08,
+          "word": " a"
+        },
+        {
+          "start": 48.08,
+          "end": 48.42,
+          "word": " performance"
+        },
+        {
+          "start": 48.42,
+          "end": 49.0,
+          "word": " claim."
+        }
+      ]
+    },
+    {
+      "start": 49.64,
+      "end": 55.02,
+      "text": " Shared resources, dedicated resources, and the number of advertised virtual CPU's are different",
+      "words": [
+        {
+          "start": 49.64,
+          "end": 49.64,
+          "word": " Shared"
+        },
+        {
+          "start": 49.64,
+          "end": 50.14,
+          "word": " resources,"
+        },
+        {
+          "start": 50.68,
+          "end": 51.02,
+          "word": " dedicated"
+        },
+        {
+          "start": 51.02,
+          "end": 51.64,
+          "word": " resources,"
+        },
+        {
+          "start": 52.18,
+          "end": 52.22,
+          "word": " and"
+        },
+        {
+          "start": 52.22,
+          "end": 52.34,
+          "word": " the"
+        },
+        {
+          "start": 52.34,
+          "end": 52.62,
+          "word": " number"
+        },
+        {
+          "start": 52.62,
+          "end": 52.76,
+          "word": " of"
+        },
+        {
+          "start": 52.76,
+          "end": 53.44,
+          "word": " advertised"
+        },
+        {
+          "start": 53.44,
+          "end": 53.76,
+          "word": " virtual"
+        },
+        {
+          "start": 53.76,
+          "end": 54.74,
+          "word": " CPU's"
+        },
+        {
+          "start": 54.74,
+          "end": 54.8,
+          "word": " are"
+        },
+        {
+          "start": 54.8,
+          "end": 55.02,
+          "word": " different"
+        }
+      ]
+    },
+    {
+      "start": 55.02,
+      "end": 56.02,
+      "text": " pieces of information.",
+      "words": [
+        {
+          "start": 55.02,
+          "end": 55.36,
+          "word": " pieces"
+        },
+        {
+          "start": 55.36,
+          "end": 55.64,
+          "word": " of"
+        },
+        {
+          "start": 55.64,
+          "end": 56.02,
+          "word": " information."
+        }
+      ]
+    },
+    {
+      "start": 56.02,
+      "end": 60.36,
+      "text": " None of them alone proves your application's response time.",
+      "words": [
+        {
+          "start": 56.02,
+          "end": 56.58,
+          "word": " None"
+        },
+        {
+          "start": 56.58,
+          "end": 56.76,
+          "word": " of"
+        },
+        {
+          "start": 56.76,
+          "end": 56.94,
+          "word": " them"
+        },
+        {
+          "start": 56.94,
+          "end": 57.3,
+          "word": " alone"
+        },
+        {
+          "start": 57.3,
+          "end": 58.34,
+          "word": " proves"
+        },
+        {
+          "start": 58.34,
+          "end": 58.68,
+          "word": " your"
+        },
+        {
+          "start": 58.68,
+          "end": 59.54,
+          "word": " application's"
+        },
+        {
+          "start": 59.54,
+          "end": 59.76,
+          "word": " response"
+        },
+        {
+          "start": 59.76,
+          "end": 60.36,
+          "word": " time."
+        }
+      ]
+    },
+    {
+      "start": 61.06,
+      "end": 66.88,
+      "text": " Our take, buying a suitable resource policy matters more than collecting the largest headline",
+      "words": [
+        {
+          "start": 61.06,
+          "end": 61.24,
+          "word": " Our"
+        },
+        {
+          "start": 61.24,
+          "end": 61.56,
+          "word": " take,"
+        },
+        {
+          "start": 62.02,
+          "end": 62.58,
+          "word": " buying"
+        },
+        {
+          "start": 62.58,
+          "end": 62.86,
+          "word": " a"
+        },
+        {
+          "start": 62.86,
+          "end": 63.1,
+          "word": " suitable"
+        },
+        {
+          "start": 63.1,
+          "end": 63.62,
+          "word": " resource"
+        },
+        {
+          "start": 63.62,
+          "end": 64.1,
+          "word": " policy"
+        },
+        {
+          "start": 64.1,
+          "end": 64.68,
+          "word": " matters"
+        },
+        {
+          "start": 64.68,
+          "end": 65.08,
+          "word": " more"
+        },
+        {
+          "start": 65.08,
+          "end": 65.28,
+          "word": " than"
+        },
+        {
+          "start": 65.28,
+          "end": 65.62,
+          "word": " collecting"
+        },
+        {
+          "start": 65.62,
+          "end": 65.94,
+          "word": " the"
+        },
+        {
+          "start": 65.94,
+          "end": 66.28,
+          "word": " largest"
+        },
+        {
+          "start": 66.28,
+          "end": 66.88,
+          "word": " headline"
+        }
+      ]
+    },
+    {
+      "start": 66.88,
+      "end": 67.92,
+      "text": " CPU number.",
+      "words": [
+        {
+          "start": 66.88,
+          "end": 67.28,
+          "word": " CPU"
+        },
+        {
+          "start": 67.28,
+          "end": 67.92,
+          "word": " number."
+        }
+      ]
+    },
+    {
+      "start": 68.14,
+      "end": 73.82,
+      "text": " Keep a small comparison sheet with the plan, policy source, workload, and unanswered question.",
+      "words": [
+        {
+          "start": 68.14,
+          "end": 68.24,
+          "word": " Keep"
+        },
+        {
+          "start": 68.24,
+          "end": 68.36,
+          "word": " a"
+        },
+        {
+          "start": 68.36,
+          "end": 68.6,
+          "word": " small"
+        },
+        {
+          "start": 68.6,
+          "end": 68.98,
+          "word": " comparison"
+        },
+        {
+          "start": 68.98,
+          "end": 69.64,
+          "word": " sheet"
+        },
+        {
+          "start": 69.64,
+          "end": 69.96,
+          "word": " with"
+        },
+        {
+          "start": 69.96,
+          "end": 70.1,
+          "word": " the"
+        },
+        {
+          "start": 70.1,
+          "end": 70.44,
+          "word": " plan,"
+        },
+        {
+          "start": 70.82,
+          "end": 71.22,
+          "word": " policy"
+        },
+        {
+          "start": 71.22,
+          "end": 71.66,
+          "word": " source,"
+        },
+        {
+          "start": 72.34,
+          "end": 72.46,
+          "word": " workload,"
+        },
+        {
+          "start": 72.92,
+          "end": 72.98,
+          "word": " and"
+        },
+        {
+          "start": 72.98,
+          "end": 73.36,
+          "word": " unanswered"
+        },
+        {
+          "start": 73.36,
+          "end": 73.82,
+          "word": " question."
+        }
+      ]
+    },
+    {
+      "start": 74.58,
+      "end": 77.32,
+      "text": " This is a purchasing checklist, not a benchmark.",
+      "words": [
+        {
+          "start": 74.58,
+          "end": 74.94,
+          "word": " This"
+        },
+        {
+          "start": 74.94,
+          "end": 75.04,
+          "word": " is"
+        },
+        {
+          "start": 75.04,
+          "end": 75.14,
+          "word": " a"
+        },
+        {
+          "start": 75.14,
+          "end": 75.44,
+          "word": " purchasing"
+        },
+        {
+          "start": 75.44,
+          "end": 75.94,
+          "word": " checklist,"
+        },
+        {
+          "start": 76.68,
+          "end": 76.96,
+          "word": " not"
+        },
+        {
+          "start": 76.96,
+          "end": 77.08,
+          "word": " a"
+        },
+        {
+          "start": 77.08,
+          "end": 77.32,
+          "word": " benchmark."
+        }
+      ]
+    },
+    {
+      "start": 78.0,
+      "end": 83.72,
+      "text": " We have not run a performance test for this video and do not rank providers from an untested",
+      "words": [
+        {
+          "start": 78.0,
+          "end": 78.04,
+          "word": " We"
+        },
+        {
+          "start": 78.04,
+          "end": 78.18,
+          "word": " have"
+        },
+        {
+          "start": 78.18,
+          "end": 78.36,
+          "word": " not"
+        },
+        {
+          "start": 78.36,
+          "end": 78.64,
+          "word": " run"
+        },
+        {
+          "start": 78.64,
+          "end": 78.74,
+          "word": " a"
+        },
+        {
+          "start": 78.74,
+          "end": 79.08,
+          "word": " performance"
+        },
+        {
+          "start": 79.08,
+          "end": 79.68,
+          "word": " test"
+        },
+        {
+          "start": 79.68,
+          "end": 80.38,
+          "word": " for"
+        },
+        {
+          "start": 80.38,
+          "end": 80.56,
+          "word": " this"
+        },
+        {
+          "start": 80.56,
+          "end": 80.98,
+          "word": " video"
+        },
+        {
+          "start": 80.98,
+          "end": 81.56,
+          "word": " and"
+        },
+        {
+          "start": 81.56,
+          "end": 81.7,
+          "word": " do"
+        },
+        {
+          "start": 81.7,
+          "end": 81.88,
+          "word": " not"
+        },
+        {
+          "start": 81.88,
+          "end": 82.14,
+          "word": " rank"
+        },
+        {
+          "start": 82.14,
+          "end": 82.64,
+          "word": " providers"
+        },
+        {
+          "start": 82.64,
+          "end": 83.16,
+          "word": " from"
+        },
+        {
+          "start": 83.16,
+          "end": 83.28,
+          "word": " an"
+        },
+        {
+          "start": 83.28,
+          "end": 83.72,
+          "word": " untested"
+        }
+      ]
+    },
+    {
+      "start": 83.72,
+      "end": 84.18,
+      "text": " claim.",
+      "words": [
+        {
+          "start": 83.72,
+          "end": 84.18,
+          "word": " claim."
+        }
+      ]
+    },
+    {
+      "start": 84.9,
+      "end": 89.62,
+      "text": " The description links to the Fair Use Guide at vpsdealswire.com.",
+      "words": [
+        {
+          "start": 84.76,
+          "end": 85.06,
+          "word": " The"
+        },
+        {
+          "start": 85.06,
+          "end": 85.46,
+          "word": " description"
+        },
+        {
+          "start": 85.46,
+          "end": 86.32,
+          "word": " links"
+        },
+        {
+          "start": 86.32,
+          "end": 86.62,
+          "word": " to"
+        },
+        {
+          "start": 86.62,
+          "end": 86.72,
+          "word": " the"
+        },
+        {
+          "start": 86.72,
+          "end": 86.92,
+          "word": " Fair"
+        },
+        {
+          "start": 86.92,
+          "end": 87.16,
+          "word": " Use"
+        },
+        {
+          "start": 87.16,
+          "end": 87.56,
+          "word": " Guide"
+        },
+        {
+          "start": 87.56,
+          "end": 87.74,
+          "word": " at"
+        },
+        {
+          "start": 87.74,
+          "end": 88.94,
+          "word": " vpsdealswire"
+        },
+        {
+          "start": 88.94,
+          "end": 89.62,
+          "word": ".com."
+        }
+      ]
+    },
+    {
+      "start": 89.86,
+      "end": 95.34,
+      "text": " Use the site to narrow your short list, then confirm the actual plan terms on the provider's",
+      "words": [
+        {
+          "start": 89.86,
+          "end": 89.98,
+          "word": " Use"
+        },
+        {
+          "start": 89.98,
+          "end": 90.18,
+          "word": " the"
+        },
+        {
+          "start": 90.18,
+          "end": 90.46,
+          "word": " site"
+        },
+        {
+          "start": 90.46,
+          "end": 90.82,
+          "word": " to"
+        },
+        {
+          "start": 90.82,
+          "end": 91.06,
+          "word": " narrow"
+        },
+        {
+          "start": 91.06,
+          "end": 91.34,
+          "word": " your"
+        },
+        {
+          "start": 91.34,
+          "end": 91.6,
+          "word": " short"
+        },
+        {
+          "start": 91.6,
+          "end": 91.9,
+          "word": " list,"
+        },
+        {
+          "start": 92.48,
+          "end": 92.56,
+          "word": " then"
+        },
+        {
+          "start": 92.56,
+          "end": 92.98,
+          "word": " confirm"
+        },
+        {
+          "start": 92.98,
+          "end": 93.3,
+          "word": " the"
+        },
+        {
+          "start": 93.3,
+          "end": 93.66,
+          "word": " actual"
+        },
+        {
+          "start": 93.66,
+          "end": 94.08,
+          "word": " plan"
+        },
+        {
+          "start": 94.08,
+          "end": 94.32,
+          "word": " terms"
+        },
+        {
+          "start": 94.32,
+          "end": 94.64,
+          "word": " on"
+        },
+        {
+          "start": 94.64,
+          "end": 94.72,
+          "word": " the"
+        },
+        {
+          "start": 94.72,
+          "end": 95.34,
+          "word": " provider's"
+        }
+      ]
+    },
+    {
+      "start": 95.34,
+      "end": 96.02,
+      "text": " official page.",
+      "words": [
+        {
+          "start": 95.34,
+          "end": 95.54,
+          "word": " official"
+        },
+        {
+          "start": 95.54,
+          "end": 96.02,
+          "word": " page."
+        }
+      ]
+    }
+  ],
+  "limitation": "Automated transcription and signal/decode review, not human audition."
+}
