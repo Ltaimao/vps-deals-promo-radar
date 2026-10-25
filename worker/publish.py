@@ -36,7 +36,7 @@ def module_bytes(content_type, body):
     raise RuntimeError('Unexpected script content type; no upload permitted')
 
 
-def upload_metadata(settings):
+def upload_metadata(settings, enable_youtube_publisher=False):
     allowed = ('compatibility_date', 'compatibility_flags', 'logpush', 'placement',
                'tail_consumers', 'streaming_tail_consumers', 'limits', 'observability')
     result = {key: settings[key] for key in allowed if key in settings and settings[key] is not None}
@@ -44,6 +44,16 @@ def upload_metadata(settings):
                   keep_bindings=sorted({b['type'] for b in settings.get('bindings', [])}))
     if not result.get('compatibility_date'):
         raise RuntimeError('No existing compatibility date; no upload permitted')
+    if enable_youtube_publisher:
+        existing = [b for b in settings.get('bindings', []) if b['name'] == 'YT_PUBLISHER']
+        if existing:
+            if len(existing) != 1 or existing[0]['type'] != 'durable_object_namespace' or existing[0].get('class_name') != 'YouTubePublisher':
+                raise RuntimeError('Unexpected existing YouTube publisher binding')
+        else:
+            if any(b['type'] == 'durable_object_namespace' for b in settings.get('bindings', [])):
+                raise RuntimeError('Unreviewed existing Durable Object migration state')
+            result['bindings'] = [{'name': 'YT_PUBLISHER', 'type': 'durable_object_namespace', 'class_name': 'YouTubePublisher'}]
+            result['migrations'] = {'new_tag': 'youtube-publisher-v1', 'new_sqlite_classes': ['YouTubePublisher']}
     return result
 
 
@@ -61,6 +71,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--mode', choices=('inspect', 'deploy'), default='inspect')
     parser.add_argument('--expected-ref', required=True)
+    parser.add_argument('--enable-youtube-publisher', action='store_true')
     args = parser.parse_args()
     token = os.environ.get('CLOUDFLARE_API_TOKEN')
     account = os.environ.get('CLOUDFLARE_ACCOUNT_ID')
@@ -101,7 +112,7 @@ def main():
     print(json.dumps(summary), flush=True)
     if source not in (expected, desired):
         raise RuntimeError('Live source differs from reviewed predecessor and target; no upload performed')
-    metadata = upload_metadata(settings)
+    metadata = upload_metadata(settings, args.enable_youtube_publisher)
     if args.mode == 'inspect':
         print('INSPECTION PASSED; no writes performed')
         return
@@ -120,7 +131,14 @@ def main():
     after = obj('/settings')
     # Compare all binding metadata in memory; no values are logged.
     binding_key = lambda items: sorted(json.dumps(b, sort_keys=True) for b in items)
-    if binding_key(after.get('bindings', [])) != binding_key(settings.get('bindings', [])):
+    previous_bindings = settings.get('bindings', [])
+    after_bindings = after.get('bindings', [])
+    if args.enable_youtube_publisher and not any(b['name'] == 'YT_PUBLISHER' for b in previous_bindings):
+        added = [b for b in after_bindings if b['name'] == 'YT_PUBLISHER']
+        if len(added) != 1 or added[0]['type'] != 'durable_object_namespace' or added[0].get('class_name') != 'YouTubePublisher':
+            raise RuntimeError('New publisher binding verification failed')
+        after_bindings = [b for b in after_bindings if b['name'] != 'YT_PUBLISHER']
+    if binding_key(after_bindings) != binding_key(previous_bindings):
         raise RuntimeError('Post-release binding metadata differs; review required')
     if obj('/schedules') != schedules:
         raise RuntimeError('Post-release schedules differ; review required')

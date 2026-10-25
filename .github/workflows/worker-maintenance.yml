@@ -28,10 +28,10 @@ jobs:
       - name: Regression tests (no real emails)
         run: |
           python3 -m unittest discover -s tests -v
-          node --test tests/test_worker.mjs
+          node --test tests/test_*.mjs
       - name: Inspect or release the reviewed Worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           WORKER_OPERATION: ${{ inputs.operation }}
-        run: python3 worker/publish.py --mode "$WORKER_OPERATION" --expected-ref cf1ebbb
+        run: python3 worker/publish.py --mode "$WORKER_OPERATION" --expected-ref 5045c2dc3ff45422525468cc91b5ae4f27bf3833 --enable-youtube-publisher

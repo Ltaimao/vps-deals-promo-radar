@@ -126,7 +126,8 @@ class EditorialTests(unittest.TestCase):
         self.assertIn('"image": "https://www.vpsdealswire.com/articles/' + image_name + '"', page)
         self.assertEqual((output/'articles'/image_name).read_bytes(), (self.root/'static/articles'/image_name).read_bytes())
         self.assertIn('/articles/' + image_name, (output/'articles/index.html').read_text())
-        self.assertNotIn('2026-10-25', (output/'sitemap.xml').read_text())
+        next_article = editorial.calendar(self.root)[0][1]['slug']
+        self.assertNotIn('https://www.vpsdealswire.com/articles/' + next_article + '/', (output/'sitemap.xml').read_text())
 
     def test_new_unscheduled_old_platform_post_is_not_auto_published(self):
         source = self.root / 'content/queue' / (self.first['slug']+'.html')

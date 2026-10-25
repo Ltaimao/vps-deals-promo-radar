@@ -25,3 +25,21 @@ class PublishTests(unittest.TestCase):
     def test_non_module_response_is_rejected(self):
         with self.assertRaises(RuntimeError):
             publish.module_bytes('text/html', b'<html>denied</html>')
+
+    def test_youtube_addition_retains_old_secrets_and_creates_only_its_sqlite_class(self):
+        settings = {'compatibility_date': '2026-09-28', 'bindings': [
+            {'name': 'SUBS', 'type': 'kv_namespace', 'namespace_id': 'same'},
+            {'name': 'YT_REFRESH_TOKEN', 'type': 'secret_text'}]}
+        result = publish.upload_metadata(settings, True)
+        self.assertEqual(result['keep_bindings'], ['kv_namespace', 'secret_text'])
+        self.assertEqual(result['bindings'], [{'name': 'YT_PUBLISHER', 'type': 'durable_object_namespace', 'class_name': 'YouTubePublisher'}])
+        self.assertEqual(result['migrations']['new_sqlite_classes'], ['YouTubePublisher'])
+        settings['bindings'] += result['bindings']
+        repeated = publish.upload_metadata(settings, True)
+        self.assertNotIn('migrations', repeated)
+        self.assertEqual(repeated['bindings'], [])
+
+    def test_unknown_existing_durable_object_state_is_not_overwritten(self):
+        with self.assertRaises(RuntimeError):
+            publish.upload_metadata({'compatibility_date': '2026-09-28', 'bindings': [
+                {'name': 'YT_PUBLISHER', 'type': 'durable_object_namespace', 'class_name': 'OtherClass'}]}, True)
