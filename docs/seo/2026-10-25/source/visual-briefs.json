@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "cancel-vps-auto-renewal-checklist",
+    "diagram": [
+      "Cancel with evidence",
+      "Export first",
+      "Confirm termination",
+      "Check remaining charges"
+    ]
+  },
+  {
+    "slug": "vps-snapshot-restore-test",
+    "diagram": [
+      "A saved image is the start",
+      "Isolated restore",
+      "Application checks",
+      "Record the outcome"
+    ]
+  },
+  {
+    "slug": "vps-dns-cutover-ttl-rollback",
+    "diagram": [
+      "DNS is one part of a move",
+      "Check A and AAAA",
+      "Allow for cached answers",
+      "Plan for new writes"
+    ]
+  }
+]

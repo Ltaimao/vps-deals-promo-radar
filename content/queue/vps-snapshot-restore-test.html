@@ -1,0 +1,21 @@
+title: VPS Snapshot Restore Test: Verify the Application
+date: 2026-11-08
+description: Test a VPS snapshot restore in isolation, check application data and dependencies, and record what the recovery actually proved.
+gap: vps-snapshot-restoration-acceptance-test
+
+<h1>VPS Snapshot Restore Test: Verify the Application</h1>
+<p><strong>Restore a copy into an isolated test environment, verify the application and its data, and record the recovery limits.</strong> Seeing a snapshot in a control panel proves that an image exists. It does not show that your whole service can recover from the incident you are planning for.</p>
+<figure class="article-illustration"><img src="/articles/vps-snapshot-restore-test.png" alt="A saved image is the start: Isolated restore; Application checks; Record the outcome. Original conceptual checklist, not measured results." width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Original process diagram. Check the provider documentation and your own configuration.</figcaption></figure>
+<h2>Define what you need to recover</h2>
+<p>List the application files, database, uploaded content and configuration you expect the snapshot to contain. Identify anything outside the captured disk: attached storage, managed databases, object storage, DNS and external credentials may need separate recovery steps.</p>
+<p>Write a simple acceptance test before restoring. For a small content site, it might include opening a known page, finding a recent uploaded file and checking a representative database record. Choose checks that reflect the service, rather than copying a generic list without understanding it.</p>
+<h2>Restore without disturbing production</h2>
+<p>Follow the provider's current restoration instructions and confirm the required architecture and disk size. For example, <a href="https://docs.digitalocean.com/products/snapshots/how-to/create-and-restore-droplets/">DigitalOcean documents disk-size constraints and distinguishes disk contents from Droplet metadata</a>. That is a provider-specific example, not a promise about another company's snapshots.</p>
+<p>Keep the restored instance away from normal production traffic. Prevent scheduled jobs, outgoing customer email, webhooks and payment actions from running twice. Use suitable access controls and a test hostname or other documented testing method. A copied server can still contain live credentials and production schedules.</p>
+<h2>Check the service beyond booting</h2>
+<p>Confirm that required services start, configuration points to the intended test dependencies, and the selected application checks pass. Review timestamps so you understand which data the snapshot actually contains. Do not label a bootable machine a successful database recovery without inspecting the database.</p>
+<p>If a component is missing, determine whether it was outside the snapshot scope, changed after capture or failed during restoration. Keep the observation specific. A failed login alone does not tell you that every file is corrupt, just as an accessible home page does not prove every function works.</p>
+<h2>Record time, gaps and cleanup</h2>
+<p>Record the snapshot identifier, capture time, restoration start and the point when the acceptance checks completed. Include manual steps and unresolved dependencies. These observations describe this exercise; do not turn one attempt into a guaranteed recovery time.</p>
+<p>Remove temporary test resources after the evidence and required copies are safely retained. Review separately billed disks and snapshots as well as the instance. If the test found a gap, revise the backup plan and repeat only the relevant recovery checks.</p>
+<p>The <a href="/articles/do-cheap-vps-plans-include-backups/">backup-inclusion guide</a> helps with purchase questions. Use the <a href="/articles/managed-vs-unmanaged-vps-decision-guide/">management responsibility guide</a> to establish who performs recovery. This exercise answers a different question: what did a real restoration of your application demonstrate, and what remains untested?</p>

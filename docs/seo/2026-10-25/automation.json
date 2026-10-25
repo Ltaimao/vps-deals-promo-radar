@@ -1,0 +1,11 @@
+{
+  "title": "两站 SEO 备稿与巡检",
+  "enabled": true,
+  "timezone": "Asia/Shanghai",
+  "timingMode": "flexible_schedule",
+  "approximateLocalTime": "09:00",
+  "startDate": "2026-10-26",
+  "target": "15 complete reviewed future days per site",
+  "dailyPublishTime": "08:00 via existing GitHub workflow",
+  "note": "Shared two-site task; do not create a duplicate or alter Pinterest automation."
+}

@@ -1,0 +1,836 @@
+{
+  "retrievedAt": "2026-10-25",
+  "property": "sc-domain:vpsdealswire.com",
+  "window": {
+    "from": "2026-09-25",
+    "to": "2026-10-22"
+  },
+  "gscSelectedQueryPageRows": [
+    {
+      "query": "bandwidth overage charges",
+      "page": "https://www.vpsdealswire.com/articles/what-happens-when-vps-exceeds-bandwidth/",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 85.6667
+    },
+    {
+      "query": "black friday vps",
+      "page": "https://www.vpsdealswire.com/black-friday/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 98.5
+    },
+    {
+      "query": "buyvm",
+      "page": "https://vpsdealswire.com/providers/buyvm/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 52.5
+    },
+    {
+      "query": "buyvm vps",
+      "page": "https://vpsdealswire.com/providers/buyvm/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 53.5
+    },
+    {
+      "query": "cheap windows vps",
+      "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 96.6667
+    },
+    {
+      "query": "cheap windows vps $5",
+      "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 67
+    },
+    {
+      "query": "cheapest windows vps",
+      "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 90.8
+    },
+    {
+      "query": "cloudcone",
+      "page": "https://www.vpsdealswire.com/black-friday/",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 6.6667
+    },
+    {
+      "query": "digital ocean vps pricing",
+      "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8.5
+    },
+    {
+      "query": "digitalocean vps",
+      "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 58
+    },
+    {
+      "query": "hostdare",
+      "page": "https://vpsdealswire.com/providers/hostdare/",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 13.8333
+    },
+    {
+      "query": "hosthatch coupon",
+      "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 45.5
+    },
+    {
+      "query": "ovh deal",
+      "page": "https://vpsdealswire.com/providers/ovhcloud/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 46.5
+    },
+    {
+      "query": "ovh vps coupon code",
+      "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 95.5
+    },
+    {
+      "query": "ovhcloud deals",
+      "page": "https://vpsdealswire.com/providers/ovhcloud/",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 49.6667
+    },
+    {
+      "query": "ovhcloud deals",
+      "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 62
+    },
+    {
+      "query": "upcloud coupon codes",
+      "page": "https://vpsdealswire.com/providers/upcloud/",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 78
+    },
+    {
+      "query": "upcloud coupon codes",
+      "page": "https://www.vpsdealswire.com/providers/upcloud/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 70.5
+    },
+    {
+      "query": "upcloud coupons",
+      "page": "https://vpsdealswire.com/providers/upcloud/",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 83
+    },
+    {
+      "query": "virmach",
+      "page": "https://vpsdealswire.com/compare/",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 18.6667
+    },
+    {
+      "query": "vps cost",
+      "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+      "clicks": 0,
+      "impressions": 32,
+      "ctr": 0,
+      "position": 90.7188
+    },
+    {
+      "query": "vps costs",
+      "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 85.75
+    },
+    {
+      "query": "vps deals",
+      "page": "https://www.vpsdealswire.com/",
+      "clicks": 0,
+      "impressions": 23,
+      "ctr": 0,
+      "position": 81.7391
+    },
+    {
+      "query": "vps digital ocean",
+      "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 61
+    },
+    {
+      "query": "vps hosting cost",
+      "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+      "clicks": 0,
+      "impressions": 20,
+      "ctr": 0,
+      "position": 89.5
+    },
+    {
+      "query": "vps hosting deals",
+      "page": "https://www.vpsdealswire.com/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "query": "vps hosting digitalocean",
+      "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 46.5
+    },
+    {
+      "query": "vps hosting offers",
+      "page": "https://www.vpsdealswire.com/",
+      "clicks": 0,
+      "impressions": 16,
+      "ctr": 0,
+      "position": 78.25
+    },
+    {
+      "query": "vps hosting price",
+      "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+      "clicks": 0,
+      "impressions": 20,
+      "ctr": 0,
+      "position": 97.75
+    },
+    {
+      "query": "vps hosting pricing",
+      "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 96.5556
+    },
+    {
+      "query": "vps offers",
+      "page": "https://www.vpsdealswire.com/",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 83.3077
+    },
+    {
+      "query": "vps performance limits",
+      "page": "https://www.vpsdealswire.com/articles/what-happens-when-vps-exceeds-bandwidth/",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 94.8333
+    },
+    {
+      "query": "vps price",
+      "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+      "clicks": 0,
+      "impressions": 35,
+      "ctr": 0,
+      "position": 96.9714
+    },
+    {
+      "query": "vps rates",
+      "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 45.5
+    }
+  ],
+  "gscRecent7Days": {
+    "from": "2026-10-16",
+    "to": "2026-10-22",
+    "response": {
+      "status": "done",
+      "data": [
+        {
+          "query": "bandwidth overage charges",
+          "clicks": 0,
+          "impressions": 6,
+          "position": 84.3333
+        },
+        {
+          "query": "black friday vps",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 98.5
+        },
+        {
+          "query": "cheap vps windows",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 100
+        },
+        {
+          "query": "cheap windows vps",
+          "clicks": 0,
+          "impressions": 6,
+          "position": 96.6667
+        },
+        {
+          "query": "cheap windows vps $5",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 67
+        },
+        {
+          "query": "cheapest vps windows",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 80
+        },
+        {
+          "query": "cheapest windows vps",
+          "clicks": 0,
+          "impressions": 10,
+          "position": 90.8
+        },
+        {
+          "query": "compare vps prices",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 68
+        },
+        {
+          "query": "compare vps providers",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 60
+        },
+        {
+          "query": "digital ocean vps",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 63
+        },
+        {
+          "query": "digital ocean vps pricing",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 8.5
+        },
+        {
+          "query": "digitalocean vps",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 58
+        },
+        {
+          "query": "digitalocean vps plans",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 23
+        },
+        {
+          "query": "digitalocean vps price",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 19
+        },
+        {
+          "query": "hosthatch",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 58
+        },
+        {
+          "query": "hosthatch coupon",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 45.5
+        },
+        {
+          "query": "ovh 0.97",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 57
+        },
+        {
+          "query": "ovh deal",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 55
+        },
+        {
+          "query": "ovh sale",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 62
+        },
+        {
+          "query": "ovh sales",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 54
+        },
+        {
+          "query": "ovh vps coupon code",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 94
+        },
+        {
+          "query": "ovh vps pricing",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 50
+        },
+        {
+          "query": "ovhcloud deals",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 61
+        },
+        {
+          "query": "upcloud",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 7
+        },
+        {
+          "query": "upcloud coupon codes",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 70.5
+        },
+        {
+          "query": "upcloud coupons",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 63
+        },
+        {
+          "query": "vps 5 dollars",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 66
+        },
+        {
+          "query": "vps bandwidth",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 301
+        },
+        {
+          "query": "vps black friday",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 160
+        },
+        {
+          "query": "vps comparison",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 66
+        },
+        {
+          "query": "vps cost",
+          "clicks": 0,
+          "impressions": 28,
+          "position": 90.8571
+        },
+        {
+          "query": "vps costs",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 85.75
+        },
+        {
+          "query": "vps deals",
+          "clicks": 0,
+          "impressions": 19,
+          "position": 81.9474
+        },
+        {
+          "query": "vps digital ocean",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 61
+        },
+        {
+          "query": "vps digitalocean",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 54
+        },
+        {
+          "query": "vps hosting cost",
+          "clicks": 0,
+          "impressions": 15,
+          "position": 89.4
+        },
+        {
+          "query": "vps hosting deals",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 80
+        },
+        {
+          "query": "vps hosting digitalocean",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 46.5
+        },
+        {
+          "query": "vps hosting offers",
+          "clicks": 0,
+          "impressions": 12,
+          "position": 78.9167
+        },
+        {
+          "query": "vps hosting price",
+          "clicks": 0,
+          "impressions": 18,
+          "position": 97.7222
+        },
+        {
+          "query": "vps hosting pricing",
+          "clicks": 0,
+          "impressions": 8,
+          "position": 96.625
+        },
+        {
+          "query": "vps low cost windows",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 97
+        },
+        {
+          "query": "vps offers",
+          "clicks": 0,
+          "impressions": 9,
+          "position": 84.3333
+        },
+        {
+          "query": "vps ovhcloud",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 83
+        },
+        {
+          "query": "vps performance limits",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 96
+        },
+        {
+          "query": "vps price",
+          "clicks": 0,
+          "impressions": 28,
+          "position": 97.5
+        },
+        {
+          "query": "vps rates",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 45.5
+        },
+        {
+          "query": "windows vps cheap",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 97
+        }
+      ],
+      "total_rows": 49
+    }
+  },
+  "gscPrevious7Days": {
+    "from": "2026-10-09",
+    "to": "2026-10-15",
+    "response": {
+      "status": "done",
+      "data": [
+        {
+          "query": "bandwidth overage charges",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 88.3333
+        },
+        {
+          "query": "black friday dedicated server deals",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 91
+        },
+        {
+          "query": "black friday dedicated servers",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 86
+        },
+        {
+          "query": "black friday vps offers",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 81
+        },
+        {
+          "query": "buyvm",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 48
+        },
+        {
+          "query": "cheap hosting servers catswhocode",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 71
+        },
+        {
+          "query": "cloudcone",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 6.6667
+        },
+        {
+          "query": "compare vps hosting plans",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 19
+        },
+        {
+          "query": "how much does a vps cost",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 85
+        },
+        {
+          "query": "ovh deal",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 46.5
+        },
+        {
+          "query": "ovh deals",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 47
+        },
+        {
+          "query": "ovh vps coupon code",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 94.5
+        },
+        {
+          "query": "ovhcloud deals",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 53
+        },
+        {
+          "query": "racknerd promo codes",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 62
+        },
+        {
+          "query": "sale vps",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 87
+        },
+        {
+          "query": "upcloud coupon codes",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 76
+        },
+        {
+          "query": "upcloud coupons",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 93
+        },
+        {
+          "query": "upcloud vps",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 65
+        },
+        {
+          "query": "vps cost",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 89.75
+        },
+        {
+          "query": "vps deals",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 80.75
+        },
+        {
+          "query": "vps hosting black friday",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 85
+        },
+        {
+          "query": "vps hosting cost",
+          "clicks": 0,
+          "impressions": 5,
+          "position": 89.8
+        },
+        {
+          "query": "vps hosting offers",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 76.25
+        },
+        {
+          "query": "vps hosting price",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 98
+        },
+        {
+          "query": "vps hosting price comparison",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 82
+        },
+        {
+          "query": "vps hosting pricing",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 96
+        },
+        {
+          "query": "vps offers",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 81
+        },
+        {
+          "query": "vps performance limits",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 93.6667
+        },
+        {
+          "query": "vps price",
+          "clicks": 0,
+          "impressions": 7,
+          "position": 94.8571
+        }
+      ],
+      "total_rows": 38
+    }
+  },
+  "ga4SelectedOrganicRows": [
+    {
+      "landing_page_plus_query_string": "/",
+      "session_source_medium": "bing / organic",
+      "session_default_channel_group": "Organic Search",
+      "sessions": 6,
+      "engaged_sessions": 1
+    },
+    {
+      "landing_page_plus_query_string": "/providers/bandwagonhost/",
+      "session_source_medium": "bing / organic",
+      "session_default_channel_group": "Organic Search",
+      "sessions": 2,
+      "engaged_sessions": 0
+    },
+    {
+      "landing_page_plus_query_string": "/providers/inmotion-hosting/",
+      "session_source_medium": "bing / organic",
+      "session_default_channel_group": "Organic Search",
+      "sessions": 2,
+      "engaged_sessions": 0
+    },
+    {
+      "landing_page_plus_query_string": "/providers/alphavps/",
+      "session_source_medium": "cn.bing.com / referral",
+      "session_default_channel_group": "Organic Search",
+      "sessions": 1,
+      "engaged_sessions": 0
+    },
+    {
+      "landing_page_plus_query_string": "/providers/buyvm/",
+      "session_source_medium": "duckduckgo / organic",
+      "session_default_channel_group": "Organic Search",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "landing_page_plus_query_string": "/",
+      "session_source_medium": "google / organic",
+      "session_default_channel_group": "Organic Search",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "landing_page_plus_query_string": "/articles/cheap-vps-renewal-prices/",
+      "session_source_medium": "google / organic",
+      "session_default_channel_group": "Organic Search",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "landing_page_plus_query_string": "/",
+      "session_source_medium": "search.google.com / referral",
+      "session_default_channel_group": "Organic Search",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "landing_page_plus_query_string": "/compare/",
+      "session_source_medium": "search.google.com / referral",
+      "session_default_channel_group": "Organic Search",
+      "sessions": 1,
+      "engaged_sessions": 0
+    }
+  ],
+  "limitations": [
+    "GSC query-page rows are not property totals.",
+    "GA4 all-channel traffic is distinct from Organic Search; source/medium and default channel grouping retained.",
+    "Tiny samples: no content conversion winner or causal claim.",
+    "Target queries in briefs are editorial hypotheses, not measured keyword volumes.",
+    "External Google Trends time series not obtained; seasonal/competitor observations are qualitative only."
+  ]
+}

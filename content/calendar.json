@@ -127,6 +127,33 @@
       "status": "ready",
       "sha256": "5ff72d334d0090eff265f87b3f94004f87a1b04f71e625e2828c58f4f69c8e1c",
       "image_sha256": "6aabef95a5b702971d3ee8dbfa6f101e012d13eaf5e79a51c6d521803318125b"
+    },
+    {
+      "date": "2026-11-07",
+      "slug": "cancel-vps-auto-renewal-checklist",
+      "gap": "vps-cancellation-resource-billing-confirmation",
+      "target_query": "how to cancel VPS auto renewal",
+      "status": "ready",
+      "sha256": "aa4414654e052c3b8c8585173601d1e33e2693712ba5c65cc4d9d1235acc577c",
+      "image_sha256": "bd00833f5856c493214bf340cbf63c90976b40f3d8b84ce1f7848d5809f9beb2"
+    },
+    {
+      "date": "2026-11-08",
+      "slug": "vps-snapshot-restore-test",
+      "gap": "vps-snapshot-restoration-acceptance-test",
+      "target_query": "VPS snapshot restore test checklist",
+      "status": "ready",
+      "sha256": "457f3e3a97f956a18b8b822d236b27486ea5d0c91bccba6427116f8009c6e08b",
+      "image_sha256": "9f6ffd0d261a0ecc6cb58b6b8e7f2db815219706d5578dbb75597a6ae5371072"
+    },
+    {
+      "date": "2026-11-09",
+      "slug": "vps-dns-cutover-ttl-rollback",
+      "gap": "vps-dns-cutover-cache-write-rollback",
+      "target_query": "VPS DNS cutover TTL A AAAA rollback",
+      "status": "ready",
+      "sha256": "3f6beed1856af639e6c9dd0a24ecebbcf4e0ed487bd9fe1c4369c0f8a0eab545",
+      "image_sha256": "45e23c07733f50bab1fba22a39b3bf537b1df5dd2d99ceb441a9da34af1f0108"
     }
   ]
 }
