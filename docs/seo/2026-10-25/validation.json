@@ -1,0 +1,24 @@
+{
+  "validatedAt": "2026-10-25",
+  "futureDays": 15,
+  "futureFrom": "2026-10-26",
+  "through": "2026-11-09",
+  "completeCalendarEntries": 17,
+  "originalImagesReviewed": 3,
+  "publicPublicationClaim": false,
+  "checks": [
+    "All reviewed queue entries validate",
+    "Date/slug/image/link checks pass",
+    "Production build passes",
+    "Future article bodies are not published early"
+  ],
+  "tests": {
+    "python": 48,
+    "workerNode": 6
+  },
+  "limitations": [
+    "External keyword volume/trend index not obtained",
+    "No per-article download attribution",
+    "Image score is subjective, not a traffic prediction"
+  ]
+}
