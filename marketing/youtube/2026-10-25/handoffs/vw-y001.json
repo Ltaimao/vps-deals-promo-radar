@@ -1,8 +1,8 @@
 {
   "contentId": "vw-y001",
   "mediaVersion": "v1",
-  "ready_for_publisher": false,
-  "state": "media_qa_passed_awaiting_public_host_verification",
+  "ready_for_publisher": true,
+  "state": "ready_for_muse",
   "ourRole": "content_and_publication_plan",
   "publishingOwner": "muse",
   "ourYouTubePublishingEnabled": false,
@@ -74,5 +74,8 @@
   "youtubeUrl": null,
   "actualPublishedAt": null,
   "review7At": null,
-  "review28At": null
+  "review28At": null,
+  "handedOffAt": "2026-10-25T04:42:17.872Z",
+  "publicHostingVerified": true,
+  "publicHostingEvidence": "../production/vw-y001/live-hosting.json"
 }

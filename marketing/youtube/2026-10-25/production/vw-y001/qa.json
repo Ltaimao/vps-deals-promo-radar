@@ -1,9 +1,9 @@
 {
   "contentId": "vw-y001",
-  "checkedAt": "2026-10-25T04:39:59.204509+00:00",
+  "checkedAt": "2026-10-25T04:42:17.872Z",
   "mediaVersion": "v1",
   "readyForHosting": true,
-  "readyForPublisher": false,
+  "readyForPublisher": true,
   "youtubeUploadedByUs": false,
   "publishingOwner": "muse",
   "visualReview": {
@@ -64,9 +64,10 @@
       "language": "en"
     }
   },
-  "publicHostingVerified": false,
+  "publicHostingVerified": true,
   "channelIdentityAndDuplicateCheck": "Muse responsibility before upload",
   "youtubeVideoId": null,
   "youtubeUrl": null,
-  "actualPublishedAt": null
+  "actualPublishedAt": null,
+  "publicHostingEvidence": "live-hosting.json"
 }

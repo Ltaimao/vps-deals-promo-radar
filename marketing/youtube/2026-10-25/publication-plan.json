@@ -16,7 +16,7 @@
       "title": "Shared vCPU VPS: Check Fair Use Before Buying",
       "landingPage": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y001",
       "script": "scripts/vw-y001.md",
-      "mediaState": "media_qa_passed_awaiting_public_host_verification",
+      "mediaState": "ready_for_muse",
       "videoSourceUrl": "https://www.vpsdealswire.com/videos/vw-y001.mp4",
       "mediaSha256": "3688fad085d2cf5fb96c7357b4b75e95f9670d2850a602742fa5628626340d99",
       "thumbnailUrl": "https://www.vpsdealswire.com/vw-y001-thumbnail.jpg",
@@ -25,7 +25,8 @@
       "youtubeVideoId": null,
       "youtubeUrl": null,
       "actualPublishedAt": null,
-      "handoff": "handoffs/vw-y001.json"
+      "handoff": "handoffs/vw-y001.json",
+      "readyForPublisher": true
     },
     {
       "contentId": "vw-y002",

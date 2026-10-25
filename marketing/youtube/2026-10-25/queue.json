@@ -17,7 +17,7 @@
       "title": "Shared vCPU VPS: Check Fair Use Before Buying",
       "proposedLocalDate": "2026-10-27",
       "timezone": "Asia/Shanghai",
-      "state": "media_qa_passed_awaiting_public_host_verification",
+      "state": "ready_for_muse",
       "script": "scripts/vw-y001.md",
       "landingPage": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y001",
       "thumbnailConcept": "What Does Shared Mean?",
@@ -37,7 +37,7 @@
       "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article",
       "contentOwner": "this_ai",
       "publishingOwner": "muse",
-      "handoffState": "media_qa_passed_awaiting_public_host_verification",
+      "handoffState": "ready_for_muse",
       "ourPublishingEnabled": false,
       "mediaVersion": "v1",
       "handoff": "handoffs/vw-y001.json",
@@ -70,7 +70,9 @@
           "bytes": 2257,
           "language": "en"
         }
-      }
+      },
+      "publicHostingVerified": true,
+      "handedOffAt": "2026-10-25T04:42:17.872Z"
     },
     {
       "contentId": "vw-y002",
