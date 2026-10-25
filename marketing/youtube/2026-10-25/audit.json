@@ -21,7 +21,11 @@
   "newUploadsAttempted": 0,
   "existingVideosDeleted": 0,
   "publicationBlockedBy": [
-    "Missing caller credential or connected publisher",
-    "Authenticated channel identity and current upload inventory not yet verified"
-  ]
+    "Google channel/inventory read permission",
+    "Authenticated current channel identity/current upload inventory unverified"
+  ],
+  "managedPublisherDeployed": true,
+  "legacyCallerCredentialRequired": false,
+  "currentBlocker": "Google channel/inventory API 403 insufficientPermissions",
+  "authenticatedChannelIdentityVerified": false
 }

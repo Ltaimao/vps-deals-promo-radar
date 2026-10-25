@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-25",
+  "managedPublisherPR": "https://github.com/Ltaimao/vps-deals-promo-radar/pull/4",
+  "mergeCommit": "37d6977d49f66ae76a141f234eccd12fb806d562",
+  "worker": "vpsdealswire-api",
+  "deployedSourceSha256": "884bfe28f3b364ff5e036389922424c30f190f51cd8e932fcc5b9fee50a80412",
+  "deployedSourceVerified": true,
+  "originalBindingsPreserved": true,
+  "cronPreserved": true,
+  "addedBinding": "YT_PUBLISHER / YouTubePublisher (SQLite Durable Object)",
+  "tests": {
+    "node": 20,
+    "python": 50,
+    "build": "pass"
+  },
+  "authenticatedInspection": {
+    "httpStatus": 409,
+    "state": "preflight_failed",
+    "error": "youtube_read_403:insufficientPermissions",
+    "channel": "vps"
+  },
+  "legacyCredentialMigrationNeeded": false,
+  "automaticPublishingEnabled": false,
+  "uploadsAttempted": 0,
+  "newVideosCreated": 0,
+  "ownerAction": "Connect the correct YouTube channels in an authorized publisher (Metricool already installed), granting required Google permissions; never send a secret in chat. No claim that channel identity or upload write access was verified."
+}
