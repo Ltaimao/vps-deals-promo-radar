@@ -17,7 +17,7 @@
       "title": "Shared vCPU VPS: Check Fair Use Before Buying",
       "proposedLocalDate": "2026-10-27",
       "timezone": "Asia/Shanghai",
-      "state": "script_reviewed_media_pending_access_unverified",
+      "state": "media_qa_passed_awaiting_public_host_verification",
       "script": "scripts/vw-y001.md",
       "landingPage": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y001",
       "thumbnailConcept": "What Does Shared Mean?",
@@ -29,12 +29,48 @@
       "review28At": null,
       "review": {
         "scriptFactsChecked": true,
-        "mediaApproved": false,
+        "mediaApproved": true,
         "channelIdentityVerified": false,
         "advancedFeaturesVerified": false,
         "uploadScheduled": false
       },
-      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article"
+      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article",
+      "contentOwner": "this_ai",
+      "publishingOwner": "muse",
+      "handoffState": "media_qa_passed_awaiting_public_host_verification",
+      "ourPublishingEnabled": false,
+      "mediaVersion": "v1",
+      "handoff": "handoffs/vw-y001.json",
+      "assets": {
+        "video": {
+          "url": "https://www.vpsdealswire.com/videos/vw-y001.mp4",
+          "repositoryPath": "static/videos/vw-y001.mp4",
+          "sha256": "3688fad085d2cf5fb96c7357b4b75e95f9670d2850a602742fa5628626340d99",
+          "bytes": 2300141,
+          "durationSeconds": 96.948667,
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "videoCodec": "h264",
+          "audioCodec": "aac",
+          "audioRate": 48000
+        },
+        "thumbnail": {
+          "url": "https://www.vpsdealswire.com/vw-y001-thumbnail.jpg",
+          "repositoryPath": "static/vw-y001-thumbnail.jpg",
+          "sha256": "7c4fc0ffed3d668bf5b2ed87fd4db7a77c4c27e6508d0ce89f96fcf076a4b850",
+          "bytes": 76548,
+          "width": 1280,
+          "height": 720
+        },
+        "captions": {
+          "url": "https://www.vpsdealswire.com/vw-y001.en.srt",
+          "repositoryPath": "static/vw-y001.en.srt",
+          "sha256": "750732ef56f48357d6b8b346ccb81945ceb5d3aa59d8352d9541ae75828ddd5f",
+          "bytes": 2257,
+          "language": "en"
+        }
+      }
     },
     {
       "contentId": "vw-y002",
@@ -45,7 +81,7 @@
       "title": "Choose a VPS Location: Distance Is Only the Starting Point",
       "proposedLocalDate": "2026-10-30",
       "timezone": "Asia/Shanghai",
-      "state": "script_reviewed_media_pending_access_unverified",
+      "state": "script_reviewed_media_pending_external_publisher",
       "script": "scripts/vw-y002.md",
       "landingPage": "https://www.vpsdealswire.com/articles/choose-vps-location-latency/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y002",
       "thumbnailConcept": "Closest Is a Hypothesis.",
@@ -62,7 +98,11 @@
         "advancedFeaturesVerified": false,
         "uploadScheduled": false
       },
-      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article"
+      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article",
+      "contentOwner": "this_ai",
+      "publishingOwner": "muse",
+      "handoffState": "script_ready_final_media_pending",
+      "ourPublishingEnabled": false
     },
     {
       "contentId": "vw-y003",
@@ -73,7 +113,7 @@
       "title": "A vCPU Number Is Not a Sustained-Use Promise",
       "proposedLocalDate": "2026-11-01",
       "timezone": "Asia/Shanghai",
-      "state": "script_reviewed_media_pending_access_unverified",
+      "state": "script_reviewed_media_pending_external_publisher",
       "script": "scripts/vw-y003.md",
       "landingPage": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y003",
       "thumbnailConcept": "Check the Policy.",
@@ -90,7 +130,11 @@
         "advancedFeaturesVerified": false,
         "uploadScheduled": false
       },
-      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article"
+      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article",
+      "contentOwner": "this_ai",
+      "publishingOwner": "muse",
+      "handoffState": "script_ready_final_media_pending",
+      "ourPublishingEnabled": false
     },
     {
       "contentId": "vw-y004",
@@ -101,7 +145,7 @@
       "title": "NVMe vs SSD VPS: The Storage Label Is Not a Benchmark",
       "proposedLocalDate": "2026-11-03",
       "timezone": "Asia/Shanghai",
-      "state": "script_reviewed_media_pending_access_unverified",
+      "state": "script_reviewed_media_pending_external_publisher",
       "script": "scripts/vw-y004.md",
       "landingPage": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y004",
       "thumbnailConcept": "Ask About the Limit.",
@@ -118,7 +162,11 @@
         "advancedFeaturesVerified": false,
         "uploadScheduled": false
       },
-      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article"
+      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article",
+      "contentOwner": "this_ai",
+      "publishingOwner": "muse",
+      "handoffState": "script_ready_final_media_pending",
+      "ourPublishingEnabled": false
     },
     {
       "contentId": "vw-y005",
@@ -129,7 +177,7 @@
       "title": "VPS DDoS Protection: Ask What Happens During an Attack",
       "proposedLocalDate": "2026-11-06",
       "timezone": "Asia/Shanghai",
-      "state": "script_reviewed_media_pending_access_unverified",
+      "state": "script_reviewed_media_pending_external_publisher",
       "script": "scripts/vw-y005.md",
       "landingPage": "https://www.vpsdealswire.com/articles/vps-ddos-protection-checklist/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y005",
       "thumbnailConcept": "Protection Has Conditions.",
@@ -146,7 +194,11 @@
         "advancedFeaturesVerified": false,
         "uploadScheduled": false
       },
-      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article"
+      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article",
+      "contentOwner": "this_ai",
+      "publishingOwner": "muse",
+      "handoffState": "script_ready_final_media_pending",
+      "ourPublishingEnabled": false
     },
     {
       "contentId": "vw-y006",
@@ -157,7 +209,7 @@
       "title": "NVMe Is a Label. Ask About Your VPS I/O Limits.",
       "proposedLocalDate": "2026-11-08",
       "timezone": "Asia/Shanghai",
-      "state": "script_reviewed_media_pending_access_unverified",
+      "state": "script_reviewed_media_pending_external_publisher",
       "script": "scripts/vw-y006.md",
       "landingPage": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y006",
       "thumbnailConcept": "Label ≠ Application Result.",
@@ -174,7 +226,15 @@
         "advancedFeaturesVerified": false,
         "uploadScheduled": false
       },
-      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article"
+      "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article",
+      "contentOwner": "this_ai",
+      "publishingOwner": "muse",
+      "handoffState": "script_ready_final_media_pending",
+      "ourPublishingEnabled": false
     }
-  ]
+  ],
+  "ourRole": "content_and_publication_plan",
+  "publishingOwner": "muse",
+  "ourYouTubePublishingEnabled": false,
+  "scopeUpdatedByOwner": "2026-10-25"
 }

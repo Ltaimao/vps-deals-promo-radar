@@ -23,5 +23,9 @@
   "automaticPublishingEnabled": false,
   "uploadsAttempted": 0,
   "newVideosCreated": 0,
-  "ownerAction": "Connect the correct YouTube channels in an authorized publisher (Metricool already installed), granting required Google permissions; never send a secret in chat. No claim that channel identity or upload write access was verified."
+  "ownerAction": "No additional publishing access requested by ChatGPT. Muse uses its own authorized publication path.",
+  "ourRole": "content_and_publication_plan",
+  "publishingOwner": "muse",
+  "ourPublishingEnabled": false,
+  "currentInstruction": "Muse performs VPS YouTube publication; historical Google 403 does not block content production and is not a request for owner authorization."
 }

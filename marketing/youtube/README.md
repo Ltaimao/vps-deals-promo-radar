@@ -1,5 +1,9 @@
 # YouTube 网站推广运营
 
+> **站主最新分工 — 2026-10-25：VPS 的 YouTube 实际发布由 Muse 负责。** ChatGPT 负责内容制作与发布计划：选题、脚本、成片、缩略图、标题描述、引流链接、质检和交付包；不创建 VPS 的 YouTube/Metricool 排程、不上传/删除视频，也不因连接出现而自动启用发布。纹身站仍由本方完整运营。请优先阅读 [发布交接](2026-10-25/PUBLISHER_HANDOFF.md) 和 [建议发布计划](2026-10-25/publication-plan.json)。下方为接手时通用/历史方案，不能覆盖这项最新分工。
+
+> 以下为历史发布器检查记录，不是要求站主再次授权；VPS 发布现由 Muse 执行。
+
 > 2026-10-25 publisher update: managed API code is deployed; original bindings, routes and cron retained. Actual channel reads for both grants fail with Google `403 insufficientPermissions`. No upload was attempted. The old local shared secret is no longer required. See `2026-10-25/publisher-verification.json`.
 
 Owner mandate: autonomously operate the two channels to promote the websites. The two uploaded handovers are evidence and historical preferences, not a binding instruction to retain their production or upload methods. No new video is claimed published by this takeover.
@@ -20,7 +24,7 @@ Use `utm_source=youtube`, `utm_medium=organic_video`, the site-specific campaign
 
 Read GA4 source/medium and landing-page sessions/engaged sessions. Only report tool use, reference-card downloads or provider outbound actions after the actual event names and instrumentation have been verified. Cross-tool identity is not established; YouTube views and GA4 sessions are not a person-level conversion funnel. Use 7- and 28-day windows from the real publication time, allow reporting delay and retain small-sample uncertainty. The first two weeks establish a baseline, not a promised numeric growth target.
 
-## State at takeover — 2026-10-25
+## Historical state at takeover — 2026-10-25
 
 - Repository dual-token routing is present in `worker/api.js`. Both channel refresh-token secret **names** exist in the deployed Worker; presence does not prove validity, scopes or channel identity. Secret values were neither read nor copied.
 - The former missing-caller-credential problem was removed on 2026-10-25: a managed capability-job publisher is implemented, merged and deployed without exporting old secrets. However, actual authenticated inspections on both channels returned `403 insufficientPermissions` at the Google channel/inventory API. **Automatic publishing remains blocked by Google read/identity permissions.** Metricool still has Pinterest only; no YouTube account is connected in Windsor. The earlier request to migrate the old caller credential is obsolete; the remaining action is owner-completed YouTube authorization, preferably via the already-connected Metricool publisher. Do not request or paste secrets in chat.

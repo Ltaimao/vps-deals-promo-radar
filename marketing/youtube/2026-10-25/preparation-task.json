@@ -1,14 +1,10 @@
 {
-  "title": "YouTube 内容准备与引流复盘",
+  "title": "YouTube \u8fd0\u8425\u4e0e\u5f15\u6d41\u590d\u76d8",
   "enabled": true,
-  "scope": "content preparation and GA4 website-referral review only; no YouTube uploads",
+  "scope": "VPS content/media creation and publication planning only; external AI owns uploads, scheduling and publication verification",
   "timezone": "Asia/Shanghai",
-  "days": [
-    "Monday",
-    "Thursday",
-    "Saturday"
-  ],
-  "approximateLocalTime": "15:00",
+  "days": "daily",
+  "approximateLocalTime": "20:00",
   "publishingAutomationEnabled": false,
-  "publishingBlocker": "Google channel/inventory API permission; authenticated identity verification failed 403"
+  "publishingOwner": "muse"
 }

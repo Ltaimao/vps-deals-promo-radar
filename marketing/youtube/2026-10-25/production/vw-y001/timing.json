@@ -1,0 +1,44 @@
+[
+  {
+    "index": 0,
+    "text": "A vCPU count does not tell you how much sustained compute a VPS plan allows. Before buying a shared-CPU server, check what the provider means by shared and what its written usage policy permits.",
+    "wav": "voice-00.wav",
+    "seconds": 13.804263038548752
+  },
+  {
+    "index": 1,
+    "text": "Start with the workload. A small site with occasional bursts has different needs from a task that keeps the CPU busy continuously. Do not assume that a quiet test represents the way your service will behave all day.",
+    "wav": "voice-01.wav",
+    "seconds": 13.444353741496599
+  },
+  {
+    "index": 2,
+    "text": "Next, read the documented CPU limits. Look for conditions for continuous CPU use, burst rules and the provider's response when a workload exceeds them. If the policy is unclear, ask support a concrete question about your intended task before paying.",
+    "wav": "voice-02.wav",
+    "seconds": 17.31047619047619
+  },
+  {
+    "index": 3,
+    "text": "Then separate the plan label from a performance claim. Shared resources, dedicated resources and the number of advertised virtual CPUs are different pieces of information. None of them, alone, proves your application's response time.",
+    "wav": "voice-03.wav",
+    "seconds": 14.686621315192744
+  },
+  {
+    "index": 4,
+    "text": "Our take: buying a suitable resource policy matters more than collecting the largest headline CPU number. Keep a small comparison sheet with the plan, policy source, workload and unanswered question.",
+    "wav": "voice-04.wav",
+    "seconds": 13.246984126984128
+  },
+  {
+    "index": 5,
+    "text": "This is a purchasing checklist, not a benchmark. We have not run a performance test for this video and do not rank providers from an untested claim.",
+    "wav": "voice-05.wav",
+    "seconds": 9.717551020408163
+  },
+  {
+    "index": 6,
+    "text": "The description links to the fair-use guide at vpsdealswire dot com. Use the site to narrow your shortlist, then confirm the actual plan terms on the provider's official page.",
+    "wav": "voice-06.wav",
+    "seconds": 11.482267573696145
+  }
+]

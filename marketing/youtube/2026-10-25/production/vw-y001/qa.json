@@ -1,0 +1,72 @@
+{
+  "contentId": "vw-y001",
+  "checkedAt": "2026-10-25T04:39:59.204509+00:00",
+  "mediaVersion": "v1",
+  "readyForHosting": true,
+  "readyForPublisher": false,
+  "youtubeUploadedByUs": false,
+  "publishingOwner": "muse",
+  "visualReview": {
+    "nineFinalFrameSamplesReviewed": true,
+    "thumbnailFullSizeReviewed": true,
+    "mobileContactSheetReviewed": true,
+    "originalIllustrativeGraphics": true,
+    "realWebsiteRecording": true,
+    "no404InDeliveredRecording": true,
+    "noTextClippingObserved": true,
+    "noBenchmarkOrProviderPriceClaim": true,
+    "editorialScore": 87,
+    "scoreNote": "Internal quality assessment, not measured CTR or promised effectiveness."
+  },
+  "audioReview": {
+    "method": "Source script + ASR of final encoded track + full decode and signal checks; no human audition claimed.",
+    "wordSequenceSimilarity": 0.9810526315789474,
+    "spokenDomainRecognized": "vpsdealswire.com",
+    "genericSynthesizedNarration": true,
+    "model": "en_US-ljspeech-high",
+    "datasetLicense": "public domain",
+    "music": false,
+    "noClippingObserved": true
+  },
+  "facts": {
+    "guideHttpStatus": 200,
+    "guideCapturedAt": "2026-10-25T04:34:13.428Z",
+    "source": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/",
+    "externalProviderFactsUsed": false
+  },
+  "assets": {
+    "video": {
+      "url": "https://www.vpsdealswire.com/videos/vw-y001.mp4",
+      "repositoryPath": "static/videos/vw-y001.mp4",
+      "sha256": "3688fad085d2cf5fb96c7357b4b75e95f9670d2850a602742fa5628626340d99",
+      "bytes": 2300141,
+      "durationSeconds": 96.948667,
+      "width": 1920,
+      "height": 1080,
+      "fps": 24,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "audioRate": 48000
+    },
+    "thumbnail": {
+      "url": "https://www.vpsdealswire.com/vw-y001-thumbnail.jpg",
+      "repositoryPath": "static/vw-y001-thumbnail.jpg",
+      "sha256": "7c4fc0ffed3d668bf5b2ed87fd4db7a77c4c27e6508d0ce89f96fcf076a4b850",
+      "bytes": 76548,
+      "width": 1280,
+      "height": 720
+    },
+    "captions": {
+      "url": "https://www.vpsdealswire.com/vw-y001.en.srt",
+      "repositoryPath": "static/vw-y001.en.srt",
+      "sha256": "750732ef56f48357d6b8b346ccb81945ceb5d3aa59d8352d9541ae75828ddd5f",
+      "bytes": 2257,
+      "language": "en"
+    }
+  },
+  "publicHostingVerified": false,
+  "channelIdentityAndDuplicateCheck": "Muse responsibility before upload",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "actualPublishedAt": null
+}
