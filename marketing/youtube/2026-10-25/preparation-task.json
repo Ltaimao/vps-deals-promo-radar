@@ -10,5 +10,5 @@
   ],
   "approximateLocalTime": "15:00",
   "publishingAutomationEnabled": false,
-  "publishingBlocker": "caller credential and authenticated channel/current upload verification pending"
+  "publishingBlocker": "Google channel/inventory API permission; authenticated identity verification failed 403"
 }
