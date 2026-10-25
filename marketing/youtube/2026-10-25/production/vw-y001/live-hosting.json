@@ -1,0 +1,48 @@
+{
+  "contentId": "vw-y001",
+  "checkedAt": "2026-10-25T04:42:17.872Z",
+  "transport": "Actual default browser page fetch; API-context IPv6 failure and urllib 403 were transport checks, not evidence of a failed production deployment.",
+  "productionDeploy": "https://github.com/Ltaimao/vps-deals-promo-radar/actions/runs/40162773162",
+  "landingPage": {
+    "url": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y001",
+    "httpStatus": 200
+  },
+  "assets": [
+    {
+      "kind": "video",
+      "url": "https://www.vpsdealswire.com/videos/vw-y001.mp4",
+      "httpStatus": 200,
+      "contentType": "video/mp4",
+      "bytes": 2300141,
+      "sha256": "3688fad085d2cf5fb96c7357b4b75e95f9670d2850a602742fa5628626340d99",
+      "expectedSha256": "3688fad085d2cf5fb96c7357b4b75e95f9670d2850a602742fa5628626340d99",
+      "hashMatches": true
+    },
+    {
+      "kind": "thumbnail",
+      "url": "https://www.vpsdealswire.com/vw-y001-thumbnail.jpg",
+      "httpStatus": 200,
+      "contentType": "image/jpeg",
+      "bytes": 76548,
+      "sha256": "7c4fc0ffed3d668bf5b2ed87fd4db7a77c4c27e6508d0ce89f96fcf076a4b850",
+      "expectedSha256": "7c4fc0ffed3d668bf5b2ed87fd4db7a77c4c27e6508d0ce89f96fcf076a4b850",
+      "hashMatches": true
+    },
+    {
+      "kind": "captions",
+      "url": "https://www.vpsdealswire.com/vw-y001.en.srt",
+      "httpStatus": 200,
+      "contentType": "application/x-subrip",
+      "bytes": 2257,
+      "sha256": "750732ef56f48357d6b8b346ccb81945ceb5d3aa59d8352d9541ae75828ddd5f",
+      "expectedSha256": "750732ef56f48357d6b8b346ccb81945ceb5d3aa59d8352d9541ae75828ddd5f",
+      "hashMatches": true
+    }
+  ],
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 96.948667
+  },
+  "allVerified": true
+}

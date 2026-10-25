@@ -2,6 +2,10 @@
 
 2026-10-25 站主指定：ChatGPT 负责内容与发布计划；Muse 负责 YouTube 查重、上传、排程、实际发布核验。站主已转述 Muse 正在等待 vw-y001 成片。禁止将 VPS 内容发到 TattooDoodle 的 Metricool 品牌 7620881。
 
+## 当前可取片
+
+**vw-y001：ready_for_publisher=true**。读取 [`handoffs/vw-y001.json`](handoffs/vw-y001.json) 获取全部元数据与 SHA256。成片 https://www.vpsdealswire.com/videos/vw-y001.mp4 ，约 97 秒 1080p；缩略图 https://www.vpsdealswire.com/vw-y001-thumbnail.jpg ；英文字幕 https://www.vpsdealswire.com/vw-y001.en.srt 。三个文件公开 HTTP200、字节哈希与源文件一致，浏览器也解码到 1920×1080 / 96.948667 秒。建议 2026-10-27，尚无实际 YouTube ID 或排程。其余五条素材未完成。
+
 ## 入口与分工
 
 - 频道：@VPSDealsWire，预期 ID `UCfgVJrtBJSeViu95AnaQxyA`。发布前由 Muse 用实际账号核验。
