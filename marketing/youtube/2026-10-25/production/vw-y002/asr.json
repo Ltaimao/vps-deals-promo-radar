@@ -1,0 +1,1344 @@
+{
+  "model": "base.en",
+  "mediaSha256": "7b8c39fb7e8cc122b0f2f843b4438261c3270d6c95834970af421ae10460b9f7",
+  "tokenNormalization": "Canonical domain spelling in source text before whitespace-token comparison; this is not a WER or human-listening score.",
+  "method": "Actual encoded final audio decoded to 16kHz float32; automatic transcription, no human audition claimed.",
+  "language": "en",
+  "wordSequenceSimilarity": 0.9698275862068966,
+  "text": "The nearest VPS city is a reasonable starting point, but it is not proof of the best connection for your users. Network Rotes and the application itself also matter. First, identify where the people using the service connect from. Do not choose a region, only because it is close to the person paying the invoice. Next, find the providers documented test facility or looking glass for the region if one is available. Follow its permitted use and compare from a connection representative of your audience, a result from one network is an observation, not a worldwide latency guarantee, record the region, test time, method and result. If you have not run a test, label the choice as untested. A polished map must not become evidence of a measurement that never happened. Then consider the service. Static content behind a suitable delivery layer behaves differently from an application that makes repeated requests to a distant database. Look at where the dependencies live as well as the VPS. Our take. Make a small shortlist and a test plan before making a long commitment. A slightly different route, or dependency can matter more than the city name on a planned car. The location died at vpsdealswire.com has the full checklist. Open the description link, compare your actual requirements and verify the candidate region with the provider. This video does not claim a lowest latency winner.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 5.78,
+      "text": " The nearest VPS city is a reasonable starting point, but it is not proof of the best connection",
+      "words": [
+        {
+          "start": 0.0,
+          "end": 0.08,
+          "word": " The"
+        },
+        {
+          "start": 0.08,
+          "end": 0.34,
+          "word": " nearest"
+        },
+        {
+          "start": 0.34,
+          "end": 0.92,
+          "word": " VPS"
+        },
+        {
+          "start": 0.92,
+          "end": 1.4,
+          "word": " city"
+        },
+        {
+          "start": 1.4,
+          "end": 1.68,
+          "word": " is"
+        },
+        {
+          "start": 1.68,
+          "end": 1.76,
+          "word": " a"
+        },
+        {
+          "start": 1.76,
+          "end": 2.1,
+          "word": " reasonable"
+        },
+        {
+          "start": 2.1,
+          "end": 2.6,
+          "word": " starting"
+        },
+        {
+          "start": 2.6,
+          "end": 3.06,
+          "word": " point,"
+        },
+        {
+          "start": 3.6,
+          "end": 3.78,
+          "word": " but"
+        },
+        {
+          "start": 3.78,
+          "end": 4.28,
+          "word": " it"
+        },
+        {
+          "start": 4.28,
+          "end": 4.42,
+          "word": " is"
+        },
+        {
+          "start": 4.42,
+          "end": 4.64,
+          "word": " not"
+        },
+        {
+          "start": 4.64,
+          "end": 4.96,
+          "word": " proof"
+        },
+        {
+          "start": 4.96,
+          "end": 5.16,
+          "word": " of"
+        },
+        {
+          "start": 5.16,
+          "end": 5.26,
+          "word": " the"
+        },
+        {
+          "start": 5.26,
+          "end": 5.46,
+          "word": " best"
+        },
+        {
+          "start": 5.46,
+          "end": 5.78,
+          "word": " connection"
+        }
+      ]
+    },
+    {
+      "start": 5.78,
+      "end": 6.86,
+      "text": " for your users.",
+      "words": [
+        {
+          "start": 5.78,
+          "end": 6.28,
+          "word": " for"
+        },
+        {
+          "start": 6.28,
+          "end": 6.44,
+          "word": " your"
+        },
+        {
+          "start": 6.44,
+          "end": 6.86,
+          "word": " users."
+        }
+      ]
+    },
+    {
+      "start": 7.38,
+      "end": 10.36,
+      "text": " Network Rotes and the application itself also matter.",
+      "words": [
+        {
+          "start": 7.38,
+          "end": 7.54,
+          "word": " Network"
+        },
+        {
+          "start": 7.54,
+          "end": 8.2,
+          "word": " Rotes"
+        },
+        {
+          "start": 8.2,
+          "end": 8.42,
+          "word": " and"
+        },
+        {
+          "start": 8.42,
+          "end": 8.54,
+          "word": " the"
+        },
+        {
+          "start": 8.54,
+          "end": 8.88,
+          "word": " application"
+        },
+        {
+          "start": 8.88,
+          "end": 9.58,
+          "word": " itself"
+        },
+        {
+          "start": 9.58,
+          "end": 10.1,
+          "word": " also"
+        },
+        {
+          "start": 10.1,
+          "end": 10.36,
+          "word": " matter."
+        }
+      ]
+    },
+    {
+      "start": 11.16,
+      "end": 14.56,
+      "text": " First, identify where the people using the service connect from.",
+      "words": [
+        {
+          "start": 11.16,
+          "end": 11.32,
+          "word": " First,"
+        },
+        {
+          "start": 11.64,
+          "end": 12.04,
+          "word": " identify"
+        },
+        {
+          "start": 12.04,
+          "end": 12.58,
+          "word": " where"
+        },
+        {
+          "start": 12.58,
+          "end": 12.68,
+          "word": " the"
+        },
+        {
+          "start": 12.68,
+          "end": 12.96,
+          "word": " people"
+        },
+        {
+          "start": 12.96,
+          "end": 13.3,
+          "word": " using"
+        },
+        {
+          "start": 13.3,
+          "end": 13.52,
+          "word": " the"
+        },
+        {
+          "start": 13.52,
+          "end": 13.84,
+          "word": " service"
+        },
+        {
+          "start": 13.84,
+          "end": 14.14,
+          "word": " connect"
+        },
+        {
+          "start": 14.14,
+          "end": 14.56,
+          "word": " from."
+        }
+      ]
+    },
+    {
+      "start": 14.82,
+      "end": 19.24,
+      "text": " Do not choose a region, only because it is close to the person paying the invoice.",
+      "words": [
+        {
+          "start": 14.82,
+          "end": 14.88,
+          "word": " Do"
+        },
+        {
+          "start": 14.88,
+          "end": 15.06,
+          "word": " not"
+        },
+        {
+          "start": 15.06,
+          "end": 15.38,
+          "word": " choose"
+        },
+        {
+          "start": 15.38,
+          "end": 15.6,
+          "word": " a"
+        },
+        {
+          "start": 15.6,
+          "end": 15.92,
+          "word": " region,"
+        },
+        {
+          "start": 16.36,
+          "end": 16.66,
+          "word": " only"
+        },
+        {
+          "start": 16.66,
+          "end": 16.96,
+          "word": " because"
+        },
+        {
+          "start": 16.96,
+          "end": 17.24,
+          "word": " it"
+        },
+        {
+          "start": 17.24,
+          "end": 17.36,
+          "word": " is"
+        },
+        {
+          "start": 17.36,
+          "end": 17.62,
+          "word": " close"
+        },
+        {
+          "start": 17.62,
+          "end": 17.96,
+          "word": " to"
+        },
+        {
+          "start": 17.96,
+          "end": 18.06,
+          "word": " the"
+        },
+        {
+          "start": 18.06,
+          "end": 18.4,
+          "word": " person"
+        },
+        {
+          "start": 18.4,
+          "end": 18.72,
+          "word": " paying"
+        },
+        {
+          "start": 18.72,
+          "end": 19.0,
+          "word": " the"
+        },
+        {
+          "start": 19.0,
+          "end": 19.24,
+          "word": " invoice."
+        }
+      ]
+    },
+    {
+      "start": 20.3,
+      "end": 26.46,
+      "text": " Next, find the providers documented test facility or looking glass for the region if one is",
+      "words": [
+        {
+          "start": 20.3,
+          "end": 20.62,
+          "word": " Next,"
+        },
+        {
+          "start": 21.02,
+          "end": 21.4,
+          "word": " find"
+        },
+        {
+          "start": 21.4,
+          "end": 21.58,
+          "word": " the"
+        },
+        {
+          "start": 21.58,
+          "end": 21.92,
+          "word": " providers"
+        },
+        {
+          "start": 21.92,
+          "end": 22.56,
+          "word": " documented"
+        },
+        {
+          "start": 22.56,
+          "end": 23.02,
+          "word": " test"
+        },
+        {
+          "start": 23.02,
+          "end": 23.52,
+          "word": " facility"
+        },
+        {
+          "start": 23.52,
+          "end": 23.9,
+          "word": " or"
+        },
+        {
+          "start": 23.9,
+          "end": 24.14,
+          "word": " looking"
+        },
+        {
+          "start": 24.14,
+          "end": 24.5,
+          "word": " glass"
+        },
+        {
+          "start": 24.5,
+          "end": 24.84,
+          "word": " for"
+        },
+        {
+          "start": 24.84,
+          "end": 24.96,
+          "word": " the"
+        },
+        {
+          "start": 24.96,
+          "end": 25.3,
+          "word": " region"
+        },
+        {
+          "start": 25.3,
+          "end": 25.94,
+          "word": " if"
+        },
+        {
+          "start": 25.94,
+          "end": 26.2,
+          "word": " one"
+        },
+        {
+          "start": 26.2,
+          "end": 26.46,
+          "word": " is"
+        }
+      ]
+    },
+    {
+      "start": 26.46,
+      "end": 26.76,
+      "text": " available.",
+      "words": [
+        {
+          "start": 26.46,
+          "end": 26.76,
+          "word": " available."
+        }
+      ]
+    },
+    {
+      "start": 26.76,
+      "end": 31.76,
+      "text": " Follow its permitted use and compare from a connection representative of your audience,",
+      "words": [
+        {
+          "start": 26.76,
+          "end": 27.34,
+          "word": " Follow"
+        },
+        {
+          "start": 27.34,
+          "end": 27.58,
+          "word": " its"
+        },
+        {
+          "start": 27.58,
+          "end": 27.86,
+          "word": " permitted"
+        },
+        {
+          "start": 27.86,
+          "end": 28.4,
+          "word": " use"
+        },
+        {
+          "start": 28.4,
+          "end": 28.78,
+          "word": " and"
+        },
+        {
+          "start": 28.78,
+          "end": 29.06,
+          "word": " compare"
+        },
+        {
+          "start": 29.06,
+          "end": 29.44,
+          "word": " from"
+        },
+        {
+          "start": 29.44,
+          "end": 29.52,
+          "word": " a"
+        },
+        {
+          "start": 29.52,
+          "end": 29.84,
+          "word": " connection"
+        },
+        {
+          "start": 29.84,
+          "end": 30.28,
+          "word": " representative"
+        },
+        {
+          "start": 30.28,
+          "end": 31.16,
+          "word": " of"
+        },
+        {
+          "start": 31.16,
+          "end": 31.32,
+          "word": " your"
+        },
+        {
+          "start": 31.32,
+          "end": 31.76,
+          "word": " audience,"
+        }
+      ]
+    },
+    {
+      "start": 32.18,
+      "end": 38.32,
+      "text": " a result from one network is an observation, not a worldwide latency guarantee, record the",
+      "words": [
+        {
+          "start": 32.18,
+          "end": 32.24,
+          "word": " a"
+        },
+        {
+          "start": 32.24,
+          "end": 32.54,
+          "word": " result"
+        },
+        {
+          "start": 32.54,
+          "end": 32.88,
+          "word": " from"
+        },
+        {
+          "start": 32.88,
+          "end": 33.06,
+          "word": " one"
+        },
+        {
+          "start": 33.06,
+          "end": 33.4,
+          "word": " network"
+        },
+        {
+          "start": 33.4,
+          "end": 33.78,
+          "word": " is"
+        },
+        {
+          "start": 33.78,
+          "end": 33.9,
+          "word": " an"
+        },
+        {
+          "start": 33.9,
+          "end": 34.28,
+          "word": " observation,"
+        },
+        {
+          "start": 34.96,
+          "end": 35.18,
+          "word": " not"
+        },
+        {
+          "start": 35.18,
+          "end": 35.32,
+          "word": " a"
+        },
+        {
+          "start": 35.32,
+          "end": 35.7,
+          "word": " worldwide"
+        },
+        {
+          "start": 35.7,
+          "end": 36.4,
+          "word": " latency"
+        },
+        {
+          "start": 36.4,
+          "end": 36.82,
+          "word": " guarantee,"
+        },
+        {
+          "start": 37.82,
+          "end": 38.06,
+          "word": " record"
+        },
+        {
+          "start": 38.06,
+          "end": 38.32,
+          "word": " the"
+        }
+      ]
+    },
+    {
+      "start": 38.32,
+      "end": 40.82,
+      "text": " region, test time, method and result.",
+      "words": [
+        {
+          "start": 38.32,
+          "end": 38.62,
+          "word": " region,"
+        },
+        {
+          "start": 38.94,
+          "end": 39.08,
+          "word": " test"
+        },
+        {
+          "start": 39.08,
+          "end": 39.52,
+          "word": " time,"
+        },
+        {
+          "start": 39.98,
+          "end": 40.32,
+          "word": " method"
+        },
+        {
+          "start": 40.32,
+          "end": 40.5,
+          "word": " and"
+        },
+        {
+          "start": 40.5,
+          "end": 40.82,
+          "word": " result."
+        }
+      ]
+    },
+    {
+      "start": 41.34,
+      "end": 44.62,
+      "text": " If you have not run a test, label the choice as untested.",
+      "words": [
+        {
+          "start": 41.34,
+          "end": 41.36,
+          "word": " If"
+        },
+        {
+          "start": 41.36,
+          "end": 41.56,
+          "word": " you"
+        },
+        {
+          "start": 41.56,
+          "end": 41.74,
+          "word": " have"
+        },
+        {
+          "start": 41.74,
+          "end": 41.92,
+          "word": " not"
+        },
+        {
+          "start": 41.92,
+          "end": 42.14,
+          "word": " run"
+        },
+        {
+          "start": 42.14,
+          "end": 42.28,
+          "word": " a"
+        },
+        {
+          "start": 42.28,
+          "end": 42.62,
+          "word": " test,"
+        },
+        {
+          "start": 43.06,
+          "end": 43.38,
+          "word": " label"
+        },
+        {
+          "start": 43.38,
+          "end": 43.6,
+          "word": " the"
+        },
+        {
+          "start": 43.6,
+          "end": 43.78,
+          "word": " choice"
+        },
+        {
+          "start": 43.78,
+          "end": 44.1,
+          "word": " as"
+        },
+        {
+          "start": 44.1,
+          "end": 44.62,
+          "word": " untested."
+        }
+      ]
+    },
+    {
+      "start": 45.12,
+      "end": 49.14,
+      "text": " A polished map must not become evidence of a measurement that never happened.",
+      "words": [
+        {
+          "start": 45.12,
+          "end": 45.12,
+          "word": " A"
+        },
+        {
+          "start": 45.12,
+          "end": 45.5,
+          "word": " polished"
+        },
+        {
+          "start": 45.5,
+          "end": 45.74,
+          "word": " map"
+        },
+        {
+          "start": 45.74,
+          "end": 46.08,
+          "word": " must"
+        },
+        {
+          "start": 46.08,
+          "end": 46.32,
+          "word": " not"
+        },
+        {
+          "start": 46.32,
+          "end": 46.7,
+          "word": " become"
+        },
+        {
+          "start": 46.7,
+          "end": 46.96,
+          "word": " evidence"
+        },
+        {
+          "start": 46.96,
+          "end": 47.28,
+          "word": " of"
+        },
+        {
+          "start": 47.28,
+          "end": 47.36,
+          "word": " a"
+        },
+        {
+          "start": 47.36,
+          "end": 47.66,
+          "word": " measurement"
+        },
+        {
+          "start": 47.66,
+          "end": 48.38,
+          "word": " that"
+        },
+        {
+          "start": 48.38,
+          "end": 48.66,
+          "word": " never"
+        },
+        {
+          "start": 48.66,
+          "end": 49.14,
+          "word": " happened."
+        }
+      ]
+    },
+    {
+      "start": 50.04,
+      "end": 51.64,
+      "text": " Then consider the service.",
+      "words": [
+        {
+          "start": 50.04,
+          "end": 50.18,
+          "word": " Then"
+        },
+        {
+          "start": 50.18,
+          "end": 51.0,
+          "word": " consider"
+        },
+        {
+          "start": 51.0,
+          "end": 51.36,
+          "word": " the"
+        },
+        {
+          "start": 51.36,
+          "end": 51.64,
+          "word": " service."
+        }
+      ]
+    },
+    {
+      "start": 52.2,
+      "end": 56.76,
+      "text": " Static content behind a suitable delivery layer behaves differently from an application",
+      "words": [
+        {
+          "start": 52.16,
+          "end": 52.46,
+          "word": " Static"
+        },
+        {
+          "start": 52.46,
+          "end": 52.84,
+          "word": " content"
+        },
+        {
+          "start": 52.84,
+          "end": 53.42,
+          "word": " behind"
+        },
+        {
+          "start": 53.42,
+          "end": 53.66,
+          "word": " a"
+        },
+        {
+          "start": 53.66,
+          "end": 53.9,
+          "word": " suitable"
+        },
+        {
+          "start": 53.9,
+          "end": 54.38,
+          "word": " delivery"
+        },
+        {
+          "start": 54.38,
+          "end": 54.92,
+          "word": " layer"
+        },
+        {
+          "start": 54.92,
+          "end": 55.18,
+          "word": " behaves"
+        },
+        {
+          "start": 55.18,
+          "end": 55.76,
+          "word": " differently"
+        },
+        {
+          "start": 55.76,
+          "end": 56.16,
+          "word": " from"
+        },
+        {
+          "start": 56.16,
+          "end": 56.26,
+          "word": " an"
+        },
+        {
+          "start": 56.26,
+          "end": 56.76,
+          "word": " application"
+        }
+      ]
+    },
+    {
+      "start": 57.6,
+      "end": 60.5,
+      "text": " that makes repeated requests to a distant database.",
+      "words": [
+        {
+          "start": 57.379999999999995,
+          "end": 57.68,
+          "word": " that"
+        },
+        {
+          "start": 57.68,
+          "end": 57.92,
+          "word": " makes"
+        },
+        {
+          "start": 57.92,
+          "end": 58.34,
+          "word": " repeated"
+        },
+        {
+          "start": 58.34,
+          "end": 58.88,
+          "word": " requests"
+        },
+        {
+          "start": 58.88,
+          "end": 59.44,
+          "word": " to"
+        },
+        {
+          "start": 59.44,
+          "end": 59.58,
+          "word": " a"
+        },
+        {
+          "start": 59.58,
+          "end": 59.84,
+          "word": " distant"
+        },
+        {
+          "start": 59.84,
+          "end": 60.5,
+          "word": " database."
+        }
+      ]
+    },
+    {
+      "start": 61.02,
+      "end": 63.72,
+      "text": " Look at where the dependencies live as well as the VPS.",
+      "words": [
+        {
+          "start": 61.02,
+          "end": 61.08,
+          "word": " Look"
+        },
+        {
+          "start": 61.08,
+          "end": 61.24,
+          "word": " at"
+        },
+        {
+          "start": 61.24,
+          "end": 61.38,
+          "word": " where"
+        },
+        {
+          "start": 61.38,
+          "end": 61.48,
+          "word": " the"
+        },
+        {
+          "start": 61.48,
+          "end": 61.86,
+          "word": " dependencies"
+        },
+        {
+          "start": 61.86,
+          "end": 62.44,
+          "word": " live"
+        },
+        {
+          "start": 62.44,
+          "end": 62.7,
+          "word": " as"
+        },
+        {
+          "start": 62.7,
+          "end": 62.86,
+          "word": " well"
+        },
+        {
+          "start": 62.86,
+          "end": 63.06,
+          "word": " as"
+        },
+        {
+          "start": 63.06,
+          "end": 63.18,
+          "word": " the"
+        },
+        {
+          "start": 63.18,
+          "end": 63.72,
+          "word": " VPS."
+        }
+      ]
+    },
+    {
+      "start": 64.76,
+      "end": 65.26,
+      "text": " Our take.",
+      "words": [
+        {
+          "start": 64.76,
+          "end": 64.96,
+          "word": " Our"
+        },
+        {
+          "start": 64.96,
+          "end": 65.26,
+          "word": " take."
+        }
+      ]
+    },
+    {
+      "start": 66.0,
+      "end": 69.6,
+      "text": " Make a small shortlist and a test plan before making a long commitment.",
+      "words": [
+        {
+          "start": 66.0,
+          "end": 66.02,
+          "word": " Make"
+        },
+        {
+          "start": 66.02,
+          "end": 66.18,
+          "word": " a"
+        },
+        {
+          "start": 66.18,
+          "end": 66.42,
+          "word": " small"
+        },
+        {
+          "start": 66.42,
+          "end": 67.06,
+          "word": " shortlist"
+        },
+        {
+          "start": 67.06,
+          "end": 67.3,
+          "word": " and"
+        },
+        {
+          "start": 67.3,
+          "end": 67.42,
+          "word": " a"
+        },
+        {
+          "start": 67.42,
+          "end": 67.6,
+          "word": " test"
+        },
+        {
+          "start": 67.6,
+          "end": 68.0,
+          "word": " plan"
+        },
+        {
+          "start": 68.0,
+          "end": 68.3,
+          "word": " before"
+        },
+        {
+          "start": 68.3,
+          "end": 68.74,
+          "word": " making"
+        },
+        {
+          "start": 68.74,
+          "end": 68.88,
+          "word": " a"
+        },
+        {
+          "start": 68.88,
+          "end": 69.08,
+          "word": " long"
+        },
+        {
+          "start": 69.08,
+          "end": 69.6,
+          "word": " commitment."
+        }
+      ]
+    },
+    {
+      "start": 70.12,
+      "end": 74.86,
+      "text": " A slightly different route, or dependency can matter more than the city name on a planned",
+      "words": [
+        {
+          "start": 70.12,
+          "end": 70.14,
+          "word": " A"
+        },
+        {
+          "start": 70.14,
+          "end": 70.48,
+          "word": " slightly"
+        },
+        {
+          "start": 70.48,
+          "end": 70.96,
+          "word": " different"
+        },
+        {
+          "start": 70.96,
+          "end": 71.36,
+          "word": " route,"
+        },
+        {
+          "start": 71.78,
+          "end": 71.98,
+          "word": " or"
+        },
+        {
+          "start": 71.98,
+          "end": 72.48,
+          "word": " dependency"
+        },
+        {
+          "start": 72.48,
+          "end": 72.9,
+          "word": " can"
+        },
+        {
+          "start": 72.9,
+          "end": 73.14,
+          "word": " matter"
+        },
+        {
+          "start": 73.14,
+          "end": 73.5,
+          "word": " more"
+        },
+        {
+          "start": 73.5,
+          "end": 73.74,
+          "word": " than"
+        },
+        {
+          "start": 73.74,
+          "end": 73.82,
+          "word": " the"
+        },
+        {
+          "start": 73.82,
+          "end": 74.02,
+          "word": " city"
+        },
+        {
+          "start": 74.02,
+          "end": 74.32,
+          "word": " name"
+        },
+        {
+          "start": 74.32,
+          "end": 74.56,
+          "word": " on"
+        },
+        {
+          "start": 74.56,
+          "end": 74.66,
+          "word": " a"
+        },
+        {
+          "start": 74.66,
+          "end": 74.86,
+          "word": " planned"
+        }
+      ]
+    },
+    {
+      "start": 74.86,
+      "end": 75.38,
+      "text": " car.",
+      "words": [
+        {
+          "start": 74.86,
+          "end": 75.38,
+          "word": " car."
+        }
+      ]
+    },
+    {
+      "start": 76.1,
+      "end": 80.48,
+      "text": " The location died at vpsdealswire.com has the full checklist.",
+      "words": [
+        {
+          "start": 75.84,
+          "end": 76.2,
+          "word": " The"
+        },
+        {
+          "start": 76.2,
+          "end": 76.62,
+          "word": " location"
+        },
+        {
+          "start": 76.62,
+          "end": 77.02,
+          "word": " died"
+        },
+        {
+          "start": 77.02,
+          "end": 77.42,
+          "word": " at"
+        },
+        {
+          "start": 77.42,
+          "end": 78.7,
+          "word": " vpsdealswire"
+        },
+        {
+          "start": 78.7,
+          "end": 79.46,
+          "word": ".com"
+        },
+        {
+          "start": 79.46,
+          "end": 79.76,
+          "word": " has"
+        },
+        {
+          "start": 79.76,
+          "end": 79.94,
+          "word": " the"
+        },
+        {
+          "start": 79.94,
+          "end": 80.16,
+          "word": " full"
+        },
+        {
+          "start": 80.16,
+          "end": 80.48,
+          "word": " checklist."
+        }
+      ]
+    },
+    {
+      "start": 81.24,
+      "end": 86.44,
+      "text": " Open the description link, compare your actual requirements and verify the candidate region",
+      "words": [
+        {
+          "start": 81.24,
+          "end": 81.26,
+          "word": " Open"
+        },
+        {
+          "start": 81.26,
+          "end": 81.42,
+          "word": " the"
+        },
+        {
+          "start": 81.42,
+          "end": 81.74,
+          "word": " description"
+        },
+        {
+          "start": 81.74,
+          "end": 82.26,
+          "word": " link,"
+        },
+        {
+          "start": 82.7,
+          "end": 83.06,
+          "word": " compare"
+        },
+        {
+          "start": 83.06,
+          "end": 83.34,
+          "word": " your"
+        },
+        {
+          "start": 83.34,
+          "end": 83.66,
+          "word": " actual"
+        },
+        {
+          "start": 83.66,
+          "end": 84.38,
+          "word": " requirements"
+        },
+        {
+          "start": 84.38,
+          "end": 85.0,
+          "word": " and"
+        },
+        {
+          "start": 85.0,
+          "end": 85.3,
+          "word": " verify"
+        },
+        {
+          "start": 85.3,
+          "end": 85.72,
+          "word": " the"
+        },
+        {
+          "start": 85.72,
+          "end": 86.06,
+          "word": " candidate"
+        },
+        {
+          "start": 86.06,
+          "end": 86.44,
+          "word": " region"
+        }
+      ]
+    },
+    {
+      "start": 86.44,
+      "end": 87.28,
+      "text": " with the provider.",
+      "words": [
+        {
+          "start": 86.44,
+          "end": 86.84,
+          "word": " with"
+        },
+        {
+          "start": 86.84,
+          "end": 86.98,
+          "word": " the"
+        },
+        {
+          "start": 86.98,
+          "end": 87.28,
+          "word": " provider."
+        }
+      ]
+    },
+    {
+      "start": 87.78,
+      "end": 90.44,
+      "text": " This video does not claim a lowest latency winner.",
+      "words": [
+        {
+          "start": 87.78,
+          "end": 87.84,
+          "word": " This"
+        },
+        {
+          "start": 87.84,
+          "end": 88.08,
+          "word": " video"
+        },
+        {
+          "start": 88.08,
+          "end": 88.48,
+          "word": " does"
+        },
+        {
+          "start": 88.48,
+          "end": 88.72,
+          "word": " not"
+        },
+        {
+          "start": 88.72,
+          "end": 89.08,
+          "word": " claim"
+        },
+        {
+          "start": 89.08,
+          "end": 89.22,
+          "word": " a"
+        },
+        {
+          "start": 89.22,
+          "end": 89.46,
+          "word": " lowest"
+        },
+        {
+          "start": 89.46,
+          "end": 90.02,
+          "word": " latency"
+        },
+        {
+          "start": 90.02,
+          "end": 90.44,
+          "word": " winner."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,343 @@
+{
+  "model": "base.en",
+  "mediaSha256": "1f04bc0903d4a03b6c0060a6c38a7b02604edc120df5f1670e1170ba2e942c08",
+  "tokenNormalization": "Canonical domain spelling in source text before whitespace-token comparison; this is not a WER or human-listening score.",
+  "method": "Actual encoded final audio decoded to 16kHz float32; automatic transcription, no human audition claimed.",
+  "language": "en",
+  "wordSequenceSimilarity": 0.8928571428571429,
+  "text": "More advertised virtual CPUs do not answer a continuous use question. Before buying, check the written CPU usage policy, burst conditions and what happens if your workload stays busy. This is a plan fit question, not a benchmark score. Watch the full fair use checklist on this channel. Its description links to vpsdealswire.com and the complete guide.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 4.2,
+      "text": " More advertised virtual CPUs do not answer a continuous use question.",
+      "words": [
+        {
+          "start": 0.0,
+          "end": 0.16,
+          "word": " More"
+        },
+        {
+          "start": 0.16,
+          "end": 0.62,
+          "word": " advertised"
+        },
+        {
+          "start": 0.62,
+          "end": 1.18,
+          "word": " virtual"
+        },
+        {
+          "start": 1.18,
+          "end": 1.66,
+          "word": " CPUs"
+        },
+        {
+          "start": 1.66,
+          "end": 2.22,
+          "word": " do"
+        },
+        {
+          "start": 2.22,
+          "end": 2.4,
+          "word": " not"
+        },
+        {
+          "start": 2.4,
+          "end": 2.9,
+          "word": " answer"
+        },
+        {
+          "start": 2.9,
+          "end": 3.06,
+          "word": " a"
+        },
+        {
+          "start": 3.06,
+          "end": 3.5,
+          "word": " continuous"
+        },
+        {
+          "start": 3.5,
+          "end": 3.8,
+          "word": " use"
+        },
+        {
+          "start": 3.8,
+          "end": 4.2,
+          "word": " question."
+        }
+      ]
+    },
+    {
+      "start": 4.7,
+      "end": 10.44,
+      "text": " Before buying, check the written CPU usage policy, burst conditions and what happens",
+      "words": [
+        {
+          "start": 4.7,
+          "end": 4.86,
+          "word": " Before"
+        },
+        {
+          "start": 4.86,
+          "end": 5.36,
+          "word": " buying,"
+        },
+        {
+          "start": 5.76,
+          "end": 6.1,
+          "word": " check"
+        },
+        {
+          "start": 6.1,
+          "end": 6.3,
+          "word": " the"
+        },
+        {
+          "start": 6.3,
+          "end": 6.52,
+          "word": " written"
+        },
+        {
+          "start": 6.52,
+          "end": 6.9,
+          "word": " CPU"
+        },
+        {
+          "start": 6.9,
+          "end": 7.58,
+          "word": " usage"
+        },
+        {
+          "start": 7.58,
+          "end": 8.08,
+          "word": " policy,"
+        },
+        {
+          "start": 9.02,
+          "end": 9.04,
+          "word": " burst"
+        },
+        {
+          "start": 9.04,
+          "end": 9.4,
+          "word": " conditions"
+        },
+        {
+          "start": 9.4,
+          "end": 9.88,
+          "word": " and"
+        },
+        {
+          "start": 9.88,
+          "end": 10.08,
+          "word": " what"
+        },
+        {
+          "start": 10.08,
+          "end": 10.44,
+          "word": " happens"
+        }
+      ]
+    },
+    {
+      "start": 10.44,
+      "end": 12.1,
+      "text": " if your workload stays busy.",
+      "words": [
+        {
+          "start": 10.44,
+          "end": 10.7,
+          "word": " if"
+        },
+        {
+          "start": 10.7,
+          "end": 10.84,
+          "word": " your"
+        },
+        {
+          "start": 10.84,
+          "end": 11.16,
+          "word": " workload"
+        },
+        {
+          "start": 11.16,
+          "end": 11.62,
+          "word": " stays"
+        },
+        {
+          "start": 11.62,
+          "end": 12.1,
+          "word": " busy."
+        }
+      ]
+    },
+    {
+      "start": 12.48,
+      "end": 15.54,
+      "text": " This is a plan fit question, not a benchmark score.",
+      "words": [
+        {
+          "start": 12.48,
+          "end": 12.48,
+          "word": " This"
+        },
+        {
+          "start": 12.48,
+          "end": 12.62,
+          "word": " is"
+        },
+        {
+          "start": 12.62,
+          "end": 12.72,
+          "word": " a"
+        },
+        {
+          "start": 12.72,
+          "end": 12.96,
+          "word": " plan"
+        },
+        {
+          "start": 12.96,
+          "end": 13.24,
+          "word": " fit"
+        },
+        {
+          "start": 13.24,
+          "end": 13.54,
+          "word": " question,"
+        },
+        {
+          "start": 14.42,
+          "end": 14.48,
+          "word": " not"
+        },
+        {
+          "start": 14.48,
+          "end": 14.64,
+          "word": " a"
+        },
+        {
+          "start": 14.64,
+          "end": 14.92,
+          "word": " benchmark"
+        },
+        {
+          "start": 14.92,
+          "end": 15.54,
+          "word": " score."
+        }
+      ]
+    },
+    {
+      "start": 16.14,
+      "end": 18.5,
+      "text": " Watch the full fair use checklist on this channel.",
+      "words": [
+        {
+          "start": 16.14,
+          "end": 16.14,
+          "word": " Watch"
+        },
+        {
+          "start": 16.14,
+          "end": 16.38,
+          "word": " the"
+        },
+        {
+          "start": 16.38,
+          "end": 16.6,
+          "word": " full"
+        },
+        {
+          "start": 16.6,
+          "end": 16.84,
+          "word": " fair"
+        },
+        {
+          "start": 16.84,
+          "end": 17.14,
+          "word": " use"
+        },
+        {
+          "start": 17.14,
+          "end": 17.46,
+          "word": " checklist"
+        },
+        {
+          "start": 17.46,
+          "end": 17.92,
+          "word": " on"
+        },
+        {
+          "start": 17.92,
+          "end": 18.06,
+          "word": " this"
+        },
+        {
+          "start": 18.06,
+          "end": 18.5,
+          "word": " channel."
+        }
+      ]
+    },
+    {
+      "start": 19.32,
+      "end": 23.82,
+      "text": " Its description links to vpsdealswire.com and the complete guide.",
+      "words": [
+        {
+          "start": 19.32,
+          "end": 19.46,
+          "word": " Its"
+        },
+        {
+          "start": 19.46,
+          "end": 19.88,
+          "word": " description"
+        },
+        {
+          "start": 19.88,
+          "end": 20.44,
+          "word": " links"
+        },
+        {
+          "start": 20.44,
+          "end": 20.76,
+          "word": " to"
+        },
+        {
+          "start": 20.76,
+          "end": 22.06,
+          "word": " vpsdealswire"
+        },
+        {
+          "start": 22.06,
+          "end": 22.72,
+          "word": ".com"
+        },
+        {
+          "start": 22.72,
+          "end": 22.98,
+          "word": " and"
+        },
+        {
+          "start": 22.98,
+          "end": 23.1,
+          "word": " the"
+        },
+        {
+          "start": 23.1,
+          "end": 23.42,
+          "word": " complete"
+        },
+        {
+          "start": 23.42,
+          "end": 23.82,
+          "word": " guide."
+        }
+      ]
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "contentId": "vw-y001",
   "mediaVersion": "v1",
-  "ready_for_publisher": true,
-  "state": "ready_for_muse",
+  "ready_for_publisher": false,
+  "state": "published_reported_by_muse",
   "ourRole": "content_and_publication_plan",
   "publishingOwner": "muse",
   "ourYouTubePublishingEnabled": false,
@@ -41,7 +41,7 @@
     "mediaVersion": "v1",
     "targetChannelId": "UCfgVJrtBJSeViu95AnaQxyA",
     "title": "Shared vCPU VPS: Check Fair Use Before Buying",
-    "description": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y001\n\nA vCPU count does not tell you how much sustained CPU use a VPS plan permits. This short buying guide explains three checks: resource allocation, written usage limits, and what happens when a workload reaches them.\n\nUse the fair-use checklist at VPS Deals Wire to narrow your shortlist, then confirm the actual product terms on the provider’s official page. This video is an educational checklist, not a benchmark, provider ranking or performance guarantee. The workload bars and Candidate A sheet are conceptual examples, not measured results or a quoted offer.\n\nNarration is synthesized; diagrams are original and the guide recording shows our real public website. Some official-site links on VPS Deals Wire are affiliate links; we may earn a commission at no extra cost to you.",
+    "description": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y001\n\nA vCPU count does not tell you how much sustained CPU use a VPS plan permits. This short buying guide explains three checks: resource allocation, written usage limits, and what happens when a workload reaches them.\n\nUse the fair-use checklist at VPS Deals Wire to narrow your shortlist, then confirm the actual product terms on the provider\u2019s official page. This video is an educational checklist, not a benchmark, provider ranking or performance guarantee. The workload bars and Candidate A sheet are conceptual examples, not measured results or a quoted offer.\n\nNarration is synthesized; diagrams are original and the guide recording shows our real public website. Some official-site links on VPS Deals Wire are affiliate links; we may earn a commission at no extra cost to you.",
     "language": "en",
     "tags": [
       "VPS",
@@ -61,7 +61,7 @@
     "publishingOwner": "muse"
   },
   "qaRecord": "../production/vw-y001/qa.json",
-  "expectedReceipt": "../records/muse-vw-y001.json",
+  "expectedReceipt": "../../records/muse-vw-y001.json",
   "deduplicationKeys": [
     "contentId",
     "mediaVersion",
@@ -70,12 +70,15 @@
     "landing-page slug"
   ],
   "publishInstructions": "Verify channel, reconcile current uploads/attempts before upload. Preserve existing videos. Scheduled is not published; return actual public video ID/URL/time.",
-  "youtubeVideoId": null,
-  "youtubeUrl": null,
-  "actualPublishedAt": null,
-  "review7At": null,
-  "review28At": null,
+  "youtubeVideoId": "QXW-Ty9ECZY",
+  "youtubeUrl": "https://youtu.be/QXW-Ty9ECZY",
+  "actualPublishedAt": "2026-10-25T05:00:33Z",
+  "review7At": "2026-11-01T05:00:33+00:00",
+  "review28At": "2026-11-22T05:00:33+00:00",
   "handedOffAt": "2026-10-25T04:42:17.872Z",
   "publicHostingVerified": true,
-  "publicHostingEvidence": "../production/vw-y001/live-hosting.json"
+  "publicHostingEvidence": "../production/vw-y001/live-hosting.json",
+  "publicationReceipt": "../../records/muse-vw-y001.json",
+  "doNotUploadAgain": true,
+  "publicationVerification": "Muse receipt and its reported public oEmbed, not a new independent authenticated verification by ChatGPT."
 }

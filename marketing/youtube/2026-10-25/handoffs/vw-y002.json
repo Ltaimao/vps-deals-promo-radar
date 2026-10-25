@@ -1,0 +1,68 @@
+{
+  "contentId": "vw-y002",
+  "mediaVersion": "v1",
+  "ready_for_publisher": false,
+  "state": "media_qa_passed_awaiting_public_host_verification",
+  "publishingOwner": "muse",
+  "ourRole": "content_and_publication_plan",
+  "ourYouTubePublishingEnabled": false,
+  "assets": {
+    "video": {
+      "url": "https://www.vpsdealswire.com/videos/vw-y002.mp4",
+      "repositoryPath": "static/videos/vw-y002.mp4",
+      "sha256": "7b8c39fb7e8cc122b0f2f843b4438261c3270d6c95834970af421ae10460b9f7",
+      "bytes": 2098777,
+      "width": 1920,
+      "height": 1080,
+      "durationSeconds": 91.199333,
+      "fps": 24,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "audioRate": 48000
+    },
+    "thumbnail": {
+      "url": "https://www.vpsdealswire.com/vw-y002-thumbnail.jpg",
+      "repositoryPath": "static/vw-y002-thumbnail.jpg",
+      "sha256": "f87009eb19f48624800679ae2a0baab98221a2653e82f544e6c0b2411fa348f6",
+      "bytes": 67371,
+      "width": 1280,
+      "height": 720
+    },
+    "captions": {
+      "url": "https://www.vpsdealswire.com/vw-y002.en.srt",
+      "repositoryPath": "static/vw-y002.en.srt",
+      "sha256": "bf4416e50c99a53769b49a724beeea8fe749a43c1a61fa23ddd33b94ca81a1d1",
+      "bytes": 2235,
+      "language": "en"
+    }
+  },
+  "metadata": {
+    "contentId": "vw-y002",
+    "mediaVersion": "v1",
+    "targetChannelId": "UCfgVJrtBJSeViu95AnaQxyA",
+    "title": "Choose a VPS Location: Distance Is Only the Starting Point",
+    "description": "https://www.vpsdealswire.com/articles/choose-vps-location-latency/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y002\n\nThe nearest VPS city is a starting point, not proof of the best connection for your audience. Map users, candidate regions and application dependencies; find the provider’s permitted test method; and record observations before committing.\n\nThis video shows our real public guide and original conceptual diagrams. No network test was executed, no millisecond values are invented, and no lowest-latency region is claimed. Narration is synthesized. Some official-site links on VPS Deals Wire are affiliate links; we may earn a commission at no extra cost to you.",
+    "language": "en",
+    "tags": [
+      "VPS",
+      "VPS buying guide",
+      "VPS Deals Wire"
+    ],
+    "madeForKids": false,
+    "isAiGeneratedContent": true,
+    "format": "video",
+    "proposedLocalDate": "2026-10-30",
+    "proposedTime": null,
+    "timezone": "Asia/Shanghai",
+    "publishingOwner": "muse",
+    "captionsStatus": "Prepared SRT delivered; attachment through publisher not yet verified."
+  },
+  "qaRecord": "../production/vw-y002/qa.json",
+  "expectedReceipt": "../../records/muse-vw-y002.json",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "actualPublishedAt": null,
+  "review7At": null,
+  "review28At": null,
+  "instruction": "Muse verifies identity/current uploads/previous attempts before publication; preserve old videos. Attach the delivered thumbnail/captions where supported and report actual attachment status. Resolve related-video capability rather than claiming it configured."
+}

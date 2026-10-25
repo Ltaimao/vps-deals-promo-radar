@@ -1,0 +1,58 @@
+[
+  {
+    "index": 0,
+    "text": "The nearest VPS city is a reasonable starting point, but it is not proof of the best connection for your users. Network routes and the application itself also matter.",
+    "wav": "voice-00.wav",
+    "seconds": 10.65795918367347,
+    "videoStart": 0,
+    "videoEnd": 11.107959183673469
+  },
+  {
+    "index": 1,
+    "text": "First, identify where the people using the service connect from. Do not choose a region only because it is close to the person paying the invoice.",
+    "wav": "voice-01.wav",
+    "seconds": 8.730702947845804,
+    "videoStart": 11.107959183673469,
+    "videoEnd": 20.288662131519274
+  },
+  {
+    "index": 2,
+    "text": "Next, find the provider's documented test facility or looking glass for the region, if one is available. Follow its permitted use and compare from a connection representative of your audience. A result from one network is an observation, not a worldwide latency guarantee.",
+    "wav": "voice-02.wav",
+    "seconds": 17.11310657596372,
+    "videoStart": 20.288662131519274,
+    "videoEnd": 37.85176870748299
+  },
+  {
+    "index": 3,
+    "text": "Record the region, test time, method and result. If you have not run a test, label the choice as untested. A polished map must not become evidence of a measurement that never happened.",
+    "wav": "voice-03.wav",
+    "seconds": 11.563537414965987,
+    "videoStart": 37.85176870748299,
+    "videoEnd": 49.86530612244898
+  },
+  {
+    "index": 4,
+    "text": "Then consider the service. Static content behind a suitable delivery layer behaves differently from an application that makes repeated requests to a distant database. Look at where the dependencies live as well as the VPS.",
+    "wav": "voice-04.wav",
+    "seconds": 14.431201814058957,
+    "videoStart": 49.86530612244898,
+    "videoEnd": 64.74650793650794
+  },
+  {
+    "index": 5,
+    "text": "Our take: make a small shortlist and a test plan before making a long commitment. A slightly different route or dependency can matter more than the city name on a plan card.",
+    "wav": "voice-05.wav",
+    "seconds": 10.866938775510205,
+    "videoStart": 64.74650793650794,
+    "videoEnd": 76.06344671201815
+  },
+  {
+    "index": 6,
+    "text": "The location guide at V P S Deals Wire dot com has the full checklist. Open the description link, compare your actual requirements, and verify the candidate region with the provider. This video does not claim a lowest-latency winner.",
+    "wav": "voice-06.wav",
+    "seconds": 14.582131519274377,
+    "videoStart": 76.06344671201815,
+    "videoEnd": 91.09557823129252
+  }
+]

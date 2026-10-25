@@ -1,0 +1,28 @@
+1
+00:00:00,000 --> 00:00:04,200
+More advertised virtual CPUs do not answer
+a continuous-use question.
+
+2
+00:00:04,700 --> 00:00:09,400
+Before buying, check the written CPU usage
+policy, burst conditions
+
+3
+00:00:09,400 --> 00:00:12,100
+and what happens if your workload stays
+busy.
+
+4
+00:00:12,480 --> 00:00:15,540
+This is a plan-fit question, not a
+benchmark score.
+
+5
+00:00:16,140 --> 00:00:20,440
+Watch the full fair-use checklist on this
+channel; its description links
+
+6
+00:00:20,440 --> 00:00:23,820
+to vpsdealswire.com and the complete guide.
