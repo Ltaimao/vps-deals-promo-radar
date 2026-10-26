@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-26T12:41:36Z",
+  "checkedAt": "2026-10-26T12:59:48.753223+00:00",
   "brand": {
     "id": 7620881,
     "timezone": "Asia/Shanghai",
@@ -71,7 +71,7 @@
       "media": [
         "https://static.metricool.com/planner/202610/7620881-file-2006111402986860396.mp4"
       ],
-      "text": "https://www.tattoodoodle.com/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_tattoo&utm_content=td-y003#lettering-studio\n\nSame words, three lettering directions: script, serif and typewriter. These are genuine TattooDoodle digital exports. Keep your wording fixed and choose one preference plus one useful alternative for your artist.\n\nFind the full video \u201cSame Words, Three Tattoo Fonts: Compare Before You Choose\u201d on this channel and open its description for the website link. A related-video button is not claimed configured. Digital references are not finished tattoos. Narration is synthesized.",
+      "text": "https://www.tattoodoodle.com/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_tattoo&utm_content=td-y003#lettering-studio\n\nSame words, three lettering directions: script, serif and typewriter. These are genuine TattooDoodle digital exports. Keep your wording fixed and choose one preference plus one useful alternative for your artist.\n\nFind the full video “Same Words, Three Tattoo Fonts: Compare Before You Choose” on this channel and open its description for the website link. A related-video button is not claimed configured. Digital references are not finished tattoos. Narration is synthesized.",
       "autoPublish": true,
       "draft": false
     }
@@ -129,11 +129,61 @@
   "site": "vps",
   "production": {
     "contentId": "vw-y004",
-    "state": "media_qa_passed_awaiting_public_host_verification",
-    "proposedLocalDate": "2026-11-03",
-    "extraBufferDays": 1,
-    "inventoryScope": "First three items retain prior state; only next long video added. About one week plus the next scheduled Tuesday, no additional batch produced."
+    "state": "ready_for_muse",
+    "assets": {
+      "video": {
+        "url": "https://www.vpsdealswire.com/videos/vw-y004.mp4",
+        "repositoryPath": "static/videos/vw-y004.mp4",
+        "sha256": "816cc28f48e5ed2c8eb83b6b57278cb961b0762997e8195d72d37fd6db6b44a9",
+        "bytes": 2125516,
+        "width": 1920,
+        "height": 1080,
+        "durationSeconds": 91.374333,
+        "videoCodec": "h264",
+        "audioCodec": "aac",
+        "audioRate": 48000,
+        "fps": 24
+      },
+      "thumbnail": {
+        "url": "https://www.vpsdealswire.com/vw-y004-thumbnail.jpg",
+        "repositoryPath": "static/vw-y004-thumbnail.jpg",
+        "sha256": "e6779b0e7921160926c6e564f8d2a1d8cc4571fca37da5bdbf3314c9edc5e512",
+        "bytes": 69859,
+        "width": 1280,
+        "height": 720
+      },
+      "captions": {
+        "url": "https://www.vpsdealswire.com/vw-y004.en.srt",
+        "repositoryPath": "static/vw-y004.en.srt",
+        "sha256": "e1f117cb8603d525ea0b9d7d5914965e01e33f1eaee1551ef6416743f1ad09d6",
+        "bytes": 2177,
+        "language": "en"
+      }
+    },
+    "qa": "../2026-10-25/production/vw-y004/qa.json",
+    "hostVerification": "../2026-10-25/production/vw-y004/live-hosting.json",
+    "deploymentRun": 40326475575,
+    "sourceMediaPr": 12
   },
   "ourPublishingEnabled": false,
-  "publishingOwner": "muse"
+  "publishingOwner": "muse",
+  "publishing_owner": "muse",
+  "our_role": "content_and_publication_plan",
+  "museReceipt": {
+    "read": "muse-vw-y001.json",
+    "noNewReceiptFor002or003": true,
+    "videoId": "QXW-Ty9ECZY",
+    "actualPublishedAt": "2026-10-25T05:00:33Z",
+    "evidenceType": "Muse upload receipt plus reported public oEmbed, not our new authenticated query",
+    "review7At": "2026-11-01T05:00:33Z",
+    "review28At": "2026-11-22T05:00:33Z",
+    "outstandingAttachments": "Muse reported first-video thumbnail and English captions not attached; prior follow-up retained."
+  },
+  "validation": {
+    "scraper": "32providers/29ok/3unreachable,175 extracted entries; not175 verified monthly offers",
+    "build": "passed; public artifacts match source hashes",
+    "iLangProviderSourceMutation": "passed; original restored",
+    "publishingApiCalls": 0,
+    "newTasksCreated": 0
+  }
 }

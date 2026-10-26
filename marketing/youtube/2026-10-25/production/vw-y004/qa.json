@@ -3,7 +3,7 @@
   "mediaVersion": "v1",
   "checkedAt": "2026-10-26T12:53:17.325489+00:00",
   "mediaReady": true,
-  "publicHostingVerified": false,
+  "publicHostingVerified": true,
   "scheduled": false,
   "published": false,
   "youtubeVideoId": null,
@@ -74,5 +74,10 @@
     "benchmarkOrPriceClaim": false
   },
   "captionsAttached": false,
-  "publisher": "muse"
+  "publisher": "muse",
+  "productionDeployment": {
+    "runId": 40326475575,
+    "status": "success",
+    "mergeSha": "f09e19778ff785ef0473b435c61f4ec66cc841d2"
+  }
 }

@@ -1,0 +1,48 @@
+{
+  "contentId": "vw-y004",
+  "checkedAt": "2026-10-26T12:57:48.245Z",
+  "qaAnalyticsBlocked": true,
+  "qaLandingNavigation": "internal_qa / validation; exact attribution URL fetched without executing it",
+  "assets": [
+    {
+      "kind": "video",
+      "url": "https://www.vpsdealswire.com/videos/vw-y004.mp4",
+      "httpStatus": 200,
+      "bytes": 2125516,
+      "contentType": "video/mp4",
+      "sha256": "816cc28f48e5ed2c8eb83b6b57278cb961b0762997e8195d72d37fd6db6b44a9",
+      "expectedSha256": "816cc28f48e5ed2c8eb83b6b57278cb961b0762997e8195d72d37fd6db6b44a9",
+      "hashMatches": true
+    },
+    {
+      "kind": "thumbnail",
+      "url": "https://www.vpsdealswire.com/vw-y004-thumbnail.jpg",
+      "httpStatus": 200,
+      "bytes": 69859,
+      "contentType": "image/jpeg",
+      "sha256": "e6779b0e7921160926c6e564f8d2a1d8cc4571fca37da5bdbf3314c9edc5e512",
+      "expectedSha256": "e6779b0e7921160926c6e564f8d2a1d8cc4571fca37da5bdbf3314c9edc5e512",
+      "hashMatches": true
+    },
+    {
+      "kind": "captions",
+      "url": "https://www.vpsdealswire.com/vw-y004.en.srt",
+      "httpStatus": 200,
+      "bytes": 2177,
+      "contentType": "application/x-subrip",
+      "sha256": "e1f117cb8603d525ea0b9d7d5914965e01e33f1eaee1551ef6416743f1ad09d6",
+      "expectedSha256": "e1f117cb8603d525ea0b9d7d5914965e01e33f1eaee1551ef6416743f1ad09d6",
+      "hashMatches": true
+    }
+  ],
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 91.374333
+  },
+  "landingPage": {
+    "url": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y004",
+    "httpStatus": 200
+  },
+  "allVerified": true
+}
