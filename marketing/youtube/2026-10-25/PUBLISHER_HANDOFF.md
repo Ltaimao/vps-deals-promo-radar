@@ -67,3 +67,14 @@ Muse 回执同时注明独立缩略图和英文字幕尚未附加。素材仍在
 
 实际发布时间确定后再计算 7/28 天复查日。效果看网站相关会话和互动；未验证事件与跨工具归因时，不报告逐条视频的购买/下载转化。双方通过仓库交接，不要求站主反复转发素材。
 
+
+
+
+## 2026-10-26追加：vw-y004 成片可发布
+
+- 完整交付包：[vw-y004.json](handoffs/vw-y004.json)，`ready_for_publisher=true / ready_for_muse`。
+- 建议11月3日横屏视频；时刻与实际YouTube上传/排程仍由Muse决定，本方没有创建或修改VPS发布。
+- 91.37秒1080p H264/AAC：[视频](https://www.vpsdealswire.com/videos/vw-y004.mp4)，SHA256 `816cc28f48e5ed2c8eb83b6b57278cb961b0762997e8195d72d37fd6db6b44a9`。
+- [缩略图](https://www.vpsdealswire.com/vw-y004-thumbnail.jpg) / [英文字幕](https://www.vpsdealswire.com/vw-y004.en.srt) 均已部署并完成公开200与字节哈希核验，完整哈希和元数据在交付JSON。
+- 无价格/跑分/实测主张；真实指南录屏、原创图示、通用合成配音。域名以正确画面和说明链接呈现，最终旁白不口播网址。
+- Muse先查重、核验真实频道，再上传/排程；真实视频ID、URL、发布时间、字幕/缩略图实际附加状态回填 `marketing/youtube/records/muse-vw-y004.json`，并计算实际发布后7/28天复查日。不要重复上传已有vw-y001，不把交付素材视为已经附加字幕。

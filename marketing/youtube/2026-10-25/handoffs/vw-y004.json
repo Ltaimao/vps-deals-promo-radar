@@ -1,8 +1,8 @@
 {
   "contentId": "vw-y004",
   "mediaVersion": "v1",
-  "ready_for_publisher": false,
-  "state": "media_qa_passed_awaiting_public_host_verification",
+  "ready_for_publisher": true,
+  "state": "ready_for_muse",
   "publishingOwner": "muse",
   "ourRole": "content_and_publication_plan",
   "ourYouTubePublishingEnabled": false,
@@ -65,5 +65,9 @@
   "actualPublishedAt": null,
   "review7At": null,
   "review28At": null,
-  "instruction": "Muse verifies actual channel ID, current uploads/private videos, historical receipts and this content ID/media SHA before upload. Suggested date November3; time belongs to Muse. Attach delivered thumbnail/captions if supported; report actual attachment status. After verified publication record native video ID/URL/time, plus7 and28day reviews. Preserve old videos."
+  "instruction": "Muse verifies actual channel ID, current uploads/private videos, historical receipts and this content ID/media SHA before upload. Suggested date November3; time belongs to Muse. Attach delivered thumbnail/captions if supported; report actual attachment status. After verified publication record native video ID/URL/time, plus7 and28day reviews. Preserve old videos.",
+  "publishing_owner": "muse",
+  "our_role": "content_and_publication_plan",
+  "publicHostingVerification": "../production/vw-y004/live-hosting.json",
+  "sourceVerifiedAt": "2026-10-26T12:57:48.245Z"
 }
