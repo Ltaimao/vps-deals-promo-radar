@@ -1,0 +1,44 @@
+[
+  {
+    "index": 0,
+    "text": "An NVMe label tells you something about a storage technology. It does not, by itself, tell you how fast your application will run on a particular VPS plan.",
+    "wav": "voice-00.wav",
+    "seconds": 10.39092970521542
+  },
+  {
+    "index": 1,
+    "text": "Begin with the task. A small static site, an active database and a build process use storage differently. Ask which operations are actually slowing your own service before turning a label into a buying rule.",
+    "wav": "voice-01.wav",
+    "seconds": 13.444353741496599
+  },
+  {
+    "index": 2,
+    "text": "Next, read the plan documentation for storage capacity and any published input-output limits. Shared infrastructure, workload patterns and provider policies can affect the result. If a useful limit is not documented, record that gap rather than filling it with an estimated benchmark.",
+    "wav": "voice-02.wav",
+    "seconds": 19.202902494331067
+  },
+  {
+    "index": 3,
+    "text": "Keep disk capacity separate from throughput and latency. A larger disk is not the same promise as faster storage, and one short synthetic result would not describe every application even if a test had been performed.",
+    "wav": "voice-03.wav",
+    "seconds": 14.245442176870748
+  },
+  {
+    "index": 4,
+    "text": "Our take: compare the stated constraints and the workload together. A clear question for support is more useful than an unsupported ranking of every plan labeled NVMe.",
+    "wav": "voice-04.wav",
+    "seconds": 10.332879818594105
+  },
+  {
+    "index": 5,
+    "text": "This video explains how to evaluate the claim. It does not report a storage benchmark or guarantee a performance difference between providers.",
+    "wav": "voice-05.wav",
+    "seconds": 8.55655328798186
+  },
+  {
+    "index": 6,
+    "text": "The description links to the complete storage guide. Use it to build a shortlist, then verify the specific plan documentation and, where appropriate, run a permitted test for your own workload.",
+    "wav": "voice-06.wav",
+    "seconds": 11.969886621315192
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-26T12:53:17.325489+00:00",
+  "landingPage": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y004",
+  "pageStatus": 200,
+  "source": "Actual public page text and recording in this production package",
+  "claims": [
+    {
+      "claim": "NVMe label alone is not a measured VPS result.",
+      "evidence": "Current live storage guide and official AWS EBS volume-types documentation distinguish volume performance constraints."
+    },
+    {
+      "claim": "Capacity/operations/throughput/latency are separate questions.",
+      "evidence": "Original definitions diagram; no output or numeric measurements claimed."
+    }
+  ],
+  "permissions": "Own page recordings, actual synthetic-example tool export and original diagrams; DejaVu real fonts, Courier Prime OFL. Generic licensed speech, no cloned individual or music.",
+  "sourceLimits": "The official AWS page is one documented example, not a universal VPS policy.",
+  "publicFutureSeoBodyUsed": false
+}

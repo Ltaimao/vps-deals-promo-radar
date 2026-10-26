@@ -1,5 +1,7 @@
 # YouTube 网站推广运营
 
+> 2026-10-26：现有三条内容保持原状；下一条 vw-y004（建议11月3日）已实际制作与质检，待本次部署后核验公开素材。此时尚未新增排程/交付就绪。详见 2026-10-25/production/vw-y004；以最新 records 为最终状态。
+
 > 当前交接：Muse 已回填 vw-y001 的实际视频 `QXW-Ty9ECZY` 与 2026-10-25 13:00:33 北京时间发布记录，禁止重复上传。其自定义缩略图/字幕尚未附加，见 [Muse 回执](records/muse-vw-y001.json)。vw-y002（10月30日）与 vw-y003（11月1日）为已部署并完成公开 URL/哈希核验的新成片，两个交付包均可供 Muse 发布。状态以 [发布交接](2026-10-25/PUBLISHER_HANDOFF.md) 和各 handoff 文件为准。日期为建议；本方不操作 VPS YouTube 发布。
 
 
@@ -50,4 +52,5 @@ Read GA4 source/medium and landing-page sessions/engaged sessions. Only report t
 `2026-10-25/queue.json` contains 12 fully written scripts across both sites (six for this site, four horizontal plus two Shorts), each with a title, thumbnail concept, storyboard, landing page and UTM. The proposed dates are editorial targets, **not actual scheduled posts**. State is script_reviewed/media_pending/access_unverified. Do not count these as finished video inventory or scheduled YouTube uploads. Prepare the first long video per site before scaling the full batch; retain at most one week's completed-media stock initially while testing the creative direction.
 
 Routine reporting: meaningful published results, failed publication, wrong channel, authorization changes or a depleted usable stock. Give a short weekly summary of published links, qualified traffic and the next creative decision. No daily vanity-metric report and no unsupported conversion promises.
+
 

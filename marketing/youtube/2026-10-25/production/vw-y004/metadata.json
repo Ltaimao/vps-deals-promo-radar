@@ -1,0 +1,22 @@
+{
+  "contentId": "vw-y004",
+  "mediaVersion": "v1",
+  "targetChannelId": "UCfgVJrtBJSeViu95AnaQxyA",
+  "title": "NVMe vs SSD VPS: The Storage Label Is Not a Benchmark",
+  "description": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y004\n\nAn NVMe label is not an executed benchmark. Separate capacity, documented I/O limits and the needs of your application before choosing a VPS. The video uses our actual public storage guide and original explanatory diagrams. No provider benchmark was performed, no IOPS results or prices are invented, and no guaranteed speed improvement is claimed.\n\nRead the guide through the link above, then verify current plan documentation. Narration is synthesized. Some official-site links on VPS Deals Wire are affiliate links; we may earn a commission at no extra cost to you.",
+  "language": "en",
+  "tags": [
+    "VPS",
+    "VPS buying guide",
+    "VPS storage"
+  ],
+  "madeForKids": false,
+  "privacy": "public",
+  "isAiGeneratedContent": true,
+  "format": "video",
+  "proposedLocalDate": "2026-11-03",
+  "proposedTime": null,
+  "timezone": "Asia/Shanghai",
+  "publishingOwner": "muse",
+  "captionsStatus": "Separate English SRT delivered; attachment not verified or claimed."
+}

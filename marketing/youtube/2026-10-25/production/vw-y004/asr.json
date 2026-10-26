@@ -1,0 +1,1313 @@
+{
+  "model": "base.en",
+  "mediaSha256": "816cc28f48e5ed2c8eb83b6b57278cb961b0762997e8195d72d37fd6db6b44a9",
+  "tokenNormalization": "Canonical domain spelling in source text before whitespace-token comparison; this is not a WER or human-listening score.",
+  "method": "Actual encoded final audio decoded to 16kHz float32; automatic transcription, no human audition claimed.",
+  "language": "en",
+  "wordSequenceSimilarity": 0.9797752808988764,
+  "text": "An NVMe label tells you something about a storage technology. It does not, by itself, tell you how fast your application will run on a particular VPS plan. Begin with the task, a small static site, an active database, and a built process use storage differently. Ask which operations are actually slowing your own service before turning a label into a buying rule. Next, read the plan documentation for storage capacity and any published input-out of limits. Shared infrastructure, workload patterns and provider policies can affect the result if a useful limit is not documented. Record that gap rather than filling it with an estimated benchmark. Keep disk capacity separate from throughput and latency. A larger disk is not the same promise as faster storage, and one short synthetic result would not describe every application, even if a test had been performed. Our take, compare the stated constraints and the workload together. A clear question for support is more useful than an unsupported ranking of every plan labeled NVMe. This video explains how to evaluate the claim. It does not report a storage benchmark or guarantee a performance difference between providers. The description links to the complete storage guide. Use it to build a short list. Then verify the specific plan documentation, and, where appropriate, run a permitted test for your own workload.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 3.44,
+      "text": " An NVMe label tells you something about a storage technology.",
+      "words": [
+        {
+          "start": 0.0,
+          "end": 0.12,
+          "word": " An"
+        },
+        {
+          "start": 0.12,
+          "end": 0.76,
+          "word": " NVMe"
+        },
+        {
+          "start": 0.76,
+          "end": 0.94,
+          "word": " label"
+        },
+        {
+          "start": 0.94,
+          "end": 1.4,
+          "word": " tells"
+        },
+        {
+          "start": 1.4,
+          "end": 1.72,
+          "word": " you"
+        },
+        {
+          "start": 1.72,
+          "end": 2.02,
+          "word": " something"
+        },
+        {
+          "start": 2.02,
+          "end": 2.42,
+          "word": " about"
+        },
+        {
+          "start": 2.42,
+          "end": 2.58,
+          "word": " a"
+        },
+        {
+          "start": 2.58,
+          "end": 2.8,
+          "word": " storage"
+        },
+        {
+          "start": 2.8,
+          "end": 3.44,
+          "word": " technology."
+        }
+      ]
+    },
+    {
+      "start": 4.06,
+      "end": 7.62,
+      "text": " It does not, by itself, tell you how fast your application",
+      "words": [
+        {
+          "start": 4.06,
+          "end": 4.1,
+          "word": " It"
+        },
+        {
+          "start": 4.1,
+          "end": 4.26,
+          "word": " does"
+        },
+        {
+          "start": 4.26,
+          "end": 4.54,
+          "word": " not,"
+        },
+        {
+          "start": 4.66,
+          "end": 4.88,
+          "word": " by"
+        },
+        {
+          "start": 4.88,
+          "end": 5.2,
+          "word": " itself,"
+        },
+        {
+          "start": 5.84,
+          "end": 6.14,
+          "word": " tell"
+        },
+        {
+          "start": 6.14,
+          "end": 6.4,
+          "word": " you"
+        },
+        {
+          "start": 6.4,
+          "end": 6.56,
+          "word": " how"
+        },
+        {
+          "start": 6.56,
+          "end": 6.86,
+          "word": " fast"
+        },
+        {
+          "start": 6.86,
+          "end": 7.12,
+          "word": " your"
+        },
+        {
+          "start": 7.12,
+          "end": 7.62,
+          "word": " application"
+        }
+      ]
+    },
+    {
+      "start": 7.62,
+      "end": 10.12,
+      "text": " will run on a particular VPS plan.",
+      "words": [
+        {
+          "start": 7.62,
+          "end": 8.06,
+          "word": " will"
+        },
+        {
+          "start": 8.06,
+          "end": 8.34,
+          "word": " run"
+        },
+        {
+          "start": 8.34,
+          "end": 8.48,
+          "word": " on"
+        },
+        {
+          "start": 8.48,
+          "end": 8.56,
+          "word": " a"
+        },
+        {
+          "start": 8.56,
+          "end": 8.84,
+          "word": " particular"
+        },
+        {
+          "start": 8.84,
+          "end": 9.56,
+          "word": " VPS"
+        },
+        {
+          "start": 9.56,
+          "end": 10.12,
+          "word": " plan."
+        }
+      ]
+    },
+    {
+      "start": 10.8,
+      "end": 15.06,
+      "text": " Begin with the task, a small static site, an active database,",
+      "words": [
+        {
+          "start": 10.8,
+          "end": 11.04,
+          "word": " Begin"
+        },
+        {
+          "start": 11.04,
+          "end": 11.3,
+          "word": " with"
+        },
+        {
+          "start": 11.3,
+          "end": 11.42,
+          "word": " the"
+        },
+        {
+          "start": 11.42,
+          "end": 11.72,
+          "word": " task,"
+        },
+        {
+          "start": 12.28,
+          "end": 12.34,
+          "word": " a"
+        },
+        {
+          "start": 12.34,
+          "end": 12.6,
+          "word": " small"
+        },
+        {
+          "start": 12.6,
+          "end": 12.98,
+          "word": " static"
+        },
+        {
+          "start": 12.98,
+          "end": 13.54,
+          "word": " site,"
+        },
+        {
+          "start": 14.08,
+          "end": 14.12,
+          "word": " an"
+        },
+        {
+          "start": 14.12,
+          "end": 14.5,
+          "word": " active"
+        },
+        {
+          "start": 14.5,
+          "end": 15.06,
+          "word": " database,"
+        }
+      ]
+    },
+    {
+      "start": 15.52,
+      "end": 17.8,
+      "text": " and a built process use storage differently.",
+      "words": [
+        {
+          "start": 15.52,
+          "end": 15.58,
+          "word": " and"
+        },
+        {
+          "start": 15.58,
+          "end": 15.7,
+          "word": " a"
+        },
+        {
+          "start": 15.7,
+          "end": 15.92,
+          "word": " built"
+        },
+        {
+          "start": 15.92,
+          "end": 16.4,
+          "word": " process"
+        },
+        {
+          "start": 16.4,
+          "end": 16.7,
+          "word": " use"
+        },
+        {
+          "start": 16.7,
+          "end": 17.12,
+          "word": " storage"
+        },
+        {
+          "start": 17.12,
+          "end": 17.8,
+          "word": " differently."
+        }
+      ]
+    },
+    {
+      "start": 18.26,
+      "end": 21.56,
+      "text": " Ask which operations are actually slowing your own service",
+      "words": [
+        {
+          "start": 18.26,
+          "end": 18.44,
+          "word": " Ask"
+        },
+        {
+          "start": 18.44,
+          "end": 18.96,
+          "word": " which"
+        },
+        {
+          "start": 18.96,
+          "end": 19.42,
+          "word": " operations"
+        },
+        {
+          "start": 19.42,
+          "end": 19.8,
+          "word": " are"
+        },
+        {
+          "start": 19.8,
+          "end": 20.24,
+          "word": " actually"
+        },
+        {
+          "start": 20.24,
+          "end": 20.56,
+          "word": " slowing"
+        },
+        {
+          "start": 20.56,
+          "end": 20.88,
+          "word": " your"
+        },
+        {
+          "start": 20.88,
+          "end": 21.1,
+          "word": " own"
+        },
+        {
+          "start": 21.1,
+          "end": 21.56,
+          "word": " service"
+        }
+      ]
+    },
+    {
+      "start": 21.56,
+      "end": 24.08,
+      "text": " before turning a label into a buying rule.",
+      "words": [
+        {
+          "start": 21.56,
+          "end": 22.08,
+          "word": " before"
+        },
+        {
+          "start": 22.08,
+          "end": 22.66,
+          "word": " turning"
+        },
+        {
+          "start": 22.66,
+          "end": 22.78,
+          "word": " a"
+        },
+        {
+          "start": 22.78,
+          "end": 23.0,
+          "word": " label"
+        },
+        {
+          "start": 23.0,
+          "end": 23.32,
+          "word": " into"
+        },
+        {
+          "start": 23.32,
+          "end": 23.48,
+          "word": " a"
+        },
+        {
+          "start": 23.48,
+          "end": 23.72,
+          "word": " buying"
+        },
+        {
+          "start": 23.72,
+          "end": 24.08,
+          "word": " rule."
+        }
+      ]
+    },
+    {
+      "start": 24.84,
+      "end": 28.04,
+      "text": " Next, read the plan documentation for storage capacity",
+      "words": [
+        {
+          "start": 24.84,
+          "end": 25.08,
+          "word": " Next,"
+        },
+        {
+          "start": 25.4,
+          "end": 25.6,
+          "word": " read"
+        },
+        {
+          "start": 25.6,
+          "end": 25.84,
+          "word": " the"
+        },
+        {
+          "start": 25.84,
+          "end": 26.08,
+          "word": " plan"
+        },
+        {
+          "start": 26.08,
+          "end": 26.46,
+          "word": " documentation"
+        },
+        {
+          "start": 26.46,
+          "end": 27.18,
+          "word": " for"
+        },
+        {
+          "start": 27.18,
+          "end": 27.52,
+          "word": " storage"
+        },
+        {
+          "start": 27.52,
+          "end": 28.04,
+          "word": " capacity"
+        }
+      ]
+    },
+    {
+      "start": 28.04,
+      "end": 30.44,
+      "text": " and any published input-out of limits.",
+      "words": [
+        {
+          "start": 28.04,
+          "end": 28.62,
+          "word": " and"
+        },
+        {
+          "start": 28.62,
+          "end": 28.86,
+          "word": " any"
+        },
+        {
+          "start": 28.86,
+          "end": 29.18,
+          "word": " published"
+        },
+        {
+          "start": 29.18,
+          "end": 29.6,
+          "word": " input"
+        },
+        {
+          "start": 29.6,
+          "end": 29.9,
+          "word": "-out"
+        },
+        {
+          "start": 29.9,
+          "end": 30.08,
+          "word": " of"
+        },
+        {
+          "start": 30.08,
+          "end": 30.44,
+          "word": " limits."
+        }
+      ]
+    },
+    {
+      "start": 30.84,
+      "end": 35.04,
+      "text": " Shared infrastructure, workload patterns and provider policies",
+      "words": [
+        {
+          "start": 30.84,
+          "end": 31.24,
+          "word": " Shared"
+        },
+        {
+          "start": 31.24,
+          "end": 31.72,
+          "word": " infrastructure,"
+        },
+        {
+          "start": 32.7,
+          "end": 32.94,
+          "word": " workload"
+        },
+        {
+          "start": 32.94,
+          "end": 33.52,
+          "word": " patterns"
+        },
+        {
+          "start": 33.52,
+          "end": 33.96,
+          "word": " and"
+        },
+        {
+          "start": 33.96,
+          "end": 34.3,
+          "word": " provider"
+        },
+        {
+          "start": 34.3,
+          "end": 35.04,
+          "word": " policies"
+        }
+      ]
+    },
+    {
+      "start": 35.04,
+      "end": 38.74,
+      "text": " can affect the result if a useful limit is not documented.",
+      "words": [
+        {
+          "start": 35.04,
+          "end": 35.42,
+          "word": " can"
+        },
+        {
+          "start": 35.42,
+          "end": 35.7,
+          "word": " affect"
+        },
+        {
+          "start": 35.7,
+          "end": 36.08,
+          "word": " the"
+        },
+        {
+          "start": 36.08,
+          "end": 36.4,
+          "word": " result"
+        },
+        {
+          "start": 36.4,
+          "end": 36.9,
+          "word": " if"
+        },
+        {
+          "start": 36.9,
+          "end": 36.98,
+          "word": " a"
+        },
+        {
+          "start": 36.98,
+          "end": 37.36,
+          "word": " useful"
+        },
+        {
+          "start": 37.36,
+          "end": 37.8,
+          "word": " limit"
+        },
+        {
+          "start": 37.8,
+          "end": 38.04,
+          "word": " is"
+        },
+        {
+          "start": 38.04,
+          "end": 38.22,
+          "word": " not"
+        },
+        {
+          "start": 38.22,
+          "end": 38.74,
+          "word": " documented."
+        }
+      ]
+    },
+    {
+      "start": 39.7,
+      "end": 43.54,
+      "text": " Record that gap rather than filling it with an estimated benchmark.",
+      "words": [
+        {
+          "start": 39.7,
+          "end": 39.88,
+          "word": " Record"
+        },
+        {
+          "start": 39.88,
+          "end": 40.48,
+          "word": " that"
+        },
+        {
+          "start": 40.48,
+          "end": 40.74,
+          "word": " gap"
+        },
+        {
+          "start": 40.74,
+          "end": 41.4,
+          "word": " rather"
+        },
+        {
+          "start": 41.4,
+          "end": 41.76,
+          "word": " than"
+        },
+        {
+          "start": 41.76,
+          "end": 42.04,
+          "word": " filling"
+        },
+        {
+          "start": 42.04,
+          "end": 42.28,
+          "word": " it"
+        },
+        {
+          "start": 42.28,
+          "end": 42.4,
+          "word": " with"
+        },
+        {
+          "start": 42.4,
+          "end": 42.54,
+          "word": " an"
+        },
+        {
+          "start": 42.54,
+          "end": 42.9,
+          "word": " estimated"
+        },
+        {
+          "start": 42.9,
+          "end": 43.54,
+          "word": " benchmark."
+        }
+      ]
+    },
+    {
+      "start": 44.34,
+      "end": 47.74,
+      "text": " Keep disk capacity separate from throughput and latency.",
+      "words": [
+        {
+          "start": 44.34,
+          "end": 44.6,
+          "word": " Keep"
+        },
+        {
+          "start": 44.6,
+          "end": 44.88,
+          "word": " disk"
+        },
+        {
+          "start": 44.88,
+          "end": 45.42,
+          "word": " capacity"
+        },
+        {
+          "start": 45.42,
+          "end": 46.14,
+          "word": " separate"
+        },
+        {
+          "start": 46.14,
+          "end": 46.44,
+          "word": " from"
+        },
+        {
+          "start": 46.44,
+          "end": 46.62,
+          "word": " throughput"
+        },
+        {
+          "start": 46.62,
+          "end": 47.22,
+          "word": " and"
+        },
+        {
+          "start": 47.22,
+          "end": 47.74,
+          "word": " latency."
+        }
+      ]
+    },
+    {
+      "start": 48.12,
+      "end": 51.4,
+      "text": " A larger disk is not the same promise as faster storage,",
+      "words": [
+        {
+          "start": 48.12,
+          "end": 48.16,
+          "word": " A"
+        },
+        {
+          "start": 48.16,
+          "end": 48.42,
+          "word": " larger"
+        },
+        {
+          "start": 48.42,
+          "end": 48.92,
+          "word": " disk"
+        },
+        {
+          "start": 48.92,
+          "end": 49.08,
+          "word": " is"
+        },
+        {
+          "start": 49.08,
+          "end": 49.26,
+          "word": " not"
+        },
+        {
+          "start": 49.26,
+          "end": 49.42,
+          "word": " the"
+        },
+        {
+          "start": 49.42,
+          "end": 49.7,
+          "word": " same"
+        },
+        {
+          "start": 49.7,
+          "end": 50.0,
+          "word": " promise"
+        },
+        {
+          "start": 50.0,
+          "end": 50.34,
+          "word": " as"
+        },
+        {
+          "start": 50.34,
+          "end": 50.58,
+          "word": " faster"
+        },
+        {
+          "start": 50.58,
+          "end": 51.4,
+          "word": " storage,"
+        }
+      ]
+    },
+    {
+      "start": 51.88,
+      "end": 56.16,
+      "text": " and one short synthetic result would not describe every application,",
+      "words": [
+        {
+          "start": 51.88,
+          "end": 51.98,
+          "word": " and"
+        },
+        {
+          "start": 51.98,
+          "end": 52.18,
+          "word": " one"
+        },
+        {
+          "start": 52.18,
+          "end": 52.48,
+          "word": " short"
+        },
+        {
+          "start": 52.48,
+          "end": 52.82,
+          "word": " synthetic"
+        },
+        {
+          "start": 52.82,
+          "end": 53.5,
+          "word": " result"
+        },
+        {
+          "start": 53.5,
+          "end": 54.28,
+          "word": " would"
+        },
+        {
+          "start": 54.28,
+          "end": 54.5,
+          "word": " not"
+        },
+        {
+          "start": 54.5,
+          "end": 54.88,
+          "word": " describe"
+        },
+        {
+          "start": 54.88,
+          "end": 55.46,
+          "word": " every"
+        },
+        {
+          "start": 55.46,
+          "end": 56.16,
+          "word": " application,"
+        }
+      ]
+    },
+    {
+      "start": 56.16,
+      "end": 58.2,
+      "text": " even if a test had been performed.",
+      "words": [
+        {
+          "start": 56.16,
+          "end": 56.9,
+          "word": " even"
+        },
+        {
+          "start": 56.9,
+          "end": 57.08,
+          "word": " if"
+        },
+        {
+          "start": 57.08,
+          "end": 57.12,
+          "word": " a"
+        },
+        {
+          "start": 57.12,
+          "end": 57.38,
+          "word": " test"
+        },
+        {
+          "start": 57.38,
+          "end": 57.62,
+          "word": " had"
+        },
+        {
+          "start": 57.62,
+          "end": 57.8,
+          "word": " been"
+        },
+        {
+          "start": 57.8,
+          "end": 58.2,
+          "word": " performed."
+        }
+      ]
+    },
+    {
+      "start": 59.14,
+      "end": 62.7,
+      "text": " Our take, compare the stated constraints and the workload together.",
+      "words": [
+        {
+          "start": 59.14,
+          "end": 59.32,
+          "word": " Our"
+        },
+        {
+          "start": 59.32,
+          "end": 59.68,
+          "word": " take,"
+        },
+        {
+          "start": 60.02,
+          "end": 60.36,
+          "word": " compare"
+        },
+        {
+          "start": 60.36,
+          "end": 60.62,
+          "word": " the"
+        },
+        {
+          "start": 60.62,
+          "end": 60.98,
+          "word": " stated"
+        },
+        {
+          "start": 60.98,
+          "end": 61.38,
+          "word": " constraints"
+        },
+        {
+          "start": 61.38,
+          "end": 61.84,
+          "word": " and"
+        },
+        {
+          "start": 61.84,
+          "end": 61.96,
+          "word": " the"
+        },
+        {
+          "start": 61.96,
+          "end": 62.14,
+          "word": " workload"
+        },
+        {
+          "start": 62.14,
+          "end": 62.7,
+          "word": " together."
+        }
+      ]
+    },
+    {
+      "start": 63.08,
+      "end": 67.06,
+      "text": " A clear question for support is more useful than an unsupported ranking",
+      "words": [
+        {
+          "start": 63.08,
+          "end": 63.1,
+          "word": " A"
+        },
+        {
+          "start": 63.1,
+          "end": 63.32,
+          "word": " clear"
+        },
+        {
+          "start": 63.32,
+          "end": 63.76,
+          "word": " question"
+        },
+        {
+          "start": 63.76,
+          "end": 64.08,
+          "word": " for"
+        },
+        {
+          "start": 64.08,
+          "end": 64.38,
+          "word": " support"
+        },
+        {
+          "start": 64.38,
+          "end": 64.96,
+          "word": " is"
+        },
+        {
+          "start": 64.96,
+          "end": 65.22,
+          "word": " more"
+        },
+        {
+          "start": 65.22,
+          "end": 65.6,
+          "word": " useful"
+        },
+        {
+          "start": 65.6,
+          "end": 65.98,
+          "word": " than"
+        },
+        {
+          "start": 65.98,
+          "end": 66.12,
+          "word": " an"
+        },
+        {
+          "start": 66.12,
+          "end": 66.64,
+          "word": " unsupported"
+        },
+        {
+          "start": 66.64,
+          "end": 67.06,
+          "word": " ranking"
+        }
+      ]
+    },
+    {
+      "start": 67.06,
+      "end": 69.24,
+      "text": " of every plan labeled NVMe.",
+      "words": [
+        {
+          "start": 67.06,
+          "end": 67.42,
+          "word": " of"
+        },
+        {
+          "start": 67.42,
+          "end": 67.62,
+          "word": " every"
+        },
+        {
+          "start": 67.62,
+          "end": 68.0,
+          "word": " plan"
+        },
+        {
+          "start": 68.0,
+          "end": 68.42,
+          "word": " labeled"
+        },
+        {
+          "start": 68.42,
+          "end": 69.24,
+          "word": " NVMe."
+        }
+      ]
+    },
+    {
+      "start": 69.76,
+      "end": 72.76,
+      "text": " This video explains how to evaluate the claim.",
+      "words": [
+        {
+          "start": 69.76,
+          "end": 70.06,
+          "word": " This"
+        },
+        {
+          "start": 70.06,
+          "end": 70.42,
+          "word": " video"
+        },
+        {
+          "start": 70.42,
+          "end": 70.88,
+          "word": " explains"
+        },
+        {
+          "start": 70.88,
+          "end": 71.36,
+          "word": " how"
+        },
+        {
+          "start": 71.36,
+          "end": 71.56,
+          "word": " to"
+        },
+        {
+          "start": 71.56,
+          "end": 71.88,
+          "word": " evaluate"
+        },
+        {
+          "start": 71.88,
+          "end": 72.44,
+          "word": " the"
+        },
+        {
+          "start": 72.44,
+          "end": 72.76,
+          "word": " claim."
+        }
+      ]
+    },
+    {
+      "start": 73.06,
+      "end": 75.7,
+      "text": " It does not report a storage benchmark or guarantee",
+      "words": [
+        {
+          "start": 73.06,
+          "end": 73.12,
+          "word": " It"
+        },
+        {
+          "start": 73.12,
+          "end": 73.26,
+          "word": " does"
+        },
+        {
+          "start": 73.26,
+          "end": 73.5,
+          "word": " not"
+        },
+        {
+          "start": 73.5,
+          "end": 73.86,
+          "word": " report"
+        },
+        {
+          "start": 73.86,
+          "end": 74.04,
+          "word": " a"
+        },
+        {
+          "start": 74.04,
+          "end": 74.3,
+          "word": " storage"
+        },
+        {
+          "start": 74.3,
+          "end": 74.7,
+          "word": " benchmark"
+        },
+        {
+          "start": 74.7,
+          "end": 75.32,
+          "word": " or"
+        },
+        {
+          "start": 75.32,
+          "end": 75.7,
+          "word": " guarantee"
+        }
+      ]
+    },
+    {
+      "start": 75.7,
+      "end": 77.86,
+      "text": " a performance difference between providers.",
+      "words": [
+        {
+          "start": 75.7,
+          "end": 76.06,
+          "word": " a"
+        },
+        {
+          "start": 76.06,
+          "end": 76.38,
+          "word": " performance"
+        },
+        {
+          "start": 76.38,
+          "end": 76.88,
+          "word": " difference"
+        },
+        {
+          "start": 76.88,
+          "end": 77.48,
+          "word": " between"
+        },
+        {
+          "start": 77.48,
+          "end": 77.86,
+          "word": " providers."
+        }
+      ]
+    },
+    {
+      "start": 78.94,
+      "end": 81.52,
+      "text": " The description links to the complete storage guide.",
+      "words": [
+        {
+          "start": 78.94,
+          "end": 79.02,
+          "word": " The"
+        },
+        {
+          "start": 79.02,
+          "end": 79.42,
+          "word": " description"
+        },
+        {
+          "start": 79.42,
+          "end": 79.84,
+          "word": " links"
+        },
+        {
+          "start": 79.84,
+          "end": 80.18,
+          "word": " to"
+        },
+        {
+          "start": 80.18,
+          "end": 80.26,
+          "word": " the"
+        },
+        {
+          "start": 80.26,
+          "end": 80.58,
+          "word": " complete"
+        },
+        {
+          "start": 80.58,
+          "end": 81.02,
+          "word": " storage"
+        },
+        {
+          "start": 81.02,
+          "end": 81.52,
+          "word": " guide."
+        }
+      ]
+    },
+    {
+      "start": 81.98,
+      "end": 83.24,
+      "text": " Use it to build a short list.",
+      "words": [
+        {
+          "start": 81.98,
+          "end": 82.04,
+          "word": " Use"
+        },
+        {
+          "start": 82.04,
+          "end": 82.22,
+          "word": " it"
+        },
+        {
+          "start": 82.22,
+          "end": 82.36,
+          "word": " to"
+        },
+        {
+          "start": 82.36,
+          "end": 82.56,
+          "word": " build"
+        },
+        {
+          "start": 82.56,
+          "end": 82.74,
+          "word": " a"
+        },
+        {
+          "start": 82.74,
+          "end": 82.98,
+          "word": " short"
+        },
+        {
+          "start": 82.98,
+          "end": 83.24,
+          "word": " list."
+        }
+      ]
+    },
+    {
+      "start": 83.24,
+      "end": 86.06,
+      "text": " Then verify the specific plan documentation,",
+      "words": [
+        {
+          "start": 83.24,
+          "end": 83.98,
+          "word": " Then"
+        },
+        {
+          "start": 83.98,
+          "end": 84.36,
+          "word": " verify"
+        },
+        {
+          "start": 84.36,
+          "end": 84.74,
+          "word": " the"
+        },
+        {
+          "start": 84.74,
+          "end": 84.98,
+          "word": " specific"
+        },
+        {
+          "start": 84.98,
+          "end": 85.46,
+          "word": " plan"
+        },
+        {
+          "start": 85.46,
+          "end": 86.06,
+          "word": " documentation,"
+        }
+      ]
+    },
+    {
+      "start": 87.04,
+      "end": 90.5,
+      "text": " and, where appropriate, run a permitted test for your own workload.",
+      "words": [
+        {
+          "start": 87.04,
+          "end": 87.18,
+          "word": " and,"
+        },
+        {
+          "start": 87.42,
+          "end": 87.44,
+          "word": " where"
+        },
+        {
+          "start": 87.44,
+          "end": 87.92,
+          "word": " appropriate,"
+        },
+        {
+          "start": 88.42,
+          "end": 88.62,
+          "word": " run"
+        },
+        {
+          "start": 88.62,
+          "end": 88.74,
+          "word": " a"
+        },
+        {
+          "start": 88.74,
+          "end": 89.12,
+          "word": " permitted"
+        },
+        {
+          "start": 89.12,
+          "end": 89.46,
+          "word": " test"
+        },
+        {
+          "start": 89.46,
+          "end": 89.78,
+          "word": " for"
+        },
+        {
+          "start": 89.78,
+          "end": 89.92,
+          "word": " your"
+        },
+        {
+          "start": 89.92,
+          "end": 90.14,
+          "word": " own"
+        },
+        {
+          "start": 90.14,
+          "end": 90.5,
+          "word": " workload."
+        }
+      ]
+    }
+  ]
+}

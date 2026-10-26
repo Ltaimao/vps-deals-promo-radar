@@ -85,15 +85,17 @@
       "title": "NVMe vs SSD VPS: The Storage Label Is Not a Benchmark",
       "landingPage": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y004",
       "script": "scripts/vw-y004.md",
-      "mediaState": "pending",
-      "videoSourceUrl": null,
-      "mediaSha256": null,
-      "thumbnailUrl": null,
+      "mediaState": "media_qa_passed_awaiting_public_host_verification",
+      "videoSourceUrl": "https://www.vpsdealswire.com/videos/vw-y004.mp4",
+      "mediaSha256": "816cc28f48e5ed2c8eb83b6b57278cb961b0762997e8195d72d37fd6db6b44a9",
+      "thumbnailUrl": "https://www.vpsdealswire.com/vw-y004-thumbnail.jpg",
       "publishingOwner": "muse",
       "scheduledPostId": null,
       "youtubeVideoId": null,
       "youtubeUrl": null,
-      "actualPublishedAt": null
+      "actualPublishedAt": null,
+      "readyForPublisher": false,
+      "handoff": "handoffs/vw-y004.json"
     },
     {
       "contentId": "vw-y005",

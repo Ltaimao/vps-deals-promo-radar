@@ -221,7 +221,7 @@
       "title": "NVMe vs SSD VPS: The Storage Label Is Not a Benchmark",
       "proposedLocalDate": "2026-11-03",
       "timezone": "Asia/Shanghai",
-      "state": "script_reviewed_media_pending_external_publisher",
+      "state": "media_qa_passed_awaiting_public_host_verification",
       "script": "scripts/vw-y004.md",
       "landingPage": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y004",
       "thumbnailConcept": "Ask About the Limit.",
@@ -233,7 +233,7 @@
       "review28At": null,
       "review": {
         "scriptFactsChecked": true,
-        "mediaApproved": false,
+        "mediaApproved": true,
         "channelIdentityVerified": false,
         "advancedFeaturesVerified": false,
         "uploadScheduled": false
@@ -241,8 +241,40 @@
       "sourceRequirement": "Live page and current official provider terms if applicable; no publication of an unavailable future article",
       "contentOwner": "this_ai",
       "publishingOwner": "muse",
-      "handoffState": "script_ready_final_media_pending",
-      "ourPublishingEnabled": false
+      "handoffState": "media_qa_passed_awaiting_public_host_verification",
+      "ourPublishingEnabled": false,
+      "mediaVersion": "v1",
+      "assets": {
+        "video": {
+          "url": "https://www.vpsdealswire.com/videos/vw-y004.mp4",
+          "repositoryPath": "static/videos/vw-y004.mp4",
+          "sha256": "816cc28f48e5ed2c8eb83b6b57278cb961b0762997e8195d72d37fd6db6b44a9",
+          "bytes": 2125516,
+          "width": 1920,
+          "height": 1080,
+          "durationSeconds": 91.374333,
+          "videoCodec": "h264",
+          "audioCodec": "aac",
+          "audioRate": 48000,
+          "fps": 24
+        },
+        "thumbnail": {
+          "url": "https://www.vpsdealswire.com/vw-y004-thumbnail.jpg",
+          "repositoryPath": "static/vw-y004-thumbnail.jpg",
+          "sha256": "e6779b0e7921160926c6e564f8d2a1d8cc4571fca37da5bdbf3314c9edc5e512",
+          "bytes": 69859,
+          "width": 1280,
+          "height": 720
+        },
+        "captions": {
+          "url": "https://www.vpsdealswire.com/vw-y004.en.srt",
+          "repositoryPath": "static/vw-y004.en.srt",
+          "sha256": "e1f117cb8603d525ea0b9d7d5914965e01e33f1eaee1551ef6416743f1ad09d6",
+          "bytes": 2177,
+          "language": "en"
+        }
+      },
+      "handoff": "handoffs/vw-y004.json"
     },
     {
       "contentId": "vw-y005",
@@ -288,7 +320,7 @@
       "state": "script_reviewed_media_pending_external_publisher",
       "script": "scripts/vw-y006.md",
       "landingPage": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y006",
-      "thumbnailConcept": "Label \u2260 Application Result.",
+      "thumbnailConcept": "Label ≠ Application Result.",
       "relatedContentId": "vw-y004",
       "videoId": null,
       "videoUrl": null,
