@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-26T02:34:57.706886+00:00",
+  "mergedPr": 10,
+  "mergeSha": "ac7e3f570d29534595f7a0cdd7b44a129c1b68b0",
+  "mainCalendarReadback": {
+    "futureDays": 15,
+    "from": "2026-10-27",
+    "through": "2026-11-10"
+  },
+  "newFullDraftReadback": "exact content matches reviewed branch",
+  "productionDeploymentRun": 40259589601,
+  "publicationOwner": "existing deterministic daily workflow",
+  "newTasksCreated": false,
+  "preserved": "historical URLs, other approved drafts, prices/history, Pinterest and YouTube",
+  "checkException": null,
+  "productionDeploymentStatus": "success",
+  "futureArticleReadback": {
+    "status": 404,
+    "verifiedAfterProductionDeployment": true
+  }
+}
