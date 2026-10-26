@@ -1,0 +1,78 @@
+{
+  "contentId": "vw-y004",
+  "mediaVersion": "v1",
+  "checkedAt": "2026-10-26T12:53:17.325489+00:00",
+  "mediaReady": true,
+  "publicHostingVerified": false,
+  "scheduled": false,
+  "published": false,
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "actualPublishedAt": null,
+  "assets": {
+    "video": {
+      "url": "https://www.vpsdealswire.com/videos/vw-y004.mp4",
+      "repositoryPath": "static/videos/vw-y004.mp4",
+      "sha256": "816cc28f48e5ed2c8eb83b6b57278cb961b0762997e8195d72d37fd6db6b44a9",
+      "bytes": 2125516,
+      "width": 1920,
+      "height": 1080,
+      "durationSeconds": 91.374333,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "audioRate": 48000,
+      "fps": 24
+    },
+    "thumbnail": {
+      "url": "https://www.vpsdealswire.com/vw-y004-thumbnail.jpg",
+      "repositoryPath": "static/vw-y004-thumbnail.jpg",
+      "sha256": "e6779b0e7921160926c6e564f8d2a1d8cc4571fca37da5bdbf3314c9edc5e512",
+      "bytes": 69859,
+      "width": 1280,
+      "height": 720
+    },
+    "captions": {
+      "url": "https://www.vpsdealswire.com/vw-y004.en.srt",
+      "repositoryPath": "static/vw-y004.en.srt",
+      "sha256": "e1f117cb8603d525ea0b9d7d5914965e01e33f1eaee1551ef6416743f1ad09d6",
+      "bytes": 2177,
+      "language": "en"
+    }
+  },
+  "visualReview": {
+    "finalEncodedSceneFramesReviewed": true,
+    "fullResolutionChecked": true,
+    "thumbnail320pxChecked": true,
+    "hardRejectFound": false,
+    "score": {
+      "subject": 24,
+      "artOrDiagramQuality": 22,
+      "composition": 18,
+      "mobile": 13,
+      "brand": 9,
+      "technical": 5,
+      "total": 91
+    },
+    "scoreLimitation": "Internal editorial judgement, not CTR evidence."
+  },
+  "audioReview": {
+    "method": "Final-track ASR, source alignment, full decode and volumedetect. No human audition claimed.",
+    "wordSequenceSimilarity": 0.9797752808988764,
+    "domain": "Final narration omits spoken domain after unreliable initial ASR; exact domain remains in the image and verified description link.",
+    "asrLimitations": "Minor substitutions retained transparently; the written source controls proofread captions. Similarity is not WER or a listening score.",
+    "model": "Piper en_US-ljspeech-high",
+    "license": "LJ Speech public domain; model card verified HTTP200",
+    "noMusic": true,
+    "maxVolumeDb": -0.6,
+    "meanVolumeDb": -19.9
+  },
+  "rightsAndFacts": {
+    "ownSiteActualRecordingAndExport": true,
+    "originalConceptualDiagrams": true,
+    "fabricatedUIOrResults": false,
+    "physicalTattooGuarantee": false,
+    "benchmarkOrPriceClaim": false
+  },
+  "captionsAttached": false,
+  "publisher": "muse"
+}

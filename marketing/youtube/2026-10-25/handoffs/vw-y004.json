@@ -1,0 +1,69 @@
+{
+  "contentId": "vw-y004",
+  "mediaVersion": "v1",
+  "ready_for_publisher": false,
+  "state": "media_qa_passed_awaiting_public_host_verification",
+  "publishingOwner": "muse",
+  "ourRole": "content_and_publication_plan",
+  "ourYouTubePublishingEnabled": false,
+  "assets": {
+    "video": {
+      "url": "https://www.vpsdealswire.com/videos/vw-y004.mp4",
+      "repositoryPath": "static/videos/vw-y004.mp4",
+      "sha256": "816cc28f48e5ed2c8eb83b6b57278cb961b0762997e8195d72d37fd6db6b44a9",
+      "bytes": 2125516,
+      "width": 1920,
+      "height": 1080,
+      "durationSeconds": 91.374333,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "audioRate": 48000,
+      "fps": 24
+    },
+    "thumbnail": {
+      "url": "https://www.vpsdealswire.com/vw-y004-thumbnail.jpg",
+      "repositoryPath": "static/vw-y004-thumbnail.jpg",
+      "sha256": "e6779b0e7921160926c6e564f8d2a1d8cc4571fca37da5bdbf3314c9edc5e512",
+      "bytes": 69859,
+      "width": 1280,
+      "height": 720
+    },
+    "captions": {
+      "url": "https://www.vpsdealswire.com/vw-y004.en.srt",
+      "repositoryPath": "static/vw-y004.en.srt",
+      "sha256": "e1f117cb8603d525ea0b9d7d5914965e01e33f1eaee1551ef6416743f1ad09d6",
+      "bytes": 2177,
+      "language": "en"
+    }
+  },
+  "metadata": {
+    "contentId": "vw-y004",
+    "mediaVersion": "v1",
+    "targetChannelId": "UCfgVJrtBJSeViu95AnaQxyA",
+    "title": "NVMe vs SSD VPS: The Storage Label Is Not a Benchmark",
+    "description": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_vps&utm_content=vw-y004\n\nAn NVMe label is not an executed benchmark. Separate capacity, documented I/O limits and the needs of your application before choosing a VPS. The video uses our actual public storage guide and original explanatory diagrams. No provider benchmark was performed, no IOPS results or prices are invented, and no guaranteed speed improvement is claimed.\n\nRead the guide through the link above, then verify current plan documentation. Narration is synthesized. Some official-site links on VPS Deals Wire are affiliate links; we may earn a commission at no extra cost to you.",
+    "language": "en",
+    "tags": [
+      "VPS",
+      "VPS buying guide",
+      "VPS storage"
+    ],
+    "madeForKids": false,
+    "privacy": "public",
+    "isAiGeneratedContent": true,
+    "format": "video",
+    "proposedLocalDate": "2026-11-03",
+    "proposedTime": null,
+    "timezone": "Asia/Shanghai",
+    "publishingOwner": "muse",
+    "captionsStatus": "Separate English SRT delivered; attachment not verified or claimed."
+  },
+  "qaRecord": "../production/vw-y004/qa.json",
+  "expectedReceipt": "../../records/muse-vw-y004.json",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "actualPublishedAt": null,
+  "review7At": null,
+  "review28At": null,
+  "instruction": "Muse verifies actual channel ID, current uploads/private videos, historical receipts and this content ID/media SHA before upload. Suggested date November3; time belongs to Muse. Attach delivered thumbnail/captions if supported; report actual attachment status. After verified publication record native video ID/URL/time, plus7 and28day reviews. Preserve old videos."
+}

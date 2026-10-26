@@ -1,0 +1,139 @@
+{
+  "checkedAt": "2026-10-26T12:41:36Z",
+  "brand": {
+    "id": 7620881,
+    "timezone": "Asia/Shanghai",
+    "youtubeChannelId": "UCQ8j4vfF-Oosb0PVlaXdvmA",
+    "matchesExpected": true
+  },
+  "scheduledYoutube": [
+    {
+      "id": 405431049,
+      "uuid": "-1426969802312236672",
+      "publicationDate": {
+        "dateTime": "2026-10-27T16:00:00",
+        "timezone": "Asia/Shanghai"
+      },
+      "title": "Same Words, Three Tattoo Fonts: Compare Before You Choose",
+      "providers": [
+        {
+          "network": "youtube",
+          "status": "PENDING",
+          "detailedStatus": "Pending"
+        }
+      ],
+      "media": [
+        "https://static.metricool.com/planner/202610/7620881-file-6572276305627269651.mp4"
+      ],
+      "text": "https://www.tattoodoodle.com/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_tattoo&utm_content=td-y001#lettering-studio\n\nCompare the same words in Great Vibes, Cinzel and Courier Prime using real TattooDoodle lettering previews. Keep your wording fixed, choose one preference and one useful alternative, then save a clear reference to discuss with your tattoo artist.\n\nTry your own wording at tattoodoodle.com through the link above. Digital previews and reference cards are communication aids, not professional transfer stencils or guarantees of physical size or finished tattoo results.\n\nReal product screen recordings and exports. Narration is synthesized.",
+      "autoPublish": true,
+      "draft": false,
+      "thumbnail": "https://static.metricool.com/planner/202610/7620881-file-9833112847562005601.jpeg"
+    },
+    {
+      "id": 405651224,
+      "uuid": "7107603339778801827",
+      "publicationDate": {
+        "dateTime": "2026-10-30T16:00:00",
+        "timezone": "Asia/Shanghai"
+      },
+      "title": "Tattoo Letter Spacing: Compare Two References",
+      "providers": [
+        {
+          "network": "youtube",
+          "status": "PENDING",
+          "detailedStatus": "Pending"
+        }
+      ],
+      "media": [
+        "https://static.metricool.com/planner/202610/7620881-file-18298732357935634776.mp4"
+      ],
+      "text": "https://www.tattoodoodle.com/articles/tattoo-letter-spacing?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_tattoo&utm_content=td-y002\n\nCompare two genuine Courier Prime exports of Stay curious with only the spacing changed. Keep the wording, font and preview size fixed, look at the whole phrase and word break, and prepare a clear question for your tattoo artist. Browser pixel settings are not physical gaps on skin.\n\nReal tool recording and exports. Digital lettering references are communication aids, not transfer stencils or guarantees of size or finished results. Narration is synthesized.",
+      "autoPublish": true,
+      "draft": false,
+      "thumbnail": "https://static.metricool.com/planner/202610/7620881-file-695583535052703879.jpeg"
+    },
+    {
+      "id": 405651388,
+      "uuid": "-952387781793002449",
+      "publicationDate": {
+        "dateTime": "2026-11-01T16:00:00",
+        "timezone": "Asia/Shanghai"
+      },
+      "title": "Same Words, Three Tattoo Fonts",
+      "providers": [
+        {
+          "network": "youtube",
+          "status": "PENDING",
+          "detailedStatus": "Pending"
+        }
+      ],
+      "media": [
+        "https://static.metricool.com/planner/202610/7620881-file-2006111402986860396.mp4"
+      ],
+      "text": "https://www.tattoodoodle.com/?utm_source=youtube&utm_medium=organic_video&utm_campaign=2026q4_youtube_tattoo&utm_content=td-y003#lettering-studio\n\nSame words, three lettering directions: script, serif and typewriter. These are genuine TattooDoodle digital exports. Keep your wording fixed and choose one preference plus one useful alternative for your artist.\n\nFind the full video \u201cSame Words, Three Tattoo Fonts: Compare Before You Choose\u201d on this channel and open its description for the website link. A related-video button is not claimed configured. Digital references are not finished tattoos. Narration is synthesized.",
+      "autoPublish": true,
+      "draft": false
+    }
+  ],
+  "youtubeAnalytics": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"rows\":[]}"
+      }
+    ],
+    "structuredContent": null,
+    "isError": false
+  },
+  "ga4": {
+    "window": {
+      "from": "2026-10-12",
+      "to": "2026-10-25"
+    },
+    "fields": [
+      "date",
+      "session_source_medium",
+      "landing_page_plus_query_string",
+      "sessions",
+      "engaged_sessions"
+    ],
+    "filter": "session_source_medium contains youtube",
+    "tattoo": {
+      "status": "done",
+      "data": [],
+      "total_rows": 0
+    },
+    "vps": {
+      "status": "done",
+      "data": [],
+      "total_rows": 0
+    }
+  },
+  "bestTime": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"data\":[{\"dayOfWeek\":2,\"bestTimesByHour\":[{\"hourOfDay\":0,\"value\":1868},{\"hourOfDay\":1,\"value\":1516},{\"hourOfDay\":2,\"value\":1410},{\"hourOfDay\":3,\"value\":1522},{\"hourOfDay\":4,\"value\":2237},{\"hourOfDay\":5,\"value\":3124},{\"hourOfDay\":6,\"value\":4101},{\"hourOfDay\":7,\"value\":5609},{\"hourOfDay\":8,\"value\":6440},{\"hourOfDay\":9,\"value\":7091},{\"hourOfDay\":10,\"value\":8609},{\"hourOfDay\":11,\"value\":7164},{\"hourOfDay\":12,\"value\":7731},{\"hourOfDay\":13,\"value\":8363},{\"hourOfDay\":14,\"value\":8899},{\"hourOfDay\":15,\"value\":9036},{\"hourOfDay\":16,\"value\":10353},{\"hourOfDay\":17,\"value\":9202},{\"hourOfDay\":18,\"value\":7897},{\"hourOfDay\":19,\"value\":6461},{\"hourOfDay\":20,\"value\":5190},{\"hourOfDay\":21,\"value\":4141},{\"hourOfDay\":22,\"value\":4401},{\"hourOfDay\":23,\"value\":2832}]}]}"
+      }
+    ],
+    "structuredContent": null,
+    "isError": false
+  },
+  "limitations": [
+    "Metricool PENDING is only scheduled, no native YouTube id.",
+    "Empty reports reflect this window/filter and connection coverage/latency, not permanent zero impact.",
+    "No 7/28-day review due for current new-series inventory on October26. Muse first-video reviews due November1/22.",
+    "No new automation; only next long-form per site is being produced, not scripts counted as video stock."
+  ],
+  "site": "vps",
+  "production": {
+    "contentId": "vw-y004",
+    "state": "media_qa_passed_awaiting_public_host_verification",
+    "proposedLocalDate": "2026-11-03",
+    "extraBufferDays": 1,
+    "inventoryScope": "First three items retain prior state; only next long video added. About one week plus the next scheduled Tuesday, no additional batch produced."
+  },
+  "ourPublishingEnabled": false,
+  "publishingOwner": "muse"
+}

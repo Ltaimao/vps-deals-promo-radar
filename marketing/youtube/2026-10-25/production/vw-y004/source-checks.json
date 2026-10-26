@@ -1,0 +1,35 @@
+[
+  {
+    "url": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html",
+    "httpStatus": 200,
+    "read": true,
+    "checkedAt": "2026-10-26T12:48:21.265359+00:00",
+    "robotsChecked": true,
+    "userAgent": "vps-deals-bot/1.0 (+https://github.com/vps-deals-promo-radar; contact via repo issues)",
+    "sha256": "4582c811ac148de0e386e9a4ea0d598aa7627e39c79d13f81bd1f82088af5935",
+    "excerpt": " Amazon EBS volume types - Amazon EBS View a markdown version of this page Amazon EBS volume types - Amazon EBS { \"@context\" : \"https://schema.org\", \"@type\" : \"BreadcrumbList\", \"itemListElement\" : [ { \"@type\" : \"ListItem\", \"position\" : 1, \"name\" : \"A",
+    "failure": null
+  },
+  {
+    "url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/ljspeech/high/MODEL_CARD",
+    "httpStatus": 200,
+    "read": true,
+    "checkedAt": "2026-10-26T12:48:22.067158+00:00",
+    "robotsChecked": true,
+    "userAgent": "vps-deals-bot/1.0 (+https://github.com/vps-deals-promo-radar; contact via repo issues)",
+    "sha256": "289f7421072d689a3d91f6c632f486af46f9b8b04417536104a4ea667b8a394b",
+    "excerpt": "# Model card for ljspeech (high) * Language: en_US (English, United States) * Speakers: 1 * Quality: high * Samplerate: 22,050Hz ## Dataset * URL: https://keithito.com/LJ-Speech-Dataset/ * License: public domain ## Training See: https://brycebeattie.",
+    "failure": null
+  },
+  {
+    "url": "https://keithito.com/LJ-Speech-Dataset/",
+    "httpStatus": 200,
+    "read": true,
+    "checkedAt": "2026-10-26T12:48:23.360054+00:00",
+    "robotsChecked": true,
+    "userAgent": "vps-deals-bot/1.0 (+https://github.com/vps-deals-promo-radar; contact via repo issues)",
+    "sha256": "e34022ad6170be26b411be34e79c6c44c1524e01c91175feea03d01a26f3643c",
+    "excerpt": " The LJ Speech Dataset html { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; } body { margin:0; padding:0; background: #fff; color: #222; font-size: 17px; font-family: Roboto,'Helvetica Neue',sans-serif; font-weight: 400; line-height: 1.",
+    "failure": null
+  }
+]

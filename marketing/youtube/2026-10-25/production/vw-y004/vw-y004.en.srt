@@ -1,0 +1,114 @@
+1
+00:00:00,000 --> 00:00:03,440
+An NVMe label tells you something about a
+storage technology.
+
+2
+00:00:04,060 --> 00:00:08,060
+It does not, by itself, tell you how fast
+your application will
+
+3
+00:00:08,060 --> 00:00:10,120
+run on a particular VPS plan.
+
+4
+00:00:10,800 --> 00:00:15,060
+Begin with the task. A small static site,
+an active database
+
+5
+00:00:15,520 --> 00:00:17,800
+and a build process use storage
+differently.
+
+6
+00:00:18,260 --> 00:00:22,660
+Ask which operations are actually slowing
+your own service before turning
+
+7
+00:00:22,660 --> 00:00:24,080
+a label into a buying rule.
+
+8
+00:00:24,840 --> 00:00:29,180
+Next, read the plan documentation for
+storage capacity and any published
+
+9
+00:00:29,630 --> 00:00:34,300
+input-output limits. Shared infrastructure,
+workload patterns and provider
+
+10
+00:00:34,300 --> 00:00:36,400
+policies can affect the result.
+
+11
+00:00:36,400 --> 00:00:41,400
+If a useful limit is not documented, record
+that gap rather
+
+12
+00:00:41,400 --> 00:00:43,540
+than filling it with an estimated
+benchmark.
+
+13
+00:00:44,340 --> 00:00:47,740
+Keep disk capacity separate from throughput
+and latency.
+
+14
+00:00:48,120 --> 00:00:51,400
+A larger disk is not the same promise as
+faster storage,
+
+15
+00:00:51,880 --> 00:00:57,080
+and one short synthetic result would not
+describe every application even if
+
+16
+00:00:57,080 --> 00:00:58,200
+a test had been performed.
+
+17
+00:00:59,140 --> 00:01:02,700
+Our take: compare the stated constraints
+and the workload together.
+
+18
+00:01:03,080 --> 00:01:07,060
+A clear question for support is more useful
+than an unsupported ranking
+
+19
+00:01:07,060 --> 00:01:09,240
+of every plan labeled NVMe.
+
+20
+00:01:09,760 --> 00:01:12,760
+This video explains how to evaluate the
+claim.
+
+21
+00:01:13,060 --> 00:01:16,880
+It does not report a storage benchmark or
+guarantee a performance difference
+
+22
+00:01:16,880 --> 00:01:21,520
+between providers. The description links to
+the complete storage guide.
+
+23
+00:01:21,980 --> 00:01:26,060
+Use it to build a shortlist, then verify
+the specific plan documentation
+
+24
+00:01:27,040 --> 00:01:30,500
+and, where appropriate, run a permitted
+test for your own workload.
