@@ -1,0 +1,108 @@
+{
+  "reviewedAt": "2026-10-26T02:28:59.799527+00:00",
+  "publicationDate": "2026-11-10",
+  "state": "complete_reviewed_draft_pending_main_merge",
+  "slug": "vps-reverse-dns-ptr-record",
+  "targetQuery": "VPS reverse DNS PTR record",
+  "supportingQueries": [
+    "who sets VPS reverse DNS",
+    "VPS PTR record provider",
+    "VPS forward reverse DNS control"
+  ],
+  "intent": "Check per-address reverse-DNS authority and plan eligibility; not a provider ranking, SMTP-unblocking tutorial or forward-DNS migration.",
+  "productFit": "A documented requirement to verify while choosing a suitable VPS. Does not reposition the main cheap-VPS site or invent prices.",
+  "observedExactTargetInGsc": false,
+  "dataRationale": "Actual GSC includes VPS buying, address, bandwidth and feature-limit queries, but no direct PTR demand is claimed. Small organic samples justify a narrowly scoped assistance guide, not a traffic forecast.",
+  "competitorGap": [
+    {
+      "url": "https://docs.hetzner.com/dns-console/dns/general/reverse-dns/",
+      "observation": "Hetzner separates domain-zone records from provider-managed rDNS and shows its own controls. New guide converts that into a provider-neutral authority checklist."
+    },
+    {
+      "url": "https://docs.digitalocean.com/products/networking/dns/how-to/manage-records/",
+      "observation": "DigitalOcean documents name-based PTR handling and specific IPv6 constraints. New guide asks about each assigned address instead of copying one universal dashboard recipe."
+    },
+    {
+      "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Elastic_Addressing_Reverse_DNS.html",
+      "observation": "AWS Elastic-IP reverse-DNS instructions have a matching-forward-A prerequisite. New guide explicitly treats this as one provider example, not a rule for every VPS."
+    }
+  ],
+  "cannibalizationCheck": {
+    "method": "Read all main articles and queued slugs/gaps, with focused body search for reverse DNS/PTR and actual GSC query-page rows.",
+    "nearby": [
+      {
+        "slug": "vps-email-smtp-before-buying",
+        "distinction": "Email eligibility mentions reverse DNS briefly; this new article focuses on reverse-zone control and per-address verification, without becoming a mail-delivery checklist."
+      },
+      {
+        "slug": "vps-ip-reputation-checklist",
+        "distinction": "Reputation/remediation is a separate question; a PTR does not settle it."
+      },
+      {
+        "slug": "vps-dns-cutover-ttl-rollback",
+        "distinction": "Forward website cutover, caches and rollback differ from control of address-to-name reverse records."
+      }
+    ],
+    "decision": "Create one separate authority-focused guide, retaining historical URLs and future approved drafts."
+  },
+  "originalExample": "node.example.com and RFC5737 documentation address203.0.113.10, forward A vs reverse PTR diagram; example dig commands explicitly not executed, no output fabricated.",
+  "internalLinks": [
+    {
+      "site": "vps",
+      "url": "https://www.vpsdealswire.com/articles/managed-vs-unmanaged-vps-decision-guide/",
+      "status": 200,
+      "finalUrl": "https://www.vpsdealswire.com/articles/managed-vs-unmanaged-vps-decision-guide/",
+      "expected": 200
+    },
+    {
+      "site": "vps",
+      "url": "https://www.vpsdealswire.com/articles/do-cheap-vps-providers-include-ipv6/",
+      "status": 200,
+      "finalUrl": "https://www.vpsdealswire.com/articles/do-cheap-vps-providers-include-ipv6/",
+      "expected": 200
+    },
+    {
+      "site": "vps",
+      "url": "https://www.vpsdealswire.com/compare/",
+      "status": 200,
+      "finalUrl": "https://www.vpsdealswire.com/compare/",
+      "expected": 200
+    }
+  ],
+  "cta": {
+    "href": "/compare/",
+    "label": "Provider comparison page; verify current official terms"
+  },
+  "factChecks": [
+    {
+      "claim": "Forward and reverse DNS are separate administration; PTR data maps address-side lookup to a name",
+      "sources": [
+        "https://docs.hetzner.com/dns-console/dns/general/reverse-dns/",
+        "https://www.rfc-editor.org/rfc/rfc1035"
+      ],
+      "status": "verified"
+    },
+    {
+      "claim": "Some provider workflows have a matching forward record condition; do not generalize AWS example",
+      "sources": [
+        "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Elastic_Addressing_Reverse_DNS.html"
+      ],
+      "status": "verified"
+    },
+    {
+      "claim": "203.0.113.0/24 is reserved for documentation",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc5737"
+      ],
+      "status": "verified"
+    },
+    {
+      "claim": "No provider testing, DNS change, price, ranking or deliverability guarantee",
+      "sources": [
+        "original article wording and illustration"
+      ],
+      "status": "checked"
+    }
+  ],
+  "approval": "Standing owner authorization for internal review/normal PR; no per-article approval required."
+}

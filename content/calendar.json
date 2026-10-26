@@ -154,6 +154,15 @@
       "status": "ready",
       "sha256": "3f6beed1856af639e6c9dd0a24ecebbcf4e0ed487bd9fe1c4369c0f8a0eab545",
       "image_sha256": "45e23c07733f50bab1fba22a39b3bf537b1df5dd2d99ceb441a9da34af1f0108"
+    },
+    {
+      "date": "2026-11-10",
+      "slug": "vps-reverse-dns-ptr-record",
+      "gap": "vps-reverse-dns-authority-per-address",
+      "target_query": "VPS reverse DNS PTR record",
+      "status": "ready",
+      "sha256": "66741d52b1f20dd73de27a41c0b14274dadee0e4ca4fa7a38170bb94a913b541",
+      "image_sha256": "a3064e9986f65b1f0e186c0a444ed7bd2adf86ad9944fc13439237f77510c3c0"
     }
   ]
 }
