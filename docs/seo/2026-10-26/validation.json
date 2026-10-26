@@ -1,0 +1,10 @@
+{
+  "queue": "passed; 15 consecutive complete future articles",
+  "unitTests": 50,
+  "nodeTests": 20,
+  "build": "passed",
+  "originalImageReproduction": "byte-identical",
+  "futureArticleNotPublished": true,
+  "liveChecks": "publication-check.json",
+  "scope": "No workflow, runtime LLM, pricing, Pinterest or YouTube changes"
+}

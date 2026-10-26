@@ -1,0 +1,23 @@
+{
+  "reviewedAt": "2026-10-26T02:28:59.799527+00:00",
+  "fullSizeReviewed": true,
+  "mobile375pxReviewed": true,
+  "dimensions": [
+    1200,
+    630
+  ],
+  "sha256": "a3064e9986f65b1f0e186c0a444ed7bd2adf86ad9944fc13439237f77510c3c0",
+  "bytes": 46645,
+  "score": {
+    "subject": 24,
+    "artOrDiagramAccuracy": 23,
+    "composition": 17,
+    "mobile": 12,
+    "brand": 10,
+    "technical": 5,
+    "total": 91
+  },
+  "hardReject": false,
+  "rights": "Original diagram and own public-tool export using OFL Courier Prime; system DejaVu lettering. No copied competitor art or fake UI.",
+  "scoreLimitation": "Internal review, not a CTR prediction."
+}
