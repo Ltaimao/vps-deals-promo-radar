@@ -1,6 +1,6 @@
 {
   "asOf": "2026-10-26",
-  "branchReview": "complete; main stock only after merge",
+  "branchReview": "complete; merged to main and calendar/full-draft readback verified",
   "futureDays": 15,
   "through": "2026-11-10",
   "articles": [
@@ -139,5 +139,7 @@
       "sha256": "66741d52b1f20dd73de27a41c0b14274dadee0e4ca4fa7a38170bb94a913b541",
       "image_sha256": "a3064e9986f65b1f0e186c0a444ed7bd2adf86ad9944fc13439237f77510c3c0"
     }
-  ]
+  ],
+  "mergedPr": 10,
+  "mergeSha": "ac7e3f570d29534595f7a0cdd7b44a129c1b68b0"
 }
