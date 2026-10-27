@@ -1,0 +1,117 @@
+{
+  "reviewedAt": "2026-10-27T01:36:39.735352+00:00",
+  "publicationDate": "2026-11-11",
+  "state": "complete_reviewed_draft_pending_main_merge",
+  "slug": "vps-swap-vs-ram-memory-pressure",
+  "targetQuery": "VPS swap vs RAM memory pressure",
+  "supportingQueries": [
+    "Linux VPS swap used memory available",
+    "does used swap mean need more RAM",
+    "free available memory VPS"
+  ],
+  "intent": "Interpret current memory evidence before a change or upgrade, not a swap-file creation recipe or another broad VPS sizing table.",
+  "dataRationale": "GSC buying/cost/storage feature clues and existing resource guides support a useful adjacent assistance topic. No exact RAM/swap query observed in returned121query/page rows; this is an editorial hypothesis, not measured search demand. Operator-heavy vendor searches are excluded from topic evidence.",
+  "observedExactTargetInGsc": false,
+  "competitors": [
+    {
+      "url": "https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-22-04",
+      "observed": "Step-by-step Ubuntu swap-file setup.",
+      "gap": "New article asks whether an observed symptom warrants a change before offering configuration; no blanket swap size."
+    },
+    {
+      "url": "https://phoenixnap.com/kb/swap-space",
+      "observed": "General swap-space introduction and physical-memory/storage relationship.",
+      "gap": "Separate active swap occupancy from a time-correlated application symptom and available-memory estimate; no invented upgrade speed factor."
+    }
+  ],
+  "officialSources": [
+    "https://man7.org/linux/man-pages/man1/free.1.html",
+    "https://docs.kernel.org/admin-guide/mm/concepts.html",
+    "https://man7.org/linux/man-pages/man8/swapon.8.html"
+  ],
+  "cannibalizationCheck": {
+    "read": "main articles, queue gap/slugs and focused body search; actual GSC query/page mapping",
+    "nearby": [
+      {
+        "slug": "cheap-vps-sizing-guide",
+        "difference": "Broad purchase sizing and old swap/OOM shorthand. New guide explains evidence interpretation; no duplicate plan table. Historical10–100x/general upgrade claims flagged for later source review, not copied or silently endorsed."
+      },
+      {
+        "slug": "cheap-vps-minecraft-server-ram-guide",
+        "difference": "Specific game-server capacity question, not generic Linux evidence interpretation."
+      },
+      {
+        "slug": "nvme-vs-ssd-vps-storage",
+        "difference": "Storage interface and I/O constraints, not available-memory versus swap occupancy."
+      }
+    ],
+    "decision": "Create one focused diagnostic article, retaining historical URLs and all approved future sources."
+  },
+  "originalExample": "Fictional scheduled-import slowdown observation log concept, no values/output/results. free -h and swapon --show are unexecuted read-only examples.",
+  "outline": [
+    "Separate resources",
+    "Available versus free",
+    "Time-align symptoms and activity",
+    "Understand tutorial goal",
+    "Buying question from evidence"
+  ],
+  "primaryCTA": {
+    "href": "/compare/",
+    "label": "Provider comparison page"
+  },
+  "facts": [
+    {
+      "claim": "free available is an estimate for applications without swapping, distinct from unused memory",
+      "evidence": [
+        "free manual"
+      ],
+      "status": "verified"
+    },
+    {
+      "claim": "Memory reclaim/swap and OOM are distinct mechanisms, not evidence from a generic application exit",
+      "evidence": [
+        "kernel concepts"
+      ],
+      "status": "verified"
+    },
+    {
+      "claim": "swapon --show lists active areas; article commands not executed",
+      "evidence": [
+        "swapon manual",
+        "production scope"
+      ],
+      "status": "verified"
+    },
+    {
+      "claim": "No executed benchmark, numeric speed guarantee, universal swap size or provider price",
+      "evidence": [
+        "full text and figure review"
+      ],
+      "status": "checked"
+    }
+  ],
+  "internalLinks": [
+    {
+      "site": "vps",
+      "url": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/",
+      "status": 200,
+      "finalUrl": "https://www.vpsdealswire.com/articles/nvme-vs-ssd-vps-storage/",
+      "expected": 200
+    },
+    {
+      "site": "vps",
+      "url": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/",
+      "status": 200,
+      "finalUrl": "https://www.vpsdealswire.com/articles/shared-vcpu-vps-fair-use/",
+      "expected": 200
+    },
+    {
+      "site": "vps",
+      "url": "https://www.vpsdealswire.com/compare/",
+      "status": 200,
+      "finalUrl": "https://www.vpsdealswire.com/compare/",
+      "expected": 200
+    }
+  ],
+  "approval": "Standing owner authorization; internal quality approval, no per-article confirmation."
+}

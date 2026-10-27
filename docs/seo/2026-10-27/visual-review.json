@@ -1,0 +1,24 @@
+{
+  "reviewedAt": "2026-10-27T01:36:39.735352+00:00",
+  "dimensions": [
+    1200,
+    630
+  ],
+  "sha256": "a4af3ad1fa961f03724677ad9b6af428e28f72a57a00ddc6827919b1c23194b6",
+  "bytes": 43003,
+  "fullSizeReviewed": true,
+  "mobile375pxReviewed": true,
+  "score": {
+    "subject": 24,
+    "diagramAccuracy": 22,
+    "composition": 17,
+    "mobile": 12,
+    "brand": 10,
+    "technical": 5,
+    "total": 90
+  },
+  "hardRejectFound": false,
+  "intentionallyReflectedLettering": null,
+  "rights": "Own tool export and original educational diagram; real DejaVu typography; Courier Prime OFL where used. No copied competitor artwork.",
+  "scoreLimitation": "Internal design assessment, not predicted CTR."
+}

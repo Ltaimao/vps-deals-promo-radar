@@ -1,0 +1,13 @@
+{
+  "queueSchemaAndFiles": "passed",
+  "tattooBoundaryTests": null,
+  "pythonTests": 50,
+  "nodeTests": 20,
+  "build": "passed",
+  "scraper": "32providers/29ok/3unreachable,175 extracted entries; not175verifiedmonthlyoffers",
+  "diagramReproducesByteForByte": true,
+  "futureArticleNotPublished": true,
+  "internalLinks": "All200, see brief.json",
+  "sourceSyncCorrection": "Local newly fetched published source had one extra newline; restored exact main bytes before successful full validation. No publisher/hash guard was relaxed.",
+  "scope": "No workflow/runtime LLM, historical URL deletion, prices/history, Pinterest or YouTube modifications."
+}
