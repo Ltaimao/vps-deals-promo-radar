@@ -1,7 +1,7 @@
 {
   "reviewedAt": "2026-10-27T01:36:39.735352+00:00",
   "publicationDate": "2026-11-11",
-  "state": "complete_reviewed_draft_pending_main_merge",
+  "state": "complete_reviewed_draft_in_main_queue",
   "slug": "vps-swap-vs-ram-memory-pressure",
   "targetQuery": "VPS swap vs RAM memory pressure",
   "supportingQueries": [

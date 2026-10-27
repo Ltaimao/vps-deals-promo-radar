@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-10-27T01:44:44.555083+00:00",
+  "sourceContentPr": 14,
+  "mergeSha": "60922ad7dcb4501fa5bceef9134d599c65ae2569",
+  "mainReadback": {
+    "fullDraftMatches": true,
+    "futureDays": 15,
+    "from": "2026-10-28",
+    "through": "2026-11-11"
+  },
+  "productionDeploymentRun": 40433965673,
+  "productionDeploymentStatus": "success",
+  "newArticleRelease": "Still queued, public future article404, existing daily deterministic publisher owns release",
+  "todayLiveChecks": "HTTP200,canonical,singleH1,noNoindex,Googlebotallowed,sitemap,alt and decodedhero all pass after recovery",
+  "independentBuildException": null,
+  "iLangProviderSourcePropagation": "passed and original restored",
+  "scope": "No price/history, Pinterest,YouTube or task changes",
+  "dataFilters": {
+    "gsc": "Single exact domain property; no query/page/country/device filters. Native total queried without query/page dimensions.",
+    "ga4": "Single exact property; all-channel source/landing rows retained. Organic Search subset uses returned channel-group equality. Event-name IN filter and full requests saved in research.json."
+  },
+  "postDeploymentPublicChecks": {
+    "site": "vps",
+    "url": "https://www.vpsdealswire.com/articles/vps-ddos-protection-checklist/",
+    "checkedAt": "2026-10-27T01:44:40.582Z",
+    "status": 200,
+    "xRobotsTag": "",
+    "canonical": [
+      "https://www.vpsdealswire.com/articles/vps-ddos-protection-checklist/"
+    ],
+    "robots": "",
+    "h1": [
+      "VPS DDoS Protection: Questions to Ask Before Buying"
+    ],
+    "title": "VPS DDoS Protection: Questions to Ask Before Buying",
+    "sitemapContainsUrl": true,
+    "robotsTxt": "User-agent: *\nAllow: /\nContent-Signal: ai-train=yes, search=yes, ai-input=yes\nSitemap: https://www.vpsdealswire.com/sitemap.xml\n",
+    "images": [
+      {
+        "src": "https://www.vpsdealswire.com/articles/vps-ddos-protection-checklist.png",
+        "alt": "Protection depends on the policy. Traffic arrives / Attack type matters / Coverage can differ; Provider mitigation / Check scope and limits / Ask about null routing; Service availability / Check recovery rules / Keep a response plan.",
+        "status": 200,
+        "contentType": "image/png",
+        "width": 1200,
+        "height": 630
+      }
+    ],
+    "checks": {
+      "http200": true,
+      "canonical": true,
+      "singleH1": true,
+      "noNoindex": true,
+      "sitemap": true,
+      "images": true
+    }
+  },
+  "futureArticleCheck": [
+    {
+      "site": "vps",
+      "url": "https://www.vpsdealswire.com/articles/vps-swap-vs-ram-memory-pressure/",
+      "status": 404,
+      "finalUrl": "https://www.vpsdealswire.com/articles/vps-swap-vs-ram-memory-pressure/",
+      "expected": 404
+    }
+  ]
+}
