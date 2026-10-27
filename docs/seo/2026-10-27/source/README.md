@@ -1,0 +1,1 @@
+Offline Python/Pillow educational diagram renderer, real installed DejaVu fonts. Run with --output to a new path. Not invoked in Actions, no runtime LLM. Conceptual memory questions only. No measured terminal/provider output or numeric benchmark.

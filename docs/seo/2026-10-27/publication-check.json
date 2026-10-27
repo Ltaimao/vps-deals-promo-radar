@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-27",
+  "initial": {
+    "site": "vps",
+    "url": "https://www.vpsdealswire.com/articles/vps-ddos-protection-checklist/",
+    "status": 404,
+    "headers": {
+      "access-control-allow-origin": "*",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cache-control": "no-store",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "a50de5ee0c68ad80-MSP",
+      "content-encoding": "br",
+      "content-type": "text/html; charset=utf-8",
+      "date": "Tue, 27 Oct 2026 01:23:55 GMT",
+      "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=gPPY4dLCKqBD2qR3lR066kl2fx4OuvY52qYh3z5KvSAW3WHgWSyzicr2V07WGK%2FnOZ3Lvz7zjZWYQKn1nlb1pFI1FXD8rfZxyt3aGP31EGfA3OLmfBU8RQ3TMr%2B0o2cWYNceP86G3A%3D%3D\"}]}",
+      "server": "envoy",
+      "server-timing": "cfCacheStatus;desc=\"DYNAMIC\"\ncfEdge;dur=38,cfOrigin;dur=237",
+      "vary": "accept-encoding",
+      "x-content-type-options": "nosniff",
+      "x-envoy-upstream-service-time": "391"
+    },
+    "canonical": "https://www.vpsdealswire.com/404.html",
+    "robots": "noindex",
+    "h1": [
+      "This page isn’t on the map."
+    ],
+    "title": "404 — page not found",
+    "sitemapContainsUrl": false,
+    "images": []
+  },
+  "recovery": {
+    "runId": 40368417088,
+    "attempt": 2,
+    "method": "Rerun existing current-main/current-system-date schedule publish job; no workflow modification, date override, backdating or extra future publication.",
+    "conclusion": "success"
+  },
+  "verified": {
+    "site": "vps",
+    "url": "https://www.vpsdealswire.com/articles/vps-ddos-protection-checklist/",
+    "checkedAt": "2026-10-27T01:29:08.829Z",
+    "status": 200,
+    "xRobotsTag": "",
+    "canonical": [
+      "https://www.vpsdealswire.com/articles/vps-ddos-protection-checklist/"
+    ],
+    "robots": "",
+    "h1": [
+      "VPS DDoS Protection: Questions to Ask Before Buying"
+    ],
+    "title": "VPS DDoS Protection: Questions to Ask Before Buying",
+    "sitemapContainsUrl": true,
+    "robotsTxt": "User-agent: *\nAllow: /\nContent-Signal: ai-train=yes, search=yes, ai-input=yes\nSitemap: https://www.vpsdealswire.com/sitemap.xml\n",
+    "images": [
+      {
+        "src": "https://www.vpsdealswire.com/articles/vps-ddos-protection-checklist.png",
+        "alt": "Protection depends on the policy. Traffic arrives / Attack type matters / Coverage can differ; Provider mitigation / Check scope and limits / Ask about null routing; Service availability / Check recovery rules / Keep a response plan.",
+        "status": 200,
+        "contentType": "image/png",
+        "width": 1200,
+        "height": 630
+      }
+    ],
+    "checks": {
+      "http200": true,
+      "canonical": true,
+      "singleH1": true,
+      "noNoindex": true,
+      "sitemap": true,
+      "images": true
+    }
+  },
+  "reviewPlan": {
+    "anchor": "First independent full public verification, conservative observation anchor not an asserted exact go-live second.",
+    "verifiedLiveAt": "2026-10-27T01:29:08.829Z",
+    "review7NotBefore": "2026-11-03T01:29:08.829000+00:00",
+    "review28NotBefore": "2026-11-24T01:29:08.829000+00:00",
+    "due7or28Today": false,
+    "latency": "Allow GSC/GA4 windows to cover the actual elapsed period before final conclusions."
+  }
+}

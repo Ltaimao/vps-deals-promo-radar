@@ -1,0 +1,2897 @@
+{
+  "gsc28": {
+    "request": {
+      "connector": "searchconsole",
+      "accounts": [
+        "sc-domain:vpsdealswire.com"
+      ],
+      "date_from": "2026-09-27",
+      "date_to": "2026-10-24",
+      "fields": [
+        "query",
+        "page",
+        "clicks",
+        "impressions",
+        "position",
+        "ctr"
+      ]
+    },
+    "result": {
+      "status": "done",
+      "data": [
+        {
+          "query": "\"digitalocean\"",
+          "page": "https://www.vpsdealswire.com/articles/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 216,
+          "ctr": 0
+        },
+        {
+          "query": "\"dreamhost\"",
+          "page": "https://www.vpsdealswire.com/articles/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 97,
+          "ctr": 0
+        },
+        {
+          "query": "\"dreamhost\"",
+          "page": "https://www.vpsdealswire.com/articles/downgrade-80-dollar-vps-guide/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 76,
+          "ctr": 0
+        },
+        {
+          "query": "\"inmotion\" \"server\"",
+          "page": "https://www.vpsdealswire.com/articles/downgrade-80-dollar-vps-guide/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 8,
+          "ctr": 0
+        },
+        {
+          "query": "\"inmotion\" \"server\" -\"l8\" -\"l9\" -\"p1\" -\"p2\" -\"v10\" -\"v11\" -\"v5\" -\"v8\" -\"v8f\" -\"airport\" -\"bike\" -\"crypto\" -\"e-bike\" -\"electric\" -\"electric unicycle\" -\"electronic\" -\"headphone\" -\"inmotion ventures\" -\"nft\" -\"scooter\" -\"unicycle\" -\"v12\" -\"v13\" -\"v14\" -\"v6\" -\"v7\" -\"v9\"",
+          "page": "https://www.vpsdealswire.com/articles/downgrade-80-dollar-vps-guide/",
+          "clicks": 0,
+          "impressions": 5,
+          "position": 6.4,
+          "ctr": 0
+        },
+        {
+          "query": "\"inmotion\" \"vps\"",
+          "page": "https://vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 7.5,
+          "ctr": 0
+        },
+        {
+          "query": "\"inmotion\" \"vps\"",
+          "page": "https://www.vpsdealswire.com/articles/downgrade-80-dollar-vps-guide/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 4.3333,
+          "ctr": 0
+        },
+        {
+          "query": "\"inmotion\" \"vps\" -\"l8\" -\"l9\" -\"p1\" -\"p2\" -\"v10\" -\"v11\" -\"v5\" -\"v8\" -\"v8f\" -\"airport\" -\"bike\" -\"crypto\" -\"e-bike\" -\"electric\" -\"electric unicycle\" -\"electronic\" -\"headphone\" -\"inmotion ventures\" -\"nft\" -\"scooter\" -\"unicycle\" -\"v12\" -\"v13\" -\"v14\" -\"v6\" -\"v7\" -\"v9\"",
+          "page": "https://vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 8,
+          "ctr": 0
+        },
+        {
+          "query": "\"inmotion\" \"vps\" -\"l8\" -\"l9\" -\"p1\" -\"p2\" -\"v10\" -\"v11\" -\"v5\" -\"v8\" -\"v8f\" -\"airport\" -\"bike\" -\"crypto\" -\"e-bike\" -\"electric\" -\"electric unicycle\" -\"electronic\" -\"headphone\" -\"inmotion ventures\" -\"nft\" -\"scooter\" -\"unicycle\" -\"v12\" -\"v13\" -\"v14\" -\"v6\" -\"v7\" -\"v9\"",
+          "page": "https://www.vpsdealswire.com/articles/downgrade-80-dollar-vps-guide/",
+          "clicks": 0,
+          "impressions": 5,
+          "position": 5.8,
+          "ctr": 0
+        },
+        {
+          "query": "\"inmotion\" \"vps\" -\"l8\" -\"l9\" -\"p1\" -\"p2\" -\"v10\" -\"v11\" -\"v5\" -\"v8\" -\"v8f\" -\"airport\" -\"bike\" -\"crypto\" -\"e-bike\" -\"electric\" -\"electric unicycle\" -\"electronic\" -\"headphone\" -\"inmotion ventures\" -\"nft\" -\"scooter\" -\"unicycle\" -\"v12\" -\"v13\" -\"v14\" -\"v6\" -\"v7\" -\"v9\"",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 6,
+          "position": 5.3333,
+          "ctr": 0
+        },
+        {
+          "query": "\"inmotionhosting\" -\"l8\" -\"l9\" -\"p1\" -\"p2\" -\"v10\" -\"v11\" -\"v5\" -\"v8\" -\"v8f\" -\"airport\" -\"bike\" -\"crypto\" -\"e-bike\" -\"electric\" -\"electric unicycle\" -\"electronic\" -\"fitness\" -\"headphone\" -\"inmotion ventures\" -\"nft\" -\"pedals\" -\"photography\" -\"scooter\" -\"spring\" -\"tire\" -\"unicycle\" -\"v12\" -\"v13\" -\"v14\" -\"v6\" -\"v7\"",
+          "page": "https://www.vpsdealswire.com/articles/downgrade-80-dollar-vps-guide/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 9,
+          "ctr": 0
+        },
+        {
+          "query": "\"inmotionhosting\" -\"l8\" -\"l9\" -\"p1\" -\"p2\" -\"v10\" -\"v11\" -\"v5\" -\"v8\" -\"v8f\" -\"airport\" -\"bike\" -\"crypto\" -\"e-bike\" -\"electric\" -\"electric unicycle\" -\"electronic\" -\"fitness\" -\"headphone\" -\"inmotion ventures\" -\"nft\" -\"pedals\" -\"photography\" -\"scooter\" -\"spring\" -\"tire\" -\"unicycle\" -\"v12\" -\"v13\" -\"v14\" -\"v6\" -\"v7\"",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 9,
+          "ctr": 0
+        },
+        {
+          "query": "\"upcloud\"",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 7,
+          "ctr": 0
+        },
+        {
+          "query": "$5 month windows vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 85,
+          "ctr": 0
+        },
+        {
+          "query": "$5 vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 75,
+          "ctr": 0
+        },
+        {
+          "query": "-site:facebook.com -site:fb.me -site:youtube.com -site:youtu.be -site:youtube.be -site:twitter.com -site:instagram.com -site:tiktok.com -site:vm.tiktok.com -site:t.co -site:x.com -site:reddit.com \"hostwinds\"",
+          "page": "https://www.vpsdealswire.com/articles/downgrade-80-dollar-vps-guide/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 6,
+          "ctr": 0
+        },
+        {
+          "query": "-site:facebook.com -site:fb.me -site:youtube.com -site:youtu.be -site:youtube.be -site:twitter.com -site:instagram.com -site:tiktok.com -site:vm.tiktok.com -site:t.co -site:x.com -site:reddit.com \"hostwinds\"",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 25.5,
+          "ctr": 0
+        },
+        {
+          "query": "bandwidth overage charges",
+          "page": "https://www.vpsdealswire.com/articles/what-happens-when-vps-exceeds-bandwidth/",
+          "clicks": 0,
+          "impressions": 11,
+          "position": 85.1818,
+          "ctr": 0
+        },
+        {
+          "query": "black friday dedicated server deals",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 91,
+          "ctr": 0
+        },
+        {
+          "query": "black friday dedicated servers",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 86,
+          "ctr": 0
+        },
+        {
+          "query": "black friday vps",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 70.5,
+          "ctr": 0
+        },
+        {
+          "query": "black friday vps",
+          "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 193,
+          "ctr": 0
+        },
+        {
+          "query": "black friday vps",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 134,
+          "ctr": 0
+        },
+        {
+          "query": "black friday vps hosting",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 85,
+          "ctr": 0
+        },
+        {
+          "query": "black friday vps offers",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 81,
+          "ctr": 0
+        },
+        {
+          "query": "budget windows vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 77,
+          "ctr": 0
+        },
+        {
+          "query": "buy cheap windows vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 86,
+          "ctr": 0
+        },
+        {
+          "query": "buyvm",
+          "page": "https://vpsdealswire.com/providers/buyvm/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 52.5,
+          "ctr": 0
+        },
+        {
+          "query": "buyvm vps",
+          "page": "https://vpsdealswire.com/providers/buyvm/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 53.5,
+          "ctr": 0
+        },
+        {
+          "query": "cheap hosting servers catswhocode",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 71,
+          "ctr": 0
+        },
+        {
+          "query": "cheap vps list",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 19,
+          "ctr": 0
+        },
+        {
+          "query": "cheap vps windows",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 100,
+          "ctr": 0
+        },
+        {
+          "query": "cheap windows vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 8,
+          "position": 95.875,
+          "ctr": 0
+        },
+        {
+          "query": "cheap windows vps $5",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 66,
+          "ctr": 0
+        },
+        {
+          "query": "cheapest vps windows",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 80,
+          "ctr": 0
+        },
+        {
+          "query": "cheapest windows vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 12,
+          "position": 90.5,
+          "ctr": 0
+        },
+        {
+          "query": "cherryservers",
+          "page": "https://vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 78,
+          "ctr": 0
+        },
+        {
+          "query": "cloudcone",
+          "page": "https://vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 21,
+          "ctr": 0
+        },
+        {
+          "query": "cloudcone",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 6.6667,
+          "ctr": 0
+        },
+        {
+          "query": "cloudcone",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 10,
+          "ctr": 0
+        },
+        {
+          "query": "compare vps hosting plans",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 19,
+          "ctr": 0
+        },
+        {
+          "query": "compare vps prices",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 68,
+          "ctr": 0
+        },
+        {
+          "query": "compare vps providers",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 60,
+          "ctr": 0
+        },
+        {
+          "query": "digital ocean vps",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 63,
+          "ctr": 0
+        },
+        {
+          "query": "digital ocean vps pricing",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 8.3333,
+          "ctr": 0
+        },
+        {
+          "query": "digitalocean hosting price",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 42,
+          "ctr": 0
+        },
+        {
+          "query": "digitalocean pricing",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 36,
+          "ctr": 0
+        },
+        {
+          "query": "digitalocean vps",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 60.75,
+          "ctr": 0
+        },
+        {
+          "query": "digitalocean vps hosting",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 57,
+          "ctr": 0
+        },
+        {
+          "query": "digitalocean vps plans",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 23,
+          "ctr": 0
+        },
+        {
+          "query": "digitalocean vps price",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 19,
+          "ctr": 0
+        },
+        {
+          "query": "hostdare",
+          "page": "https://vpsdealswire.com/providers/hostdare/",
+          "clicks": 0,
+          "impressions": 6,
+          "position": 13.8333,
+          "ctr": 0
+        },
+        {
+          "query": "hostdare",
+          "page": "https://www.vpsdealswire.com/providers/hostdare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 44,
+          "ctr": 0
+        },
+        {
+          "query": "hosthatch",
+          "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 60.5,
+          "ctr": 0
+        },
+        {
+          "query": "hosthatch black friday",
+          "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 2,
+          "ctr": 0
+        },
+        {
+          "query": "hosthatch coupon",
+          "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 61.5,
+          "ctr": 0
+        },
+        {
+          "query": "how much does a vps cost",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 85,
+          "ctr": 0
+        },
+        {
+          "query": "lxc vs kvm",
+          "page": "https://www.vpsdealswire.com/articles/kvm-vs-lxc-which-to-buy/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 77,
+          "ctr": 0
+        },
+        {
+          "query": "ovh 0.97",
+          "page": "https://vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 69,
+          "ctr": 0
+        },
+        {
+          "query": "ovh 0.97",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 64.75,
+          "ctr": 0
+        },
+        {
+          "query": "ovh deal",
+          "page": "https://vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 46.5,
+          "ctr": 0
+        },
+        {
+          "query": "ovh deal",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 56,
+          "ctr": 0
+        },
+        {
+          "query": "ovh deals",
+          "page": "https://vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 47,
+          "ctr": 0
+        },
+        {
+          "query": "ovh deals",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 57.5,
+          "ctr": 0
+        },
+        {
+          "query": "ovh discount",
+          "page": "https://vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 67,
+          "ctr": 0
+        },
+        {
+          "query": "ovh discount",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 62,
+          "ctr": 0
+        },
+        {
+          "query": "ovh mx plan price",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 56,
+          "ctr": 0
+        },
+        {
+          "query": "ovh offers",
+          "page": "https://vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 45,
+          "ctr": 0
+        },
+        {
+          "query": "ovh offers",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 57,
+          "ctr": 0
+        },
+        {
+          "query": "ovh sale",
+          "page": "https://vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 73,
+          "ctr": 0
+        },
+        {
+          "query": "ovh sale",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 62,
+          "ctr": 0
+        },
+        {
+          "query": "ovh sales",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 54.5,
+          "ctr": 0
+        },
+        {
+          "query": "ovh vps coupon code",
+          "page": "https://vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 92,
+          "ctr": 0
+        },
+        {
+          "query": "ovh vps coupon code",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 95.6667,
+          "ctr": 0
+        },
+        {
+          "query": "ovh vps pricing",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 50,
+          "ctr": 0
+        },
+        {
+          "query": "ovhcloud deals",
+          "page": "https://vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 49.6667,
+          "ctr": 0
+        },
+        {
+          "query": "ovhcloud deals",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 62,
+          "ctr": 0
+        },
+        {
+          "query": "promo vps",
+          "page": "https://vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 234,
+          "ctr": 0
+        },
+        {
+          "query": "promo vps",
+          "page": "https://vpsdealswire.com/providers/hostens/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 224,
+          "ctr": 0
+        },
+        {
+          "query": "racknerd black friday",
+          "page": "https://www.vpsdealswire.com/providers/racknerd/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 8,
+          "ctr": 0
+        },
+        {
+          "query": "racknerd promo",
+          "page": "https://vpsdealswire.com/providers/racknerd/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 60,
+          "ctr": 0
+        },
+        {
+          "query": "racknerd promo code",
+          "page": "https://www.vpsdealswire.com/providers/racknerd/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 72,
+          "ctr": 0
+        },
+        {
+          "query": "racknerd promo codes",
+          "page": "https://vpsdealswire.com/providers/racknerd/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 62,
+          "ctr": 0
+        },
+        {
+          "query": "sale vps",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 87,
+          "ctr": 0
+        },
+        {
+          "query": "upcloud",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 7,
+          "ctr": 0
+        },
+        {
+          "query": "upcloud coupon codes",
+          "page": "https://vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 78,
+          "ctr": 0
+        },
+        {
+          "query": "upcloud coupon codes",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 70.5,
+          "ctr": 0
+        },
+        {
+          "query": "upcloud coupons",
+          "page": "https://vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 83,
+          "ctr": 0
+        },
+        {
+          "query": "upcloud coupons",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 63,
+          "ctr": 0
+        },
+        {
+          "query": "upcloud vps",
+          "page": "https://vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 65,
+          "ctr": 0
+        },
+        {
+          "query": "virmach",
+          "page": "https://vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 18.6667,
+          "ctr": 0
+        },
+        {
+          "query": "vps 5 dollars",
+          "page": "https://www.vpsdealswire.com/articles/downgrade-80-dollar-vps-guide/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 66,
+          "ctr": 0
+        },
+        {
+          "query": "vps bandwidth",
+          "page": "https://www.vpsdealswire.com/articles/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 301,
+          "ctr": 0
+        },
+        {
+          "query": "vps black friday",
+          "page": "https://www.vpsdealswire.com/about/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 205,
+          "ctr": 0
+        },
+        {
+          "query": "vps black friday",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 160,
+          "ctr": 0
+        },
+        {
+          "query": "vps black friday",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 189,
+          "ctr": 0
+        },
+        {
+          "query": "vps black friday",
+          "page": "https://www.vpsdealswire.com/providers/racknerd/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 165,
+          "ctr": 0
+        },
+        {
+          "query": "vps comparison",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 66,
+          "ctr": 0
+        },
+        {
+          "query": "vps cost",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 33,
+          "position": 90.7273,
+          "ctr": 0
+        },
+        {
+          "query": "vps costs",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 85.75,
+          "ctr": 0
+        },
+        {
+          "query": "vps deals",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 23,
+          "position": 81.7391,
+          "ctr": 0
+        },
+        {
+          "query": "vps digital ocean",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 61,
+          "ctr": 0
+        },
+        {
+          "query": "vps digitalocean",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 56.5,
+          "ctr": 0
+        },
+        {
+          "query": "vps hosting black friday",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 85,
+          "ctr": 0
+        },
+        {
+          "query": "vps hosting cost",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 20,
+          "position": 89.5,
+          "ctr": 0
+        },
+        {
+          "query": "vps hosting deals",
+          "page": "https://vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 72,
+          "ctr": 0
+        },
+        {
+          "query": "vps hosting deals",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 80,
+          "ctr": 0
+        },
+        {
+          "query": "vps hosting digitalocean",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 50,
+          "ctr": 0
+        },
+        {
+          "query": "vps hosting offers",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 16,
+          "position": 78.25,
+          "ctr": 0
+        },
+        {
+          "query": "vps hosting price",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 20,
+          "position": 97.75,
+          "ctr": 0
+        },
+        {
+          "query": "vps hosting price comparison",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 82,
+          "ctr": 0
+        },
+        {
+          "query": "vps hosting pricing",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 9,
+          "position": 96.5556,
+          "ctr": 0
+        },
+        {
+          "query": "vps low cost windows",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 97,
+          "ctr": 0
+        },
+        {
+          "query": "vps monthly georgia",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 70,
+          "ctr": 0
+        },
+        {
+          "query": "vps offers",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 13,
+          "position": 83.3077,
+          "ctr": 0
+        },
+        {
+          "query": "vps ovhcloud",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 83,
+          "ctr": 0
+        },
+        {
+          "query": "vps performance limits",
+          "page": "https://www.vpsdealswire.com/articles/what-happens-when-vps-exceeds-bandwidth/",
+          "clicks": 0,
+          "impressions": 6,
+          "position": 94.8333,
+          "ctr": 0
+        },
+        {
+          "query": "vps price",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 35,
+          "position": 96.9714,
+          "ctr": 0
+        },
+        {
+          "query": "vps prices",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 90,
+          "ctr": 0
+        },
+        {
+          "query": "vps rates",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 45.5,
+          "ctr": 0
+        },
+        {
+          "query": "windows vps cheap",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 97,
+          "ctr": 0
+        }
+      ],
+      "total_rows": 121
+    }
+  },
+  "gsc7": {
+    "request": {
+      "connector": "searchconsole",
+      "accounts": [
+        "sc-domain:vpsdealswire.com"
+      ],
+      "date_from": "2026-10-18",
+      "date_to": "2026-10-24",
+      "fields": [
+        "query",
+        "page",
+        "clicks",
+        "impressions",
+        "position"
+      ]
+    },
+    "result": {
+      "status": "done",
+      "data": [
+        {
+          "query": "\"dreamhost\"",
+          "page": "https://www.vpsdealswire.com/articles/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 97
+        },
+        {
+          "query": "\"upcloud\"",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 6
+        },
+        {
+          "query": "$5 month windows vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 85
+        },
+        {
+          "query": "$5 vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 75
+        },
+        {
+          "query": "bandwidth overage charges",
+          "page": "https://www.vpsdealswire.com/articles/what-happens-when-vps-exceeds-bandwidth/",
+          "clicks": 0,
+          "impressions": 7,
+          "position": 83.4286
+        },
+        {
+          "query": "black friday vps",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 70.5
+        },
+        {
+          "query": "black friday vps",
+          "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 193
+        },
+        {
+          "query": "black friday vps",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 134
+        },
+        {
+          "query": "black friday vps hosting",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 85
+        },
+        {
+          "query": "budget windows vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 77
+        },
+        {
+          "query": "buy cheap windows vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 86
+        },
+        {
+          "query": "cheap vps list",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 19
+        },
+        {
+          "query": "cheap vps windows",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 100
+        },
+        {
+          "query": "cheap windows vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 8,
+          "position": 95.875
+        },
+        {
+          "query": "cheap windows vps $5",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 66
+        },
+        {
+          "query": "cheapest vps windows",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 80
+        },
+        {
+          "query": "cheapest windows vps",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 12,
+          "position": 90.5
+        },
+        {
+          "query": "compare vps prices",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 68
+        },
+        {
+          "query": "compare vps providers",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 60
+        },
+        {
+          "query": "digital ocean vps",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 63
+        },
+        {
+          "query": "digital ocean vps pricing",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 8.3333
+        },
+        {
+          "query": "digitalocean hosting price",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 42
+        },
+        {
+          "query": "digitalocean pricing",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 36
+        },
+        {
+          "query": "digitalocean vps",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 60.75
+        },
+        {
+          "query": "digitalocean vps hosting",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 57
+        },
+        {
+          "query": "digitalocean vps plans",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 23
+        },
+        {
+          "query": "digitalocean vps price",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 19
+        },
+        {
+          "query": "hostdare",
+          "page": "https://www.vpsdealswire.com/providers/hostdare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 44
+        },
+        {
+          "query": "hosthatch",
+          "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 63
+        },
+        {
+          "query": "hosthatch black friday",
+          "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 2
+        },
+        {
+          "query": "hosthatch coupon",
+          "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 77.5
+        },
+        {
+          "query": "lxc vs kvm",
+          "page": "https://www.vpsdealswire.com/articles/kvm-vs-lxc-which-to-buy/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 77
+        },
+        {
+          "query": "ovh 0.97",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 64.75
+        },
+        {
+          "query": "ovh deal",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 56
+        },
+        {
+          "query": "ovh deals",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 57.5
+        },
+        {
+          "query": "ovh discount",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 62
+        },
+        {
+          "query": "ovh mx plan price",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 56
+        },
+        {
+          "query": "ovh offers",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 57
+        },
+        {
+          "query": "ovh sale",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 62
+        },
+        {
+          "query": "ovh sales",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 54.5
+        },
+        {
+          "query": "ovh vps coupon code",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 96
+        },
+        {
+          "query": "ovh vps pricing",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 50
+        },
+        {
+          "query": "ovhcloud deals",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 61
+        },
+        {
+          "query": "racknerd black friday",
+          "page": "https://www.vpsdealswire.com/providers/racknerd/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 8
+        },
+        {
+          "query": "racknerd promo code",
+          "page": "https://www.vpsdealswire.com/providers/racknerd/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 72
+        },
+        {
+          "query": "upcloud",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 7
+        },
+        {
+          "query": "upcloud coupon codes",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 70.5
+        },
+        {
+          "query": "upcloud coupons",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 63
+        },
+        {
+          "query": "vps 5 dollars",
+          "page": "https://www.vpsdealswire.com/articles/downgrade-80-dollar-vps-guide/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 66
+        },
+        {
+          "query": "vps bandwidth",
+          "page": "https://www.vpsdealswire.com/articles/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 301
+        },
+        {
+          "query": "vps black friday",
+          "page": "https://www.vpsdealswire.com/about/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 205
+        },
+        {
+          "query": "vps black friday",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 160
+        },
+        {
+          "query": "vps black friday",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 189
+        },
+        {
+          "query": "vps black friday",
+          "page": "https://www.vpsdealswire.com/providers/racknerd/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 165
+        },
+        {
+          "query": "vps comparison",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 66
+        },
+        {
+          "query": "vps cost",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 20,
+          "position": 91.3
+        },
+        {
+          "query": "vps costs",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 87.5
+        },
+        {
+          "query": "vps deals",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 15,
+          "position": 82.1333
+        },
+        {
+          "query": "vps digital ocean",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 61
+        },
+        {
+          "query": "vps digitalocean",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 56.5
+        },
+        {
+          "query": "vps hosting cost",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 11,
+          "position": 89.0909
+        },
+        {
+          "query": "vps hosting deals",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 80
+        },
+        {
+          "query": "vps hosting digitalocean",
+          "page": "https://www.vpsdealswire.com/providers/digitalocean/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 50
+        },
+        {
+          "query": "vps hosting offers",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 9,
+          "position": 79.6667
+        },
+        {
+          "query": "vps hosting price",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 11,
+          "position": 98.1818
+        },
+        {
+          "query": "vps hosting pricing",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 97
+        },
+        {
+          "query": "vps low cost windows",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 97
+        },
+        {
+          "query": "vps monthly georgia",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 70
+        },
+        {
+          "query": "vps offers",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 6,
+          "position": 83.5
+        },
+        {
+          "query": "vps ovhcloud",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 83
+        },
+        {
+          "query": "vps price",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 21,
+          "position": 97.9524
+        },
+        {
+          "query": "vps prices",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 90
+        },
+        {
+          "query": "vps rates",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 20
+        },
+        {
+          "query": "windows vps cheap",
+          "page": "https://www.vpsdealswire.com/articles/is-there-a-cheap-windows-vps-under-5/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 97
+        }
+      ],
+      "total_rows": 74
+    }
+  },
+  "gscPrev7": {
+    "request": {
+      "connector": "searchconsole",
+      "accounts": [
+        "sc-domain:vpsdealswire.com"
+      ],
+      "date_from": "2026-10-11",
+      "date_to": "2026-10-17",
+      "fields": [
+        "query",
+        "page",
+        "clicks",
+        "impressions",
+        "position"
+      ]
+    },
+    "result": {
+      "status": "done",
+      "data": [
+        {
+          "query": "\"digitalocean\"",
+          "page": "https://www.vpsdealswire.com/articles/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 216
+        },
+        {
+          "query": "\"dreamhost\"",
+          "page": "https://www.vpsdealswire.com/articles/downgrade-80-dollar-vps-guide/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 95
+        },
+        {
+          "query": "\"inmotion\" \"vps\" -\"l8\" -\"l9\" -\"p1\" -\"p2\" -\"v10\" -\"v11\" -\"v5\" -\"v8\" -\"v8f\" -\"airport\" -\"bike\" -\"crypto\" -\"e-bike\" -\"electric\" -\"electric unicycle\" -\"electronic\" -\"headphone\" -\"inmotion ventures\" -\"nft\" -\"scooter\" -\"unicycle\" -\"v12\" -\"v13\" -\"v14\" -\"v6\" -\"v7\" -\"v9\"",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 6,
+          "position": 5.3333
+        },
+        {
+          "query": "\"inmotionhosting\" -\"l8\" -\"l9\" -\"p1\" -\"p2\" -\"v10\" -\"v11\" -\"v5\" -\"v8\" -\"v8f\" -\"airport\" -\"bike\" -\"crypto\" -\"e-bike\" -\"electric\" -\"electric unicycle\" -\"electronic\" -\"fitness\" -\"headphone\" -\"inmotion ventures\" -\"nft\" -\"pedals\" -\"photography\" -\"scooter\" -\"spring\" -\"tire\" -\"unicycle\" -\"v12\" -\"v13\" -\"v14\" -\"v6\" -\"v7\"",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 9
+        },
+        {
+          "query": "\"upcloud\"",
+          "page": "https://www.vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 7.5
+        },
+        {
+          "query": "-site:facebook.com -site:fb.me -site:youtube.com -site:youtu.be -site:youtube.be -site:twitter.com -site:instagram.com -site:tiktok.com -site:vm.tiktok.com -site:t.co -site:x.com -site:reddit.com \"hostwinds\"",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 25.5
+        },
+        {
+          "query": "bandwidth overage charges",
+          "page": "https://www.vpsdealswire.com/articles/what-happens-when-vps-exceeds-bandwidth/",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 88.25
+        },
+        {
+          "query": "black friday dedicated server deals",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 91
+        },
+        {
+          "query": "black friday dedicated servers",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 86
+        },
+        {
+          "query": "black friday vps offers",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 81
+        },
+        {
+          "query": "buyvm",
+          "page": "https://vpsdealswire.com/providers/buyvm/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 48
+        },
+        {
+          "query": "cheap hosting servers catswhocode",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 71
+        },
+        {
+          "query": "cloudcone",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 6.6667
+        },
+        {
+          "query": "cloudcone",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 10
+        },
+        {
+          "query": "compare vps hosting plans",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 19
+        },
+        {
+          "query": "hosthatch",
+          "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 58
+        },
+        {
+          "query": "hosthatch coupon",
+          "page": "https://www.vpsdealswire.com/providers/hosthatch/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 45.5
+        },
+        {
+          "query": "how much does a vps cost",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 85
+        },
+        {
+          "query": "ovh vps coupon code",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 94
+        },
+        {
+          "query": "ovhcloud deals",
+          "page": "https://www.vpsdealswire.com/providers/ovhcloud/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 63
+        },
+        {
+          "query": "sale vps",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 87
+        },
+        {
+          "query": "upcloud coupon codes",
+          "page": "https://vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 3,
+          "position": 76
+        },
+        {
+          "query": "upcloud coupons",
+          "page": "https://vpsdealswire.com/providers/upcloud/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 93
+        },
+        {
+          "query": "vps cost",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 13,
+          "position": 89.8462
+        },
+        {
+          "query": "vps costs",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 2,
+          "position": 84
+        },
+        {
+          "query": "vps deals",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 8,
+          "position": 81
+        },
+        {
+          "query": "vps hosting black friday",
+          "page": "https://www.vpsdealswire.com/black-friday/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 85
+        },
+        {
+          "query": "vps hosting cost",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 9,
+          "position": 90
+        },
+        {
+          "query": "vps hosting offers",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 7,
+          "position": 76.4286
+        },
+        {
+          "query": "vps hosting price",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 9,
+          "position": 97.2222
+        },
+        {
+          "query": "vps hosting price comparison",
+          "page": "https://www.vpsdealswire.com/compare/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 82
+        },
+        {
+          "query": "vps hosting pricing",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 6,
+          "position": 96.3333
+        },
+        {
+          "query": "vps offers",
+          "page": "https://www.vpsdealswire.com/",
+          "clicks": 0,
+          "impressions": 7,
+          "position": 83.1429
+        },
+        {
+          "query": "vps performance limits",
+          "page": "https://www.vpsdealswire.com/articles/what-happens-when-vps-exceeds-bandwidth/",
+          "clicks": 0,
+          "impressions": 6,
+          "position": 94.8333
+        },
+        {
+          "query": "vps price",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 14,
+          "position": 95.5
+        },
+        {
+          "query": "vps rates",
+          "page": "https://www.vpsdealswire.com/articles/how-much-does-a-vps-cost-per-month/",
+          "clicks": 0,
+          "impressions": 1,
+          "position": 71
+        }
+      ],
+      "total_rows": 36
+    }
+  },
+  "gscTotals": {
+    "request": {
+      "connector": "searchconsole",
+      "accounts": [
+        "sc-domain:vpsdealswire.com"
+      ],
+      "date_from": "2026-09-27",
+      "date_to": "2026-10-24",
+      "fields": [
+        "clicks",
+        "impressions",
+        "position",
+        "ctr"
+      ]
+    },
+    "result": {
+      "status": "done",
+      "data": [
+        {
+          "clicks": 2,
+          "impressions": 490,
+          "position": 61.302,
+          "ctr": 0.0041
+        }
+      ],
+      "total_rows": 1
+    }
+  },
+  "ga4": {
+    "request": {
+      "connector": "googleanalytics4",
+      "accounts": [
+        "556451114"
+      ],
+      "date_from": "2026-09-29",
+      "date_to": "2026-10-26",
+      "fields": [
+        "date",
+        "session_source_medium",
+        "session_default_channel_group",
+        "landing_page_plus_query_string",
+        "sessions",
+        "engaged_sessions"
+      ]
+    },
+    "result": {
+      "status": "done",
+      "data": [
+        {
+          "date": "2026-09-29",
+          "session_source_medium": "(not set)",
+          "session_default_channel_group": "Unassigned",
+          "landing_page_plus_query_string": "(not set)",
+          "sessions": 10,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-09-29",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 6,
+          "engaged_sessions": 4
+        },
+        {
+          "date": "2026-09-29",
+          "session_source_medium": "(not set)",
+          "session_default_channel_group": "Unassigned",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-09-30",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 5,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-09-30",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/articles/cheap-vps-price-table-download/",
+          "sessions": 2,
+          "engaged_sessions": 2
+        },
+        {
+          "date": "2026-09-30",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "(not set)",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-01",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 9,
+          "engaged_sessions": 5
+        },
+        {
+          "date": "2026-10-01",
+          "session_source_medium": "ui.awin.com / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 2
+        },
+        {
+          "date": "2026-10-01",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/articles/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-01",
+          "session_source_medium": "ui.awin.com / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/providers/digitalocean/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-02",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 13,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-02",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "(not set)",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-02",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/articles/chea",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-02",
+          "session_source_medium": "(not set)",
+          "session_default_channel_group": "Unassigned",
+          "landing_page_plus_query_string": "(not set)",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-02",
+          "session_source_medium": "dataindex.pro / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-02",
+          "session_source_medium": "l.meta.ai / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-03",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 3,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-03",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/articles/cheap-vps-renewal-prices/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-03",
+          "session_source_medium": "bing / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-04",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 3,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-05",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/articles/cheap-vps-hourly-vs-monthly-pricing/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-05",
+          "session_source_medium": "cn.bing.com / referral",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/providers/alphavps/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-05",
+          "session_source_medium": "duckduckgo / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/providers/buyvm/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-06",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 5,
+          "engaged_sessions": 2
+        },
+        {
+          "date": "2026-10-07",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 6,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-07",
+          "session_source_medium": "l.meta.ai / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 2
+        },
+        {
+          "date": "2026-10-07",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/alphavps/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-07",
+          "session_source_medium": "google / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "(not set)",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-07",
+          "session_source_medium": "google / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-08",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-08",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/racknerd/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-08",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/virmach/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-09",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 33,
+          "engaged_sessions": 12
+        },
+        {
+          "date": "2026-10-09",
+          "session_source_medium": "bing / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/",
+          "sessions": 5,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-09",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/bandwagonhost/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-09",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/ovhcloud/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-09",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/racknerd/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-09",
+          "session_source_medium": "google / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/articles/cheap-vps-renewal-prices/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-09",
+          "session_source_medium": "l.meta.ai / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "(not set)",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-10",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-10",
+          "session_source_medium": "bing / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/providers/bandwagonhost/",
+          "sessions": 2,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-10",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/compare/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-10",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/interserver/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-10",
+          "session_source_medium": "bing / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/providers/inmotion-hosting/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-10",
+          "session_source_medium": "l.meta.ai / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-11",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 3,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-11",
+          "session_source_medium": "(not set)",
+          "session_default_channel_group": "Unassigned",
+          "landing_page_plus_query_string": "(not set)",
+          "sessions": 3,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-11",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "(not set)",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-11",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/contact/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-11",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/liquid-web/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-11",
+          "session_source_medium": "l.meta.ai / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-12",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-12",
+          "session_source_medium": "l.meta.ai / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 2
+        },
+        {
+          "date": "2026-10-12",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/ionos/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-12",
+          "session_source_medium": "bing / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/providers/inmotion-hosting/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-13",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 6,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-13",
+          "session_source_medium": "l.meta.ai / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 3,
+          "engaged_sessions": 3
+        },
+        {
+          "date": "2026-10-13",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/privacy/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-13",
+          "session_source_medium": "accuwebhosting.com / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-13",
+          "session_source_medium": "go.cloudwm.com / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-13",
+          "session_source_medium": "partners.dreamhost.com / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-14",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 3,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-14",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/articles/how-much-does-a-vps-cost-per-month/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-14",
+          "session_source_medium": "go.cloudwm.com / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-14",
+          "session_source_medium": "search.google.com / referral",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-14",
+          "session_source_medium": "ui.awin.com / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-15",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-15",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/bitlaunch/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-15",
+          "session_source_medium": "hosting.firstpromoter.com / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-15",
+          "session_source_medium": "search.google.com / referral",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/compare/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-16",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 3,
+          "engaged_sessions": 2
+        },
+        {
+          "date": "2026-10-16",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/racknerd/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-17",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 4,
+          "engaged_sessions": 2
+        },
+        {
+          "date": "2026-10-17",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/*\"],\"icons\":{\"128\":\"icons/icon128.png\",\"16\":\"icons/icon16.png\",\"48\":\"icons/icon48.png\"},\"manifest_version\":3,\"name\":\"VPS",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-18",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 4,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-18",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/hostens/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-19",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 4,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-19",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/articles/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-19",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/articles/what-happens-when-vps-exceeds-bandwidth/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-19",
+          "session_source_medium": "members.cj.com / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-20",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 4,
+          "engaged_sessions": 2
+        },
+        {
+          "date": "2026-10-20",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/bandwagonhost/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-20",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/providers/buyvm/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-21",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-22",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-23",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 5,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-23",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/articles/cheapest-vps-prices-october-2026/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-23",
+          "session_source_medium": "bing / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/providers/buyvm/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-23",
+          "session_source_medium": "search.google.com / referral",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-23",
+          "session_source_medium": "search.google.com / referral",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/providers/liquid-web/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-24",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-24",
+          "session_source_medium": "google / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/black-friday/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-24",
+          "session_source_medium": "search.google.com / referral",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-25",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-26",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/",
+          "sessions": 2,
+          "engaged_sessions": 2
+        },
+        {
+          "date": "2026-10-26",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-26",
+          "session_source_medium": "(direct) / (none)",
+          "session_default_channel_group": "Direct",
+          "landing_page_plus_query_string": "/articles/vps-ddos-protection-checklist/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        },
+        {
+          "date": "2026-10-26",
+          "session_source_medium": "bing / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/articles/cheap-vps-sizing-guide/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-26",
+          "session_source_medium": "github.com / referral",
+          "session_default_channel_group": "Referral",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-26",
+          "session_source_medium": "google / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/",
+          "sessions": 1,
+          "engaged_sessions": 1
+        },
+        {
+          "date": "2026-10-26",
+          "session_source_medium": "google / organic",
+          "session_default_channel_group": "Organic Search",
+          "landing_page_plus_query_string": "/providers/racknerd/",
+          "sessions": 1,
+          "engaged_sessions": 0
+        }
+      ],
+      "total_rows": 101
+    }
+  },
+  "ga4Events": {
+    "request": {
+      "connector": "googleanalytics4",
+      "accounts": [
+        "556451114"
+      ],
+      "date_from": "2026-09-29",
+      "date_to": "2026-10-26",
+      "fields": [
+        "date",
+        "session_source_medium",
+        "event_name",
+        "event_count"
+      ],
+      "filters": [
+        [
+          "event_name",
+          "in",
+          "[\"affiliate_click\",\"alert_request_accepted\"]"
+        ]
+      ]
+    },
+    "result": {
+      "status": "done",
+      "data": [],
+      "total_rows": 0
+    }
+  },
+  "retrievedAt": "2026-10-27T01:36:39.735352+00:00",
+  "gscLatestAvailable": "2026-10-24",
+  "gscDateProbe": {
+    "requested": "Oct24–26",
+    "returned": "Oct24 only"
+  },
+  "gsc28Window": {
+    "from": "2026-09-27",
+    "to": "2026-10-24"
+  },
+  "gsc7Window": {
+    "from": "2026-10-18",
+    "to": "2026-10-24"
+  },
+  "gscPrior7Window": {
+    "from": "2026-10-11",
+    "to": "2026-10-17"
+  },
+  "ga4Window": {
+    "from": "2026-09-29",
+    "to": "2026-10-26"
+  },
+  "nativePropertyTotalDistinctFromQuerySums": true,
+  "organicSearchRows": [
+    {
+      "date": "2026-10-03",
+      "session_source_medium": "bing / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-05",
+      "session_source_medium": "cn.bing.com / referral",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/providers/alphavps/",
+      "sessions": 1,
+      "engaged_sessions": 0
+    },
+    {
+      "date": "2026-10-05",
+      "session_source_medium": "duckduckgo / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/providers/buyvm/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-07",
+      "session_source_medium": "google / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "(not set)",
+      "sessions": 1,
+      "engaged_sessions": 0
+    },
+    {
+      "date": "2026-10-07",
+      "session_source_medium": "google / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-09",
+      "session_source_medium": "bing / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/",
+      "sessions": 5,
+      "engaged_sessions": 0
+    },
+    {
+      "date": "2026-10-09",
+      "session_source_medium": "google / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/articles/cheap-vps-renewal-prices/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-10",
+      "session_source_medium": "bing / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/providers/bandwagonhost/",
+      "sessions": 2,
+      "engaged_sessions": 0
+    },
+    {
+      "date": "2026-10-10",
+      "session_source_medium": "bing / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/providers/inmotion-hosting/",
+      "sessions": 1,
+      "engaged_sessions": 0
+    },
+    {
+      "date": "2026-10-12",
+      "session_source_medium": "bing / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/providers/inmotion-hosting/",
+      "sessions": 1,
+      "engaged_sessions": 0
+    },
+    {
+      "date": "2026-10-14",
+      "session_source_medium": "search.google.com / referral",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-15",
+      "session_source_medium": "search.google.com / referral",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/compare/",
+      "sessions": 1,
+      "engaged_sessions": 0
+    },
+    {
+      "date": "2026-10-23",
+      "session_source_medium": "bing / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/providers/buyvm/",
+      "sessions": 1,
+      "engaged_sessions": 0
+    },
+    {
+      "date": "2026-10-23",
+      "session_source_medium": "search.google.com / referral",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-23",
+      "session_source_medium": "search.google.com / referral",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/providers/liquid-web/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-24",
+      "session_source_medium": "google / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/black-friday/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-24",
+      "session_source_medium": "search.google.com / referral",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-26",
+      "session_source_medium": "bing / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/articles/cheap-vps-sizing-guide/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-26",
+      "session_source_medium": "google / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/",
+      "sessions": 1,
+      "engaged_sessions": 1
+    },
+    {
+      "date": "2026-10-26",
+      "session_source_medium": "google / organic",
+      "session_default_channel_group": "Organic Search",
+      "landing_page_plus_query_string": "/providers/racknerd/",
+      "sessions": 1,
+      "engaged_sessions": 0
+    }
+  ],
+  "externalTrends": {
+    "reliableIndexObtained": false,
+    "searchVolumeObtained": false,
+    "serpRankMeasurementObtained": false,
+    "clues": "Actual visible GSC queries, live own tool/guide and related current documentation; not competitor marketing as trend volume."
+  },
+  "limits": [
+    "GSC now covers only the first release day of the daily series. No causal conclusion or exact-target demand claim.",
+    "Query rows are privacy-filtered; not property totals.",
+    "All-channel, Organic Search and AI-assistant traffic are separate.",
+    "Reference-card starts are event counts, not downloads, people or attributed SEO conversions. No matching download row reported.",
+    "VPS filtered event report completed empty; no confirmed sales or permanent-zero assertion.",
+    "No7/28day review due for series launchedOct24; preserve reporting latency and full actual windows."
+  ]
+}
