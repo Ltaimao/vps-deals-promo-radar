@@ -1,6 +1,6 @@
 {
   "asOf": "2026-10-27",
-  "state": "reviewed; not main stock until merged",
+  "state": "complete reviewed stock in main; calendar and full draft readback verified",
   "futureDays": 15,
   "through": "2026-11-11",
   "articles": [
@@ -139,5 +139,7 @@
       "sha256": "44dfc85341d6626de76078573366ebcdaf6bd630ebc56cb6d5221443822e241d",
       "image_sha256": "a4af3ad1fa961f03724677ad9b6af428e28f72a57a00ddc6827919b1c23194b6"
     }
-  ]
+  ],
+  "mergedPr": 14,
+  "mergeSha": "60922ad7dcb4501fa5bceef9134d599c65ae2569"
 }
