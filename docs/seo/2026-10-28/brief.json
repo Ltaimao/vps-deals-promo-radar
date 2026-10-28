@@ -1,0 +1,63 @@
+{
+  "targetQuery": "IPv6 only VPS IPv4 connectivity",
+  "supportingQueries": [
+    "IPv6 only VPS outbound IPv4",
+    "IPv6 VPS SSH access",
+    "IPv6 only server dependency checklist"
+  ],
+  "intent": "Decide address-family fit from inbound clients, administration, outbound dependencies and recovery.",
+  "existingSignals": [
+    "Recent7 buying/cost queries, but no exact IPv6 query in pulled rows."
+  ],
+  "competitorGap": "Hetzner describes per-family Primary IP allocation; DigitalOcean describes enabling IPv6. Add a provider-neutral two-direction dependency checklist without assuming translation or protocol proxy support.",
+  "cannibalization": "Read existing do-cheap-vps-providers-include-ipv6: dated provider availability/prices overview. New article excludes price tables and provider ranking, targets operational inbound/outbound compatibility. Location, SMTP, SSH recovery and PTR remain separate intents.",
+  "outline": [
+    "Direct compatibility answer",
+    "Allocation versus service",
+    "Inbound and administrative paths",
+    "Outbound dependencies and NAT64",
+    "Recovery and shortlist"
+  ],
+  "factChecks": [
+    "A/AAAA DNS records are not protocol translation.",
+    "RFC6146 translation is not automatically supplied by every provider.",
+    "RFC8305 client selection cannot create missing network connectivity.",
+    "No remote connectivity commands executed, no price, performance or availability guarantee."
+  ],
+  "primaryCta": "/compare/",
+  "historicalContentNote": "Older IPv6 provider article contains broad dated availability/price claims not revalidated in this run; not copied into new draft or presented as current facts.",
+  "slug": "ipv6-only-vps-connectivity-checklist",
+  "releaseDate": "2026-11-12",
+  "internalLinks": [
+    {
+      "site": "vps",
+      "url": "https://www.vpsdealswire.com/articles/managed-vs-unmanaged-vps-decision-guide/",
+      "status": 200,
+      "finalUrl": "https://www.vpsdealswire.com/articles/managed-vs-unmanaged-vps-decision-guide/",
+      "expected": 200
+    },
+    {
+      "site": "vps",
+      "url": "https://www.vpsdealswire.com/articles/choose-vps-location-latency/",
+      "status": 200,
+      "finalUrl": "https://www.vpsdealswire.com/articles/choose-vps-location-latency/",
+      "expected": 200
+    },
+    {
+      "site": "vps",
+      "url": "https://www.vpsdealswire.com/compare/",
+      "status": 200,
+      "finalUrl": "https://www.vpsdealswire.com/compare/",
+      "expected": 200
+    }
+  ],
+  "sources": [
+    "https://docs.hetzner.com/cloud/servers/primary-ips/overview/",
+    "https://developers.cloudflare.com/network/ipv6-compatibility/",
+    "https://www.rfc-editor.org/rfc/rfc6146",
+    "https://www.rfc-editor.org/rfc/rfc8305",
+    "https://docs.digitalocean.com/products/networking/ipv6/"
+  ],
+  "wordCount": 675,
+  "approval": "Internal review under standing owner authorization; ready for normal merge."
+}

@@ -1,0 +1,12 @@
+{
+  "queueSchemaAndFiles": "passed",
+  "tattooBoundaryTests": null,
+  "pythonTests": 50,
+  "nodeTests": 20,
+  "build": "passed",
+  "scraper": "32providers/28ok/4unreachable;173 extracted entries, not verified monthly plan count",
+  "ilangPropagation": "Temporary provider URL change reached actual provider page; exact config restored and final rebuild passed",
+  "internalLinks": "All200",
+  "futureBodyPublic": "404; no early publication",
+  "scope": "Only listed new draft/calendar/illustration/audit files; no price/history or Pinterest/YouTube edits"
+}
