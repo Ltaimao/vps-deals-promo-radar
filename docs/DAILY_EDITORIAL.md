@@ -1,5 +1,7 @@
 # 每日 SEO 文章发布
 
+> Current update — 2026-10-28: today’s release recovered and independently verified. Complete future stock after merge covers **2026-10-29–2026-11-12 (15 days)**. See [research and audit](seo/2026-10-28/README.md). Existing08:00 Asia/Shanghai deterministic release remains in force.
+
 > Current update — 2026-10-27: today’s release recovered through the existing workflow and publicly verified. This change extends complete reviewed future stock to **2026-10-28–2026-11-11 (15 days)** after merge. See [research and audit](seo/2026-10-27/README.md). Prior dated notes are historical; release remains08:00 Asia/Shanghai.
 
 > Current state — 2026-10-26: today’s missed release recovered through the existing workflow and publicly verified. Complete reviewed future stock covers **2026-10-27–2026-11-10 (15 days)** after this change merges. See [research and audit](seo/2026-10-26/README.md). Prior dated notes below are historical. Release remains 08:00 Asia/Shanghai.

@@ -172,6 +172,15 @@
       "status": "ready",
       "sha256": "44dfc85341d6626de76078573366ebcdaf6bd630ebc56cb6d5221443822e241d",
       "image_sha256": "a4af3ad1fa961f03724677ad9b6af428e28f72a57a00ddc6827919b1c23194b6"
+    },
+    {
+      "date": "2026-11-12",
+      "slug": "ipv6-only-vps-connectivity-checklist",
+      "gap": "ipv6-only-vps-inbound-outbound-address-family-fit",
+      "target_query": "IPv6 only VPS IPv4 connectivity",
+      "status": "ready",
+      "sha256": "02034cd5498987af6833bf49d427908b883444cb0d389ba5b2689229699bf277",
+      "image_sha256": "298bd3fef4e534662dff3ed4bc43f748bab174caa06458ef89ec9f3c544ad6c4"
     }
   ]
 }

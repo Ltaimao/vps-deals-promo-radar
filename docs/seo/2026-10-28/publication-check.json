@@ -1,0 +1,46 @@
+{
+  "initialState": "404 after08:00 Shanghai; no current-day run visible; safe existing schedule-event job rerun",
+  "verification": {
+    "site": "vps",
+    "url": "https://www.vpsdealswire.com/articles/vps-email-smtp-before-buying/",
+    "checkedAt": "2026-10-28T01:12:31.942Z",
+    "status": 200,
+    "xRobotsTag": "",
+    "canonical": [
+      "https://www.vpsdealswire.com/articles/vps-email-smtp-before-buying/"
+    ],
+    "robots": "",
+    "h1": [
+      "Can a Cheap VPS Send Email? Check SMTP First"
+    ],
+    "title": "Can a Cheap VPS Send Email? Check SMTP First",
+    "sitemapContainsUrl": true,
+    "robotsTxt": "User-agent: *\nAllow: /\nContent-Signal: ai-train=yes, search=yes, ai-input=yes\nSitemap: https://www.vpsdealswire.com/sitemap.xml\n",
+    "images": [
+      {
+        "src": "https://www.vpsdealswire.com/articles/vps-email-smtp-before-buying.png",
+        "alt": "Confirm eligibility before sending. Provider permission / Check SMTP restrictions / Read acceptable use; Sending setup / Check DNS and identity / Secure your mail stack; Delivery checks / Monitor reputation / Delivery is not promised.",
+        "status": 200,
+        "contentType": "image/png",
+        "width": 1200,
+        "height": 630
+      }
+    ],
+    "checks": {
+      "http200": true,
+      "canonical": true,
+      "singleH1": true,
+      "noNoindex": true,
+      "sitemap": true,
+      "images": true
+    }
+  },
+  "workflowRun": 40543570294,
+  "actualPublicTimestamp": null,
+  "actualPublicTimestampNote": "Source date/stagedAt is not exact public go-live time. Use first independently verified live timestamp as conservative review anchor.",
+  "reviewAnchor": "2026-10-28T01:12:31.942Z",
+  "review7At": "2026-11-04T01:12:31.942000+00:00",
+  "review28At": "2026-11-25T01:12:31.942000+00:00",
+  "noDateOverride": true,
+  "noDuplicateArticle": true
+}
