@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-10-28T01:21:17.598Z",
+  "contentPr": 16,
+  "mergeSha": "5935cccab79925ad772af35e918c2f849e1a1396",
+  "actualMainReadbackMatches": true,
+  "futureInventoryCount": 15,
+  "futureThrough": "2026-11-12",
+  "productionDeploy": {
+    "run": 40614107613,
+    "conclusion": "success"
+  },
+  "githubPrValidation": "No PR check exposed; local required validation passed",
+  "publicChecks": {
+    "site": "vps",
+    "url": "https://www.vpsdealswire.com/articles/vps-email-smtp-before-buying/",
+    "checkedAt": "2026-10-28T01:20:56.954Z",
+    "status": 200,
+    "xRobotsTag": "",
+    "canonical": [
+      "https://www.vpsdealswire.com/articles/vps-email-smtp-before-buying/"
+    ],
+    "robots": "",
+    "h1": [
+      "Can a Cheap VPS Send Email? Check SMTP First"
+    ],
+    "title": "Can a Cheap VPS Send Email? Check SMTP First",
+    "sitemapContainsUrl": true,
+    "robotsTxt": "User-agent: *\nAllow: /\nContent-Signal: ai-train=yes, search=yes, ai-input=yes\nSitemap: https://www.vpsdealswire.com/sitemap.xml\n",
+    "images": [
+      {
+        "src": "https://www.vpsdealswire.com/articles/vps-email-smtp-before-buying.png",
+        "alt": "Confirm eligibility before sending. Provider permission / Check SMTP restrictions / Read acceptable use; Sending setup / Check DNS and identity / Secure your mail stack; Delivery checks / Monitor reputation / Delivery is not promised.",
+        "status": 200,
+        "contentType": "image/png",
+        "width": 1200,
+        "height": 630
+      }
+    ],
+    "checks": {
+      "http200": true,
+      "canonical": true,
+      "singleH1": true,
+      "noNoindex": true,
+      "sitemap": true,
+      "images": true
+    }
+  },
+  "futureBodyStill404": true,
+  "noDuplicateTasks": true,
+  "scopePreserved": [
+    "historical URLs and qualified drafts",
+    "concurrent prices/history",
+    "Pinterest records and schedules",
+    "YouTube records and schedules"
+  ],
+  "limitations": [
+    "GSC/GA4 samples too small for causal conclusions",
+    "Exact new query is an editorial hypothesis; reliable trend volume not obtained",
+    "Exact public go-live timestamp unavailable; conservative observed-live review anchor retained"
+  ]
+}

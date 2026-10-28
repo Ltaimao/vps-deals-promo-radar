@@ -1,6 +1,6 @@
 {
   "asOf": "2026-10-28",
-  "state": "reviewed_pending_merge",
+  "state": "merged_main_verified",
   "futureCount": 15,
   "fromDate": "2026-10-29",
   "through": "2026-11-12",
@@ -141,5 +141,7 @@
       "image_sha256": "298bd3fef4e534662dff3ed4bc43f748bab174caa06458ef89ec9f3c544ad6c4"
     }
   ],
-  "fullDrafts": true
+  "fullDrafts": true,
+  "contentPr": 16,
+  "mergeSha": "5935cccab79925ad772af35e918c2f849e1a1396"
 }
