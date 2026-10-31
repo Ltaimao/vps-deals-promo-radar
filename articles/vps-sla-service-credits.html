@@ -1,0 +1,22 @@
+title: VPS SLA Credits: What an Uptime Promise Really Covers
+date: 2026-10-31
+description: Read VPS uptime terms, exclusions, claim deadlines, and credit limits before treating an SLA as a backup or recovery guarantee.
+gap: vps-sla-credit-claim-conditions
+
+<h1>VPS SLA Credits: What an Uptime Promise Really Covers</h1>
+<p><strong>A VPS service-level agreement usually describes a defined service target and a remedy under stated conditions. It is not a promise that your application cannot fail.</strong> Read the covered service, exclusions, claim procedure, and credit limits before using an uptime claim in a buying decision.</p>
+<figure class="article-illustration"><img src="/articles/vps-sla-service-credits.png" alt="An SLA credit is not a recovery plan. Read the SLA scope / Covered service and tier / Check exclusions; Document the incident / Keep timestamps / Meet the claim deadline; Submit eligible claim / Follow evidence rules / Credits follow the terms." width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>An SLA credit is not a recovery plan. Conceptual guide; check your provider's terms and your own setup.</figcaption></figure>
+<p>This guide does not assign an uptime percentage to any provider. It explains what to verify in the provider's actual terms and why a credit policy cannot replace backups or recovery planning.</p>
+<h2>Find the exact service being measured</h2>
+<p>Check whether the agreement covers the host network, power, the virtual machine, storage, or a managed application. An unavailable website can result from a database error, expired certificate, account suspension, or guest configuration even while the underlying infrastructure meets its defined target.</p>
+<p>Ask how availability is measured and which monitoring system is authoritative. A failed request from one location may need investigation, but it does not automatically establish an SLA breach under every contract.</p>
+<h2>Read exclusions before reading the remedy</h2>
+<p>Look for planned maintenance, customer changes, unsupported software, abuse-related action, upstream events, and notice requirements. The wording varies between providers and products. If your service depends on something excluded, record that gap in your own recovery plan.</p>
+<p>Make sure the agreement applies to the plan and region you intend to order. A provider may sell several product families with different terms. A claim about a premium managed service should not be carried over to an unrelated budget VPS.</p>
+<h2>Understand how a claim is made</h2>
+<p>Check the deadline, evidence requested, support route, and definition of an eligible incident. Keep timestamps, monitoring observations, and ticket references. Do not publish logs containing credentials or customer data while seeking help.</p>
+<p>Read whether the remedy is a service credit, a refund, or another contractual response. Check its cap and application to future invoices. A credit may not cover your business losses, migration work, or a separate third-party service; confirm the actual language rather than assuming compensation.</p>
+<h2>Build recovery independently</h2>
+<p>Decide how long the application can be unavailable and how much recent data it can afford to lose. Keep restorable backups under your control and test the process on an appropriate non-production environment. A document promising a credit cannot restore a lost database.</p>
+<p>The <a href="/articles/do-cheap-vps-plans-include-backups/">backup buying guide</a> and <a href="/articles/managed-vs-unmanaged-vps-decision-guide/">support-scope guide</a> cover the adjacent responsibilities. Distinguish restoration help from the infrastructure service target.</p>
+<p>Use the <a href="/compare/">provider directory</a> to reach official product and SLA pages. Choose from the complete operational fit and cost, keeping every unverified term marked as unknown rather than turning it into a favorable assumption.</p>
