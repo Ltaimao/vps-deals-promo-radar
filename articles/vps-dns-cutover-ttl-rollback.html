@@ -1,0 +1,23 @@
+title: VPS DNS Cutover: TTL, A/AAAA Records and Rollback
+date: 2026-11-09
+description: Plan a VPS DNS cutover with record inventory, cache-aware timing, application checks and a rollback that accounts for new writes.
+gap: vps-dns-cutover-cache-write-rollback
+
+<h1>VPS DNS Cutover: TTL, A/AAAA Records and Rollback</h1>
+<p><strong>Inventory the records that actually direct traffic, test the destination, allow for previously cached answers, and define how rollback handles new data.</strong> Lowering a DNS TTL is useful preparation in some setups, but it does not make a VPS migration instantaneous or guarantee that every client switches at once.</p>
+<figure class="article-illustration"><img src="/articles/vps-dns-cutover-ttl-rollback.png" alt="DNS is one part of a move: Check A and AAAA; Allow for cached answers; Plan for new writes. Original conceptual checklist, not measured results." width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Original process diagram. Check the provider documentation and your own configuration.</figcaption></figure>
+<h2>Find the records that matter</h2>
+<p>List the hostname, record type, current destination and proxy status. A website may use both A and AAAA records, or a CNAME that depends on another hostname. Changing only an IPv4 destination can leave IPv6-capable clients reaching the old service.</p>
+<p>Check the actual path rather than treating every record as a server address. A proxied hostname can have different behavior from a DNS-only record. Keep email records and unrelated hostnames outside the change unless the migration explicitly requires them.</p>
+<h2>Understand the cache window</h2>
+<p>TTL describes how long a DNS answer may be cached. A lower value set now does not retroactively shorten the lifetime of an answer a resolver already obtained. Plan ahead using the old value and the DNS provider's behavior.</p>
+<p><a href="https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/">Cloudflare's TTL reference</a> distinguishes proxied and DNS-only records. Consult the documentation for your actual setup instead of applying one universal TTL or waiting period. DNS cache timing is only one part of application readiness and client behavior.</p>
+<h2>Test the destination before switching</h2>
+<p>Use a documented method to test the new service with the intended hostname and HTTPS configuration. Loading a raw IP address may reach a different virtual host or produce a certificate mismatch. Check representative pages, application functions and dependent services before exposing normal traffic.</p>
+<p>Record the old values and the planned new values in a small change log. Identify who can perform the change and which observation would justify stopping or reversing it. Avoid editing records repeatedly in response to a single cached lookup.</p>
+<h2>Make rollback a data decision</h2>
+<p>Pointing DNS back to the old server does not merge orders, uploads or other writes made on the new server. Decide how you will prevent conflicting writes, reconcile them, or use an application-specific maintenance process. Test the approach for your own workload.</p>
+<p>Keep the old service available for the planned transition period, subject to its billing and security requirements. Choose the retirement point from observed traffic, application consistency and your recovery plan. A fixed number of hours cannot guarantee success for every service.</p>
+<h2>Verify from several layers</h2>
+<p>Check authoritative DNS values, the answers seen by the clients you test, HTTPS and actual application behavior. Record what you checked and when. Do not claim a worldwide switch based only on one browser tab or one resolver.</p>
+<p>The <a href="/articles/migrate-wordpress-to-cheap-vps-checklist/">WordPress migration overview</a> covers the wider move; this guide explains the DNS and rollback decisions that require setup-specific judgment. The <a href="/articles/choose-vps-location-latency/">location guide</a> helps assess the destination separately. No cutover is performed by reading this checklist: validate your records and recovery process before changing production.</p>
