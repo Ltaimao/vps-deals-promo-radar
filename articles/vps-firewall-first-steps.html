@@ -1,0 +1,74 @@
+title: VPS Firewall First Steps After You Get Root Access
+date: 2026-11-14
+description: First firewall steps for a new VPS: allow SSH from your IP, deny the rest by default, open only the ports you use, and test from a second session first.
+gap: vps-firewall-first-steps-new-server
+
+<h1>VPS Firewall First Steps After You Get Root Access</h1>
+<figure class="article-illustration"><img src="/articles/vps-firewall-first-steps.png" alt="A new VPS behind a firewall: SSH allowed from one address, all other inbound ports denied by default, and web ports opened only if a site runs on the server" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Default deny first, then open only what the server actually runs. Conceptual guide; check your provider's docs for its own firewall.</figcaption></figure>
+<p>
+  <strong>Short answer: deny everything inbound first, then allow SSH from your own address only, then open the ports your services actually use.</strong> Do it in that order, and test from a second session before you log out of the first. A firewall set up right after the first login is still early, and every port you leave open is a service you now have to keep patched — so the first hour of a new server is the right time for these four decisions, not a job for later in the week.
+</p>
+<p>
+  The commands below use <code>ufw</code>, which ships on many Ubuntu and Debian images. If your image uses firewalld, nftables, or the provider's own agent instead, the commands differ but the decisions do not: default deny, SSH from your address, only the ports you use, and a test before you log out.
+</p>
+
+<h2>1. Start with default deny</h2>
+<p>
+  Set the inbound default before you allow anything, so a rule you forget does not silently leave a port open:
+</p>
+<pre><code>sudo ufw default deny incoming
+sudo ufw default allow outgoing</code></pre>
+<p>
+  Outgoing stays open so the server can still fetch updates and packages. Inbound is closed except for what you explicitly allow in the next two steps. Do not reverse this — an allow-first firewall only protects the ports you remembered to close.
+</p>
+
+<h2>2. Allow SSH — from your address only</h2>
+<p>
+  Your own SSH access is the one inbound connection the server needs right now, and it should come from your address only:
+</p>
+<pre><code>sudo ufw allow from 203.0.113.10 to any port 22</code></pre>
+<p>
+  Replace <code>203.0.113.10</code> with your own public IP address. If your address changes often, you may need a wider allowance, but keep it as narrow as your connection allows: a rule that allows SSH from anywhere is the rule automated login attempts will find first. Key-only SSH login is a separate setting and worth doing too, but it is not a substitute for restricting who can even reach the port.
+</p>
+
+<h2>3. Open only the ports you actually use</h2>
+<p>
+  Add a port only when a service is already listening on it. A web server is the usual case:
+</p>
+<pre><code>sudo ufw allow 80,443/tcp</code></pre>
+<p>
+  A database port, by contrast, should almost never be open to the world. Bind the database to localhost, or allow only the address of the application server that talks to it. The same applies to admin panels and game servers: if only you use it, allow only your address, the way step 2 does for SSH.
+</p>
+<p>
+  One limit to keep in mind: a host firewall does not stop a volumetric DDoS attack — that traffic has to be absorbed before it reaches your server. Check what your provider covers at the network level before you assume the firewall handles it; our <a href="/articles/vps-ddos-protection-checklist">VPS DDoS protection checklist</a> walks through the questions to ask.
+</p>
+
+<h2>4. Test from a second session before you log out</h2>
+<p>
+  Turn the firewall on, confirm the rules, and then prove you can still get in — while your first session is still connected:
+</p>
+<pre><code>sudo ufw enable
+sudo ufw status numbered</code></pre>
+<p>
+  Read the numbered list back against steps 1–3: default deny inbound, your SSH rule, and only the ports you use. Then open a new SSH session in a second terminal. If the new session connects, the rules are right and you can log out of the first. If it fails, the first session is still there to fix the rule — that is the whole point of testing before logging out. If you do lock yourself out anyway, the recovery route is the provider console, as covered in our <a href="/articles/vps-ssh-lockout-recovery">VPS SSH lockout recovery guide</a>.
+</p>
+
+<h2>5. Check the provider firewall too</h2>
+<p>
+  Some providers run a cloud firewall in front of the server, and its rules apply before the operating-system firewall sees the traffic. That cuts both ways: a port open in ufw still stays closed if the provider panel blocks it, and a port opened in the panel does not help if ufw denies it. Check both layers, and decide which one is the source of truth for each port — running the same rules in two places with different values is how a port ends up open when you thought it was closed.
+</p>
+<p>
+  If you rebuild servers from a template, put these rules in the first-boot setup so a fresh server gets the same firewall without a manual repeat. Our <a href="/articles/vps-cloud-init-first-boot">cloud-init first-boot guide</a> covers verifying that automation before you trust it.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Default deny inbound is set; outgoing is still allowed.</li>
+  <li>SSH is allowed from your address only, on port 22.</li>
+  <li>Only the ports your running services use are open.</li>
+  <li>A second SSH session connected while the first was still open.</li>
+  <li>The provider firewall panel, if one exists, agrees with ufw.</li>
+</ul>
+<p>
+  Five checks, one order, no extra software to install. Once they pass, the server is ready for the actual work you bought it for.
+</p>
