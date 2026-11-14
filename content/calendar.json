@@ -208,6 +208,33 @@
       "status": "ready",
       "sha256": "27bb01ea52ba677a4937d4c77fddc2f2b0aa9a1273f473dbe68070145a8b1d1c",
       "image_sha256": "7f1b8e46a7070438ecbbdca4391a0704453ebb681efed28da4f3ca607825f498"
+    },
+    {
+      "date": "2026-11-16",
+      "slug": "vps-backup-offsite-rotation-checklist",
+      "gap": "vps-offsite-backup-retention-rotation",
+      "target_query": "VPS offsite backup checklist",
+      "status": "ready",
+      "sha256": "d267304b583b3b44e25d17ecfea3ae3dee04ffcf2bb71e78218fa2e7779a16c6",
+      "image_sha256": "b8b6863abc2fb85df3108f9b0c1963d75d7360c6fd750329c6a9967d8d84e6f1"
+    },
+    {
+      "date": "2026-11-17",
+      "slug": "vps-bandwidth-overage-monitoring",
+      "gap": "vps-bandwidth-usage-overage-monitoring",
+      "target_query": "VPS bandwidth overage check",
+      "status": "ready",
+      "sha256": "23f33962a282a0099a869c2f59f02af5406b5c0718007d480e8b7e2a3df4e6f7",
+      "image_sha256": "686cb5fb67cef33dc7acc2515de31a52892e96e89d20365ed5ccdbfc47a26c35"
+    },
+    {
+      "date": "2026-11-18",
+      "slug": "vps-letsencrypt-ssl-renewal-checklist",
+      "gap": "vps-letsencrypt-ssl-certificate-renewal",
+      "target_query": "Let's Encrypt SSL renewal VPS",
+      "status": "ready",
+      "sha256": "65b766188c878e0d911a2ce3cea433a354e817f8edf7908a206965f769335072",
+      "image_sha256": "b0ee646b5a74526a3693f86fd5e8f9d3e124c3ee777089d63e2808fc93620100"
     }
   ]
 }

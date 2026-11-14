@@ -1,0 +1,68 @@
+title: Let's Encrypt SSL Renewal on a VPS: Checklist
+date: 2026-11-18
+description: Let's Encrypt certificates expire after about 90 days: a renewal checklist for timers, dry runs, port 80 access, and what to check when renewal fails.
+gap: vps-letsencrypt-ssl-certificate-renewal
+
+<h1>Let's Encrypt SSL Renewal on a VPS: Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-letsencrypt-ssl-renewal-checklist.png" alt="SSL certificate renewal on a VPS: a padlock with a renewal arrow looping around it in front of a small server" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Renewal is automatic until the day it is not — and that day is usually the expiry date. Conceptual guide; commands are standard Certbot.</figcaption></figure>
+<p>
+  <strong>Short answer: install the certificate with an automatic renewal method, confirm the renewal timer is running, run a dry-run renewal, and check that port 80 is reachable and the web server reloads the new certificate.</strong> Let's Encrypt certificates last about 90 days, so renewal is not a one-time task — it is a cycle that has to keep working for as long as the site does. The checks below are the difference between a renewal that happens quietly and an expired certificate discovered by a visitor.
+</p>
+<p>
+  Most renewals fail for boring reasons: the timer that was supposed to run the renewal never started, the firewall blocks the check the issuer performs, or the web server keeps serving the old certificate after a new one arrives. Each of these is easy to test in advance, and each is painful to discover after expiry.
+</p>
+
+<h2>1. Confirm how renewal is supposed to run</h2>
+<p>
+  Find out which tool manages the certificate and how it is scheduled. With Certbot, the usual setup is a systemd timer or a cron job that runs a renewal command twice a day; the command itself only renews certificates that are close to expiry, so running it often is harmless. Check that the timer exists and is active:
+</p>
+<pre><code>systemctl list-timers | grep certbot
+systemctl status certbot.timer</code></pre>
+<p>
+  If there is no timer and no cron entry, renewal is not automatic — it is a manual task waiting to be forgotten. The fix is to enable the timer or add the cron job, not to set a calendar reminder and hope. If the server was built from an image or a first-boot script, confirm the automation actually survived the setup; our <a href="/articles/vps-cloud-init-first-boot">cloud-init first-boot guide</a> covers verifying automation before trusting it.
+</p>
+
+<h2>2. Run a dry run before expiry approaches</h2>
+<p>
+  Certbot's dry-run mode tests the whole renewal path against the staging server without touching the live certificate:
+</p>
+<pre><code>sudo certbot renew --dry-run</code></pre>
+<p>
+  A passing dry run proves the client can reach the issuer, the challenge can complete, and the certificate can be issued. A failing one tells you exactly which step broke, while there is still time to fix it. Run this after any change to the web server configuration, the firewall, or the DNS records — all three can break renewal, and all three change more often than people remember.
+</p>
+<p>
+  Also check the real expiry date of the live certificate, not just the timer. A browser's padlock details or a simple check against the server will show it:
+</p>
+<pre><code>echo | openssl s_client -connect 203.0.113.10:443 -servername example.com 2>/dev/null | openssl x509 -noout -dates</code></pre>
+<p>
+  Replace the address and name with your own server's. If the date is closer than expected, the renewal has already been failing for a while — treat that as the urgent case, not the routine one.
+</p>
+
+<h2>3. Keep the challenge path open</h2>
+<p>
+  The most common renewal method, HTTP-01, requires the issuer to reach your server on port 80 and fetch a short-lived file. That means port 80 must be open to the internet, the domain must resolve to this server, and the web server must serve the challenge path rather than redirecting or blocking it. A firewall rule added for another reason, a redirect that sends all port 80 traffic to HTTPS before the challenge is served, or a DNS change that points the domain elsewhere can each break renewal without affecting the site itself — the site still works over HTTPS while the renewal quietly fails.
+</p>
+<p>
+  Check the firewall rules for port 80 explicitly; our <a href="/articles/vps-firewall-first-steps">firewall first-steps guide</a> covers the rules a new server typically needs. If the domain recently moved or its records changed, confirm the A or AAAA record still points at this server — a DNS cutover that went wrong can leave renewal checking a different machine, as our <a href="/articles/vps-dns-cutover-ttl-rollback">DNS cutover and rollback guide</a> explains. If port 80 cannot be opened, the DNS-01 challenge is the usual alternative, but it needs DNS provider credentials and its own automation, so it is a deliberate setup rather than a quick fallback.
+</p>
+
+<h2>4. Make sure the new certificate is actually used</h2>
+<p>
+  Renewal and serving are two different steps. After a new certificate is issued, the web server has to reload or restart to pick it up. Most Certbot setups handle this with a deploy hook that reloads the server automatically, but a setup that issues the certificate and never reloads will keep serving the old one until it expires — even though renewal itself succeeded. Check that a reload hook exists, and confirm after the next renewal that the served certificate's dates actually changed.
+</p>
+<p>
+  Rate limits are the other quiet trap. Let's Encrypt limits how many certificates can be issued for a domain in a given window, so repeated failed attempts or re-issuing the same certificate many times can lock you out for a while. That is another reason to use <code>--dry-run</code> for testing — it uses the staging server and does not count against the production limits.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Renewal method confirmed: timer or cron job exists and is active.</li>
+  <li>Dry-run renewal passes; run it again after any web server, firewall, or DNS change.</li>
+  <li>Live certificate expiry date checked directly against the server.</li>
+  <li>Port 80 reachable and the challenge path served, or DNS-01 set up deliberately.</li>
+  <li>Web server reload hook in place so the new certificate is actually served.</li>
+  <li>Domain still resolves to this server after any DNS change.</li>
+</ul>
+<p>
+  A certificate that renews itself is easy to forget — which is exactly why the checklist exists. Run it once when the certificate is installed, and again whenever anything around it changes, and expiry becomes a non-event.
+</p>
