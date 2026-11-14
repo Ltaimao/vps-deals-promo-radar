@@ -1,0 +1,82 @@
+title: VPS SSH Key Rotation: Replace a Compromised Key Safely
+date: 2026-11-15
+description: Rotate the SSH key on a VPS: add the new key, test it from a second session, then remove the old one — and what to check if the old key may be compromised.
+gap: vps-ssh-key-rotation-compromised-replacement
+
+<h1>VPS SSH Key Rotation: Replace a Compromised Key Safely</h1>
+<figure class="article-illustration"><img src="/articles/vps-ssh-key-rotation.png" alt="SSH key rotation on a VPS: a new key in focus in the foreground while the old key is set aside, with a laptop and a small rack server behind" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Add first, test second, remove last — the order is what keeps a rotation from becoming a lockout. Conceptual guide; commands are standard OpenSSH.</figcaption></figure>
+<p>
+  <strong>Short answer: add the new key first, test it from a second session, and only then remove the old key.</strong> The order is the whole trick — a key you delete before testing its replacement is how a routine rotation turns into a lockout. If the old key may be compromised, move fast but in the same order: add, test, remove, then check the server for anything the old key may have left behind.
+</p>
+<p>
+  This guide assumes key login is already in use. If the server still accepts password login, rotating the key alone does not close that door — disabling password authentication is a separate step, and it belongs after the new key is proven to work, for the same reason: never remove an access path before the replacement is tested.
+</p>
+
+<h2>1. Make the new key on your own machine</h2>
+<p>
+  Generate the key pair where you sit, not on the server. A private key should never travel over the network, and generating it on the server means downloading it afterwards — which is exactly the transfer you want to avoid:
+</p>
+<pre><code>ssh-keygen -t ed25519 -C "laptop-2026-11"</code></pre>
+<p>
+  The <code>-C</code> comment is not decoration: it is the label that lets you tell keys apart later, when you are staring at a list of fingerprints trying to work out which one to remove. Name it after the device, not the server. Ed25519 works on any reasonably current OpenSSH; if an old client refuses it, RSA with 4096 bits is the fallback, not a reason to keep using the old key.
+</p>
+
+<h2>2. Add the new public key — append, never overwrite</h2>
+<p>
+  Only the <code>.pub</code> half ever leaves your machine. Append it to the server's authorized keys:
+</p>
+<pre><code>ssh-copy-id -i ~/.ssh/id_ed25519.pub root@203.0.113.10</code></pre>
+<p>
+  <code>ssh-copy-id</code> appends the key and fixes the permissions for you. If you copy the line by hand instead, append it — do not overwrite the file. Overwriting <code>~/.ssh/authorized_keys</code> with a single key silently removes every other key in it, including the one you are currently logged in with. After adding, check the permissions if login fails: the <code>.ssh</code> directory should be <code>700</code> and <code>authorized_keys</code> <code>600</code>, both owned by the login user. OpenSSH ignores keys in a file it considers too open.
+</p>
+
+<h2>3. Test the new key from a second session</h2>
+<p>
+  Open a new terminal and log in with the new key while your first session is still connected:
+</p>
+<pre><code>ssh -i ~/.ssh/id_ed25519 root@203.0.113.10</code></pre>
+<p>
+  If the new session connects, the new key works and the rotation can continue. If it fails, the first session is still there to fix the problem — wrong key file, wrong permissions, or a key line pasted with a line break in the middle are the usual causes. Do not touch the old key until this test passes. If you do lock yourself out anyway, the recovery route is the provider console, as covered in our <a href="/articles/vps-ssh-lockout-recovery">VPS SSH lockout recovery guide</a>.
+</p>
+
+<h2>4. Remove the old key — exactly one line</h2>
+<p>
+  Find the old key's fingerprint first, so you remove the right line and nothing else:
+</p>
+<pre><code>ssh-keygen -lf ~/.ssh/id_old.pub</code></pre>
+<p>
+  Match that fingerprint against the lines in <code>~/.ssh/authorized_keys</code> — each line ends with the comment you set when the key was made, which is why step 1's label matters. Delete exactly that one line, save, and then prove the old key is dead by trying it:
+</p>
+<pre><code>ssh -i ~/.ssh/id_old root@203.0.113.10</code></pre>
+<p>
+  This time a failed login is the result you want. If the old key still connects, the line you removed was not the one the server was accepting — check for a second copy of the key in another user's <code>authorized_keys</code>, or a key the provider's panel injects at boot.
+</p>
+
+<h2>5. If the old key may be compromised, check for footprints</h2>
+<p>
+  A compromised key is not just a key to replace — it may have been used, and the server can usually tell you whether it was. Check the same four places before you call the rotation done:
+</p>
+<pre><code>cat ~/.ssh/authorized_keys
+last
+sudo grep sshd /var/log/auth.log</code></pre>
+<p>
+  Look for keys you do not recognize in <code>authorized_keys</code>, logins at times you were not working in <code>last</code>, and accepted logins for the old key in the auth log — the path varies by distribution, so on RHEL-family images check <code>/var/log/secure</code> instead. Also look for new users, new sudoers entries, and unfamiliar cron jobs. If you find signs someone used the key, rotation alone is not enough: consider rebuilding from a known-good image and rotating anything else that key could have reached, because a key that was copied can be used from anywhere. And if the same key was used on other servers, rotate it on every one of them — a key is only as safe as its weakest copy.
+</p>
+
+<h2>6. Keep the next rotation boring</h2>
+<p>
+  The cheapest rotation is the one you planned for. Keep one key per device or person, with a comment that names the device, and a short note of which key lives where — the next rotation is mostly a lookup exercise if the inventory exists. For new servers, put the current key in the first-boot setup instead of adding it by hand each time; our <a href="/articles/vps-cloud-init-first-boot">cloud-init first-boot guide</a> covers verifying that automation before you trust it. A firewall rule that restricts SSH to your own address is a useful second layer while keys change; our <a href="/articles/vps-firewall-first-steps">firewall first-steps guide</a> covers setting that up.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>New key generated on your own machine; the private key never left it.</li>
+  <li>New public key appended to authorized_keys, not overwrote.</li>
+  <li>New key tested from a second session while the first stayed open.</li>
+  <li>Old key line removed by fingerprint; old key tested and confirmed rejected.</li>
+  <li>Authorized keys, last logins, and the auth log checked if compromise was suspected.</li>
+  <li>Password login disabled only after the new key proved itself, if that is your setup.</li>
+</ul>
+<p>
+  Six checks, one order, no downtime. Once they pass, the old key is just a file on your machine waiting to be deleted — and the server only trusts the new one.
+</p>

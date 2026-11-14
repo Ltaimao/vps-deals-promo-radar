@@ -199,6 +199,15 @@
       "status": "ready",
       "sha256": "fffee3d466d095b59cc4c93f4e55ea2a3dd06aa80badbfcf6e4418b437264b64",
       "image_sha256": "de7e7d3f0248af0725abcfa723ff4df9ad3aefbfdebfae6a540b75f6cb530d3f"
+    },
+    {
+      "date": "2026-11-15",
+      "slug": "vps-ssh-key-rotation",
+      "gap": "vps-ssh-key-rotation-compromised-replacement",
+      "target_query": "VPS SSH key rotation replace compromised key",
+      "status": "ready",
+      "sha256": "27bb01ea52ba677a4937d4c77fddc2f2b0aa9a1273f473dbe68070145a8b1d1c",
+      "image_sha256": "7f1b8e46a7070438ecbbdca4391a0704453ebb681efed28da4f3ca607825f498"
     }
   ]
 }
