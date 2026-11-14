@@ -181,6 +181,24 @@
       "status": "ready",
       "sha256": "02034cd5498987af6833bf49d427908b883444cb0d389ba5b2689229699bf277",
       "image_sha256": "298bd3fef4e534662dff3ed4bc43f748bab174caa06458ef89ec9f3c544ad6c4"
+    },
+    {
+      "date": "2026-11-13",
+      "slug": "vps-ntp-time-sync-checklist",
+      "gap": "vps-ntp-time-sync-checklist",
+      "target_query": "VPS NTP time sync checklist",
+      "status": "ready",
+      "sha256": "2eea92e0313f7f1f5c45e6fc76d9e344d310c5d4ca1ba245dede0183b01d3978",
+      "image_sha256": "59c4cf854a72fca7292f7ac250397da1483c677d72fd830233ecf426d9f1ab1c"
+    },
+    {
+      "date": "2026-11-14",
+      "slug": "vps-firewall-first-steps",
+      "gap": "vps-firewall-first-steps-new-server",
+      "target_query": "VPS firewall first steps new server setup",
+      "status": "ready",
+      "sha256": "fffee3d466d095b59cc4c93f4e55ea2a3dd06aa80badbfcf6e4418b437264b64",
+      "image_sha256": "de7e7d3f0248af0725abcfa723ff4df9ad3aefbfdebfae6a540b75f6cb530d3f"
     }
   ]
 }

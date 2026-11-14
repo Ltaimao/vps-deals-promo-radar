@@ -1,0 +1,71 @@
+title: VPS Time Sync NTP Checklist
+date: 2026-11-13
+description: Check NTP time sync on a new VPS: confirm the clock source, enable the sync service, verify the offset is small, and recheck after a reboot.
+gap: vps-ntp-time-sync-checklist
+
+<h1>VPS Time Sync NTP Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-ntp-time-sync-checklist.png" alt="A server rack and a clock with arrows between them: the server checks its time against a time source and corrects drift" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Check the clock first, then the service that keeps it right. Conceptual guide; commands differ by distribution.</figcaption></figure>
+<p>
+  <strong>Short answer: read the clock and the offset first, confirm which sync service your image uses, enable that one service so it survives a reboot, and verify the offset is small afterwards.</strong> A server clock that drifts causes quiet problems later — log timestamps that do not line up, scheduled jobs that run at the wrong time, and TLS handshakes that fail because a certificate looks not yet valid or already expired. Five checks right after provisioning catch all of it, and they take a few minutes.
+</p>
+<p>
+  The commands below assume a Linux VPS. The sync service differs by image — chronyd on many RHEL-family and some Debian images, systemd-timesyncd on many Ubuntu images, ntpd on older setups — so the first job is finding out which one your server actually runs, not guessing.
+</p>
+
+<h2>1. Read the clock and the offset</h2>
+<p>
+  Start with the current time and whether the system believes it is synchronized:
+</p>
+<pre><code>timedatectl
+date -u</code></pre>
+<p>
+  <code>timedatectl</code> reports the local time, the universal time, and whether the system clock is synchronized. Compare the universal time against a clock you trust. If the offset is small — a fraction of a second — the clock is in good shape and the remaining steps are confirmation. If it is off by seconds or more, do not trust timestamps on this server yet; fix the sync before you install anything that depends on the time.
+</p>
+
+<h2>2. Find which service owns time sync</h2>
+<p>
+  Only one service should manage the clock. Check what is running before you enable anything:
+</p>
+<pre><code>systemctl status chronyd systemd-timesyncd ntpd --no-pager</code></pre>
+<p>
+  One of them should show as active; the others should show as inactive or not found, depending on the image. If none is active, the server has no sync service running, which is the most common state on a fresh minimal image — move to step 3. If two are somehow active, stop and disable one of them first: two services adjusting the same clock will fight each other and the offset will never settle.
+</p>
+
+<h2>3. Enable the service so it survives a reboot</h2>
+<p>
+  A service that is running but not enabled stops correcting the clock after the next reboot, and the drift comes back silently. Enable whichever service your image uses:
+</p>
+<pre><code>sudo systemctl enable --now chronyd</code></pre>
+<p>
+  Replace <code>chronyd</code> with <code>systemd-timesyncd</code> or <code>ntpd</code> if that is the service your image runs. The enable step is what makes the fix permanent; starting the service without enabling it only helps until the next reboot. If your provider's image documents a different time service, use the one it documents.
+</p>
+
+<h2>4. Verify the offset and the source</h2>
+<p>
+  Give the service a moment to talk to its time source, then check the offset and which source it is using:
+</p>
+<pre><code>chronyc tracking
+chronyc sources</code></pre>
+<p>
+  On a systemd-timesyncd system, <code>timedatectl timesync-status</code> shows the same idea. Look for a small offset and a reachable source. A source that never answers usually means the server cannot reach the time servers — check outbound UDP port 123 the way you would check any other outbound port before assuming the service is broken. A large offset that will not come down is a reason to investigate, not to force the clock: a sudden jump can confuse services that are already running, so correct it while the server is still empty.
+</p>
+
+<h2>5. Recheck after a reboot</h2>
+<p>
+  Reboot once, then run the step 1 check again. This is the check that catches an enabled-but-not-actually-starting service and a clock that resets on boot, which happens on some virtualized images. If the clock is right after the reboot and the service shows as active, the setup is done. If the time is wrong again, the service is not starting at boot — go back to step 3 and confirm the enable step took.
+</p>
+<p>
+  If you rebuild servers from a template, put the sync-service check into the first-boot setup so every fresh server gets the same clock without a manual repeat. Our <a href="/articles/vps-cloud-init-first-boot">cloud-init first-boot guide</a> covers verifying that automation before you trust it. Time sync is one of several first-boot checks worth doing in the same pass; disk space is another, and our <a href="/articles/check-vps-disk-space-linux">Linux disk space checklist</a> covers it.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>The clock matches a trusted time source, with only a small offset.</li>
+  <li>Exactly one sync service is active — chronyd, systemd-timesyncd, or ntpd.</li>
+  <li>That service is enabled, so it starts on boot.</li>
+  <li>The offset is small and the time source answers.</li>
+  <li>The clock is still right after a reboot.</li>
+</ul>
+<p>
+  Five checks, one order, no extra software to install. Once they pass, logs, scheduled jobs, and certificates all share the same time, and the server is ready for the actual work you bought it for.
+</p>
