@@ -1,0 +1,60 @@
+title: VPS CPU Steal Time: Checklist
+date: 2026-11-19
+description: CPU steal time shows when your VPS waits for the host CPU: how to read it, what counts as normal, and when to tune the workload or move.
+gap: vps-cpu-steal-time-shared-host
+
+<h1>VPS CPU Steal Time: Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-cpu-steal-time-checklist.png" alt="A CPU chip under a magnifying glass in front of a shared server rack" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Steal time is the one number that tells you whether the slowness is yours or the neighbours'. Conceptual guide; commands are standard Linux tools.</figcaption></figure>
+<p>
+  <strong>Short answer: read the steal column in top or vmstat, compare it over time rather than from one snapshot, and treat persistent steal as a signal to check your own workload first, then the host's contention, before deciding to move.</strong> On a shared VPS the physical CPU is split between tenants. When your virtual CPU is ready to run but the host gives the core to someone else, that waiting time is recorded as steal time. It is the most direct evidence of whether a slow server is under-provisioned, busy, or simply sharing a crowded host.
+</p>
+<p>
+  Steal time only exists on virtual machines. A dedicated server has no steal column at all, and a container-based VPS may show little or none depending on how the host reports it. Before drawing any conclusion, confirm the number is real on your setup and that you are measuring it the same way twice — one reading taken during a traffic spike says nothing about the host.
+</p>
+
+<h2>1. Read steal time the right way</h2>
+<p>
+  The <code>top</code> command shows steal as <code>%st</code> in the CPU line, and <code>vmstat 1</code> shows it in the <code>st</code> column. Both are snapshots of the last interval, so watch them for a minute rather than reading a single line:
+</p>
+<pre><code>top -bn1 | head -5
+vmstat 1 10</code></pre>
+<p>
+  For a longer view, record the same reading at the same times of day for a few days, or pull the values from your monitoring if the host or your agent already collects them. A server that shows steal only during your own backup window is a different story from one that shows steal all day. If you have never measured this before, our <a href="/articles/shared-vcpu-vps-fair-use">shared vCPU fair-use guide</a> explains how shared CPU is allocated and what the provider's fair-use wording usually means in practice.
+</p>
+
+<h2>2. Separate your load from the host's load</h2>
+<p>
+  High steal with low user and system CPU means your virtual CPU is idle and still waiting — the host is busy elsewhere. High steal alongside high user CPU means your own workload is competing for the same cores the neighbours want. The fix differs: the first case points at the host, the second at your workload.
+</p>
+<p>
+  Check what your own processes are doing before blaming the host. A runaway cron job, a backup that overlaps with peak traffic, or a service retrying in a tight loop can all push your CPU demand up and make steal look worse than it is. If memory pressure is forcing the system to swap, that can also make everything look slow; our <a href="/articles/vps-swap-vs-ram-memory-pressure">swap versus RAM guide</a> shows how to tell memory pressure apart from CPU contention.
+</p>
+
+<h2>3. Decide what counts as a problem</h2>
+<p>
+  There is no universal threshold, and anyone quoting one without context is guessing. What matters is the pattern on your server: occasional single-digit steal during busy hours is ordinary on a shared plan, while steal that stays high for hours and tracks with slow responses is a real problem. Compare the number with the symptoms — if response times are fine and jobs finish on schedule, the number alone is not a reason to act.
+</p>
+<p>
+  If the pattern is persistent, first try moving heavy work to off-peak hours and capping background jobs so they cannot all run at once. That is cheap and it tells you whether the workload or the host is the binding constraint. If the symptoms survive the tuning, the next step is a different plan on the same host or a different host — not a bigger plan on the same crowded one.
+</p>
+
+<h2>4. Compare fairly before moving</h2>
+<p>
+  If you do test another plan or provider, run the same workload and measure the same way: same commands, same time of day, same duration. A single benchmark run taken once is not a comparison, and a plan with more vCPUs does not help if the bottleneck is the host's overall contention rather than your allocation. Keep the old server running until the comparison is done, so you can switch back if the new one measures worse.
+</p>
+<p>
+  Also check whether the slowness follows the CPU at all. A server that waits on disk or network will look slow while steal stays near zero; our <a href="/articles/is-arm-vps-slower-than-x86">ARM versus x86 guide</a> covers how to separate CPU architecture and clock speed from the other resources that usually decide perceived speed.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Steal time read from top or vmstat over several intervals, not a single snapshot.</li>
+  <li>Own workload checked first: cron jobs, backups, and retry loops ruled out.</li>
+  <li>Pattern recorded over days: occasional steal versus sustained high steal.</li>
+  <li>Symptoms matched to the numbers: slow responses tracked alongside steal.</li>
+  <li>Heavy work moved off-peak and background jobs capped before blaming the host.</li>
+  <li>Any comparison done with the same workload, same commands, and same time of day.</li>
+</ul>
+<p>
+  Steal time is a measurement, not a verdict. Read it over time, separate your load from the host's, and only move once the pattern — not a single reading — says the host is the problem.
+</p>

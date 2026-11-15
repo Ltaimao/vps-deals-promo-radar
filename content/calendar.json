@@ -235,6 +235,33 @@
       "status": "ready",
       "sha256": "65b766188c878e0d911a2ce3cea433a354e817f8edf7908a206965f769335072",
       "image_sha256": "b0ee646b5a74526a3693f86fd5e8f9d3e124c3ee777089d63e2808fc93620100"
+    },
+    {
+      "date": "2026-11-19",
+      "slug": "vps-cpu-steal-time-checklist",
+      "gap": "vps-cpu-steal-time-shared-host",
+      "target_query": "VPS CPU steal time check",
+      "status": "ready",
+      "sha256": "7f3fb1a02a7bf154548e7b7e804ac5f9d6f54773cecf90f5b27108dd1f66976c",
+      "image_sha256": "32eb10f283c6d7806c3e8bd8d9aa47788aa82dcf4ef0f354c1cdc5f4ce8c06ad"
+    },
+    {
+      "date": "2026-11-20",
+      "slug": "vps-fail2ban-ssh-brute-force-checklist",
+      "gap": "vps-fail2ban-ssh-brute-force-protection",
+      "target_query": "fail2ban SSH brute force VPS",
+      "status": "ready",
+      "sha256": "6cf629ffd794021238ff85acca0c31f0e5ae16da8d55eb9d6771417b55f61c74",
+      "image_sha256": "dbfcccc22e485ca2b2e9671278b84d06354009d924e5ca92cf818eef9fc160d3"
+    },
+    {
+      "date": "2026-11-21",
+      "slug": "vps-disk-space-cleanup-checklist",
+      "gap": "vps-disk-space-cleanup-before-full",
+      "target_query": "VPS disk space cleanup checklist",
+      "status": "ready",
+      "sha256": "296a533e2bfca9daf5408af2e231358309a39c6698505f60562e70fc2ebfd372",
+      "image_sha256": "16226ff938ff549335816a449b5d78fae338fe184c1f9e58933a474a899740b8"
     }
   ]
 }

@@ -1,0 +1,68 @@
+title: Fail2ban SSH Brute Force Protection on a VPS: Checklist
+date: 2026-11-20
+description: A VPS gets SSH login attempts within minutes of booting: a fail2ban checklist for jails, bans, whitelists, and recovering when a ban locks you out.
+gap: vps-fail2ban-ssh-brute-force-protection
+
+<h1>Fail2ban SSH Brute Force Protection on a VPS: Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-fail2ban-ssh-brute-force-checklist.png" alt="A server shielded from a swarm of key-shaped login attempts" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Password guessing is background noise on any public IP — the ban only helps if the jail is actually watching the right log. Conceptual guide; commands are standard fail2ban.</figcaption></figure>
+<p>
+  <strong>Short answer: install fail2ban, enable the sshd jail against the log your SSH server actually writes to, set a ban time and retry limit you can live with, whitelist your own addresses, and confirm a ban triggers before you need it.</strong> A VPS with SSH on a public IP starts receiving password guesses almost as soon as it boots. Fail2ban does not make the server invisible — it watches the authentication log and blocks addresses that fail too many times, which turns a constant stream of guesses into occasional noise.
+</p>
+<p>
+  Fail2ban is a complement to key-only login, not a replacement for it. If password authentication is still enabled, a ban only slows an attacker down; the real protection is disabling password login entirely. The checklist below assumes you are moving towards keys, and it covers the fail2ban half of that setup.
+</p>
+
+<h2>1. Confirm the jail is watching the right log</h2>
+<p>
+  The most common fail2ban failure is a jail that never sees a login attempt because it reads the wrong file. Depending on the distribution, SSH failures may land in the systemd journal or in a plain auth log, and the jail's backend must match. Check the jail status and confirm it is actually counting:
+</p>
+<pre><code>sudo fail2ban-client status sshd
+sudo fail2ban-client status</code></pre>
+<p>
+  If the jail shows zero failures after a day on a public IP, it is probably not reading the log — public servers attract attempts quickly, so silence is suspicious. Check which log the SSH server writes to and point the jail at it, then restart the service and watch the count move. If you are setting up a new server, our <a href="/articles/vps-firewall-first-steps">firewall first-steps guide</a> covers the rules that belong alongside the jail, since fail2ban and the firewall do different jobs.
+</p>
+
+<h2>2. Set limits you can live with</h2>
+<p>
+  The three numbers that matter are how many failures trigger a ban, over what window, and for how long the ban lasts. A low retry limit with a long ban time blocks attackers fast but also locks out a legitimate user who mistypes a password a few times; a generous limit with a short ban is friendlier and weaker. Pick values that match how you log in — if you always use keys, a strict limit costs you nothing, and if you sometimes type a password, leave room for a typo.
+</p>
+<p>
+  Also decide what the ban does. The default is a firewall rule that drops the address; some setups send a notification instead of or in addition to blocking. Either way, confirm the ban actually appears in the firewall after a test failure, because a jail that logs bans without applying them is just a diary.
+</p>
+
+<h2>3. Whitelist your own addresses before you need them</h2>
+<p>
+  Add your own IP addresses and any jump host you use to the ignore list before the first real ban. Your home address may change, so note which addresses are whitelisted and review the list when your network changes. A static office IP belongs on the list; a shared VPN exit shared with strangers does not, since whitelisting it exempts everyone behind it.
+</p>
+<p>
+  Test the whitelist the same way you test the ban: trigger a few failures from a non-whitelisted address and confirm the ban lands, then trigger failures from a whitelisted one and confirm nothing happens. If the test that should ban does not, the jail is misconfigured — find out now, not after an attack.
+</p>
+
+<h2>4. Know how to recover from a self-lockout</h2>
+<p>
+  Sooner or later you will ban yourself — a new device, a changed key, a mistyped password on a bad connection. The recovery path is the provider console, not SSH, so confirm before you need it that you can reach the console and that it works. Our <a href="/articles/vps-ssh-lockout-recovery">SSH lockout recovery guide</a> walks through console access and the steps to get back in when SSH refuses you.
+</p>
+<p>
+  From the console, check the ban list, remove your address, and fix whatever caused the lockout — a wrong key, a changed username, or a stale entry in your SSH config. If you find yourself unbanning the same address repeatedly, the cause is usually on your side: a script retrying with an old credential, or a tool hammering the server on a schedule.
+</p>
+
+<h2>5. Move towards key-only login</h2>
+<p>
+  Fail2ban buys time; key-only authentication removes the target. Once fail2ban is running, disable password authentication in the SSH server configuration, restart the service, and confirm you can still log in with a key before closing the session you are working from. Keep a second key as a spare, stored separately, so a lost key is an inconvenience rather than a lockout.
+</p>
+<p>
+  If you rotate keys, do it deliberately rather than all at once: add the new key, confirm it works, then remove the old one. Our <a href="/articles/vps-ssh-key-rotation">SSH key rotation guide</a> covers the order of operations and the checks that keep a rotation from becoming a lockout.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>sshd jail enabled and reading the log the SSH server actually writes to.</li>
+  <li>Failure count moving: the jail has seen attempts since it started.</li>
+  <li>Retry limit, window, and ban time set to values that match how you log in.</li>
+  <li>Ban confirmed in the firewall after a test failure from a non-whitelisted address.</li>
+  <li>Own addresses whitelisted; console access confirmed for self-lockout recovery.</li>
+  <li>Password authentication disabled, key login confirmed, spare key stored separately.</li>
+</ul>
+<p>
+  Brute-force attempts are not a question of if — they start the day the server goes online. A jail that watches the right log, bans on a limit you chose, and leaves you a way back in turns that noise into a solved problem.
+</p>
