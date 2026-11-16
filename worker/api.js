@@ -1056,6 +1056,11 @@ const GSC_SITE_CANDIDATES_TATTOO = [
   "https://tattoodoodle.com/",
   "sc-domain:tattoodoodle.com",
 ];
+const GSC_SITE_CANDIDATES_TELEGRAM = [
+  "https://www.telegramchat.org/",
+  "https://telegramchat.org/",
+  "sc-domain:telegramchat.org",
+];
 
 async function gscAccessToken(env) {
   if (!env.GSC_CLIENT_ID || !env.GSC_CLIENT_SECRET || !env.GSC_REFRESH_TOKEN)
@@ -1114,7 +1119,7 @@ async function handleGscQuery(request, env) {
   const dim = (q.get("dimension") || "date").toLowerCase();
   const dimension = ["date", "query", "page"].includes(dim) ? dim : "date";
   const siteParam = (q.get("site") || "vps").toLowerCase();
-  const siteCandidates = siteParam === "tattoo" ? GSC_SITE_CANDIDATES_TATTOO : GSC_SITE_CANDIDATES;
+  const siteCandidates = siteParam === "tattoo" ? GSC_SITE_CANDIDATES_TATTOO : siteParam === "telegram" ? GSC_SITE_CANDIDATES_TELEGRAM : GSC_SITE_CANDIDATES;
   const end = new Date();
   end.setDate(end.getDate() - 3); // GSC data lags ~2-3 days
   const start = new Date(end);
