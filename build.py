@@ -1145,8 +1145,11 @@ def write_robots(out_path, base_url):
 
 
 def write_redirects(redirect_map, out_path):
-    """Cloudflare Pages _redirects: 每条 /deals/<id>/ 301 到所属厂商页。
-    ::RULE{现有那批 /deals/ 单条优惠页 301 到它所属的那个厂商页}"""
+    """Cloudflare Pages _redirects。
+    1) 每条 /deals/<id>/ 301 到所属厂商页
+       ::RULE{现有那批 /deals/ 单条优惠页 301 到它所属的那个厂商页}
+    2) 每篇文章的顶层短地址 /<slug>/ 301 到 /articles/<slug>/
+       （AI 引用常丢 /articles/ 前缀；见 article_short_redirects）。"""
     lines = []
     for src, dst in sorted(redirect_map.items()):
         lines.append("{} {} 301".format(src, dst))
@@ -1178,6 +1181,50 @@ def build_redirect_map(data):
         if pslug:
             mapping["/deals/" + deal_id + "/"] = "/providers/" + pslug + "/"
 
+    return mapping
+
+
+# 顶层已有路径：文章 slug 绝不能是这些，否则 /<slug>/ 会撞上现有页面。
+# 由线上实际顶层目录核定（2026-11-16），新顶层路径出现时要同步加进来。
+RESERVED_TOP_LEVEL = frozenset({
+    "about", "ai", "api", "articles", "assets", "black-friday", "compare",
+    "contact", "data", "deals", "methodology", "privacy", "providers",
+    "sponsored", "videos",
+})
+
+# 排期占位、永不发布的那一篇：没有目标页，301 过去也是 404，不建规则。
+NEVER_PUBLISHED_SLUGS = frozenset({"vps-ntp-time-sync-checklist"})
+
+
+def article_short_redirects():
+    """顶层文章短地址 /<slug>/ 301 到 /articles/<slug>/，逐条规则，不用通配。
+
+    背景：AI 引擎引用本站文章时常把 /articles/ 前缀丢掉（2026-11-16
+    Perplexity 首引即如此），短地址原来直接 404，引用流量接不住。
+    覆盖：articles/ 下全部已发布文章 + content/calendar.json 排期表
+    （排期里未发布的 5 篇目标页上线后规则自动生效；永不发布的那篇
+    占位除外）。与现有顶层路径冲突的 slug 跳过并打印，绝不赌通配。
+    """
+    slugs = {p.stem for p in (ROOT / "articles").glob("*.html")}
+    calendar_path = ROOT / "content" / "calendar.json"
+    if calendar_path.exists():
+        with open(calendar_path, "r", encoding="utf-8") as f:
+            for entry in json.load(f).get("entries", []):
+                slug = (entry.get("slug") or "").strip().lower()
+                if slug:
+                    slugs.add(slug)
+    mapping = {}
+    for slug in sorted(slugs):
+        if not re.fullmatch(r"[a-z0-9-]+", slug):
+            print("  short redirect skipped (bad slug):", slug)
+            continue
+        if slug in RESERVED_TOP_LEVEL:
+            print("  short redirect skipped (collides with top-level path):", slug)
+            continue
+        if slug in NEVER_PUBLISHED_SLUGS:
+            print("  short redirect skipped (never-published placeholder):", slug)
+            continue
+        mapping["/" + slug + "/"] = "/articles/" + slug + "/"
     return mapping
 
 
@@ -1605,10 +1652,20 @@ def main():
     # 被下线的厂商页：老地址 301 回它的上位页（首页），不留死链
     for p in offline_providers:
         redirect_map["/providers/" + p["slug"] + "/"] = "/"
+    # 文章短地址：AI 引用常丢 /articles/ 前缀，顶层 /<slug>/ 301 到正文。
+    # 注意放在 dropped 过滤之后：这里的目标是文章 slug，不是厂商 slug，
+    # 不走厂商存活检查；冲突检查在 article_short_redirects() 里做。
+    short = article_short_redirects()
+    for src, dst in short.items():
+        if src in redirect_map:
+            print("  short redirect skipped (already a redirect):", src)
+            continue
+        redirect_map[src] = dst
     write_redirects(redirect_map, SITE / "_redirects")
     print("  deal pages generated: 0 (offers go to provider-page dynamic layer)")
     print("  301 redirects written:", len(redirect_map),
-          "(映射表里目标页不存在的", len(dropped), "条已剔出 -> 它们返回 404)")
+          "(映射表里目标页不存在的", len(dropped), "条已剔出 -> 它们返回 404;",
+          "文章短地址", len(short), "条)")
     if dropped:
         for s, d in sorted(dropped.items()):
             print("     404  ", s, "-> 目标页不存在:", d)
