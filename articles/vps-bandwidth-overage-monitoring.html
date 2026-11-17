@@ -1,0 +1,61 @@
+title: VPS Bandwidth Overage: Monitor Usage Before It Costs You
+date: 2026-11-17
+description: Check VPS bandwidth before the overage bill arrives: where usage is counted, how to read the graph, and what to do when the month is running hot.
+gap: vps-bandwidth-usage-overage-monitoring
+
+<h1>VPS Bandwidth Overage: Monitor Usage Before It Costs You</h1>
+<figure class="article-illustration"><img src="/articles/vps-bandwidth-overage-monitoring.png" alt="VPS bandwidth monitoring: a server rack with a gauge dial and a rising usage chart above it" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>The graph is the warning; the bill is the confirmation. Conceptual guide; provider panels count traffic differently, so check yours.</figcaption></figure>
+<p>
+  <strong>Short answer: check your provider's bandwidth graph at least weekly, know whether it counts inbound, outbound, or both, and act when the pace projects past your allowance — not when the month is already over.</strong> Most overage surprises are not caused by a single spike. They are caused by a steady, slightly-too-fast burn rate that nobody watched until the allowance was gone.
+</p>
+<p>
+  Bandwidth allowances on a VPS usually work one of two ways: a monthly transfer allowance, where traffic above the allowance may be billed extra or throttled, or an unmetered port speed, where the limit is how fast traffic can flow rather than how much. The checks below assume a monthly allowance, because that is where overage happens — but the first step, finding out which model your plan uses, matters either way. Do not guess from the plan name; read the plan terms or the usage page in the provider panel.
+</p>
+
+<h2>1. Find where usage is counted — and what counts</h2>
+<p>
+  Start in the provider panel, not on the server. The panel's graph is the number that decides billing, and it may count traffic differently from a tool running on the server. The usual differences: some providers count outbound traffic only, some count both directions, and some exclude traffic between their own servers or inside the same region. A server-side tool such as vnStat measures what passes the server's own network interface, which may include traffic the provider does not bill for, or miss traffic the provider does bill for. Use the server-side numbers to find what is generating traffic; use the provider's numbers to judge the bill.
+</p>
+<p>
+  Also check the reset date. A monthly allowance usually resets on a fixed day, often the billing date rather than the first of the month. A graph that looks alarming on the 28th may be harmless if the allowance resets on the 29th — and a graph that looks fine on the 5th may be burning too fast for a reset on the 30th. The pace matters more than the total.
+</p>
+
+<h2>2. Read the pace, not just the total</h2>
+<p>
+  The question to ask each week is simple: at this rate, where does the month end? If you have used half the allowance in the first week, the month will end over it unless something changes. A rough projection — current usage divided by days elapsed, multiplied by days in the cycle — is enough to decide whether to act. Many provider panels show a daily breakdown; a sudden step up on one day points at a specific cause, while a smooth climb points at steady growth, such as more visitors or a backup job that runs more often than you thought.
+</p>
+<p>
+  Set a threshold for yourself rather than waiting for the provider's warning, if it sends one at all. For example, investigate when usage passes half the allowance before the halfway point of the cycle, or when any single day uses several times the daily average. The earlier the check, the cheaper the fix — trimming a heavy job on day ten costs far less than paying for a full month of overage.
+</p>
+
+<h2>3. Find what is using the traffic</h2>
+<p>
+  On the server, the usual suspects fall into a few groups. Large downloads served to visitors, such as images, videos, or file downloads, are the most common steady source. Automated jobs are the most common surprise: offsite backups, sync jobs, and log shipping all move data on a schedule, and a job that runs hourly instead of daily can quietly multiply its traffic. A third group is unwanted traffic — bots, scrapers, or abuse of an open service — which may show up as a sharp rise in requests rather than a rise in legitimate use.
+</p>
+<p>
+  Server tools can narrow it down: interface counters show the total, per-process or per-connection tools show which service is active, and the web server's access log shows which URLs are being requested and by whom. If the traffic is mostly one file or one client address, the cause is usually obvious once you look. A firewall rule that blocks an abusive address or rate-limits a single client may stop the burn; our <a href="/articles/vps-firewall-first-steps">firewall first-steps guide</a> covers setting that up on a new server.
+</p>
+
+<h2>4. What to do when the month is running hot</h2>
+<p>
+  Once the projection says the allowance will run out, the options depend on what is using the traffic. If it is legitimate growth, the honest fixes are to reduce what is served — compress images, serve large files from a CDN or object storage, or cache more aggressively — or to move to a plan with a larger allowance before the overage starts. If it is a scheduled job, change its frequency or its destination: a backup that copies everything every hour may be able to copy only what changed, and a job that syncs across regions may be able to stay inside one region.
+</p>
+<p>
+  If the traffic is unwanted, blocking it is usually faster than paying for it. Check the logs first so the block hits the right source, and remember that a block at the firewall stops the traffic from reaching the server but may not stop the provider from counting it if the counting happens upstream. When in doubt, ask the provider's support how their counting works — the answer decides whether a firewall rule helps the bill or only helps the server.
+</p>
+<p>
+  Do not rely on throttling as a plan. Some providers slow the port or suspend the service when the allowance is exhausted, which may take a site offline at the worst moment. Knowing the provider's overage behavior in advance — extra billing, throttling, or suspension — is part of the check, not something to discover from the invoice. Keep an eye on the other resources that grow with traffic, too: log files from a busy server can fill a disk on their own, as our <a href="/articles/vps-docker-log-disk-usage">Docker log disk usage guide</a> shows for container logs, and our <a href="/articles/check-vps-disk-space-linux">disk space diagnosis guide</a> covers finding what is filling the disk.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Plan model confirmed: monthly allowance or unmetered port, and what the provider counts.</li>
+  <li>Reset date known; weekly check compares pace against the remaining days, not just the total.</li>
+  <li>Provider graph and server-side counters compared so the numbers agree on the cause.</li>
+  <li>Top traffic sources identified from logs or per-service counters before acting.</li>
+  <li>Fix chosen for the cause: reduce, cache, reschedule, block, or upgrade the plan.</li>
+  <li>Overage behavior known in advance: extra billing, throttling, or suspension.</li>
+</ul>
+<p>
+  Bandwidth is one of the few VPS costs that grows while nobody is looking. A weekly glance at the graph and a projection you can do in your head is usually all it takes to keep it that way.
+</p>
