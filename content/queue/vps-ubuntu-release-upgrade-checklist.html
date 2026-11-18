@@ -1,0 +1,73 @@
+title: Ubuntu Release Upgrade on a VPS: Checklist
+date: 2026-11-24
+description: A release upgrade replaces the OS under your services. Back up and snapshot first, update the current release, and verify every service after reboot.
+gap: vps-ubuntu-do-release-upgrade
+
+<h1>Ubuntu Release Upgrade on a VPS: Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-ubuntu-release-upgrade-checklist.png" alt="Ubuntu release upgrade on a VPS: server layers rising toward a glowing upward arrow beside a snapshot disk" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>An upgrade is reversible only if the backup and snapshot exist before it starts. Conceptual guide; commands are standard Ubuntu.</figcaption></figure>
+<p>
+  <strong>Short answer: back up and snapshot first, bring the current release fully up to date, check free disk space and third-party repositories, run the upgrade in a session that survives a disconnect, and verify every service before calling it done.</strong> A release upgrade is not a routine package update — it replaces the operating system underneath your services. Most upgrades go smoothly; the ones that do not are the ones started without a way back.
+</p>
+<p>
+  The deciding question before you begin is not "will this work" but "what happens if it does not." If the answer is a tested snapshot you can restore in minutes, the upgrade is a reasonable risk. If the answer is nothing, stop and fix that first.
+</p>
+
+<h2>1. Back up, then snapshot — in that order</h2>
+<p>
+  Take a full backup of anything you cannot rebuild: website files, databases, and configuration in <code>/etc</code>. Copy it off the server, not just to another directory on the same disk. Then take a provider snapshot of the whole machine. Our <a href="/articles/vps-backup-offsite-rotation-checklist">offsite backup rotation checklist</a> covers keeping a copy outside the server, and our <a href="/articles/vps-snapshot-restore-test">snapshot restore test guide</a> covers proving the snapshot actually restores — a snapshot you have never restored is a hope, not a plan.
+</p>
+<p>
+  Confirm the snapshot finished before starting the upgrade. A snapshot still in progress when the upgrade begins may capture a half-upgraded system, which is the worst state to restore from.
+</p>
+
+<h2>2. Bring the current release fully up to date</h2>
+<p>
+  The upgrade tool expects the current release to be current. Update all packages and reboot if a new kernel was installed, so the upgrade starts from a known-good, running system:
+</p>
+<pre><code>sudo apt update && sudo apt full-upgrade -y
+sudo reboot</code></pre>
+<p>
+  Also check which release you are on and whether an upgrade path exists — not every release can jump directly to the newest one, and some require stepping through an intermediate release. Confirm the target release and the supported path before running the upgrade command, not during it.
+</p>
+
+<h2>3. Check disk space and third-party repositories</h2>
+<p>
+  A release upgrade downloads hundreds of packages and needs free space to unpack them. Check available space on the root filesystem and free some if it is tight — our <a href="/articles/vps-disk-space-cleanup-checklist">disk space cleanup checklist</a> covers the usual suspects. Running out of space halfway through an upgrade is one of the few ways to turn a routine upgrade into a rescue operation.
+</p>
+<p>
+  List third-party repositories and PPAs. The upgrade tool usually disables them, which means software installed from them may not upgrade, or may be removed. Note which services depend on third-party packages and check that they have packages for the target release — if they do not, decide before the upgrade whether to keep the old release, drop that software, or find a replacement.
+</p>
+
+<h2>4. Run the upgrade in a session that survives a disconnect</h2>
+<p>
+  Start the upgrade inside a terminal multiplexer such as <code>tmux</code> or <code>screen</code>, so a dropped connection does not kill it halfway:
+</p>
+<pre><code>tmux new -s upgrade
+sudo do-release-upgrade</code></pre>
+<p>
+  If the connection drops, reconnect and reattach the session instead of starting over. During the upgrade, the tool will ask about configuration files you have modified — read each prompt rather than accepting defaults blindly. A wrong choice here can overwrite a working service configuration with a stock one, and the service will fail to start afterwards for a reason that looks unrelated to the upgrade.
+</p>
+
+<h2>5. Verify every service before calling it done</h2>
+<p>
+  After the upgrade and reboot, go through the services one by one: web server, database, cron jobs, firewall, and any application that runs on boot. Check that each one is running and serving correctly, not just that the system booted:
+</p>
+<pre><code>systemctl --failed
+ss -tlnp</code></pre>
+<p>
+  The first command lists failed units; the second shows what is actually listening. Compare the listening services against what ran before the upgrade — a missing listener is a service that did not survive it. Check the site from the outside, not just from the server: a page fetched from your own machine proves the public path works. And confirm scheduled jobs still run — a cron job that silently stops after an upgrade can go unnoticed for weeks.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Off-server backup taken and snapshot completed before the upgrade starts.</li>
+  <li>Current release fully updated and rebooted into a known-good state.</li>
+  <li>Upgrade path to the target release confirmed as supported.</li>
+  <li>Enough free disk space on the root filesystem for the package download.</li>
+  <li>Third-party repositories reviewed; services depending on them checked for the target release.</li>
+  <li>Upgrade run inside tmux or screen so a disconnect cannot kill it.</li>
+  <li>Every service verified after reboot: failed units, listening ports, and an outside check of the site.</li>
+</ul>
+<p>
+  If the upgrade fails partway, do not keep patching forward in the hope it recovers — restore the snapshot, find out what went wrong on a test machine, and try again with the fix in place. The snapshot is there so a failed upgrade costs an hour, not a weekend.
+</p>

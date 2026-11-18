@@ -262,6 +262,33 @@
       "status": "ready",
       "sha256": "296a533e2bfca9daf5408af2e231358309a39c6698505f60562e70fc2ebfd372",
       "image_sha256": "16226ff938ff549335816a449b5d78fae338fe184c1f9e58933a474a899740b8"
+    },
+    {
+      "date": "2026-11-22",
+      "slug": "vps-ssh-port-change-checklist",
+      "gap": "vps-change-default-ssh-port",
+      "target_query": "change default SSH port VPS",
+      "status": "ready",
+      "sha256": "f1de7a1cd73ff8e52ac5e79a660ae5387772d19befa1cace9d35a7c4b2681347",
+      "image_sha256": "87ccdae2219e089f8b028366341311009fac1a9f6f340989211c823d6668a6c8"
+    },
+    {
+      "date": "2026-11-23",
+      "slug": "vps-uptime-monitoring-alerts-checklist",
+      "gap": "vps-uptime-monitoring-alert-setup",
+      "target_query": "VPS uptime monitoring alerts",
+      "status": "ready",
+      "sha256": "8cd896aa253b65f56ffaa2c9a695f746670c2681f9173f84f180357d330c1941",
+      "image_sha256": "48a79a77b9700f99f7ce85766132e3e0212156c03a841c8c53beead64cadc9a1"
+    },
+    {
+      "date": "2026-11-24",
+      "slug": "vps-ubuntu-release-upgrade-checklist",
+      "gap": "vps-ubuntu-do-release-upgrade",
+      "target_query": "Ubuntu release upgrade VPS checklist",
+      "status": "ready",
+      "sha256": "6df7bb3e43f3ca66d6377b945c7c0de62bf5e98e62dcec0c3b0e9e30a830b4d8",
+      "image_sha256": "f4335fa44f78f3dea72082d18636a9e766af69afcaacd696a479b0e0eff1e95b"
     }
   ]
 }
