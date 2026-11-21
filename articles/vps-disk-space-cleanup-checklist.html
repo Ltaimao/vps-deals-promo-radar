@@ -1,0 +1,60 @@
+title: VPS Disk Space Cleanup: Checklist
+date: 2026-11-21
+description: A VPS disk fills up quietly until something breaks: a cleanup checklist for finding what grew, clearing it safely, and keeping the disk from filling again.
+gap: vps-disk-space-cleanup-before-full
+
+<h1>VPS Disk Space Cleanup: Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-disk-space-cleanup-checklist.png" alt="A storage gauge next to a server with old files being swept away" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Disks rarely fill in one jump — they grow a little every day until a routine write has nowhere to go. Conceptual guide; commands are standard Linux tools.</figcaption></figure>
+<p>
+  <strong>Short answer: find the largest directories before deleting anything, clear package caches, rotated logs, and old application data in that order, and confirm a snapshot or backup exists before removing anything you cannot recreate.</strong> A full disk is one of the least dramatic failures a VPS can have and one of the most disruptive: writes fail, services stop, and the fix often has to happen while the system is already unhappy. The cleanup below is safe because it starts with measurement and ends with prevention.
+</p>
+<p>
+  The first rule is never to delete by guesswork. A directory that looks big may be the one the database needs, and a file that looks old may be the only copy of something. Measure first, check what the space belongs to, and only then remove — in that order.
+</p>
+
+<h2>1. Find what actually grew</h2>
+<p>
+  Start with overall usage, then drill into the largest directories one level at a time:
+</p>
+<pre><code>df -h
+du -sh /* 2>/dev/null | sort -rh | head -10</code></pre>
+<p>
+  The first command shows which filesystem is full; the second shows which top-level directories hold the space. Repeat the drill inside the largest directory until you reach the files or folders responsible. If the numbers do not add up — the disk reports full but the directories look small — deleted files held open by a running process may be the cause, and a restart of the holding service releases them. Our <a href="/articles/check-vps-disk-space-linux">Linux disk space guide</a> explains how to read these numbers, including inodes, which can run out while bytes remain.
+</p>
+
+<h2>2. Clear the safe wins first</h2>
+<p>
+  Package manager caches are the usual first win: they hold downloaded packages that can be fetched again, so clearing them loses nothing but time. Rotated and compressed logs are next — check how many generations are kept and whether the oldest ones are still needed. Temporary directories and old installer files follow the same rule: if it can be downloaded or regenerated, it is safe to remove.
+</p>
+<p>
+  What stays: anything the system or an application still references, and anything without another copy. Application data, databases, and user uploads are never "cleanup" — they are content, and removing them is data loss with extra steps. If those are the bulk of the disk, the answer is not deletion but a bigger disk or an offsite copy; our <a href="/articles/vps-docker-log-disk-usage">Docker log disk guide</a> covers the case where container logs, rather than the application itself, are doing the growing.
+</p>
+
+<h2>3. Check logs and growth sources before they refill the disk</h2>
+<p>
+  A cleanup that buys a week is not a fix. Once the disk has room, find the source of the growth: a log that never rotates, a backup that writes locally and never prunes, a cache with no size limit, or a service that appends to a file on every request. Check the log rotation configuration and the retention settings of anything that writes regularly, and set a limit where none exists.
+</p>
+<p>
+  Put a simple monitor in place so the next warning arrives before the disk is full: a daily check of usage percentage, with an alert well before 100%. A threshold that fires at 80% leaves time to act; one that fires at 98% is a countdown. If the growth is genuinely from data you need, plan the move — a larger disk, or an archive off the server — while the disk still has room to breathe.
+</p>
+
+<h2>4. Confirm the system is healthy after cleanup</h2>
+<p>
+  After deleting, confirm the space is actually free and the services that were failing have recovered. Restart any service that was writing to a full disk, and check its logs for errors recorded during the outage — a database that stopped mid-write or a queue that backed up may need attention beyond the freed space.
+</p>
+<p>
+  Also confirm the cleanup did not break anything by removing a file a service expected to find. A quick pass over the services that were running before the cleanup, checking each one starts and serves normally, is cheaper than discovering a missing file at the next restart. If the disk filled because of a backup gone wrong, verify the next scheduled backup runs cleanly before calling the job done.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Largest directories measured with du before anything was deleted.</li>
+  <li>Package caches, rotated logs, and temporary files cleared first.</li>
+  <li>Snapshot or backup confirmed before removing anything irreplaceable.</li>
+  <li>Growth source found: log rotation, backup pruning, or cache limit set.</li>
+  <li>Usage monitor in place with an alert well before the disk fills.</li>
+  <li>Services restarted and checked healthy after the cleanup.</li>
+</ul>
+<p>
+  A disk that fills once is a warning; a disk that fills twice is a missing monitor. Measure, clear the safe wins, fix the growth source, and the next alert will arrive while there is still time to act.
+</p>
