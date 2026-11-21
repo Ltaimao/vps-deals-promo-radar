@@ -1,0 +1,63 @@
+title: MySQL Backup and Restore on a VPS: Checklist
+date: 2026-11-26
+description: A MySQL backup you have never restored is not a backup: dump it, copy it offsite, and rehearse the restore before the day you actually need it.
+gap: vps-mysql-backup-restore-verification
+
+<h1>MySQL Backup and Restore on a VPS: Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-mysql-backup-restore-checklist.png" alt="Verifying a MySQL backup on a VPS: a database being copied to an offsite vault and checked with a magnifying glass" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>A backup only counts when the restore works — test it on a spare server before you need it for real. Conceptual guide; commands are standard MySQL.</figcaption></figure>
+<p>
+  <strong>Short answer: back up with mysqldump or a physical backup tool, copy the backup off the server, and restore it on a spare machine on a schedule — because a backup that has never been restored is an assumption, not a safety net.</strong> The most common MySQL data-loss story is not "we had no backup" — it is "we had backups, and every one of them was corrupt, incomplete, or stored on the same disk that failed." The checklist below closes that gap.
+</p>
+<p>
+  Backups have two enemies: the disk that dies with the database, and the restore nobody ever rehearsed. Fixing the first is a copy command; fixing the second is a habit. Both are cheap compared with rebuilding a database from memory.
+</p>
+
+<h2>1. Take a consistent logical backup with mysqldump</h2>
+<p>
+  For most small and medium databases, a logical dump is the simplest reliable backup. Use <code>--single-transaction</code> so InnoDB tables are dumped in a consistent state without locking the database for the whole run:
+</p>
+<pre><code>mysqldump --single-transaction --routines --triggers --all-databases | gzip &gt; /backup/mysql-$(date +%F).sql.gz</code></pre>
+<p>
+  Include routines and triggers — a dump without them restores the tables but silently drops the stored procedures your application depends on. For very large databases, a physical backup tool such as Percona XtraBackup or a filesystem snapshot may be faster, but the principle is the same: the backup has to capture a consistent point in time, not a moving target.
+</p>
+
+<h2>2. Copy the backup off the server, on a schedule</h2>
+<p>
+  A backup on the same disk as the database protects against a bad query, not against a dead disk. Copy each backup to another location — another server, object storage, or an external drive — and automate the copy so it happens whether or not anyone remembers:
+</p>
+<pre><code>rsync -av /backup/ user@203.0.113.10:/backup/mysql/</code></pre>
+<p>
+  Replace the address with your own backup destination. Keep more than one generation: a single latest copy is useless if the corruption you are recovering from is already inside it. Our <a href="/articles/vps-backup-offsite-rotation-checklist">offsite backup rotation checklist</a> covers retention windows and how many generations to keep.
+</p>
+
+<h2>3. Restore on a spare machine and check the data, not just the exit code</h2>
+<p>
+  A restore that exits without an error is not proof the data is good. Rehearse the restore on a separate server or container, then check that the important parts are actually there:
+</p>
+<pre><code>gunzip &lt; /backup/mysql-2026-11-26.sql.gz | mysql -u root -p
+mysql -u root -p -e "SELECT COUNT(*) FROM mydb.orders;"</code></pre>
+<p>
+  Compare row counts and a few known records against the live database. A dump that restores with zero errors but missing tables — because a table was dropped mid-dump, or a privilege was missing — is worse than no backup at all, because it delays the moment you discover the problem. Schedule the rehearsal monthly at minimum, and after any change to the backup command.
+</p>
+
+<h2>4. Protect the backup itself</h2>
+<p>
+  A database dump contains everything an attacker wants: user emails, password hashes, and any data your application stores. Restrict the backup directory to the database user and root, encrypt backups that leave the server, and keep the credentials used by the backup script in a file only root can read. Our <a href="/articles/vps-snapshot-restore-test">snapshot restore test guide</a> covers the same verification habit at the whole-server level — snapshots and database backups complement each other, and neither replaces the other.
+</p>
+
+<h2>5. Automate it, and alert on failure</h2>
+<p>
+  A backup that runs only when someone remembers to run it will eventually not run. Put the dump and the offsite copy in a scheduled job, log the output, and alert on a non-zero exit code — a silent backup failure is the same as no backup. Check the backup size as a sanity signal too: a dump that suddenly shrinks to near zero usually means the dump failed and gzip compressed an error message instead of data.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Logical dump taken with <code>--single-transaction</code>, including routines and triggers.</li>
+  <li>Backup copied off the server automatically, with more than one generation kept.</li>
+  <li>Restore rehearsed on a spare machine; row counts and known records verified.</li>
+  <li>Backup files restricted to root, encrypted if they leave the server.</li>
+  <li>Dump and copy automated, with an alert on any failure and a size check as a sanity signal.</li>
+</ul>
+<p>
+  The test that matters is the one you run before you need it. If the last restore rehearsal was more than a month ago, run one today — it is a thirty-minute job on a quiet afternoon, and a multi-day rebuild on the day it is not.
+</p>

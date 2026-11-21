@@ -289,6 +289,33 @@
       "status": "ready",
       "sha256": "6df7bb3e43f3ca66d6377b945c7c0de62bf5e98e62dcec0c3b0e9e30a830b4d8",
       "image_sha256": "f4335fa44f78f3dea72082d18636a9e766af69afcaacd696a479b0e0eff1e95b"
+    },
+    {
+      "date": "2026-11-25",
+      "slug": "vps-kernel-updates-reboot-checklist",
+      "gap": "vps-kernel-update-reboot-planning",
+      "target_query": "VPS kernel update reboot checklist",
+      "status": "ready",
+      "sha256": "65a6c784b69208aff9898d05660753bc4f680bd374452f3c1ccd4b400b76b41e",
+      "image_sha256": "db7bf0ba02acf468de54dc799b9eb9347516e6ff303636680816922d365cfb8b"
+    },
+    {
+      "date": "2026-11-26",
+      "slug": "vps-mysql-backup-restore-checklist",
+      "gap": "vps-mysql-backup-restore-verification",
+      "target_query": "MySQL backup restore VPS checklist",
+      "status": "ready",
+      "sha256": "7a3b0bc99d10b24bddb115399a6fa6a20140e1dd4816d689fe36325335829344",
+      "image_sha256": "be6ddc77f74ed7676828590ec800793136eaa40bee8a044f76a6be99ee9812b6"
+    },
+    {
+      "date": "2026-11-27",
+      "slug": "vps-cron-job-monitoring-checklist",
+      "gap": "vps-cron-job-failure-monitoring",
+      "target_query": "VPS cron job failure monitoring",
+      "status": "ready",
+      "sha256": "73ff3588701469cff118cdfafca5f4805df5ca2e4af425f839414f0c3773fbbe",
+      "image_sha256": "d20c63d417e946428b5f9cd1f24e1fae3e2e9297e24b13805c2f32609bd6e485"
     }
   ]
 }

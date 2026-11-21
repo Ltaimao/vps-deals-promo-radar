@@ -1,0 +1,62 @@
+title: VPS Cron Job Silent Failures: Monitoring Checklist
+date: 2026-11-27
+description: A cron job that fails silently is worse than no job at all: log the output, check the exit code, and add a heartbeat so a missed run tells you.
+gap: vps-cron-job-failure-monitoring
+
+<h1>VPS Cron Job Silent Failures: Monitoring Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-cron-job-monitoring-checklist.png" alt="Monitoring VPS cron jobs: a wall clock with gears, an alert bell, and a heartbeat pulse line" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Cron runs in silence by design — the job has to tell you when it fails, or nobody will. Conceptual guide; commands are standard Linux.</figcaption></figure>
+<p>
+  <strong>Short answer: log every cron job's output, check its exit code, prevent overlapping runs with a lock, and add a heartbeat so a job that never runs is as visible as one that crashes.</strong> Cron is quiet by design: when a job fails, nothing on the server complains. Backups stop, certificates stop renewing, and cleanup jobs stop cleaning — and the first sign is usually the outage those jobs existed to prevent.
+</p>
+<p>
+  The failure modes are boring and predictable, which is good news: a log file, an exit-code check, a lock file, and a heartbeat cover nearly all of them. The checklist below turns a silent scheduler into one that reports.
+</p>
+
+<h2>1. Log output and check the exit code</h2>
+<p>
+  By default, cron emails output to the local user — on a VPS that mail usually goes nowhere. Redirect each job's output to a log file, and make the job's success explicit rather than assumed:
+</p>
+<pre><code>0 3 * * * /usr/local/bin/backup.sh &gt;&gt; /var/log/backup.log 2&gt;&amp;1</code></pre>
+<p>
+  A log full of output is only useful if someone reads it, so add an explicit failure check at the end of the script — or wrap the job so a non-zero exit sends an alert. The exit code is the one signal that distinguishes "ran and worked" from "ran and failed": a job that logs nothing and exits zero may still have done nothing, but a job that exits non-zero has definitely told you something is wrong.
+</p>
+
+<h2>2. Prevent overlapping runs with a lock file</h2>
+<p>
+  A backup or sync job that takes longer than its interval will start a second copy while the first is still running — and the two copies can corrupt each other's output. Use <code>flock</code> so a new run skips itself if the previous one is still active:
+</p>
+<pre><code>0 3 * * * flock -n /var/lock/backup.lock /usr/local/bin/backup.sh &gt;&gt; /var/log/backup.log 2&gt;&amp;1</code></pre>
+<p>
+  The <code>-n</code> flag means the second run exits immediately instead of waiting. Log that skip too, so a job that keeps skipping because it never finishes shows up in the log instead of silently falling behind.
+</p>
+
+<h2>3. Add a heartbeat for jobs that must run</h2>
+<p>
+  Logs and exit codes catch a job that runs and fails. They cannot catch a job that never runs — a mistyped schedule, a daemon that stopped, a server that rebooted into a broken crontab. For jobs that must run, add a heartbeat: the job pings a monitoring endpoint at the end of a successful run, and the monitor alerts if the ping does not arrive on time:
+</p>
+<pre><code>0 3 * * * /usr/local/bin/backup.sh &gt;&gt; /var/log/backup.log 2&gt;&amp;1 && curl -fsS -m 10 https://hc-ping.example.com/backup-ok</code></pre>
+<p>
+  Replace the URL with your own monitoring service. The heartbeat turns "nothing happened" into an alert, which is the one failure mode no log file can catch. Our <a href="/articles/vps-uptime-monitoring-alerts-checklist">uptime monitoring checklist</a> covers the same idea for services — a check that only runs when things work is not a check.
+</p>
+
+<h2>4. Check the schedule, the environment, and the permissions</h2>
+<p>
+  Most cron failures are not code failures. Cron runs with a minimal environment — a different <code>PATH</code>, no shell profile, a different working directory — so a script that works in your terminal may fail in cron for reasons that have nothing to do with its logic. Use absolute paths for every command and file, set any environment variables the script needs inside the script itself, and confirm the script is executable by the user that owns the crontab. After any edit, list the crontab and read the schedule back — a job scheduled for the wrong hour runs perfectly, at the wrong time.
+</p>
+
+<h2>5. Review the logs on a schedule, and alert on silence</h2>
+<p>
+  A heartbeat alerts on a missed run; a weekly log review catches the slow drift — jobs that succeed but take twice as long as they used to, warnings that appear before a failure, a disk that fills because the cleanup job started skipping. Our <a href="/articles/vps-disk-space-cleanup-checklist">disk space cleanup checklist</a> covers what happens when the cleanup job is the one that stops. Put the review itself on a schedule, or it will be the next silent failure.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Every job logs output to a file; failures exit non-zero and alert.</li>
+  <li>Long-running jobs use <code>flock</code> so overlapping runs cannot corrupt output.</li>
+  <li>Must-run jobs ping a heartbeat; a missed ping alerts.</li>
+  <li>Absolute paths, explicit environment, correct user and permissions for every job.</li>
+  <li>Crontab read back after every edit; logs reviewed weekly.</li>
+</ul>
+<p>
+  If a job has not logged anything in a while, do not assume it is fine — check whether it ran at all. Cron's silence is a feature for the scheduler and a hazard for the operator; the fix is a log, a lock, and a heartbeat.
+</p>
