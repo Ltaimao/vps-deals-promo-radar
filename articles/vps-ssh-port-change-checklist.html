@@ -1,0 +1,74 @@
+title: Change the Default SSH Port on a VPS: Checklist
+date: 2026-11-22
+description: Move SSH off port 22 without locking yourself out: open the new port in the firewall first, update the daemon, and test before closing port 22.
+gap: vps-change-default-ssh-port
+
+<h1>Change the Default SSH Port on a VPS: Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-ssh-port-change-checklist.png" alt="Changing the default SSH port on a VPS: a brass key in front of a server and a locked door" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Changing the port is a five-minute edit — losing access because of it takes much longer to fix. Conceptual guide; commands are standard OpenSSH.</figcaption></figure>
+<p>
+  <strong>Short answer: pick a port above 1024, add it to the firewall first, update the SSH daemon configuration, test a new connection while the old one is still open, and only then remove the old port.</strong> Changing the default SSH port does not make a server secure by itself — it reduces the volume of automated login attempts that hit port 22. The real security still comes from key-based login and a firewall. Done in the wrong order, though, a port change is one of the easiest ways to lock yourself out of your own server.
+</p>
+<p>
+  The order matters more than the port number. Every step below exists because someone skipped it: the firewall that still blocks the new port, the daemon that never reloaded, the saved connection that still dials port 22. Work through them in sequence, and keep one working SSH session open until the new port is proven.
+</p>
+
+<h2>1. Pick a port and check it is free</h2>
+<p>
+  Choose a port above 1024 so it does not clash with well-known services, and avoid ports your other services already use. A port in the 20000–40000 range is a common choice. Before changing anything, check that nothing on the server is already listening on it:
+</p>
+<pre><code>ss -tlnp | grep 2222</code></pre>
+<p>
+  No output means the port is free. If something is already listening there, pick a different number — reusing a port that belongs to another service will break that service, not just SSH.
+</p>
+
+<h2>2. Open the new port in the firewall first</h2>
+<p>
+  This is the step that causes most lockouts. Add a rule for the new port before touching the SSH configuration, and confirm the rule is active:
+</p>
+<pre><code>sudo ufw allow 2222/tcp
+sudo ufw status</code></pre>
+<p>
+  If the server sits behind a cloud firewall or a provider-level security group as well as the on-server firewall, the new port has to be open in both places. Our <a href="/articles/vps-firewall-first-steps">firewall first-steps guide</a> covers the two layers and how to check each one. Do not proceed until the new port is open everywhere the old one was.
+</p>
+
+<h2>3. Update the SSH daemon configuration</h2>
+<p>
+  Edit <code>/etc/ssh/sshd_config</code> and set the <code>Port</code> directive to the new number. If the line is commented out with a <code>#</code>, remove the comment character and change the value. While you are in the file, confirm that password authentication is disabled if you already use keys — the port change is a good moment to check, and our <a href="/articles/vps-ssh-key-rotation">SSH key rotation guide</a> covers key-only login:
+</p>
+<pre><code>Port 2222
+PasswordAuthentication no</code></pre>
+<p>
+  Check the configuration for syntax errors before reloading, so a typo cannot stop the daemon from starting:
+</p>
+<pre><code>sudo sshd -t
+sudo systemctl reload sshd</code></pre>
+<p>
+  A reload keeps existing connections alive, so the session you are working in stays connected. A restart would drop it, which is why reload is the safer choice here.
+</p>
+
+<h2>4. Test the new port before closing the old one</h2>
+<p>
+  Open a second terminal and connect to the new port while your first session is still open:
+</p>
+<pre><code>ssh -p 2222 user@203.0.113.10</code></pre>
+<p>
+  Replace the address with your own server's. If the login succeeds, the change works end to end. If it fails, your first session is still alive and you can fix the firewall rule or the configuration without any recovery procedure. Only after a successful test should you remove the old port 22 rule from the firewall — and update every saved connection, script, and deployment tool that still dials port 22, or the next automated job will fail silently.
+</p>
+
+<h2>5. Update fail2ban and anything else that watches port 22</h2>
+<p>
+  Tools that watch SSH traffic usually assume port 22. If fail2ban is running, confirm its SSH jail is watching the new port, or brute-force attempts on the new port will go unlogged. Our <a href="/articles/vps-fail2ban-ssh-brute-force-checklist">fail2ban checklist</a> covers verifying the jail after a configuration change. The same applies to any monitoring or alerting that probes SSH: update the port there too, or the monitor will report the server as down the moment you change it.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>New port chosen above 1024 and confirmed free on the server.</li>
+  <li>New port open in the on-server firewall and any cloud firewall, before the daemon change.</li>
+  <li><code>sshd_config</code> updated, <code>sshd -t</code> passes, daemon reloaded.</li>
+  <li>New connection tested from a second terminal while the old session stays open.</li>
+  <li>Old port 22 firewall rule removed only after the new port is proven.</li>
+  <li>Saved connections, scripts, deployment tools, fail2ban, and monitors updated to the new port.</li>
+</ul>
+<p>
+  If the test connection fails and the first session is gone, the recovery path is the provider console or a rescue mode — our <a href="/articles/vps-ssh-lockout-recovery">SSH lockout recovery guide</a> walks through it. But a port change done in this order should never need it.
+</p>
