@@ -1,0 +1,67 @@
+title: VPS Uptime Monitoring and Alerts: Checklist
+date: 2026-11-23
+description: A server that is down and nobody notices stays down longer. Check from outside, confirm before alerting, and test the alert path with a real failure.
+gap: vps-uptime-monitoring-alert-setup
+
+<h1>VPS Uptime Monitoring and Alerts: Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-uptime-monitoring-alerts-checklist.png" alt="VPS uptime monitoring: a server rack with green status lights and a glowing heartbeat line on a monitor" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Monitoring is only useful if the alert reaches you before a visitor tells you. Conceptual guide; no vendor required.</figcaption></figure>
+<p>
+  <strong>Short answer: check the server from outside, not from itself; alert on more than one signal; send alerts to a channel you actually read; and test the whole path by causing a failure on purpose.</strong> Uptime monitoring fails in predictable ways: the check runs on the same server it watches, the alert goes to an inbox nobody opens, or a single failed probe pages you at 3 a.m. for a network blip. The checklist below avoids all three.
+</p>
+<p>
+  The goal is not a green dashboard — it is knowing, within minutes, that the server is unreachable and whether it is the server, the network, or the monitor itself. That takes an external check, a second signal to confirm it, and an alert path you have already proven works.
+</p>
+
+<h2>1. Monitor from outside the server</h2>
+<p>
+  A check that runs on the server cannot report the server being down — when the machine stops, the check stops with it. Use an external monitor, whether a hosted uptime service or a second small machine in another location, that probes the server from the public internet. At minimum, probe the service your visitors use: an HTTP check against the site, not just a ping. A server can answer ping while its web server is dead, and the ping will happily report everything as fine.
+</p>
+<p>
+  Check from more than one location if the option exists. A single probe location can lose its own route to your server and report an outage that nobody else sees. Two locations disagreeing is information: it points at a network path, not at your server.
+</p>
+
+<h2>2. Alert on more than one signal</h2>
+<p>
+  A single failed probe is often a blip, not an outage. Set the monitor to confirm before alerting — for example, two consecutive failed checks from one location, or a failure confirmed by a second location. This one setting is the difference between alerts you trust and alerts you start ignoring.
+</p>
+<p>
+  Also monitor the resources that cause outages before they happen. Disk filling up, memory pressure, and runaway processes are the usual slow-motion failures. Our <a href="/articles/vps-disk-space-cleanup-checklist">disk space cleanup checklist</a> and <a href="/articles/vps-cpu-steal-time-checklist">CPU steal time checklist</a> cover the two most common ones — a disk-full alert a day early is worth more than an uptime alert a minute after the crash.
+</p>
+
+<h2>3. Send alerts somewhere you will actually see them</h2>
+<p>
+  An alert to an email address you check once a week is the same as no alert. Pick a channel that reaches you when the server is down — a messaging app, SMS, or a push notification — and make sure the alert sender is not filtered into spam. Test it: trigger a test alert from the monitoring service and confirm it arrives on your phone, not just in a dashboard.
+</p>
+<p>
+  Keep the alert destination independent of the server being watched. If alerts are emailed from the same machine that is down, they will never be sent. The monitor and the alert channel should both work when your VPS does not.
+</p>
+
+<h2>4. Test the whole path with a real failure</h2>
+<p>
+  A monitor that has never fired is unproven. Cause a short, controlled failure — stop the web server for a minute during a quiet period — and watch the full sequence: the probe fails, the alert is sent, it arrives on your phone, and the recovery alert arrives when the service returns:
+</p>
+<pre><code>sudo systemctl stop nginx
+# wait for the alert, then
+sudo systemctl start nginx</code></pre>
+<p>
+  If any step is missing, fix it now, while the server is healthy. A test that finds the alert going to spam is a good test — it found the gap before a real outage did.
+</p>
+
+<h2>5. Write down what to do when the alert fires</h2>
+<p>
+  An alert at 3 a.m. is useless if the next step is "figure it out from scratch." Keep a short runbook next to the monitor: how to check whether the server responds to SSH, how to check the provider status page, and how to restore from the last known-good snapshot. Our <a href="/articles/vps-snapshot-restore-test">snapshot restore test guide</a> covers proving the restore works before you need it, and our <a href="/articles/vps-bandwidth-overage-monitoring">bandwidth overage monitoring guide</a> covers the related case where the server is up but its traffic allowance is gone. The runbook does not need to be long — it needs to exist before the outage, not be written during it.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>External monitor probes the live service (HTTP, not just ping) from outside the server.</li>
+  <li>Alerts require confirmation — consecutive failures or a second location — before firing.</li>
+  <li>Disk, memory, and CPU pressure monitored so slow failures alert before the crash.</li>
+  <li>Alert channel tested end to end and delivered to a device you actually carry.</li>
+  <li>Alert sender and monitor both independent of the watched server.</li>
+  <li>Controlled failure test done; alert and recovery alert both received.</li>
+  <li>Short runbook written: SSH check, provider status page, snapshot restore steps.</li>
+</ul>
+<p>
+  Monitoring does not prevent outages. It shortens them — from "a visitor emailed us" to "we knew within minutes." That gap is the whole point of the checklist.
+</p>
