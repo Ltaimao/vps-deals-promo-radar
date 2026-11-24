@@ -1,0 +1,64 @@
+title: Nginx Reverse Proxy Security Checklist for Your VPS
+date: 2026-11-29
+description: A reverse proxy is the front door to every service behind it: hide the backends, limit what the proxy will forward, and log what it refused.
+gap: vps-nginx-reverse-proxy-security-hardening
+
+<h1>Nginx Reverse Proxy Security Checklist for Your VPS</h1>
+<figure class="article-illustration"><img src="/articles/vps-nginx-reverse-proxy-security-checklist.png" alt="A globe sending traffic arrows through a shield gateway to server racks" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>The proxy decides what the internet can reach — everything behind it is only as hidden as the proxy configuration. Conceptual guide; directives are standard Nginx.</figcaption></figure>
+<p>
+  <strong>Short answer: expose only the proxy, never the backends; forward only the paths each service needs; strip the headers that leak versions; and log what the proxy refused so probing shows up.</strong> A reverse proxy is the front door to every service behind it. When it is configured loosely, the internet can reach admin panels, internal APIs, and version strings you assumed were private — through a door you installed yourself.
+</p>
+<p>
+  The checklist below assumes Nginx in front of one or more local services on the same VPS. The same principles apply to any reverse proxy; the directive names are the Nginx ones.
+</p>
+
+<h2>1. Bind backends to localhost, and block them at the firewall</h2>
+<p>
+  A service that listens on all interfaces is reachable directly, proxy or not. Bind each backend to <code>127.0.0.1</code> — for example, an application on <code>127.0.0.1:3000</code> — and confirm with a port scan from outside that only ports 80 and 443 answer. Then add a firewall rule that drops anything else, so a future configuration change cannot quietly re-expose a backend. Our <a href="/articles/vps-firewall-first-steps">firewall first steps guide</a> covers the baseline rules every new server should start with.
+</p>
+
+<h2>2. Forward only the paths each service needs</h2>
+<p>
+  A proxy that forwards everything to a backend hands the internet the backend's entire surface, including its admin routes and debug endpoints. Give each service a tight location block that forwards only the paths it is meant to serve, and return 404 for the rest:
+</p>
+<pre><code>location / {
+    proxy_pass http://127.0.0.1:3000;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+}
+location ~ ^/(admin|debug|internal) {
+    return 404;
+}</code></pre>
+<p>
+  Admin panels should not be reachable through the public proxy at all — put them behind a VPN, an allowlist, or a separate hostname with authentication. If a route does not need to exist on the public internet, do not let the proxy create it.
+</p>
+
+<h2>3. Strip version headers and set the security headers</h2>
+<p>
+  Default Nginx responses announce the server version, and many backends announce their own. That information is free reconnaissance for anyone probing the server. Turn off the version header with <code>server_tokens off;</code>, and strip backend version headers at the proxy with <code>proxy_hide_header</code> where they leak through.
+</p>
+<p>
+  Then add the headers that harden the browser side: a strict transport security header once HTTPS is in place, a content security policy that fits the site, and <code>X-Content-Type-Options: nosniff</code>. Our <a href="/articles/vps-letsencrypt-ssl-renewal-checklist">Let's Encrypt renewal checklist</a> covers keeping the certificate behind those headers valid, because a security header on an expired certificate helps nobody.
+</p>
+
+<h2>4. Limit request size and rate at the proxy</h2>
+<p>
+  A backend that accepts unlimited uploads or unlimited requests will eventually meet someone willing to test that. Set a <code>client_max_body_size</code> that matches what the application actually needs, and rate-limit the paths that get abused first — login, search, and any endpoint that does expensive work per request. A limit that is too generous is nearly the same as no limit, so pick the number from the application's real usage, not from a round default.
+</p>
+
+<h2>5. Log what the proxy refused, and read the log</h2>
+<p>
+  Access logs show what got through; error logs and blocked-request logs show what someone tried. Keep both, rotate them before they fill the disk, and look at them on a schedule — a sudden run of 404s on the same path pattern, or a burst of requests from one address such as 203.0.113.45, is usually the first sign of a probe. A proxy that refuses quietly and logs nothing is a door with no peephole: it works, until the day you need to know who has been knocking.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Backends listen on localhost only; the firewall drops everything except 80 and 443.</li>
+  <li>Each service gets a tight location block; admin and debug routes are not publicly forwarded.</li>
+  <li>Version headers are hidden and the security headers are set.</li>
+  <li>Request size and rate limits match the application's real usage.</li>
+  <li>Refused requests are logged, logs are rotated, and someone reads them.</li>
+</ul>
+<p>
+  Test the proxy from the outside, not from the server: a configuration that looks closed from the inside can still be open to the internet, and the only way to know is to knock on it like a stranger would.
+</p>

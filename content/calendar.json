@@ -316,6 +316,33 @@
       "status": "ready",
       "sha256": "73ff3588701469cff118cdfafca5f4805df5ca2e4af425f839414f0c3773fbbe",
       "image_sha256": "d20c63d417e946428b5f9cd1f24e1fae3e2e9297e24b13805c2f32609bd6e485"
+    },
+    {
+      "date": "2026-11-28",
+      "slug": "vps-postgresql-backup-restore-checklist",
+      "gap": "vps-postgresql-backup-restore-verification",
+      "target_query": "PostgreSQL backup restore VPS checklist",
+      "status": "ready",
+      "sha256": "99a9e6b1c2e8f74e168ccea2912814e99b6c131b261114a6b53f50f4d799064a",
+      "image_sha256": "0d4e25ad2aca5fb46181fc40ecb085c2050309e803bf88b2917301cbbc989c09"
+    },
+    {
+      "date": "2026-11-29",
+      "slug": "vps-nginx-reverse-proxy-security-checklist",
+      "gap": "vps-nginx-reverse-proxy-security-hardening",
+      "target_query": "Nginx reverse proxy security checklist VPS",
+      "status": "ready",
+      "sha256": "37f849f0e17f1031071a2d6798db86497ae32a48bd9eb340caff5834f05b5837",
+      "image_sha256": "547049bc327bd852940790c5f281b981a63f895d73bcb93fe9b2979b3796d855"
+    },
+    {
+      "date": "2026-11-30",
+      "slug": "vps-server-migration-checklist",
+      "gap": "vps-server-migration-downtime-planning",
+      "target_query": "VPS server migration checklist downtime",
+      "status": "ready",
+      "sha256": "82d825931999f108bea83938a8f365491c59b930105c32d216eff251e939b647",
+      "image_sha256": "abc76daced1cf7e04fd9890f31bf5d1e7237b2aaba591016614a74002aa6ce5f"
     }
   ]
 }

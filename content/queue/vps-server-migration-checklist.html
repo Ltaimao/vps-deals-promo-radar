@@ -1,0 +1,59 @@
+title: VPS Server Migration Checklist: Move Without Downtime
+date: 2026-11-30
+description: A server move goes wrong in the boring parts: an untested backup, a DNS record with a long TTL, a service nobody remembered to start on the new box.
+gap: vps-server-migration-downtime-planning
+
+<h1>VPS Server Migration Checklist: Move Without Downtime</h1>
+<figure class="article-illustration"><img src="/articles/vps-server-migration-checklist.png" alt="Two server racks connected by a wide arrow bridge carrying small boxes" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>Migration is a rehearsal problem: everything that can be tested before the cutover should be. Conceptual guide; commands are standard Linux and rsync.</figcaption></figure>
+<p>
+  <strong>Short answer: build the new server first, copy the data while the old one still serves traffic, lower the DNS TTL days ahead, test the new server with a hosts-file entry, and only then switch the traffic — and keep the old server running until the move has proven itself.</strong> A migration goes wrong in the boring parts: an untested backup, a DNS record with a long TTL, a service nobody remembered to start on the new box. The checklist below makes each of those boring parts explicit, in the order that keeps downtime near zero.
+</p>
+<p>
+  This covers moving a live service from one VPS to another — a bigger box, a different region, or a different provider. A WordPress-specific move has its own details; this is the general sequence that any move follows.
+</p>
+
+<h2>1. Inventory everything before you touch anything</h2>
+<p>
+  List every service on the old server, every cron job, every certificate, and every firewall rule — then check that list against what is actually running, not what you remember installing. A service that was set up once and forgotten will not announce itself until the day it is missing on the new box. Copy the inventory into a document, and treat anything not on the list as a risk, not as unimportant.
+</p>
+<p>
+  Take a snapshot of the old server first if your provider offers one, and test that the snapshot restores. Our <a href="/articles/vps-snapshot-restore-test">snapshot restore test</a> covers how to prove a snapshot is worth anything before you depend on it — a migration is exactly the moment you depend on it.
+</p>
+
+<h2>2. Build the new server and copy data while the old one serves</h2>
+<p>
+  Provision the new VPS, install the same services, and copy the data over while the old server keeps serving traffic. Use <code>rsync</code> so the first copy takes the bulk and later copies only transfer what changed:
+</p>
+<pre><code>rsync -avz --delete /var/www/ root@203.0.113.10:/var/www/
+rsync -avz /etc/nginx/sites-available/ root@203.0.113.10:/etc/nginx/sites-available/</code></pre>
+<p>
+  Copy the databases with their own tools — a dump and restore, or replication if the database is large enough that a dump would take the service down. Keep the old server untouched while you do this: the new server is a rehearsal until the cutover, and a rehearsal that damages the live service is not a rehearsal.
+</p>
+
+<h2>3. Lower the DNS TTL days ahead of the cutover</h2>
+<p>
+  A DNS record with a day-long TTL means a day of visitors still reaching the old server after you switch. Lower the TTL on the records you will change to a few minutes, several days before the move, so the short TTL has time to propagate to every resolver that cached the old value. Our <a href="/articles/vps-dns-cutover-ttl-rollback">DNS cutover and rollback guide</a> covers the TTL mechanics and the rollback plan in detail — read it before you change a record, not after.
+</p>
+
+<h2>4. Test the new server with a hosts-file entry</h2>
+<p>
+  Before any DNS change, point your own machine at the new server's address — for example, add <code>203.0.113.10 example.com</code> to your hosts file — and click through the site as a visitor would: log in, submit a form, load the pages that depend on the database. Test the services that do not face the web too: the cron jobs, the mail sending, the backup job. A test that only loads the homepage proves the homepage works; the rest of the service is still untested.
+</p>
+
+<h2>5. Switch the traffic, watch, and keep the old server</h2>
+<p>
+  When the test passes, update the DNS records and watch the new server's logs and error rates while traffic arrives. Keep the old server running for at least a few days — long enough for the longest TTL you had before the move to expire everywhere — and keep syncing any data that still changes on the old box until you are sure nothing still writes to it. Only decommission the old server once the logs show no traffic and no writes for a full day, and only after a final backup of whatever it still holds.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Full inventory of services, cron jobs, certificates, and firewall rules — verified against what is actually running.</li>
+  <li>Snapshot taken and restore-tested before the move starts.</li>
+  <li>New server built and data copied while the old server serves; databases moved with their own tools.</li>
+  <li>DNS TTL lowered days ahead; cutover and rollback steps written down.</li>
+  <li>New server tested end-to-end with a hosts-file entry, including cron and mail.</li>
+  <li>Old server kept running until no traffic or writes reach it for a full day.</li>
+</ul>
+<p>
+  A migration that feels uneventful is a migration that was rehearsed. If the cutover feels like a leap, something in the list above was skipped — go back and rehearse it before you switch the traffic.
+</p>
