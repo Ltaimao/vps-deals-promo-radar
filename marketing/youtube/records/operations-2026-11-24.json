@@ -1,0 +1,73 @@
+{
+  "asOf": "2026-11-24",
+  "scope": "vps_content_and_publication_plan",
+  "brandIdentityVerified": null,
+  "publicationEvidence": [
+    {
+      "contentId": "vw-y002",
+      "videoId": "EEtmmM0h_oU",
+      "url": "https://youtu.be/EEtmmM0h_oU",
+      "actualPublishedAt": "2026-11-02T04:59:36Z",
+      "review7At": "2026-11-09T04:59:36.000Z",
+      "review28At": "2026-11-30T04:59:36.000Z"
+    },
+    {
+      "contentId": "vw-y003",
+      "videoId": "3sLmbC7_W20",
+      "url": "https://youtu.be/3sLmbC7_W20",
+      "actualPublishedAt": "2026-11-03T13:06:35Z",
+      "review7At": "2026-11-10T13:06:35.000Z",
+      "review28At": "2026-12-01T13:06:35.000Z"
+    },
+    {
+      "contentId": "vw-y004",
+      "videoId": "8k1ZM-QwT7Q",
+      "url": "https://youtu.be/8k1ZM-QwT7Q",
+      "actualPublishedAt": "2026-11-04T16:40:52Z",
+      "review7At": "2026-11-11T16:40:52.000Z",
+      "review28At": "2026-12-02T16:40:52.000Z"
+    }
+  ],
+  "analytics": {
+    "metricool": null,
+    "ga4": {
+      "window": [
+        "2026-10-25",
+        "2026-11-23"
+      ],
+      "sourceFilter": "session_source_medium contains youtube",
+      "state": "blocked_account_limit",
+      "reason": "Windsor Free plan allows1 account,7 connected. Read paused; no real metrics returned.",
+      "noAccountsDisconnected": true,
+      "noPurchaseMade": true
+    }
+  },
+  "publicRead": {
+    "state": "Muse evidence retained; no new independent authenticated channel query"
+  },
+  "inventory": {
+    "futureScheduled": 0,
+    "newFinishedVideosThisRun": 0,
+    "state": "depleted",
+    "remainingScripts": [
+      "005",
+      "006"
+    ],
+    "note": "Scripts are not media. No backlog was bulk-uploaded or dates backfilled. Production replenishment remains outstanding and is not claimed blocked by analytics permissions."
+  },
+  "thumbnailRepair": {
+    "state": "Muse owns upload and attachments; do not call publishing interfaces"
+  },
+  "reviews": {
+    "state": "data_unavailable_or_public_timestamp_unverified",
+    "completed": false,
+    "plannedDatesAreNotProofOfElapsedWindows": true
+  },
+  "mutations": {
+    "youtubeUploads": 0,
+    "scheduleCreates": 0,
+    "scheduleUpdates": 0,
+    "pinterestChanges": 0,
+    "newTasks": 0
+  }
+}
