@@ -1,0 +1,69 @@
+title: VPS Kernel Updates and Reboot Planning: Checklist
+date: 2026-11-25
+description: Plan a kernel update without a surprise outage: check whether a reboot is actually needed, confirm the new kernel boots, snapshot first, and restart off-peak.
+gap: vps-kernel-update-reboot-planning
+
+<h1>VPS Kernel Updates and Reboot Planning: Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-kernel-updates-reboot-checklist.png" alt="Planning a VPS kernel update and reboot: a server rack with a glowing power button and a snapshot disk" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>A kernel update is routine until the reboot surprises you — plan the restart before you install anything. Conceptual guide; commands are standard Linux.</figcaption></figure>
+<p>
+  <strong>Short answer: install the update, check whether the running kernel actually changed, take a snapshot or backup before rebooting, restart off-peak with a way to watch the boot, and confirm the new kernel is active afterwards.</strong> Most kernel updates do nothing until the server reboots, which is why the dangerous part is rarely the install — it is the restart, weeks later, when nobody remembers what changed. A short plan turns that restart into a routine step instead of an incident.
+</p>
+<p>
+  Not every update needs a reboot, and not every reboot needs a maintenance window. The checklist below helps you tell the difference: first confirm what the update actually requires, then protect the rollback path, then reboot on your own schedule — not at 3 a.m. because an unattended update forced your hand.
+</p>
+
+<h2>1. Check what the update contains and whether a reboot is required</h2>
+<p>
+  On Ubuntu and Debian, a kernel update arrives as a new package, but the running kernel stays the old one until the next boot. Before scheduling anything, see which kernel is running and which one is installed:
+</p>
+<pre><code>uname -r
+dpkg -l | grep linux-image</code></pre>
+<p>
+  If the installed version is newer than the running one, a reboot is the only way to activate it — user-space package updates do not swap a running kernel. Live-patching services may defer some security fixes without a reboot, but they do not cover every update, and a major version change generally still needs a restart. Our <a href="/articles/vps-ubuntu-release-upgrade-checklist">Ubuntu release upgrade checklist</a> covers the bigger case where the whole distribution moves; a kernel update inside the same release is the smaller, more frequent version of the same discipline.
+</p>
+
+<h2>2. Snapshot or back up before you reboot</h2>
+<p>
+  A kernel that fails to boot is rare, but it is exactly the failure a snapshot exists for. Take a snapshot — or at minimum a current backup of data you cannot rebuild — before the reboot, not after you discover the server will not come back:
+</p>
+<pre><code>sudo apt update && sudo apt install -y linux-image-generic</code></pre>
+<p>
+  Install the update first, then snapshot the server with the new kernel installed but not yet booted. That way a rollback restores a known state instead of a half-updated one. Our <a href="/articles/vps-snapshot-restore-test">snapshot restore test guide</a> covers verifying that a snapshot actually restores — a snapshot you have never tested is a hope, not a plan.
+</p>
+
+<h2>3. Pick an off-peak window and tell anyone who depends on the server</h2>
+<p>
+  A reboot usually takes a few minutes, but plan for longer: a filesystem check, a slow service start, or a stuck boot can stretch it. Check when your traffic is lowest, and if the server hosts anything other people rely on — a site, an API, a game server — give them a heads-up before the window, not an apology after it. A reboot at a quiet hour also means fewer people notice if something goes wrong, and more time to fix it before the next traffic peak.
+</p>
+
+<h2>4. Reboot and watch the boot, not just the ping</h2>
+<p>
+  Reboot with the provider console or a second terminal open, so you can see the boot if SSH does not come back:
+</p>
+<pre><code>sudo reboot</code></pre>
+<p>
+  After the server returns, confirm the new kernel is actually the one running — do not assume the reboot worked because the server answers a ping:
+</p>
+<pre><code>uname -r
+systemctl list-units --failed</code></pre>
+<p>
+  The first command should show the new version. The second shows whether any service failed to start. If a service failed, check its logs before declaring the maintenance done. Our <a href="/articles/vps-uptime-monitoring-alerts-checklist">uptime monitoring checklist</a> covers setting up alerts so a failed service tells you, instead of waiting for a visitor to report it.
+</p>
+
+<h2>5. Keep the old kernel until the new one proves itself</h2>
+<p>
+  Most distributions keep one or two older kernels installed, and the bootloader usually offers them as a fallback. Do not remove the old kernel immediately after a successful boot — leave it in place for a few days while the new one runs under real load. If a driver or module misbehaves later, you can boot the previous kernel from the console instead of rebuilding the server. Clean up old kernels only after the new one has proven stable, and always keep at least one known-good fallback.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Running kernel (<code>uname -r</code>) compared with the installed version; reboot need confirmed.</li>
+  <li>Update installed, snapshot or backup taken before the reboot.</li>
+  <li>Off-peak window chosen and anyone depending on the server notified.</li>
+  <li>Reboot done with console access available; new kernel confirmed with <code>uname -r</code>.</li>
+  <li>Failed services checked with <code>systemctl list-units --failed</code> and fixed.</li>
+  <li>Old kernel kept as a fallback until the new one proves stable under load.</li>
+</ul>
+<p>
+  If the server does not come back after the reboot, the provider console is the recovery path — check the boot output there before assuming the worst. A kernel update with a snapshot and a console is a maintenance task; the same update without either is a gamble.
+</p>
