@@ -343,6 +343,33 @@
       "status": "ready",
       "sha256": "82d825931999f108bea83938a8f365491c59b930105c32d216eff251e939b647",
       "image_sha256": "abc76daced1cf7e04fd9890f31bf5d1e7237b2aaba591016614a74002aa6ce5f"
+    },
+    {
+      "date": "2026-12-01",
+      "slug": "vps-ssh-config-hardening-checklist",
+      "gap": "vps-sshd-config-hardening",
+      "target_query": "VPS SSH hardening sshd_config checklist",
+      "status": "ready",
+      "sha256": "f46e0d4bec4c705e2775fe7368fadcdee82b4a394c8ca7088f49d23fec5c99af",
+      "image_sha256": "f51a3a2941ddff2dd0170143d0e77e2925303dc13aa398039e0bbc8965c9bbbd"
+    },
+    {
+      "date": "2026-12-02",
+      "slug": "vps-load-average-diagnosis-checklist",
+      "gap": "vps-load-average-diagnosis",
+      "target_query": "VPS high load average diagnosis",
+      "status": "ready",
+      "sha256": "6d8d18b5c2dd88a60ed61c6dccee23823e9a6f45402a782845df7e41592d18a2",
+      "image_sha256": "9827177cabb3d10324c50e78ac77cb30f36dfc4b459fd5feff42de08464c72ae"
+    },
+    {
+      "date": "2026-12-03",
+      "slug": "vps-wireguard-vpn-setup-checklist",
+      "gap": "vps-wireguard-vpn-server-setup",
+      "target_query": "WireGuard VPN setup VPS checklist",
+      "status": "ready",
+      "sha256": "9aff57e5479480eea40b9901d4fb14acefb6e58e6f1bdffe37e9673d29bf2048",
+      "image_sha256": "f6b049667d7f4f5b7d5a7132580aecd8d7ad7a78be0af5e9a636c6b83de9bf57"
     }
   ]
 }

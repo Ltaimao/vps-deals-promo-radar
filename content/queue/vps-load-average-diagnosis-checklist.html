@@ -1,0 +1,76 @@
+title: VPS High Load Average: Diagnose It Step by Step
+date: 2026-12-02
+description: A high load average is a symptom, not a diagnosis. Read the three numbers, then check CPU, memory, disk wait, and the process list in that order.
+gap: vps-load-average-diagnosis
+
+<h1>VPS High Load Average: Diagnose It Step by Step</h1>
+<figure class="article-illustration"><img src="/articles/vps-load-average-diagnosis-checklist.png" alt="A server rack with glowing gauges and a rising line chart on a monitor under a magnifying glass" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>A high load average is a symptom, not a diagnosis. Conceptual guide; commands are standard Linux.</figcaption></figure>
+<p>
+  <strong>Short answer: read the 1-, 5-, and 15-minute load numbers, compare them with your CPU count, then check CPU usage, memory pressure, disk wait, and the process list — in that order — before deciding whether the fix is a runaway process, more memory, or a bigger box.</strong> A load average of 8 means very different things on a 1-core VPS and an 8-core one, and most of the panic it causes comes from reading the number without that context. The steps below turn the number into a cause.
+</p>
+<p>
+  This is a diagnosis guide, not a sizing guide: it tells you what is slow and why. If the diagnosis points at a box that is simply too small, the sizing decision is a separate one — but do not buy a bigger box until the steps below have ruled out a single misbehaving process, which is the most common cause by far.
+</p>
+
+<h2>1. Read the three numbers against your CPU count</h2>
+<p>
+  Start with <code>uptime</code> and your core count:
+</p>
+<pre><code>uptime
+nproc</code></pre>
+<p>
+  The three load numbers are the 1-, 5-, and 15-minute averages of runnable and uninterruptible processes. As a rule of thumb, a load around the core count means the box is busy but keeping up; a load several times the core count means work is queueing. Compare the three numbers too: 1-minute high and 15-minute low means a spike that is already passing, while all three climbing together means a sustained problem. A short spike after a reboot or a backup run is normal; a load that stays above your core count for an hour is not.
+</p>
+
+<h2>2. Check whether the CPU is actually busy</h2>
+<p>
+  A high load with an idle CPU points somewhere else entirely — often disk wait. Look at both:
+</p>
+<pre><code>top -b -n 1 | head -20
+vmstat 1 3</code></pre>
+<p>
+  In <code>top</code>, the <code>%Cpu(s)</code> line separates user time, system time, and wait time (<code>wa</code>). High user time with one process at the top of the list is a runaway process or a legitimately heavy job. High wait time means processes are stuck waiting on disk, which is a storage problem, not a CPU problem. On a shared VPS, also check steal time — our <a href="/articles/vps-cpu-steal-time-checklist">CPU steal time guide</a> explains how to tell when the host, not your box, is the bottleneck.
+</p>
+
+<h2>3. Check memory before blaming the CPU</h2>
+<p>
+  When memory runs out, the kernel swaps, and swapping processes pile up in the load average while the CPU idles. Check both:
+</p>
+<pre><code>free -h
+swapon --show</code></pre>
+<p>
+  If available memory is near zero and swap is in active use, the load is a memory symptom. Our <a href="/articles/vps-swap-vs-ram-memory-pressure">swap versus RAM guide</a> covers how to read these numbers and what counts as real pressure versus the kernel using spare memory for cache. The fix for genuine memory pressure is usually fewer services, a smaller footprint per service, or more RAM — not a faster CPU.
+</p>
+
+<h2>4. Find the process — or processes — responsible</h2>
+<p>
+  Once you know which resource is scarce, name the consumer:
+</p>
+<pre><code>ps aux --sort=-%cpu | head -10
+ps aux --sort=-%mem | head -10</code></pre>
+<p>
+  One process eating a whole core is usually a stuck job, a runaway script, or a backup that started at the wrong hour — check its start time and its parent before killing it, because restarting a service that a cron job will immediately relaunch fixes nothing. Many small processes adding up to the same load usually means a traffic spike or a job queue that has grown faster than the workers draining it. Either way, write down the process name and its resource use before you act: the fix for a runaway cron job and the fix for a traffic spike are different fixes.
+</p>
+
+<h2>5. Rule out disk wait and the usual suspects</h2>
+<p>
+  If the CPU is idle, memory is fine, and no process stands out, look at disk:
+</p>
+<pre><code>iostat -x 1 3
+df -h</code></pre>
+<p>
+  High <code>%util</code> or long <code>await</code> times in <code>iostat</code> mean the disk cannot keep up — a backup writing, a database checkpointing, or a log file growing without rotation. A full disk makes this worse in sudden ways; our <a href="/articles/vps-disk-space-cleanup-checklist">disk space cleanup checklist</a> covers the fast wins when the disk is the problem. Also check the obvious: a backup or update job running in the middle of the day, and the cron table for anything scheduled hourly that should be daily.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Load read against the core count, with the 1-, 5-, and 15-minute trend noted.</li>
+  <li>CPU, wait time, and steal time separated — you know which one is high.</li>
+  <li>Memory and swap checked; swapping ruled in or out.</li>
+  <li>The responsible process (or job queue) named, with its start time and parent checked.</li>
+  <li>Disk wait and disk space ruled out; cron jobs reviewed for a bad schedule.</li>
+  <li>Diagnosis written down before any fix — so the fix matches the cause, not the symptom.</li>
+</ul>
+<p>
+  A load average is a queue length, and queues have causes. If the number is high and every check above comes back clean, the cause is usually the host or a neighbour — re-check steal time, and take the numbers to your provider instead of guessing at a bigger plan.
+</p>

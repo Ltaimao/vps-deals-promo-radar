@@ -1,0 +1,83 @@
+title: VPS SSH Hardening Checklist: Lock Down sshd_config
+date: 2026-12-01
+description: Hardening sshd_config is mostly turning off the defaults attackers rely on: password login, root login, and an unchanged port with no fail2ban behind it.
+gap: vps-sshd-config-hardening
+
+<h1>VPS SSH Hardening Checklist: Lock Down sshd_config</h1>
+<figure class="article-illustration"><img src="/articles/vps-ssh-config-hardening-checklist.png" alt="A closed steel padlock in front of a glowing terminal screen with a key icon in a dark server room" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>SSH hardening is mostly turning off the defaults attackers rely on. Conceptual guide; commands are standard OpenSSH on Linux.</figcaption></figure>
+<p>
+  <strong>Short answer: disable password login and root login, allow only key login for named users, restrict the SSH port behind your firewall, and put fail2ban in front of what is left — then test the new config in a second session before you close the first one.</strong> Most SSH break-ins are not clever: they are automated password guesses against a server that still accepts them. The checklist below removes the guesses, the root target, and the open door, in the order that keeps you from locking yourself out.
+</p>
+<p>
+  This assumes you already log in with a key at least some of the time. If you have never set up key login, do that first — our <a href="/articles/vps-ssh-key-rotation">SSH key rotation guide</a> covers generating a key pair and replacing a key safely, and the steps below assume the key is already in place.
+</p>
+
+<h2>1. Back up the config and keep one session open</h2>
+<p>
+  Before changing anything, copy the current config and keep your existing SSH session connected while you test:
+</p>
+<pre><code>cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+sshd -t</code></pre>
+<p>
+  The backup is your undo button, and <code>sshd -t</code> checks the syntax before the daemon ever reads the file. Open a second SSH session and leave the first one connected — if the new config has a mistake, the old session is still your way back in. Never restart SSH from your only session without a tested fallback: a typo in <code>sshd_config</code> can refuse every new connection, and the recovery path is the provider console, as our <a href="/articles/vps-ssh-lockout-recovery">SSH lockout recovery guide</a> explains.
+</p>
+
+<h2>2. Turn off password and root login</h2>
+<p>
+  These three settings do most of the work. Edit <code>/etc/ssh/sshd_config</code>:
+</p>
+<pre><code>PasswordAuthentication no
+PermitRootLogin no
+PubkeyAuthentication yes</code></pre>
+<p>
+  With password login off, a guesser can try forever and never get a prompt that accepts a password. With root login off, the most valuable account on the box is not reachable over SSH at all — log in as a normal user and use <code>sudo</code>. Challenge-response and keyboard-interactive logins should go off too if you do not use them; each one is another door that key-only login does not need.
+</p>
+
+<h2>3. Limit who can log in at all</h2>
+<p>
+  Even with keys only, restrict SSH to the accounts that need it:
+</p>
+<pre><code>AllowUsers deploy
+MaxAuthTries 3
+LoginGraceTime 30</code></pre>
+<p>
+  <code>AllowUsers</code> means an attacker who somehow obtains a key for another account still cannot use it over SSH. <code>MaxAuthTries 3</code> cuts off a connection after three failed attempts, and a short grace time stops half-open connections from lingering. If your server has service accounts that never log in interactively, they should not be in the allowed list — and they should have their shells set to a non-login shell as well.
+</p>
+
+<h2>4. Change the port only as a second layer, not the first</h2>
+<p>
+  Moving SSH off port 22 cuts the volume of automated scans dramatically, but it is noise reduction, not security — a port scan finds the new port in seconds. Change it only after key-only login is working, and update the firewall rule at the same time so the new port is the only one open:
+</p>
+<pre><code>Port 2222</code></pre>
+<p>
+  Our <a href="/articles/vps-ssh-port-change-checklist">SSH port change checklist</a> covers the firewall update and the testing sequence in detail — the common mistake is changing the port in the config but forgetting the firewall, which leaves the server unreachable instead of merely quieter. And if you use fail2ban, remember to point it at the new port, or it will be watching a door nobody knocks on.
+</p>
+
+<h2>5. Put fail2ban in front of what is left</h2>
+<p>
+  With key-only login, fail2ban is a tripwire rather than the main defence: it bans addresses that hammer the service, which keeps the logs readable and the load down. Our <a href="/articles/vps-fail2ban-ssh-brute-force-checklist">fail2ban SSH guide</a> covers the jail setup; the two settings that matter most here are a short ban after a few failures and a ban long enough that a bot moves on. Check the fail2ban log after a day — if it is empty, either the hardening worked or the jail is not watching the right port, and you should find out which.
+</p>
+
+<h2>6. Restart, test from a second session, then verify</h2>
+<p>
+  Apply the change and prove it works before you trust it:
+</p>
+<pre><code>systemctl restart sshd
+ssh -p 2222 deploy@203.0.113.10
+ssh -o PreferredAuthentications=password deploy@203.0.113.10</code></pre>
+<p>
+  The first command should connect with your key. The second should fail outright — that failure is the proof password login is really off. Then check the auth log for anything unexpected, and confirm your firewall still allows only the intended port: our <a href="/articles/vps-firewall-first-steps">firewall first-steps guide</a> is the reference for what a new server should expose. Keep the backup config for a week; if nothing breaks in that time, the new settings are the baseline.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Config backed up, syntax checked with <code>sshd -t</code>, and an old session kept open during the change.</li>
+  <li>Password login off, root login off, key login on — verified by a failed password attempt.</li>
+  <li><code>AllowUsers</code> set to only the accounts that need SSH; <code>MaxAuthTries</code> low.</li>
+  <li>Port changed only after key login works, firewall updated to match.</li>
+  <li>fail2ban watching the right port, with bans visible in its log.</li>
+  <li>Restart tested from a fresh session before the old session is closed.</li>
+</ul>
+<p>
+  Hardened SSH is quiet SSH: the logs stop filling with guesses, and the only logins left are yours. If the auth log is still noisy after this checklist, something in the list above is not actually in force — re-read the running config, not the file you think you edited.
+</p>

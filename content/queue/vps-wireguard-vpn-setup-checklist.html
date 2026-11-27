@@ -1,0 +1,91 @@
+title: WireGuard VPN on a VPS: Setup Checklist
+date: 2026-12-03
+description: WireGuard on a VPS is a short setup: install the tools, generate key pairs, write two small configs, open one UDP port, and test before handing out clients.
+gap: vps-wireguard-vpn-server-setup
+
+<h1>WireGuard VPN on a VPS: Setup Checklist</h1>
+<figure class="article-illustration"><img src="/articles/vps-wireguard-vpn-setup-checklist.png" alt="Two distant server towers connected by a glowing shielded tunnel with a keyhole emblem" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>WireGuard is a short setup: two small configs, one UDP port, and a test before handing out clients. Conceptual guide; commands are standard Linux.</figcaption></figure>
+<p>
+  <strong>Short answer: install WireGuard, generate a key pair for the server and one for each client, write a small server config and a matching client config, open a single UDP port in the firewall, enable forwarding, and test the tunnel from a client before you depend on it.</strong> WireGuard has no sprawling config files and no certificate authority to run — the whole server setup fits in a few lines, and most of the work is getting the keys and the firewall right.
+</p>
+<p>
+  This covers a personal VPN on a VPS you control: one server, a few clients, traffic routed through the server. Before you start, check that running a VPN fits your provider's terms and your use case — our <a href="/articles/can-you-run-vpn-on-cheapest-vps">running a VPN on a cheap VPS</a> guide covers the practical limits, including the small plans where a VPN competes with everything else for the same CPU.
+</p>
+
+<h2>1. Install WireGuard and generate the keys</h2>
+<p>
+  Install the tools, then generate a key pair for the server. Keys are the whole authentication system — there are no passwords to manage:
+</p>
+<pre><code>apt install wireguard
+umask 077
+wg genkey | tee /etc/wireguard/privatekey | wg pubkey &gt; /etc/wireguard/publickey</code></pre>
+<p>
+  Keep the private key readable only by root — the <code>umask 077</code> before generating it takes care of that. Generate a separate key pair for each client the same way, and keep a note of which public key belongs to which device. A client key that is shared between two devices is two devices with one identity, which makes revoking one of them impossible without revoking both.
+</p>
+
+<h2>2. Write the server config</h2>
+<p>
+  The server config is short. Use an address range that does not collide with your home network — the documentation range <code>10.6.0.0/24</code> is a common choice:
+</p>
+<pre><code>[Interface]
+Address = 10.6.0.1/24
+ListenPort = 51820
+PrivateKey = &lt;server private key&gt;
+
+[Peer]
+PublicKey = &lt;client public key&gt;
+AllowedIPs = 10.6.0.2/32</code></pre>
+<p>
+  <code>AllowedIPs</code> on the server is both the routing table and the access list: the peer may only send traffic from the address listed here, and only traffic for that address is routed to it. Add one <code>[Peer]</code> block per client. If a client's address changes — a phone moving between networks — the server does not care, because WireGuard identifies peers by key, not by address.
+</p>
+
+<h2>3. Open one UDP port and enable forwarding</h2>
+<p>
+  WireGuard needs exactly one port, UDP. Open it in the firewall and turn on forwarding so the server can pass traffic between the tunnel and the internet:
+</p>
+<pre><code>ufw allow 51820/udp
+sysctl -w net.ipv4.ip_forward=1</code></pre>
+<p>
+  The forwarding setting does not survive a reboot unless you make it permanent in <code>/etc/sysctl.conf</code> — a server that works until the first reboot and then silently stops routing is a classic WireGuard gotcha. Our <a href="/articles/vps-firewall-first-steps">firewall first-steps guide</a> is the reference for keeping the rest of the server closed while this one port stays open. If your VPS also has an IPv6 address, decide now whether the tunnel carries IPv6; our <a href="/articles/ipv6-only-vps-connectivity-checklist">IPv6-only VPS guide</a> covers the addressing questions that come with that choice.
+</p>
+
+<h2>4. Write the client config and test before you trust it</h2>
+<p>
+  The client config mirrors the server, with the server's public key and the server's public address — here shown with the documentation address <code>203.0.113.10</code> as a placeholder for your server's real IP:
+</p>
+<pre><code>[Interface]
+Address = 10.6.0.2/24
+PrivateKey = &lt;client private key&gt;
+DNS = 10.6.0.1
+
+[Peer]
+PublicKey = &lt;server public key&gt;
+Endpoint = 203.0.113.10:51820
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 25</code></pre>
+<p>
+  <code>AllowedIPs = 0.0.0.0/0</code> routes all of the client's traffic through the tunnel; a narrower range routes only the tunnel addresses. <code>PersistentKeepalive</code> keeps the connection alive through home routers that forget idle UDP sessions. Bring the server up with <code>wg-quick up wg0</code>, start a client, and check with <code>wg show</code> that the handshake completed and traffic flows both ways — then visit a site that shows your public address and confirm it is the server's, not your own.
+</p>
+
+<h2>5. Make it survive a reboot and watch it</h2>
+<p>
+  Enable the interface at boot, and add the tunnel to whatever monitoring you already run:
+</p>
+<pre><code>systemctl enable wg-quick@wg0
+wg show</code></pre>
+<p>
+  A tunnel that dies quietly is worse than one that never started, because the client keeps sending traffic into a dead end. Our <a href="/articles/vps-uptime-monitoring-alerts-checklist">uptime monitoring guide</a> covers alerting on the services that matter — add a check that the WireGuard handshake is recent, not just that the server answers a ping. Keep the private keys backed up off the server, and when a device is lost or retired, delete its <code>[Peer]</code> block and restart the interface.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>WireGuard installed; server and client key pairs generated, private keys root-only.</li>
+  <li>Server config written: one <code>[Peer]</code> per client, each with its own tunnel address.</li>
+  <li>Single UDP port open in the firewall; forwarding enabled and made permanent.</li>
+  <li>Client config tested end to end: handshake completes, traffic flows, public address is the server's.</li>
+  <li>Interface enabled at boot; handshake age monitored; keys backed up off the server.</li>
+  <li>Lost or retired devices removed from the server config — keys are per device, never shared.</li>
+</ul>
+<p>
+  A WireGuard setup that works the first time usually keeps working — the moving parts are few, and the failure modes are mostly a wrong key, a closed port, or a forwarding setting that did not survive a reboot. When the tunnel stops, check those three first.
+</p>
