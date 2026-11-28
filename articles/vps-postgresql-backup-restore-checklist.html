@@ -1,0 +1,63 @@
+title: PostgreSQL Backup and Restore Checklist for Your VPS
+date: 2026-11-28
+description: A PostgreSQL backup you have never restored is a guess, not a backup: dump it, copy it off the server, and prove the restore works before you need it.
+gap: vps-postgresql-backup-restore-verification
+
+<h1>PostgreSQL Backup and Restore Checklist for Your VPS</h1>
+<figure class="article-illustration"><img src="/articles/vps-postgresql-backup-restore-checklist.png" alt="A server rack beside a large database cylinder with a green checkmark shield in front" width="1200" height="630" decoding="async" fetchpriority="high"><figcaption>A backup only counts once the restore has been proven — until then it is a file you hope works. Conceptual guide; commands are standard PostgreSQL and Linux.</figcaption></figure>
+<p>
+  <strong>Short answer: take a logical dump with <code>pg_dump</code>, copy it off the server, keep the roles and permissions with it, and restore it on a scratch database regularly — a backup you have never restored is a guess, not a safety net.</strong> PostgreSQL stores your data in a cluster directory that a plain file copy cannot safely capture while the server is running, so the dump is the unit that matters. The checklist below turns "we have backups" into something you can prove on a quiet afternoon instead of discovering during an outage.
+</p>
+<p>
+  The failure modes are unglamorous: a dump that ran but captured nothing, a backup sitting on the same disk as the database it protects, a restore that fails because the roles were never saved. Each one is cheap to prevent and expensive to discover late.
+</p>
+
+<h2>1. Dump the database, and the roles with it</h2>
+<p>
+  A logical dump with <code>pg_dump</code> reads the database through the server, so it stays consistent while the application keeps running. Dump each database you care about, and dump the roles separately — a database restore will fail or silently lose ownership if the roles it references do not exist on the target:
+</p>
+<pre><code>pg_dump -U postgres -d myapp &gt; /var/backups/myapp.sql
+pg_dumpall --roles-only -U postgres &gt; /var/backups/roles.sql</code></pre>
+<p>
+  If the database is large, compress the dump as you write it, and consider <code>pg_dump</code> in custom format with parallel jobs for a faster restore later. Our <a href="/articles/vps-mysql-backup-restore-checklist">MySQL backup and restore checklist</a> covers the same principle for the other common database: the dump is only half the job, the restore is the other half.
+</p>
+
+<h2>2. Copy the dump off the server the same day</h2>
+<p>
+  A backup on the same disk as the database protects against a deleted table, not against a dead disk, a full disk, or a compromised server. Copy each dump to a second location — another server, object storage, or an offsite backup account — before the day ends, and keep at least one copy that the database server itself cannot delete. Our <a href="/articles/vps-backup-offsite-rotation-checklist">offsite backup rotation checklist</a> covers retention and rotation so old copies do not quietly pile up until the backup disk fills.
+</p>
+<p>
+  Verify the copy, not just the transfer: compare checksums or at least file sizes between the server copy and the offsite copy. A transfer that reported success and wrote a truncated file is worse than a transfer that failed loudly, because it looks like a backup until the day you need it.
+</p>
+
+<h2>3. Restore on a scratch database, on a schedule</h2>
+<p>
+  The restore test is the whole point of the exercise. Create an empty database on a test machine or a spare VPS, restore the dump into it, and confirm the application can read what it expects — row counts for the tables that matter, a login with the application role, a query that touches the newest data:
+</p>
+<pre><code>createdb -U postgres myapp_test
+psql -U postgres -d myapp_test &lt; /var/backups/myapp.sql</code></pre>
+<p>
+  Run this test on a schedule, not once. Dumps rot: a new extension, a new role, a table that outgrew the backup window — any of these can turn a working backup routine into a failing one without changing a single line of the backup script. A monthly restore test catches that drift while it is still boring.
+</p>
+
+<h2>4. Watch the backup window and the disk it writes to</h2>
+<p>
+  A dump that takes longer than the window you gave it will either overlap the next backup or get killed halfway — either way you end up with no usable copy for that day. Watch how long the dump takes as the database grows, and watch the disk the dump lands on: a backup that fills the disk can take the database down with it. Keep the backup target on its own volume when you can, and alert on free space before it becomes the outage. If the dump is getting slow, the custom format with parallel restore is usually the first fix worth trying.
+</p>
+
+<h2>5. Write down the restore steps before you need them</h2>
+<p>
+  During an outage nobody should be reconstructing the restore procedure from memory. Write the steps down — which dump to fetch, which roles file to load first, the exact commands, and how to point the application at the restored database — and keep that document where you can reach it when the server is down. A restore runbook that has been followed once, on a scratch database, is worth more than a backup policy document that has never been tested.
+</p>
+
+<h2>Checklist before you move on</h2>
+<ul>
+  <li>Each database has a scheduled <code>pg_dump</code>; roles are dumped separately.</li>
+  <li>Every dump is copied off the server the same day, with checksums verified.</li>
+  <li>A restore into a scratch database is tested on a schedule, with the application able to read the result.</li>
+  <li>Dump duration and backup-disk free space are monitored as the database grows.</li>
+  <li>Restore steps are written down and reachable when the server is down.</li>
+</ul>
+<p>
+  If you cannot point to the last successful restore test, the backup routine is unfinished — schedule the test before the next backup, not after the next outage.
+</p>
